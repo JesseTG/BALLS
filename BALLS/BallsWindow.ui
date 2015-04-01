@@ -1,0 +1,889 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>BallsWindow</class>
+ <widget class="QMainWindow" name="BallsWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>532</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="font">
+   <font>
+    <kerning>true</kerning>
+   </font>
+  </property>
+  <property name="windowTitle">
+   <string>BALLS</string>
+  </property>
+  <property name="toolButtonStyle">
+   <enum>Qt::ToolButtonIconOnly</enum>
+  </property>
+  <property name="documentMode">
+   <bool>false</bool>
+  </property>
+  <property name="dockNestingEnabled">
+   <bool>false</bool>
+  </property>
+  <property name="dockOptions">
+   <set>QMainWindow::AllowTabbedDocks|QMainWindow::AnimatedDocks</set>
+  </property>
+  <property name="unifiedTitleAndToolBarOnMac">
+   <bool>false</bool>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <property name="minimumSize">
+    <size>
+     <width>400</width>
+     <height>238</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>65535</width>
+     <height>65535</height>
+    </size>
+   </property>
+   <layout class="QGridLayout" name="gridLayout" rowstretch="0" columnstretch="0">
+    <item row="0" column="0">
+     <widget class="QSplitter" name="splitter">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="childrenCollapsible">
+       <bool>false</bool>
+      </property>
+      <widget class="QWidget" name="verticalLayoutWidget">
+       <layout class="QVBoxLayout" name="editorLayout">
+        <item>
+         <widget class="QTabWidget" name="tabs">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="MinimumExpanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="font">
+           <font>
+            <weight>50</weight>
+            <bold>false</bold>
+            <strikeout>false</strikeout>
+            <kerning>true</kerning>
+           </font>
+          </property>
+          <property name="currentIndex">
+           <number>3</number>
+          </property>
+          <property name="elideMode">
+           <enum>Qt::ElideRight</enum>
+          </property>
+          <property name="usesScrollButtons">
+           <bool>false</bool>
+          </property>
+          <widget class="QWidget" name="vertexTab">
+           <property name="enabled">
+            <bool>true</bool>
+           </property>
+           <attribute name="title">
+            <string>Vertex</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="vertexLayout">
+            <property name="spacing">
+             <number>6</number>
+            </property>
+            <item>
+             <widget class="QPlainTextEdit" name="vertexEditor">
+              <property name="enabled">
+               <bool>true</bool>
+              </property>
+              <property name="font">
+               <font>
+                <family>Courier New</family>
+                <kerning>false</kerning>
+               </font>
+              </property>
+              <property name="frameShape">
+               <enum>QFrame::WinPanel</enum>
+              </property>
+              <property name="plainText">
+               <string notr="true">&lt;default vertex shader&gt;</string>
+              </property>
+              <property name="placeholderText">
+               <string notr="true"/>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="fragmentTab">
+           <property name="enabled">
+            <bool>true</bool>
+           </property>
+           <attribute name="title">
+            <string>Fragment</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="fragmentLayout">
+            <item>
+             <widget class="QPlainTextEdit" name="fragmentEditor">
+              <property name="font">
+               <font>
+                <family>Courier New</family>
+               </font>
+              </property>
+              <property name="frameShape">
+               <enum>QFrame::WinPanel</enum>
+              </property>
+              <property name="frameShadow">
+               <enum>QFrame::Sunken</enum>
+              </property>
+              <property name="plainText">
+               <string notr="true">&lt;default fragment shader&gt;</string>
+              </property>
+              <property name="maximumBlockCount">
+               <number>0</number>
+              </property>
+              <property name="backgroundVisible">
+               <bool>false</bool>
+              </property>
+              <property name="centerOnScroll">
+               <bool>false</bool>
+              </property>
+              <property name="placeholderText">
+               <string notr="true"/>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="geometryTab">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <attribute name="title">
+            <string>Geometry</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="geometryLayout">
+            <item>
+             <widget class="QPlainTextEdit" name="geometryEditor">
+              <property name="font">
+               <font>
+                <family>Courier New</family>
+               </font>
+              </property>
+              <property name="frameShape">
+               <enum>QFrame::WinPanel</enum>
+              </property>
+              <property name="documentTitle">
+               <string/>
+              </property>
+              <property name="undoRedoEnabled">
+               <bool>false</bool>
+              </property>
+              <property name="plainText">
+               <string notr="true">Coming soon...</string>
+              </property>
+              <property name="tabStopWidth">
+               <number>4</number>
+              </property>
+              <property name="maximumBlockCount">
+               <number>0</number>
+              </property>
+              <property name="placeholderText">
+               <string notr="true"/>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="sceneTab">
+           <attribute name="title">
+            <string>Scene</string>
+           </attribute>
+           <layout class="QFormLayout" name="optionsLayout">
+            <property name="fieldGrowthPolicy">
+             <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+            </property>
+            <item row="0" column="0">
+             <widget class="QLabel" name="meshLabel">
+              <property name="text">
+               <string>Mesh</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QComboBox" name="meshComboBox"/>
+            </item>
+            <item row="2" column="0" colspan="2">
+             <layout class="QFormLayout" name="formLayout">
+              <property name="fieldGrowthPolicy">
+               <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+              </property>
+              <item row="1" column="0">
+               <widget class="QCheckBox" name="wireframeCheck">
+                <property name="statusTip">
+                 <string>When checked, renders wire frames instead of filled polygons</string>
+                </property>
+                <property name="whatsThis">
+                 <string/>
+                </property>
+                <property name="text">
+                 <string>Wireframe</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="QCheckBox" name="backfaceCheck">
+                <property name="statusTip">
+                 <string>When checked, doesn't draw a polygon that's not facing the camera</string>
+                </property>
+                <property name="text">
+                 <string>Backface Culling</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="0">
+               <widget class="QCheckBox" name="depthTestCheck">
+                <property name="statusTip">
+                 <string/>
+                </property>
+                <property name="text">
+                 <string>Depth Testing</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1">
+               <widget class="QCheckBox" name="ditherCheck">
+                <property name="text">
+                 <string>Dithering</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item row="4" column="0" colspan="2">
+             <widget class="QTableWidget" name="tableWidget">
+              <property name="wordWrap">
+               <bool>false</bool>
+              </property>
+              <property name="cornerButtonEnabled">
+               <bool>false</bool>
+              </property>
+              <property name="columnCount">
+               <number>4</number>
+              </property>
+              <attribute name="horizontalHeaderVisible">
+               <bool>false</bool>
+              </attribute>
+              <attribute name="horizontalHeaderCascadingSectionResizes">
+               <bool>false</bool>
+              </attribute>
+              <attribute name="horizontalHeaderDefaultSectionSize">
+               <number>90</number>
+              </attribute>
+              <attribute name="horizontalHeaderMinimumSectionSize">
+               <number>45</number>
+              </attribute>
+              <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+               <bool>true</bool>
+              </attribute>
+              <attribute name="horizontalHeaderStretchLastSection">
+               <bool>true</bool>
+              </attribute>
+              <attribute name="verticalHeaderVisible">
+               <bool>false</bool>
+              </attribute>
+              <attribute name="verticalHeaderHighlightSections">
+               <bool>false</bool>
+              </attribute>
+              <column>
+               <property name="text">
+                <string>Name</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>Type</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>Value</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>Enabled</string>
+               </property>
+              </column>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="settingsTab">
+           <attribute name="title">
+            <string>Settings</string>
+           </attribute>
+          </widget>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPlainTextEdit" name="log">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Maximum">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="font">
+           <font>
+            <family>Courier New</family>
+           </font>
+          </property>
+          <property name="acceptDrops">
+           <bool>false</bool>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">.success {
+	color: rgb(4, 229, 4);
+}
+
+.warning {
+	color: rgb(225, 120, 14);
+}
+
+.error {
+	color: rgb(247, 29, 29);
+}</string>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::WinPanel</enum>
+          </property>
+          <property name="readOnly">
+           <bool>true</bool>
+          </property>
+          <property name="placeholderText">
+           <string>OpenGL debug logging</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="balls::BallsCanvas" name="canvas">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+         <horstretch>1</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="mouseTracking">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="nativeMenuBar">
+    <bool>true</bool>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionNew_Project"/>
+    <addaction name="actionOpen"/>
+    <addaction name="actionSave_File"/>
+    <addaction name="actionSave"/>
+    <addaction name="actionSave_Project"/>
+    <addaction name="actionSave_Project_As"/>
+    <addaction name="separator"/>
+    <addaction name="actionQuit"/>
+   </widget>
+   <widget class="QMenu" name="menuEdit">
+    <property name="title">
+     <string>Edit</string>
+    </property>
+    <addaction name="actionCut"/>
+    <addaction name="actionCopy"/>
+    <addaction name="actionPaste"/>
+    <addaction name="actionDelete"/>
+   </widget>
+   <widget class="QMenu" name="menuProject">
+    <property name="title">
+     <string>Project</string>
+    </property>
+    <addaction name="actionCompile"/>
+   </widget>
+   <widget class="QMenu" name="menuAbout">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="actionOpenGL_Info"/>
+    <addaction name="actionList_of_Uniforms"/>
+    <addaction name="actionAbout_BALLS"/>
+   </widget>
+   <widget class="QMenu" name="menuView">
+    <property name="title">
+     <string>View</string>
+    </property>
+    <addaction name="actionZoom_In"/>
+    <addaction name="actionZoom_Out"/>
+    <addaction name="actionReset_Zoom"/>
+    <addaction name="separator"/>
+    <addaction name="actionReset_Camera"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuEdit"/>
+   <addaction name="menuProject"/>
+   <addaction name="menuView"/>
+   <addaction name="menuAbout"/>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <action name="actionNew_Project">
+   <property name="text">
+    <string>New</string>
+   </property>
+  </action>
+  <action name="actionOpen">
+   <property name="text">
+    <string>Open</string>
+   </property>
+  </action>
+  <action name="actionSave">
+   <property name="text">
+    <string>Save File As...</string>
+   </property>
+  </action>
+  <action name="actionSave_File">
+   <property name="text">
+    <string>Save File</string>
+   </property>
+  </action>
+  <action name="actionSave_Project">
+   <property name="text">
+    <string>Save Project</string>
+   </property>
+  </action>
+  <action name="actionSave_Project_As">
+   <property name="text">
+    <string>Save Project As...</string>
+   </property>
+  </action>
+  <action name="actionQuit">
+   <property name="text">
+    <string>Quit</string>
+   </property>
+  </action>
+  <action name="actionCut">
+   <property name="text">
+    <string>Cut</string>
+   </property>
+  </action>
+  <action name="actionCopy">
+   <property name="text">
+    <string>Copy</string>
+   </property>
+  </action>
+  <action name="actionPaste">
+   <property name="text">
+    <string>Paste</string>
+   </property>
+  </action>
+  <action name="actionDelete">
+   <property name="text">
+    <string>Delete</string>
+   </property>
+  </action>
+  <action name="actionZoom_In">
+   <property name="text">
+    <string>Zoom Editor In</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+=</string>
+   </property>
+  </action>
+  <action name="actionZoom_Out">
+   <property name="text">
+    <string>Zoom Editor Out</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+-</string>
+   </property>
+  </action>
+  <action name="actionReset_Zoom">
+   <property name="text">
+    <string>Reset Editor Zoom</string>
+   </property>
+  </action>
+  <action name="actionCompile">
+   <property name="text">
+    <string>Compile</string>
+   </property>
+   <property name="shortcut">
+    <string>F9</string>
+   </property>
+  </action>
+  <action name="actionAbout_BALLS">
+   <property name="text">
+    <string>About BALLS...</string>
+   </property>
+  </action>
+  <action name="actionReset_Camera">
+   <property name="text">
+    <string>Reset Camera</string>
+   </property>
+  </action>
+  <action name="actionOpenGL_Info">
+   <property name="text">
+    <string>OpenGL Info...</string>
+   </property>
+  </action>
+  <action name="actionList_of_Uniforms">
+   <property name="text">
+    <string>Uniform List</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>balls::BallsCanvas</class>
+   <extends>QOpenGLWidget</extends>
+   <header location="global">ui/BallsCanvas.hpp</header>
+   <slots>
+    <signal>geometryShadersSupported(bool)</signal>
+    <signal>finishedInitializing()</signal>
+    <slot>setMesh(int)</slot>
+    <slot>setBackfaceCulling(bool)</slot>
+    <slot>setDepthTesting(bool)</slot>
+    <slot>setWireframe(bool)</slot>
+    <slot>setDithering(bool)</slot>
+    <slot>resetCamera()</slot>
+    <slot>setDrawNormals(bool)</slot>
+   </slots>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>canvas</sender>
+   <signal>finishedInitializing()</signal>
+   <receiver>BallsWindow</receiver>
+   <slot>initializeMeshGenerators()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>554</x>
+     <y>267</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>265</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionReset_Camera</sender>
+   <signal>triggered()</signal>
+   <receiver>canvas</receiver>
+   <slot>resetCamera()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>554</x>
+     <y>267</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionZoom_Out</sender>
+   <signal>triggered()</signal>
+   <receiver>geometryEditor</receiver>
+   <slot>zoomOut()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>189</x>
+     <y>238</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>ditherCheck</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>canvas</receiver>
+   <slot>setDithering(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>226</x>
+     <y>192</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>554</x>
+     <y>267</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionZoom_Out</sender>
+   <signal>triggered()</signal>
+   <receiver>fragmentEditor</receiver>
+   <slot>zoomOut()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>189</x>
+     <y>238</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>wireframeCheck</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>canvas</receiver>
+   <slot>setWireframe(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>73</x>
+     <y>164</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>554</x>
+     <y>267</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>backfaceCheck</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>canvas</receiver>
+   <slot>setBackfaceCulling(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>226</x>
+     <y>164</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>554</x>
+     <y>267</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionZoom_Out</sender>
+   <signal>triggered()</signal>
+   <receiver>vertexEditor</receiver>
+   <slot>zoomOut()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>189</x>
+     <y>238</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionZoom_In</sender>
+   <signal>triggered()</signal>
+   <receiver>geometryEditor</receiver>
+   <slot>zoomIn()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>189</x>
+     <y>238</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>depthTestCheck</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>canvas</receiver>
+   <slot>setDepthTesting(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>84</x>
+     <y>192</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>554</x>
+     <y>267</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>meshComboBox</sender>
+   <signal>currentIndexChanged(int)</signal>
+   <receiver>BallsWindow</receiver>
+   <slot>setMesh(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>269</x>
+     <y>121</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>265</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>canvas</sender>
+   <signal>geometryShadersSupported(bool)</signal>
+   <receiver>geometryEditor</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>571</x>
+     <y>267</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>247</x>
+     <y>238</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionZoom_In</sender>
+   <signal>triggered()</signal>
+   <receiver>vertexEditor</receiver>
+   <slot>zoomIn()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>189</x>
+     <y>238</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionZoom_In</sender>
+   <signal>triggered()</signal>
+   <receiver>fragmentEditor</receiver>
+   <slot>zoomIn()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>189</x>
+     <y>238</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>vertexEditor</sender>
+   <signal>textChanged()</signal>
+   <receiver>BallsWindow</receiver>
+   <slot>requestShaderUpdate()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>189</x>
+     <y>238</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>265</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>fragmentEditor</sender>
+   <signal>textChanged()</signal>
+   <receiver>BallsWindow</receiver>
+   <slot>requestShaderUpdate()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>189</x>
+     <y>238</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>265</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>geometryEditor</sender>
+   <signal>textChanged()</signal>
+   <receiver>BallsWindow</receiver>
+   <slot>requestShaderUpdate()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>189</x>
+     <y>238</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>265</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionCompile</sender>
+   <signal>triggered()</signal>
+   <receiver>BallsWindow</receiver>
+   <slot>forceShaderUpdate()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>265</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>setMesh(int)</slot>
+  <slot>initializeMeshGenerators()</slot>
+  <slot>requestShaderUpdate()</slot>
+  <slot>forceShaderUpdate()</slot>
+ </slots>
+</ui>
