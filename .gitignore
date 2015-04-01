@@ -9,6 +9,7 @@
 *.so
 *.dll
 *.dylib
+*.exe
 
 # Qt-es
 
@@ -30,3 +31,5 @@ Makefile*
 #QtCtreator Qml
 *.qmlproject.user
 *.qmlproject.user.*
+
+build/*
