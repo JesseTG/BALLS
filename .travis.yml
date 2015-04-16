@@ -6,6 +6,8 @@ compiler:
 before_install:
   - echo $LANG
   - echo $LC_ALL
+  - sudo apt-get update -qq
+  - sudo apt-get install ubuntu-sdk
 
 script:
   - qmake ./BALLS/BALLS.pro
