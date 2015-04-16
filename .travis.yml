@@ -18,6 +18,12 @@ script:
   - qmake ./BALLS/BALLS.pro
   - make
 
+before_deploy:
+  - echo "Nothing to do before deploy"
+
+deploy:
+  - echo "Deploy not implemented yet"
+
 os:
   - linux
   - osx
