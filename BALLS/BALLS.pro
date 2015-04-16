@@ -75,4 +75,5 @@ OTHER_FILES += \
     shader/default.frag \
     glsl/phong.frag \
     ../.travis.yml \
-    ../.gitignore
+    ../.gitignore \
+    ../README.md
