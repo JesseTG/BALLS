@@ -9,7 +9,7 @@ before_install:
   - echo $LC_ALL
   - sudo apt-add-repository ppa:ubuntu-sdk-team/ppa -y
   - sudo apt-get update -qqy
-  - sudo apt-get install ubuntu-sdk -qqy
+  - sudo apt-get install ubuntu-sdk ubuntu-sdk-libs ubuntu-sdk-libs-dev -qqy
 
 script:
   - qmake ./BALLS/BALLS.pro
