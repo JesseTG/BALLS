@@ -22,7 +22,3 @@ before_deploy:
 
 deploy:
   - echo "Deploy not implemented yet"
-
-os:
-  - linux
-  - osx
