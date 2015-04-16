@@ -16,29 +16,29 @@
 #include <vector>
 
 // Qt Core
-#include <Qt>
-#include <QtGlobal>
-#include <QtMath>
-#include <QDebug>
-#include <QMetaType>
-#include <QPoint>
-#include <QPointF>
-#include <QPointer>
-#include <QSize>
-#include <QSizeF>
-#include <QString>
-#include <QStringList>
-#include <QVariant>
-#include <QVector>
+#include <QtCore/Qt>
+#include <QtCore/QtGlobal>
+#include <QtCore/QtMath>
+#include <QtCore/QDebug>
+#include <QtCore/QMetaType>
+#include <QtCore/QPoint>
+#include <QtCore/QPointF>
+#include <QtCore/QPointer>
+#include <QtCore/QSize>
+#include <QtCore/QSizeF>
+#include <QtCore/QString>
+#include <QtCore/QStringList>
+#include <QtCore/QVariant>
+#include <QtCore/QVector>
 
 // Qt GUI
-#include <QColor>
-#include <QGenericMatrix>
-#include <QMatrix>
-#include <QOpenGLFunctions>
-#include <QVector2D>
-#include <QVector3D>
-#include <QVector4D>
+#include <QtGui/QColor>
+#include <QtGui/QGenericMatrix>
+#include <QtGui/QMatrix>
+#include <QtGui/QOpenGLFunctions>
+#include <QtGui/QVector2D>
+#include <QtGui/QVector3D>
+#include <QtGui/QVector4D>
 
 // Defines
 #ifndef M_PI
