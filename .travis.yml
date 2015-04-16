@@ -7,7 +7,7 @@ compiler:
 before_install:
   - echo $LANG
   - echo $LC_ALL
-  - sudo apt-add-repository -y ppa:beineri/opt-qt541
+  - sudo apt-add-repository -y ppa:kubuntu-ci/stable-daily
   - sudo apt-get update -qqy
 
 install:
