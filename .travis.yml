@@ -12,9 +12,7 @@ before_install:
 
 install:
   - sudo apt-get install -qqy ubuntu-sdk qtcreator qtcreator-dev
-
-after_install:
-  - ls -R /usr/include/qt5
+  - ls -w 80 -R /usr/include/qt5
 
 script:
   - qmake ./BALLS/BALLS.pro
