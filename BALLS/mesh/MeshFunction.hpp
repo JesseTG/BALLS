@@ -2,28 +2,26 @@
 #define MESHFUNCTION_HPP
 
 #include <functional>
-#include <string>
 
 #include "mesh/MeshParameter.hpp"
 
 namespace balls {
 namespace mesh {
 
-using std::string;
 
-const string HEIGHT = "height";
-const string INNER_RADIUS = "inner-radius";
-const string LENGTH = "length";
-const string OUTER_RADIUS = "outer-radius";
-const string RADIUS = "radius";
-const string RESOLUTION = "resolution";
-const string SUBDIVISIONS = "subdivisions";
-const string U_SAMPLES = "u-samples";
-const string V_SAMPLES = "v-samples";
-const string WIDTH = "width";
-const string X_SCALE = "x-scale";
-const string Y_SCALE = "y-scale";
-const string Z_SCALE = "z-scale";
+const QString HEIGHT = "height";
+const QString INNER_RADIUS = "inner-radius";
+const QString LENGTH = "length";
+const QString OUTER_RADIUS = "outer-radius";
+const QString RADIUS = "radius";
+const QString RESOLUTION = "resolution";
+const QString SUBDIVISIONS = "subdivisions";
+const QString U_SAMPLES = "u-samples";
+const QString V_SAMPLES = "v-samples";
+const QString WIDTH = "width";
+const QString X_SCALE = "x-scale";
+const QString Y_SCALE = "y-scale";
+const QString Z_SCALE = "z-scale";
 
 class Mesh;
 class MeshParameter;
@@ -40,13 +38,13 @@ namespace functions {
 extern MeshFunction empty;
 
 /**
- * @brief Returns a plane
- * @param length The length of the plane
- * @param width The width of the plane
+ * @brief Returns a quad
+ * @param length The length of the quad
+ * @param width The width of the quad
  * @param resolution The number of squares (i.e. pairs of triangles) to split
  * this plane into (must be at least 1)
  */
-extern MeshFunction plane;
+extern MeshFunction quad;
 
 /**
  * @brief Returns a box

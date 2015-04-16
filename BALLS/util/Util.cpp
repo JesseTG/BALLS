@@ -1,49 +1,230 @@
+#include "precompiled.hpp"
 #include "util/Util.hpp"
-
-#include <array>
-#include <cmath>
-#include <unordered_map>
-#include <QtGlobal>
-
 
 namespace balls {
 namespace util {
 
-constexpr int SIN_BITS = 14;
-constexpr int SIN_MASK = (1U << SIN_BITS) - 1U;
-constexpr int SIN_COUNT = SIN_MASK + 1;
-constexpr double DEG2RAD = M_PI / 180;
-constexpr double DEGINDEX = SIN_COUNT / 360;
-constexpr double RADINDEX = SIN_COUNT / (M_PI * 2);
+QDebug& operator<<(QDebug& out, const QOpenGLShader::ShaderType& type) {
+  switch (type) {
+  case QOpenGLShader::Vertex:
+    return out << "Vertex";
 
-using std::array;
-using std::floor;
-using std::remainder;
-using std::sin;
-using std::unordered_map;
+  case QOpenGLShader::Fragment:
+    return out << "Fragment";
 
-struct SineTable {
-  SineTable() {
-    for (int i = 0; i < SIN_COUNT; i++) {
-      table[i] = sin((i + 0.5) / (SIN_COUNT * (M_PI * 2.0)));
-    }
+  case QOpenGLShader::Geometry:
+    return out << "Geometry";
 
-    for (int i = 0; i < 360; i += 90) {
-      table[static_cast<int>(i * DEGINDEX) & SIN_MASK] = sin(i * DEG2RAD);
-    }
+  case QOpenGLShader::TessellationControl:
+    return out << "TessellationControl";
+
+  case QOpenGLShader::TessellationEvaluation:
+    return out << "TessellationEvaluation";
+
+  case QOpenGLShader::Compute:
+    return out << "Compute";
+
+  default:
+    Q_UNREACHABLE();
+    return out << "Unknown";
   }
-
-  array<float, SIN_COUNT> table;
-};
-
-static SineTable table;
-
-float sinLUT(const float theta) noexcept {
-  return table.table[int(theta * RADINDEX) & SIN_MASK];
 }
 
-float cosLUT(const float theta) noexcept {
-  return table.table[int((theta + (M_PI / 2) * RADINDEX)) & SIN_MASK];
+uint8_t getNumComponents(const GLenum type) Q_DECL_NOTHROW {
+  switch (type) {
+  case GL_BOOL:
+  case GL_SHORT:
+  case GL_UNSIGNED_SHORT:
+  case GL_BYTE:
+  case GL_UNSIGNED_BYTE:
+  case GL_INT:
+  case GL_UNSIGNED_INT:
+  case GL_FLOAT:
+  case GL_DOUBLE:
+    return 1;
+
+  case GL_INT_VEC2:
+  case GL_FLOAT_VEC2:
+  case GL_DOUBLE_VEC2:
+  case GL_UNSIGNED_INT_VEC2:
+  case GL_BOOL_VEC2:
+    return 2;
+
+  case GL_INT_VEC3:
+  case GL_FLOAT_VEC3:
+  case GL_DOUBLE_VEC3:
+  case GL_UNSIGNED_INT_VEC3:
+  case GL_BOOL_VEC3:
+    return 3;
+
+  case GL_INT_VEC4:
+  case GL_FLOAT_VEC4:
+  case GL_DOUBLE_VEC4:
+  case GL_UNSIGNED_INT_VEC4:
+  case GL_BOOL_VEC4:
+  case GL_FLOAT_MAT2:
+  case GL_DOUBLE_MAT2:
+    return 4;
+
+  case GL_FLOAT_MAT2x3:
+  case GL_FLOAT_MAT3x2:
+  case GL_DOUBLE_MAT2x3:
+  case GL_DOUBLE_MAT3x2:
+    return 6;
+
+  case GL_FLOAT_MAT2x4:
+  case GL_FLOAT_MAT4x2:
+  case GL_DOUBLE_MAT2x4:
+  case GL_DOUBLE_MAT4x2:
+    return 8;
+
+  case GL_FLOAT_MAT3:
+  case GL_DOUBLE_MAT3:
+    return 9;
+
+  case GL_FLOAT_MAT3x4:
+  case GL_FLOAT_MAT4x3:
+  case GL_DOUBLE_MAT3x4:
+  case GL_DOUBLE_MAT4x3:
+    return 12;
+
+  case GL_FLOAT_MAT4:
+  case GL_DOUBLE_MAT4:
+    return 16;
+
+  default:
+    Q_UNREACHABLE();
+    return 0;
+  }
+}
+
+Type getComponentType(const GLenum type) Q_DECL_NOTHROW {
+  switch (type) {
+  case GL_BOOL:
+  case GL_BOOL_VEC2:
+  case GL_BOOL_VEC3:
+  case GL_BOOL_VEC4:
+    return Type::Bool;
+
+  case GL_INT:
+  case GL_INT_VEC2:
+  case GL_INT_VEC3:
+  case GL_INT_VEC4:
+    return Type::Int;
+
+  case GL_UNSIGNED_INT:
+  case GL_UNSIGNED_INT_VEC2:
+  case GL_UNSIGNED_INT_VEC3:
+  case GL_UNSIGNED_INT_VEC4:
+    return Type::UInt;
+
+  case GL_FLOAT:
+  case GL_FLOAT_VEC2:
+  case GL_FLOAT_VEC3:
+  case GL_FLOAT_VEC4:
+  case GL_FLOAT_MAT2:
+  case GL_FLOAT_MAT2x3:
+  case GL_FLOAT_MAT2x4:
+  case GL_FLOAT_MAT3x2:
+  case GL_FLOAT_MAT3:
+  case GL_FLOAT_MAT3x4:
+  case GL_FLOAT_MAT4x2:
+  case GL_FLOAT_MAT4x3:
+  case GL_FLOAT_MAT4:
+    return Type::Float;
+
+  case GL_DOUBLE:
+  case GL_DOUBLE_VEC2:
+  case GL_DOUBLE_VEC3:
+  case GL_DOUBLE_VEC4:
+  case GL_DOUBLE_MAT2:
+  case GL_DOUBLE_MAT2x3:
+  case GL_DOUBLE_MAT2x4:
+  case GL_DOUBLE_MAT3x2:
+  case GL_DOUBLE_MAT3:
+  case GL_DOUBLE_MAT3x4:
+  case GL_DOUBLE_MAT4x2:
+  case GL_DOUBLE_MAT4x3:
+  case GL_DOUBLE_MAT4:
+    return Type::Double;
+
+  default:
+    Q_UNREACHABLE();
+    #ifdef DEBUG
+    qDebug() << "Warning: Cannot get component type of OpenGL enum" << type;
+    #endif
+    return Type::UnknownType;
+  }
+}
+
+bool isVectorType(const GLenum type) Q_DECL_NOTHROW {
+  switch (type) {
+  case GL_INT_VEC2:
+  case GL_INT_VEC3:
+  case GL_INT_VEC4:
+  case GL_UNSIGNED_INT_VEC2:
+  case GL_UNSIGNED_INT_VEC3:
+  case GL_UNSIGNED_INT_VEC4:
+  case GL_FLOAT_VEC2:
+  case GL_FLOAT_VEC3:
+  case GL_FLOAT_VEC4:
+  case GL_DOUBLE_VEC2:
+  case GL_DOUBLE_VEC3:
+  case GL_DOUBLE_VEC4:
+  case GL_BOOL_VEC2:
+  case GL_BOOL_VEC3:
+  case GL_BOOL_VEC4:
+    return true;
+
+  default:
+    return false;
+  }
+}
+
+bool isMatrixType(const GLenum type) Q_DECL_NOTHROW {
+  switch (type) {
+  case GL_FLOAT_MAT2:
+  case GL_FLOAT_MAT2x3:
+  case GL_FLOAT_MAT2x4:
+  case GL_FLOAT_MAT3x2:
+  case GL_FLOAT_MAT3x4:
+  case GL_FLOAT_MAT3:
+  case GL_FLOAT_MAT4x2:
+  case GL_FLOAT_MAT4x3:
+  case GL_FLOAT_MAT4:
+  case GL_DOUBLE_MAT2:
+  case GL_DOUBLE_MAT2x3:
+  case GL_DOUBLE_MAT2x4:
+  case GL_DOUBLE_MAT3x2:
+  case GL_DOUBLE_MAT3:
+  case GL_DOUBLE_MAT3x4:
+  case GL_DOUBLE_MAT4x2:
+  case GL_DOUBLE_MAT4x3:
+  case GL_DOUBLE_MAT4:
+    return true;
+
+  default:
+    return false;
+  }
+}
+
+bool isScalarType(const GLenum type) Q_DECL_NOTHROW {
+  switch (type) {
+  case GL_BOOL:
+  case GL_SHORT:
+  case GL_UNSIGNED_SHORT:
+  case GL_BYTE:
+  case GL_UNSIGNED_BYTE:
+  case GL_INT:
+  case GL_UNSIGNED_INT:
+  case GL_HALF_FLOAT:
+  case GL_FLOAT:
+  case GL_DOUBLE:
+    return true;
+
+  default:
+    return false;
+  }
 }
 }
 }

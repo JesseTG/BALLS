@@ -1,7 +1,7 @@
+#include "precompiled.hpp"
 #include "ui/BallsWindow.hpp"
 
 #include <QApplication>
-#include <QtGlobal>
 
 int main(int argc, char *argv[]) {
   QApplication a(argc, argv);

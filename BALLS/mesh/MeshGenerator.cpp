@@ -1,3 +1,4 @@
+#include "precompiled.hpp"
 #include "MeshGenerator.hpp"
 
 #include "mesh/Mesh.hpp"
@@ -7,7 +8,7 @@
 namespace balls {
 namespace mesh {
 
-MeshGenerator::MeshGenerator(const string& name,
+MeshGenerator::MeshGenerator(const QString& name,
                              const MeshFunction& function,
                              const MeshParameters& params)
     : _name(name), _function(function), _params(params) {}

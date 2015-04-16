@@ -1,7 +1,5 @@
+#include "precompiled.hpp"
 #include "mesh/Mesh.hpp"
-
-#include <vector>
-#include <QVector3D>
 
 namespace balls {
 namespace mesh {

@@ -1,3 +1,4 @@
+#include "precompiled.hpp"
 #include "mesh/Generators.hpp"
 
 #include "mesh/MeshGenerator.hpp"
@@ -6,9 +7,9 @@ namespace balls {
 namespace mesh {
 
 namespace generators {
-MeshGenerator plane("Plane",
-                    functions::plane,
-                    {{LENGTH, {1.0f, 0.0f, 10.0f}}, {WIDTH, {1.0f, 0.0f, 10.0f}}});
+MeshGenerator quad("Quad",
+                    functions::quad,
+                    {{LENGTH, {2.0f, 0.0f, 10.0f}}, {WIDTH, {2.0f, 0.0f, 10.0f}}});
 
 MeshGenerator box("Box",
                   functions::box,

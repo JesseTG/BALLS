@@ -1,19 +1,10 @@
+#include "precompiled.hpp"
 #include "mesh/MeshFunction.hpp"
-
-#include <cmath>
-#include <cstdint>
-#include <string>
-#include <unordered_map>
-
-#include <QDebug>
-#include <QtMath>
-#include <QVector>
 
 #include "mesh/Mesh.hpp"
 #include "mesh/MeshParameter.hpp"
 #include "mesh/MeshGenerator.hpp"
 #include "util/Util.hpp"
-
 
 namespace balls {
 namespace mesh {
@@ -23,7 +14,6 @@ using std::cos;
 using std::max;
 using std::min;
 using std::sin;
-using std::string;
 using std::sqrt;
 using std::uint64_t;
 using std::unordered_map;
@@ -34,7 +24,7 @@ const float INV_SQRT_2 = 1.0f / sqrt(2);
 MeshFunction empty = [](const MeshParameters&) { return Mesh(); };
 // NOTE: Anonymous functions like this one ARE IN THE C++ STANDARD
 
-MeshFunction plane = [](const MeshParameters& params) {
+MeshFunction quad = [](const MeshParameters& params) {
   float length = params.at(LENGTH).getFloat();
   float width = params.at(WIDTH).getFloat();
 

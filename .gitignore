@@ -3,12 +3,14 @@
 *.slo
 *.lo
 *.o
+*.obj
 *.a
 *.la
 *.lai
 *.so
 *.dll
 *.dylib
+*.lib
 *.exe
 
 # Qt-es
@@ -32,4 +34,12 @@ Makefile*
 *.qmlproject.user
 *.qmlproject.user.*
 
+# Compiler-Specific
+*.gch
+*.pch
+
+
+# BALLS-Specific
 build/*
+temp/*
+tango-icon-theme-*/*

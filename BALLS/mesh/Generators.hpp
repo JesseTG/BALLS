@@ -8,7 +8,7 @@ class MeshGenerator;
 
 namespace generators {
 
-extern MeshGenerator plane;
+extern MeshGenerator quad;
 extern MeshGenerator box;
 extern MeshGenerator tetrahedron;
 extern MeshGenerator icosahedron;
