@@ -7,12 +7,11 @@ compiler:
 before_install:
   - echo $LANG
   - echo $LC_ALL
-  - sudo apt-add-repository -y ppa:ubuntu-sdk-team/ppa
+  - sudo apt-add-repository -y ppa:beineri/opt-qt541
   - sudo apt-get update -qqy
 
 install:
-  - sudo apt-get install -qqy ubuntu-sdk qtcreator qtcreator-dev
-  - ls -w 80 -R /usr/include/qt5
+  - sudo apt-get install -qqy qtcreator qtcreator-dev
 
 script:
   - qmake ./BALLS/BALLS.pro
