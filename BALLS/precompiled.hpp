@@ -18,7 +18,7 @@
 // Qt Core
 #include <QtCore/Qt>
 #include <QtCore/QtGlobal>
-#include <QtCore/QtMath>
+#include <qmath.h>
 #include <QtCore/QDebug>
 #include <QtCore/QMetaType>
 #include <QtCore/QPoint>
