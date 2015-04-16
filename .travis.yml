@@ -4,15 +4,6 @@ compiler:
   - gcc
   - clang
 
-addons:
-  apt:
-    sources:
-      - ubuntu-sdk-team
-    packages:
-      - ubuntu-sdk
-      - qtcreator
-      - qtcreator-dev
-
 before_install:
   - echo $LANG
   - echo $LC_ALL
