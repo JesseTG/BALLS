@@ -42,7 +42,7 @@
 
 // Defines
 #ifndef M_PI
-constexpr float M_PI = 3.141592653589793f;
+Q_CONSTEXPR float M_PI = 3.141592653589793f;
 #endif
 
 #endif // PRECOMPILED_HPP
