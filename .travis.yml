@@ -10,7 +10,7 @@ before_install:
   - sudo apt-add-repository ppa:ubuntu-sdk-team/ppa -y
   - sudo apt-get update -qqy
   - sudo apt-get install -qqy ubuntu-sdk qtcreator qtcreator-dev
-  - ls /usr/include/
+  - ls /usr/include/qt5
 
 script:
   - qmake ./BALLS/BALLS.pro
