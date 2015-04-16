@@ -8,8 +8,8 @@ before_install:
   - echo $LANG
   - echo $LC_ALL
   - sudo apt-add-repository ppa:ubuntu-sdk-team/ppa -y
-  - sudo apt-get update -qq
-  - sudo apt-get install ubuntu-sdk
+  - sudo apt-get update -qqy
+  - sudo apt-get install ubuntu-sdk -y
 
 script:
   - qmake ./BALLS/BALLS.pro
