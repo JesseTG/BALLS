@@ -13,12 +13,12 @@
 *.lib
 *.exe
 
-# Qt-es
-
+# Qt
 /.qmake.cache
 /.qmake.stash
 *.pro.user
 *.pro.user.*
+*.user
 *.moc
 moc_*.cpp
 qrc_*.cpp
@@ -30,7 +30,7 @@ Makefile*
 
 *.autosave
 
-#QtCtreator Qml
+# QtCtreator Qml
 *.qmlproject.user
 *.qmlproject.user.*
 
