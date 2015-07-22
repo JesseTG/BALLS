@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>SceneSettings</class>
+ <widget class="QDockWidget" name="SceneSettings">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>400</width>
+    <height>300</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Sce&amp;ne Settings</string>
+  </property>
+  <widget class="QWidget" name="dockWidgetContents">
+   <layout class="QFormLayout" name="formLayout_2">
+    <item row="1" column="0" colspan="2">
+     <layout class="QFormLayout" name="formLayout">
+      <item row="1" column="0">
+       <widget class="QCheckBox" name="wireframeCheck">
+        <property name="statusTip">
+         <string>When checked, renders wire frames instead of filled polygons</string>
+        </property>
+        <property name="whatsThis">
+         <string/>
+        </property>
+        <property name="text">
+         <string>Wireframe</string>
+        </property>
+        <property name="option" stdset="0">
+         <string notr="true">wireframe</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QCheckBox" name="depthTestCheck">
+        <property name="statusTip">
+         <string/>
+        </property>
+        <property name="text">
+         <string>Depth Testing</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+        <property name="option" stdset="0">
+         <string notr="true">depth-test</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QCheckBox" name="backfaceCheck">
+        <property name="statusTip">
+         <string>When checked, doesn't draw a polygon that's not facing the camera</string>
+        </property>
+        <property name="text">
+         <string>Backface Culling</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+        <property name="option" stdset="0">
+         <string notr="true">face-culling</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QCheckBox" name="ditherCheck">
+        <property name="text">
+         <string>Dithering</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+        <property name="option" stdset="0">
+         <string notr="true">dithering</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="0" column="1">
+     <widget class="QComboBox" name="meshComboBox"/>
+    </item>
+    <item row="0" column="0">
+     <widget class="QLabel" name="meshLabel">
+      <property name="text">
+       <string>Mesh</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

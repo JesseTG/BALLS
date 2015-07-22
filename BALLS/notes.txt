@@ -1,0 +1,10 @@
+Data:
+    Shader code
+    Mesh being rendered
+    Built-in uniforms
+    Custom uniforms and their values
+    User configuration
+
+Features:
+    Rotate object with the mouse
+    Zoom in and out
