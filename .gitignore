@@ -42,4 +42,4 @@ Makefile*
 # BALLS-Specific
 build/*
 temp/*
-tango-icon-theme-*/*
+*/tango-icon-theme-*/*
