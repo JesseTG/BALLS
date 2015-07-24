@@ -112,6 +112,13 @@ const char* COL3 = "col3";
 
 const std::array<const char*, 4> XYZW = {X, Y, Z, W};
 const std::array<const char*, 4> COLS = {COL0, COL1, COL2, COL3};
+
+const char* ROW0 = "row0";
+const char* ROW1 = "row1";
+const char* ROW2 = "row2";
+const char* ROW3 = "row3";
+
+const std::array<const char*, 4> ROWS = {ROW0, ROW1, ROW2, ROW3};
 }
 
 namespace regex {
