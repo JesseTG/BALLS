@@ -5,24 +5,6 @@ namespace balls {
 
 using namespace glm;
 
-template class VectorProperty<bvec2>;
-template class VectorProperty<dvec2>;
-template class VectorProperty<ivec2>;
-template class VectorProperty<uvec2>;
-template class VectorProperty<vec2>;
-
-template class VectorProperty<bvec3>;
-template class VectorProperty<dvec3>;
-template class VectorProperty<ivec3>;
-template class VectorProperty<uvec3>;
-template class VectorProperty<vec3>;
-
-template class VectorProperty<bvec4>;
-template class VectorProperty<dvec4>;
-template class VectorProperty<ivec4>;
-template class VectorProperty<uvec4>;
-template class VectorProperty<vec4>;
-
 namespace _impl_ {
 template<>
 QString _getDisplayText<2>(const array<Property*, 2>& dims,

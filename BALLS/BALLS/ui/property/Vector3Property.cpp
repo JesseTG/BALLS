@@ -2,9 +2,11 @@
 #include "ui/property/Vector3Property.hpp"
 
 namespace balls {
-template class Vector3PropertyBase<bvec3>;
-template class Vector3PropertyBase<dvec3>;
-template class Vector3PropertyBase<ivec3>;
-template class Vector3PropertyBase<uvec3>;
-template class Vector3PropertyBase<vec3>;
+using namespace glm;
+
+template class VectorProperty<bvec3>;
+template class VectorProperty<dvec3>;
+template class VectorProperty<ivec3>;
+template class VectorProperty<uvec3>;
+template class VectorProperty<vec3>;
 }
