@@ -74,9 +74,50 @@ void init() noexcept {
   info[GL_FLOAT_VEC4] = info[qMetaTypeId<vec4>()];
   info[GL_UNSIGNED_INT_VEC4] = info[qMetaTypeId<uvec4>()];
 
-  info[qMetaTypeId<mat2>()] = { GL_FLOAT_MAT2, nullptr, qMetaTypeId<mat2>() };
-  info[qMetaTypeId<mat4>()] = { GL_FLOAT_MAT4, nullptr, qMetaTypeId<mat4>() };
+  info[qMetaTypeId<mat2>()] = { GL_FLOAT_MAT2, makeProp<Mat2Property>, qMetaTypeId<mat2>() };
+  info[qMetaTypeId<mat2x3>()] = { GL_FLOAT_MAT2x3, makeProp<Mat2x3Property>, qMetaTypeId<mat2x3>() };
+  info[qMetaTypeId<mat2x4>()] = { GL_FLOAT_MAT2x4, makeProp<Mat2x4Property>, qMetaTypeId<mat2x4>() };
+
+  info[qMetaTypeId<mat3x2>()] = { GL_FLOAT_MAT3x2, makeProp<Mat3x2Property>, qMetaTypeId<mat3x2>() };
+  info[qMetaTypeId<mat3>()] = { GL_FLOAT_MAT3, makeProp<Mat3Property>, qMetaTypeId<mat3>() };
+  info[qMetaTypeId<mat3x4>()] = { GL_FLOAT_MAT3x4, makeProp<Mat3x4Property>, qMetaTypeId<mat3x4>() };
+
+  info[qMetaTypeId<mat4x2>()] = { GL_FLOAT_MAT4x2, makeProp<Mat4x2Property>, qMetaTypeId<mat4x2>() };
+  info[qMetaTypeId<mat4x3>()] = { GL_FLOAT_MAT4x3, makeProp<Mat4x3Property>, qMetaTypeId<mat4x3>() };
+  info[qMetaTypeId<mat4>()] = { GL_FLOAT_MAT4, makeProp<Mat4Property>, qMetaTypeId<mat4>() };
+
+  info[qMetaTypeId<dmat2>()] = { GL_DOUBLE_MAT2, makeProp<DMat2Property>, qMetaTypeId<dmat2>() };
+  info[qMetaTypeId<dmat2x3>()] = { GL_DOUBLE_MAT2x3, makeProp<DMat2x3Property>, qMetaTypeId<dmat2x3>() };
+  info[qMetaTypeId<dmat2x4>()] = { GL_DOUBLE_MAT2x4, makeProp<DMat2x4Property>, qMetaTypeId<dmat2x4>() };
+
+  info[qMetaTypeId<dmat3x2>()] = { GL_DOUBLE_MAT3x2, makeProp<DMat3x2Property>, qMetaTypeId<dmat3x2>() };
+  info[qMetaTypeId<dmat3>()] = { GL_DOUBLE_MAT3, makeProp<DMat3Property>, qMetaTypeId<dmat3>() };
+  info[qMetaTypeId<dmat3x4>()] = { GL_DOUBLE_MAT3x4, makeProp<DMat3x4Property>, qMetaTypeId<dmat3x4>() };
+
+  info[qMetaTypeId<dmat4x2>()] = { GL_DOUBLE_MAT4x2, makeProp<DMat4x2Property>, qMetaTypeId<dmat4x2>() };
+  info[qMetaTypeId<dmat4x3>()] = { GL_DOUBLE_MAT4x3, makeProp<DMat4x3Property>, qMetaTypeId<dmat4x3>() };
+  info[qMetaTypeId<dmat4>()] = { GL_DOUBLE_MAT4, makeProp<DMat4Property>, qMetaTypeId<dmat4>() };
+
+  info[GL_FLOAT_MAT2] = info[qMetaTypeId<mat2>()];
+  info[GL_FLOAT_MAT2x3] = info[qMetaTypeId<mat2x3>()];
+  info[GL_FLOAT_MAT2x4] = info[qMetaTypeId<mat2x4>()];
+  info[GL_FLOAT_MAT3x2] = info[qMetaTypeId<mat3x2>()];
+  info[GL_FLOAT_MAT3] = info[qMetaTypeId<mat3>()];
+  info[GL_FLOAT_MAT3x4] = info[qMetaTypeId<mat3x4>()];
+  info[GL_FLOAT_MAT4x2] = info[qMetaTypeId<mat4x2>()];
+  info[GL_FLOAT_MAT4x3] = info[qMetaTypeId<mat4x3>()];
   info[GL_FLOAT_MAT4] = info[qMetaTypeId<mat4>()];
+
+  info[GL_DOUBLE_MAT2] = info[qMetaTypeId<dmat2>()];
+  info[GL_DOUBLE_MAT2x3] = info[qMetaTypeId<dmat2x3>()];
+  info[GL_DOUBLE_MAT2x4] = info[qMetaTypeId<dmat2x4>()];
+  info[GL_DOUBLE_MAT3x2] = info[qMetaTypeId<dmat3x2>()];
+  info[GL_DOUBLE_MAT3] = info[qMetaTypeId<dmat3>()];
+  info[GL_DOUBLE_MAT3x4] = info[qMetaTypeId<dmat3x4>()];
+  info[GL_DOUBLE_MAT4x2] = info[qMetaTypeId<dmat4x2>()];
+  info[GL_DOUBLE_MAT4x3] = info[qMetaTypeId<dmat4x3>()];
+  info[GL_DOUBLE_MAT4] = info[qMetaTypeId<dmat4>()];
+
 }
 }
 }
