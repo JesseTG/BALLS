@@ -1,9 +1,9 @@
 #include "precompiled.hpp"
 #include "util/TypeInfo.hpp"
-#include "ui/property/ScalarProperty.hpp"
 #include "ui/property/Vector2Property.hpp"
 #include "ui/property/Vector3Property.hpp"
 #include "ui/property/Vector4Property.hpp"
+#include "ui/property/MatrixProperties.hpp"
 
 namespace balls {
 namespace util {
@@ -12,7 +12,7 @@ namespace types {
 
 template<class P>
 Property* makeProp(const QString& name, QObject* subject,
-                       Property* parent) noexcept {
+                   Property* parent) noexcept {
   return new P(name, subject, parent);
 }
 
@@ -20,11 +20,11 @@ TypeInfoMap info;
 void init() noexcept {
   using namespace glm;
 
-  info[QMetaType::Bool] = { GL_BOOL, makeProp<BoolProperty>, QMetaType::Bool };
-  info[QMetaType::Int] = { GL_INT, makeProp<IntProperty>, QMetaType::Int };
-  info[QMetaType::Float] = { GL_FLOAT, makeProp<FloatProperty>, QMetaType::Float };
-  info[QMetaType::Double] = { GL_DOUBLE, makeProp<DoubleProperty>, QMetaType::Double };
-  info[QMetaType::UInt] = { GL_UNSIGNED_INT, makeProp<UIntProperty>, QMetaType::UInt };
+  info[QMetaType::Bool] = { GL_BOOL, makeProp<Property>, QMetaType::Bool };
+  info[QMetaType::Int] = { GL_INT, makeProp<Property>, QMetaType::Int };
+  info[QMetaType::Float] = { GL_FLOAT, makeProp<Property>, QMetaType::Float };
+  info[QMetaType::Double] = { GL_DOUBLE, makeProp<Property>, QMetaType::Double };
+  info[QMetaType::UInt] = { GL_UNSIGNED_INT, makeProp<Property>, QMetaType::UInt };
 
   info[GL_BOOL] = info[QMetaType::Bool];
   info[GL_INT] = info[QMetaType::Int];

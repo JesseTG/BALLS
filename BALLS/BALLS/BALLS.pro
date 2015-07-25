@@ -67,7 +67,6 @@ SOURCES += main.cpp\
 		ui/docks/OpenGLInfo.cpp \
 		shader/ShaderUniform.cpp \
 		ui/property/Vector2Property.cpp \
-		ui/property/ScalarProperty.cpp \
 		ui/property/VectorProperty.cpp \
 		precompiled.cpp \
 		ui/property/Vector3Property.cpp \
@@ -102,7 +101,6 @@ HEADERS  += precompiled.hpp \
 		ui/docks/SceneSettings.hpp \
 		ui/docks/OpenGLInfo.hpp \
 		ui/property/Vector2Property.hpp \
-		ui/property/ScalarProperty.hpp \
 		ui/property/VectorProperty.hpp \
 		ui/property/Vector3Property.hpp \
 		ui/property/Vector4Property.hpp \
