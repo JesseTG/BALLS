@@ -3,6 +3,7 @@
 
 #include <array>
 #include <type_traits>
+#include <QString>
 
 #include "QPropertyEditor/Property.h"
 #include "Constants.hpp"
@@ -10,8 +11,16 @@
 namespace balls {
 using std::array;
 
-template<class MatrixType, class VPropType>
+template<class Matrix, class ColProp>
 class MatrixProperty : public Property {
+  static_assert(
+    std::is_same<typename ColProp::Type, typename Matrix::col_type>::value,
+    "ColProp's value type must be Matrix's column type"
+  );
+
+  using Column = typename Matrix::col_type;
+  using Type = Matrix;
+  static const glm::length_t Size =  Matrix::components;
 public:
   MatrixProperty(const QString& name = "",
                  QObject* subject = nullptr,
@@ -20,19 +29,18 @@ public:
   Property(name, subject, parent) {
     using namespace constants;
 
-    for (int i = 0; i < Cols; ++i) {
-      this->rowProps[i] = new VPropType(properties::ROWS[i], this, this);
+    for (int i = 0; i < Matrix::cols; ++i) {
+      this->colProps[i] = new ColProp(properties::COLS[i], this, this);
     }
   }
 
-  virtual ~MatrixProperty() {}
+  virtual ~MatrixProperty() noexcept {}
 
   QVariant value(const int role = Qt::UserRole) const noexcept override final {
-    const static QString matType = QString("mat%1x%2").arg(MatrixType::rows).arg(MatrixType::cols);
     QVariant data = Property::value();
 
     if (data.isValid() && role != Qt::UserRole) {
-      return matType;
+      return "";
     }
 
     return data;
@@ -41,21 +49,40 @@ public:
   void setValue(const QVariant& value) noexcept override final {
     using namespace constants;
 
-    if (value.userType() == qMetaTypeId<MatrixType>()) {
+    if (value.userType() == qMetaTypeId<Matrix>()) {
       // If we got a matrix...
-      MatrixType mat;
+      Matrix mat = value.value<Matrix>();
 
-      Property::setValue(QVariant::fromValue<MatrixType>(mat));
+      for (int i = 0; i < Matrix::cols; ++i) {
+        colProps[i]->setValue(QVariant::fromValue(mat[i]));
+      }
+
+      Property::setValue(QVariant::fromValue<Matrix>(mat));
     }
-    else {
-      Property::setValue(value);
-    }
+
+    // Otherwise do nothing, the user can't edit a matrix on the whole (gotta
+    // do it through the columns)
   }
 
 protected:
-  array<VPropType*, MatrixType::rows> rowProps;
-};
+  array<ColProp*, Matrix::cols> colProps;
 
+  template<int C>
+  Column _get() const noexcept {
+    static_assert(0 <= C && C < Matrix::cols, "");
+    return value().template value<Matrix>()[C];
+  }
+
+  template<int C>
+  void _set(const Column& c) noexcept {
+    static_assert(0 <= C&&  C < Matrix::cols, "");
+
+    Matrix v = value().template value<Matrix>();
+    v[C] = c;
+
+    Property::setValue(QVariant::fromValue<Matrix>(v));
+  }
+};
 }
 
 #endif // MATRIXPROPERTY_HPP

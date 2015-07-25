@@ -80,6 +80,7 @@ SOURCES += main.cpp\
 		util/MetaTypeConverters.cpp \
 		ui/Uniforms.cpp \
 		util/TypeInfo.cpp \
+    ui/property/MatrixProperties.cpp
 
 HEADERS  += precompiled.hpp \
 		ui/BallsWindow.hpp \
@@ -113,6 +114,7 @@ HEADERS  += precompiled.hpp \
 		util/MetaTypeConverters.hpp \
 		util/TypeInfo.hpp \
 		ui/Uniforms.hpp \
+    ui/property/MatrixProperties.hpp
 
 FORMS    += BallsWindow.ui \
 		ui/docks/SceneSettings.ui \
