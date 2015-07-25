@@ -4,21 +4,7 @@
 #include <array>
 #include <type_traits>
 
-#include <glm/mat2x2.hpp>
-#include <glm/mat2x3.hpp>
-#include <glm/mat2x4.hpp>
-#include <glm/mat3x2.hpp>
-#include <glm/mat3x3.hpp>
-#include <glm/mat4x2.hpp>
-#include <glm/mat4x3.hpp>
-#include <glm/mat4x4.hpp>
-#include <glm/gtc/matrix_access.hpp>
-
 #include "QPropertyEditor/Property.h"
-#include "ui/property/VectorProperty.hpp"
-#include "ui/property/Vector2Property.hpp"
-#include "ui/property/Vector3Property.hpp"
-#include "ui/property/Vector4Property.hpp"
 #include "Constants.hpp"
 
 namespace balls {
@@ -53,7 +39,6 @@ public:
   }
 
   void setValue(const QVariant& value) noexcept override final {
-    using namespace constants::patterns;
     using namespace constants;
 
     if (value.userType() == qMetaTypeId<MatrixType>()) {

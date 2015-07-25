@@ -777,9 +777,6 @@ bool BallsCanvas::updateShaders(const QString& vertex,
 
   if (Q_LIKELY(result)) {
     this->_updateUniformList();
-  }
-
-  if (result) {
     qCDebug(logs::shader::Name) << "Updated shaders";
   }
 
