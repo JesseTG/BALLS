@@ -2,9 +2,11 @@
 #include "ui/property/Vector2Property.hpp"
 
 namespace balls {
-template class Vector2PropertyBase<bvec2>;
-template class Vector2PropertyBase<dvec2>;
-template class Vector2PropertyBase<ivec2>;
-template class Vector2PropertyBase<uvec2>;
-template class Vector2PropertyBase<vec2>;
+using namespace glm;
+
+template class VectorProperty<bvec2>;
+template class VectorProperty<dvec2>;
+template class VectorProperty<ivec2>;
+template class VectorProperty<uvec2>;
+template class VectorProperty<vec2>;
 }

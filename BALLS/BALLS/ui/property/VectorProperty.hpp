@@ -38,14 +38,17 @@ extern template QString _getDisplayText<4>(const array<Property*, 4>&,
     const int) noexcept;
 
 QString parseHints(const QString& hints, const QChar component) noexcept;
+
 }
 
-template<class VectorType>
+template<class Value>
 class VectorProperty : public Property {
-  using ScalarType = typename VectorType::value_type;
-  static constexpr glm::length_t Size =  VectorType::components;
+  using Component = typename Value::value_type;
+  static const glm::length_t Size =  Value::components;
 
 public:
+  using Type = Value;
+
   VectorProperty(
     const QString& name = "",
     QObject* subject = nullptr,
@@ -54,26 +57,13 @@ public:
     using namespace constants;
 
     for (int i = 0; i < Size; ++i) {
+      // TODO: Section this off into a new, non-templated private helper
+      // (maybe by passing in a pointer and a size instead of an array object)
       this->dimProps[i] = new Property(properties::XYZW[i], this, this);
     }
   }
+
   virtual ~VectorProperty() {}
-
-  ScalarType x() const noexcept {
-    return this->component(0);
-  }
-
-  void set_x(const ScalarType x) noexcept {
-    this->set_component(0, x);
-  }
-
-  ScalarType y() const noexcept {
-    return this->component(1);
-  }
-
-  void set_y(const ScalarType y) noexcept {
-    this->set_component(1, y);
-  }
 
   QVariant value(const int role = Qt::UserRole) const noexcept override final {
     QVariant data = Property::value();
@@ -92,44 +82,49 @@ public:
     using namespace constants;
 
     if (value.userType() == QVariant::String) {
+      // If the user just modified the whole vector (as opposed to a single component)...
       const QRegularExpression& rx = this->regex();
       QRegularExpressionMatch match = rx.match(value.toString());
 
-      VectorType vec;
+      Value vec;
 
       if (match.hasMatch()) {
+        // If the vector string is in the format we want...
         for (int i = 0; i < Size; ++i) {
           QVariant v = match.captured(groups::XYZW[i]);
-          Q_ASSERT(v.canConvert<ScalarType>());
-          ScalarType t = v.template value<ScalarType>();
-          dimProps[i]->setProperty(properties::XYZW[i], t);
+          Q_ASSERT(v.canConvert<Component>());
+          Component t = v.template value<Component>();
+          dimProps[i]->setValue(QVariant(t));
           vec[i] = t;
         }
       }
 
-      Property::setValue(QVariant::fromValue<VectorType>(vec));
+      Property::setValue(QVariant::fromValue<Value>(vec));
     }
-    else {
+    else if (value.userType() == qMetaTypeId<Value>()) {
+      // Else if the vector's value was just changed directly...
       Property::setValue(value);
     }
+
+    // Otherwise, don't change the value (we only want vectors!)
   }
 protected:
   array<Property*, Size> dimProps;
 
-  ScalarType component(const int c) const noexcept {
-    Q_ASSERT(0 <= c && c < Size);
-    return value().template value<VectorType>()[c];
+  template<int C>
+  Component _get() const noexcept {
+    static_assert(0 <= C && C < Value::components, "");
+    return value().template value<Value>()[C];
   }
 
-  void set_component(const int I, const ScalarType s) noexcept {
-    Q_ASSERT(0 <= I&&    I < Size);
-    VectorType v;
+  template<int C>
+  void _set(const Component& c) noexcept {
+    static_assert(0 <= C&&  C < Value::components, "");
 
-    for (int i = 0; i < Size; ++i) {
-      v[i] = (i == I) ? s : component(i);
-    }
+    Value v = value().template value<Value>();
+    v[C] = c;
 
-    Property::setValue(QVariant::fromValue<VectorType>(v));
+    Property::setValue(QVariant::fromValue<Value>(v));
   }
 
   void setEditorHints(const QString& hints) noexcept override {
@@ -137,7 +132,8 @@ protected:
       dimProps[i]->setEditorHints(_impl_::parseHints(hints, "xyzw"[i]));
     }
   }
-
+private:
+  // TODO: Replace this (maybe with a constructor parameter)
   virtual const QRegularExpression& regex() const noexcept = 0;
 };
 }

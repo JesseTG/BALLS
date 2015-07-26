@@ -421,6 +421,8 @@ void BallsCanvas::timerEvent(QTimerEvent * e) {
 
 void BallsCanvas::setUniform(const UniformInfo& info, const QVariant& var) noexcept {
   if (!_shader.isLinked()) return;
+  if (_shader.programId() == 0) return;
+  // If the shader wasn't compiled properly, the object's ID will be 0 (no shader)
 
   Q_ASSERT(var.isValid());
   Q_ASSERT(_shader.uniformLocation(info.name) == info.index);
@@ -773,13 +775,11 @@ bool BallsCanvas::updateShaders(const QString& vertex,
 
   if (Q_UNLIKELY(!result)) {
     qCWarning(logs::shader::Name) << _shader.log();
+    _shader.removeAllShaders();
   }
 
   if (Q_LIKELY(result)) {
     this->_updateUniformList();
-  }
-
-  if (result) {
     qCDebug(logs::shader::Name) << "Updated shaders";
   }
 

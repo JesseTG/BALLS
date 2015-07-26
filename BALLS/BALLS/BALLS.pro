@@ -67,7 +67,6 @@ SOURCES += main.cpp\
 		ui/docks/OpenGLInfo.cpp \
 		shader/ShaderUniform.cpp \
 		ui/property/Vector2Property.cpp \
-		ui/property/ScalarProperty.cpp \
 		ui/property/VectorProperty.cpp \
 		precompiled.cpp \
 		ui/property/Vector3Property.cpp \
@@ -80,7 +79,8 @@ SOURCES += main.cpp\
 		util/Trackball.cpp \
 		util/MetaTypeConverters.cpp \
 		ui/Uniforms.cpp \
-		util/TypeInfo.cpp
+		util/TypeInfo.cpp \
+    ui/property/MatrixProperties.cpp
 
 HEADERS  += precompiled.hpp \
 		ui/BallsWindow.hpp \
@@ -101,7 +101,6 @@ HEADERS  += precompiled.hpp \
 		ui/docks/SceneSettings.hpp \
 		ui/docks/OpenGLInfo.hpp \
 		ui/property/Vector2Property.hpp \
-		ui/property/ScalarProperty.hpp \
 		ui/property/VectorProperty.hpp \
 		ui/property/Vector3Property.hpp \
 		ui/property/Vector4Property.hpp \
@@ -114,7 +113,8 @@ HEADERS  += precompiled.hpp \
 		ui/property/SamplerProperty.hpp \
 		util/MetaTypeConverters.hpp \
 		util/TypeInfo.hpp \
-		ui/Uniforms.hpp
+		ui/Uniforms.hpp \
+    ui/property/MatrixProperties.hpp
 
 FORMS    += BallsWindow.ui \
 		ui/docks/SceneSettings.ui \

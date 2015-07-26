@@ -189,7 +189,6 @@ void Uniforms::setFov(const float fov) noexcept {
 }
 
 void Uniforms::_updateProjection() noexcept {
-  qDebug() << Q_FUNC_INFO;
   _projection = glm::perspectiveFov(
     _fov,
     static_cast<float>(_canvasSize.x),
@@ -275,9 +274,7 @@ void Uniforms::resizeEvent(QResizeEvent* e) noexcept {
   _lastCanvasSize.x = lastSize.width();
   _lastCanvasSize.y = lastSize.height();
 
-
   _updateProjection();
   _trackball.setBounds(w, h);
-  qDebug() << Q_FUNC_INFO;
 }
 }

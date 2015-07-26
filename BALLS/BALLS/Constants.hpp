@@ -123,7 +123,13 @@ extern const char* COL1;
 extern const char* COL2;
 extern const char* COL3;
 
+extern const char* ROW0;
+extern const char* ROW1;
+extern const char* ROW2;
+extern const char* ROW3;
+
 extern const std::array<const char*, 4> XYZW;
+extern const std::array<const char*, 4> ROWS;
 extern const std::array<const char*, 4> COLS;
 }
 

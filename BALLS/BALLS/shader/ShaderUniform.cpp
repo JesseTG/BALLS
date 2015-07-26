@@ -2,7 +2,6 @@
 #include "shader/ShaderUniform.hpp"
 
 #include <QPropertyEditor/Property.h>
-#include "ui/property/ScalarProperty.hpp"
 #include "ui/property/VectorProperty.hpp"
 #include "ui/property/Vector2Property.hpp"
 #include "ui/property/Vector3Property.hpp"
