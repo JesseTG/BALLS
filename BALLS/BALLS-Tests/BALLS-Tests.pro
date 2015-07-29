@@ -1,4 +1,5 @@
 TEMPLATE = subdirs
+CONFIG += testcase console c++14
 
 SUBDIRS += \
 		TestConversions \
