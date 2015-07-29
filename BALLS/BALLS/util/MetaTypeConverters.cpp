@@ -10,6 +10,9 @@
 #include <glm/glm.hpp>
 #include <QtGlobal>
 #include <QMetaType>
+#include <QJsonArray>
+#include <QJsonObject>
+#include <QJsonValue>
 
 namespace balls {
 
@@ -72,6 +75,12 @@ using is_glm_vecquat = contains<types::glm::VecsQuats, T>;
 
 template<class T>
 using is_mat = contains<types::all::Mats, T>;
+
+template<class T>
+using is_json_obj = contains<types::all::JsonObj, T>;
+
+template<class T>
+using is_json_arr = contains<types::all::JsonArr, T>;
 
 // convert to scalars ======================================================== 1
 
@@ -329,6 +338,136 @@ convert(const From& from) noexcept {
 }
 // mxn ===================================================================== mxn
 
+// convert to JSON =========================================================== J
+
+// vec2 -> JSON
+template<class From, class To>
+inline enable_if_t < is_vec2<From>()&&  is_json_obj<To>(), To >
+convert(const From& from) noexcept {
+  return QJsonObject {
+    {"x", QJsonValue::fromVariant(static_cast<E<From>>(from.x)) },
+    {"y", QJsonValue::fromVariant(static_cast<E<From>>(from.y)) },
+  };
+}
+
+// vec3 -> JSON
+template<class From, class To>
+inline enable_if_t < is_vec3<From>()&&  is_json_obj<To>(), To >
+convert(const From& from) noexcept {
+  return QJsonObject {
+    {"x", QJsonValue::fromVariant(static_cast<E<From>>(from.x)) },
+    {"y", QJsonValue::fromVariant(static_cast<E<From>>(from.y)) },
+    {"z", QJsonValue::fromVariant(static_cast<E<From>>(from.z)) },
+  };
+}
+
+// vec4 or quat -> JSON
+template<class From, class To>
+inline enable_if_t < (is_vec4<From>()
+                      || is_quat<From>())&&   is_json_obj<To>(), To >
+convert(const From& from) noexcept {
+  return QJsonObject {
+    {"x", QJsonValue::fromVariant(static_cast<E<From>>(from.x)) },
+    {"y", QJsonValue::fromVariant(static_cast<E<From>>(from.y)) },
+    {"z", QJsonValue::fromVariant(static_cast<E<From>>(from.z)) },
+    {"w", QJsonValue::fromVariant(static_cast<E<From>>(from.w)) },
+  };
+}
+
+// mat -> JSON
+template<class From, class To>
+inline enable_if_t < is_mat<From>()&&  is_json_arr<To>(), To >
+convert(const From& from) noexcept {
+  QJsonArray mat;
+
+  for (int c = 0; c < From::cols; ++c) {
+    QJsonArray jcol;
+
+    const typename From::col_type& col = from[c];
+
+    for (int r = 0; r < From::rows; ++r) {
+      jcol.push_back(col[r]);
+    }
+
+    mat.push_back(jcol);
+  }
+
+  return mat;
+}
+
+// JSON -> mat
+template<class From, class To>
+inline enable_if_t < is_json_arr<From>()&&  is_mat<To>(), To >
+convert(const From& from) noexcept {
+  using std::min;
+  QJsonArray json = QJsonValue(from).toArray();
+  To mat;
+
+  for (int c = 0, cols = min((int)To::cols, json.count()); c < cols; ++c) {
+    QJsonArray col = json[c].toArray();
+    // TODO: This does not fill in blanks with the identity matrix
+    for (int r = 0, rows = min((int)To::rows, col.count()); r < rows; ++r) {
+      mat[c][r] = col[r].toDouble();
+    }
+  }
+
+  return mat;
+}
+
+// JSON -> vec2
+template<class From, class To>
+inline enable_if_t < is_json_obj<From>()&&  is_vec2<To>(), To >
+convert(const From& from) noexcept {
+  QJsonObject json = QJsonValue(from).toObject();
+
+  return {
+    json.value("x").toVariant().value<typename To::value_type>(),
+    json.value("y").toVariant().value<typename To::value_type>(),
+  };
+}
+
+// JSON -> vec3
+template<class From, class To>
+inline enable_if_t < is_json_obj<From>()&&  is_vec3<To>(), To >
+convert(const From& from) noexcept {
+  QJsonObject json = QJsonValue(from).toObject();
+
+  return {
+    json.value("x").toVariant().value<typename To::value_type>(),
+    json.value("y").toVariant().value<typename To::value_type>(),
+    json.value("z").toVariant().value<typename To::value_type>(),
+  };
+}
+
+// JSON -> vec4
+template<class From, class To>
+inline enable_if_t < is_json_obj<From>()&&  is_vec4<To>(), To >
+convert(const From& from) noexcept {
+  QJsonObject json = QJsonValue(from).toObject();
+
+  return {
+    json.value("x").toVariant().value<typename To::value_type>(),
+    json.value("y").toVariant().value<typename To::value_type>(),
+    json.value("z").toVariant().value<typename To::value_type>(),
+    json.value("w").toVariant().value<typename To::value_type>(),
+  };
+}
+
+// JSON -> quat
+template<class From, class To>
+inline enable_if_t < is_json_obj<From>()&&  is_quat<To>(), To >
+convert(const From& from) noexcept {
+  QJsonObject json = QJsonValue(from).toObject();
+
+  return {
+    json.value("w").toVariant().value<typename To::value_type>(),
+    json.value("x").toVariant().value<typename To::value_type>(),
+    json.value("y").toVariant().value<typename To::value_type>(),
+    json.value("z").toVariant().value<typename To::value_type>(),
+  };
+}
+// J ========================================================================= J
+
 template<typename From>
 struct other_handler {
   template<typename To>
@@ -363,6 +502,8 @@ void registerMetaTypeConverters() noexcept {
 
   _registerTypes<types::glm::VecsQuats, types::Scalars>();
   _registerTypes<types::glm::VecsQuats, types::all::VecsQuats>();
+  _registerTypes<types::glm::VecsQuats, types::all::JsonObj>();
+  _registerTypes<types::all::JsonObj, types::glm::Vecs>();
 
   _registerTypes<types::qt::Vecs, types::glm::VecsQuats>();
   _registerTypes<types::qt::Quats, types::glm::Vec3s>();
@@ -370,6 +511,8 @@ void registerMetaTypeConverters() noexcept {
   // TODO: Support QQuaternion conversions properly
 
   _registerTypes<types::glm::Mats, types::glm::Mats>();
+  _registerTypes<types::glm::Mats, types::all::JsonArr>();
+  _registerTypes<types::all::JsonArr, types::glm::Mats>();
   // TODO: Convert between GLM <-> Qt matrices
 }
 }
