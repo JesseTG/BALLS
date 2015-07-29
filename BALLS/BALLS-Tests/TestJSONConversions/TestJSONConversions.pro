@@ -9,11 +9,16 @@ QT       += testlib
 QT       -= gui
 
 TARGET = tst_TestJSONConversionsTest
-CONFIG   += console
+CONFIG   += console testcase c++14
 CONFIG   -= app_bundle
 
 TEMPLATE = app
 
-
-SOURCES += tst_TestJSONConversionsTest.cpp
 DEFINES += SRCDIR=\\\"$$PWD/\\\"
+DEFINES += GLM_META_PROG_HELPERS
+
+INCLUDEPATH += ../../BALLS
+
+SOURCES += tst_TestJSONConversionsTest.cpp \
+	../../BALLS/util/MetaTypeConverters.cpp \
+	../../BALLS/precompiled.cpp

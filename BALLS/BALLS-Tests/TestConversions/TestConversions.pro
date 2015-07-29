@@ -17,4 +17,5 @@ SOURCES += tst_TestConversions.cpp \
 	../../BALLS/util/MetaTypeConverters.cpp \
 	../../BALLS/precompiled.cpp
 
-DEFINES += SRCDIR=\\\"$$PWD/\\\"
+DEFINES += SRCDIR=\\\"$$PWD/\\\" \
+	GLM_META_PROG_HELPERS
