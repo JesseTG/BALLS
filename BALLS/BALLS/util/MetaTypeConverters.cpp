@@ -331,8 +331,7 @@ convert(const From& from) noexcept {
 
 // glm mat -> glm mat
 template<class From, class To>
-inline enable_if_t < is_mat<From>()&&  is_mat<To>()&&
-!is_builtin_conv<From, To>(), To >
+inline enable_if_t < is_mat<From>()&&  is_mat<To>(), To >
 convert(const From& from) noexcept {
   return To(from);
 }
@@ -484,13 +483,11 @@ struct handler {
   }
 };
 
-
 /// Register a conversion from every type in SeqA to every type in SeqB
 template<class SeqA, class SeqB>
 inline void _registerTypes() noexcept {
   boost::mpl::for_each<SeqA>(handler<SeqB>());
 }
-
 
 void registerMetaTypeConverters() noexcept {
   using namespace glm;
@@ -499,20 +496,18 @@ void registerMetaTypeConverters() noexcept {
   using boost::mpl::single_view;
 
   _registerTypes<types::Scalars, types::glm::VecsQuats>();
-
   _registerTypes<types::glm::VecsQuats, types::Scalars>();
-  _registerTypes<types::glm::VecsQuats, types::all::VecsQuats>();
+  _registerTypes<types::glm::VecsQuats, types::glm::VecsQuats>();
   _registerTypes<types::glm::VecsQuats, types::all::JsonObj>();
   _registerTypes<types::all::JsonObj, types::glm::Vecs>();
 
-  _registerTypes<types::qt::Vecs, types::glm::VecsQuats>();
-  _registerTypes<types::qt::Quats, types::glm::Vec3s>();
+  //_registerTypes<types::qt::Vecs, types::glm::VecsQuats>();
+  //_registerTypes<types::qt::Quats, types::glm::Vec3s>();
   //_registerTypes<types::qt::Quats, types::glm::Vec4s>();
   // TODO: Support QQuaternion conversions properly
 
   _registerTypes<types::glm::Mats, types::glm::Mats>();
   _registerTypes<types::glm::Mats, types::all::JsonArr>();
   _registerTypes<types::all::JsonArr, types::glm::Mats>();
-  // TODO: Convert between GLM <-> Qt matrices
 }
 }
