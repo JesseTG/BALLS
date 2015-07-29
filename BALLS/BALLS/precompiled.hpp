@@ -245,7 +245,7 @@ extern template class unordered_map<GLenum, GLenum>;
 
 extern template class vector<float>;
 extern template class vector<uint16_t>;
-extern template class vector<QVector3D>;
+extern template class vector<glm::vec3>;
 }
 
 #endif // PRECOMPILED_HPP

@@ -17,7 +17,7 @@ template class unordered_map<GLenum, GLenum>;
 
 template class vector<float>;
 template class vector<uint16_t>;
-template class vector<QVector3D>;
+template class vector<glm::vec3>;
 }
 
 // glm template instantiations
