@@ -2,7 +2,6 @@
 #define METATYPECONVERTERS_HPP
 
 #include <QtCore/QMetaType>
-#include <QtGui/QGenericMatrix>
 #include <QtGui/QVector2D>
 #include <QtGui/QVector3D>
 #include <QtGui/QVector4D>
@@ -58,10 +57,7 @@ using Vec34s = list<QVector3D, QVector4D>;
 using VecsQuats = joint_view<Vecs, Quats>;
 using Len4s = list<QVector4D, QQuaternion>;
 
-using Mats =
-  list<QMatrix2x2, QMatrix2x3, QMatrix2x4, QMatrix3x2, QMatrix3x3, QMatrix3x4, QMatrix4x2, QMatrix4x3, QMatrix4x4>;
-
-using All = joint_view<VecsQuats, Mats>;
+using All = VecsQuats;
 using BuiltIn = joint_view<All, Scalars>;
 }
 
@@ -73,10 +69,12 @@ using Vec4s = joint_view<glm::Vec4s, qt::Vec4s>;
 using Vec34s = joint_view<glm::Vec34s, qt::Vec34s>;
 using Quats = joint_view<glm::Quats, qt::Quats>;
 using VecsQuats = joint_view<glm::VecsQuats, qt::VecsQuats>;
-using Mats = joint_view<glm::Mats, qt::Mats>;
+using Mats = glm::Mats;
 using Len4s = joint_view<glm::Len4s, qt::Len4s>;
 using Len4Subscripts = joint_view<glm::Len4s, single_view<QVector4D>>;
 
+using JsonObj = list<QJsonObject, QJsonValue>;
+using JsonArr = list<QJsonArray, QJsonValue>;
 }
 
 template<class Seq, class T>

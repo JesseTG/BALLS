@@ -86,7 +86,7 @@ void Uniforms::receiveUniforms(const UniformCollection& uniforms) noexcept {
 
 void Uniforms::_handleDiscardedUniforms(const UniformCollection& temp)
 noexcept {
-  qDebug(logs::uniform::Name) << temp.size() << "discarded uniforms";
+  qCDebug(logs::uniform::Name) << temp.size() << "discarded uniforms";
 
   for (const UniformInfo& i : temp) {
     // For each uniform we're throwing away...
@@ -107,7 +107,7 @@ noexcept {
 }
 
 void Uniforms::_handleNewUniforms(const UniformCollection& temp) noexcept {
-  qDebug(logs::uniform::Name) << temp.size() << "new uniforms";
+  qCDebug(logs::uniform::Name) << temp.size() << "new uniforms";
 
   for (const UniformInfo& i : temp) {
     // For each uniform we're adding...
@@ -136,7 +136,7 @@ void Uniforms::_handleNewUniforms(const UniformCollection& temp) noexcept {
 }
 
 void Uniforms::_handleKeptUniforms(const UniformCollection& temp) noexcept {
-  qDebug(logs::uniform::Name) << temp.size() << "uniforms carried over";
+  qCDebug(logs::uniform::Name) << temp.size() << "uniforms carried over";
 
   for (const UniformInfo& i : temp) {
     // For each uniform we still have...
