@@ -112,24 +112,30 @@ using glm::dvec3;
 using glm::dvec4;
 
 using glm::mat2;
+using glm::mat2x2;
 using glm::mat2x3;
 using glm::mat2x4;
 using glm::mat3x2;
 using glm::mat3;
+using glm::mat3x3;
 using glm::mat3x4;
 using glm::mat4x2;
 using glm::mat4x3;
+using glm::mat4x4;
 using glm::mat4;
 
+using glm::dmat2x2;
 using glm::dmat2;
 using glm::dmat2x3;
 using glm::dmat2x4;
 using glm::dmat3x2;
 using glm::dmat3;
+using glm::dmat3x3;
 using glm::dmat3x4;
 using glm::dmat4x2;
 using glm::dmat4x3;
 using glm::dmat4;
+using glm::dmat4x4;
 
 using glm::quat;
 using glm::dquat;
@@ -184,42 +190,45 @@ Q_DECLARE_METATYPE(dquat)
 
 // glm explicit template instantiations
 namespace glm {
-extern template struct tvec2<float, highp>;
-extern template struct tvec2<double, highp>;
-extern template struct tvec2<int, highp>;
-extern template struct tvec2<glm::uint, highp>;
 
-extern template struct tvec3<float, highp>;
-extern template struct tvec3<double, highp>;
-extern template struct tvec3<int, highp>;
-extern template struct tvec3<glm::uint, highp>;
+// Can't instantiate the bool specializations for some reason; I suppose doing so
+// tries to instantiate all methods, including any decrement/increment operators
+extern template struct tvec2<double>;
+extern template struct tvec2<float>;
+extern template struct tvec2<int>;
+extern template struct tvec2<glm::uint>;
 
-extern template struct tvec4<float, highp>;
-extern template struct tvec4<double, highp>;
-extern template struct tvec4<int, highp>;
-extern template struct tvec4<glm::uint, highp>;
+extern template struct tvec3<double>;
+extern template struct tvec3<float>;
+extern template struct tvec3<int>;
+extern template struct tvec3<glm::uint>;
 
-extern template struct tquat<float, highp>;
-extern template struct tquat<double, highp>;
+extern template struct tvec4<double>;
+extern template struct tvec4<float>;
+extern template struct tvec4<int>;
+extern template struct tvec4<glm::uint>;
 
-extern template struct tmat2x2<float, highp>;
-extern template struct tmat2x2<double, highp>;
-extern template struct tmat2x3<float, highp>;
-extern template struct tmat2x3<double, highp>;
-extern template struct tmat2x4<float, highp>;
-extern template struct tmat2x4<double, highp>;
-extern template struct tmat3x2<float, highp>;
-extern template struct tmat3x2<double, highp>;
-extern template struct tmat3x3<float, highp>;
-extern template struct tmat3x3<double, highp>;
-extern template struct tmat3x4<float, highp>;
-extern template struct tmat3x4<double, highp>;
-extern template struct tmat4x2<float, highp>;
-extern template struct tmat4x2<double, highp>;
-extern template struct tmat4x3<float, highp>;
-extern template struct tmat4x3<double, highp>;
-extern template struct tmat4x4<float, highp>;
-extern template struct tmat4x4<double, highp>;
+extern template struct tquat<float>;
+extern template struct tquat<double>;
+
+extern template struct tmat2x2<float>;
+extern template struct tmat2x2<double>;
+extern template struct tmat2x3<float>;
+extern template struct tmat2x3<double>;
+extern template struct tmat2x4<float>;
+extern template struct tmat2x4<double>;
+extern template struct tmat3x2<float>;
+extern template struct tmat3x2<double>;
+extern template struct tmat3x3<float>;
+extern template struct tmat3x3<double>;
+extern template struct tmat3x4<float>;
+extern template struct tmat3x4<double>;
+extern template struct tmat4x2<float>;
+extern template struct tmat4x2<double>;
+extern template struct tmat4x3<float>;
+extern template struct tmat4x3<double>;
+extern template struct tmat4x4<float>;
+extern template struct tmat4x4<double>;
 }
 
 // STL template instantiations
