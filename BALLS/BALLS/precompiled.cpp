@@ -1,33 +1,10 @@
 #include "precompiled.hpp"
 
 // Template method instantiations (don't do it for inline methods!)
-template QGenericMatrix<2, 2, float> QMatrix4x4::toGenericMatrix() const;
-template QGenericMatrix<2, 3, float> QMatrix4x4::toGenericMatrix() const;
-template QGenericMatrix<2, 4, float> QMatrix4x4::toGenericMatrix() const;
-template QGenericMatrix<3, 2, float> QMatrix4x4::toGenericMatrix() const;
-template QGenericMatrix<3, 3, float> QMatrix4x4::toGenericMatrix() const;
-template QGenericMatrix<3, 4, float> QMatrix4x4::toGenericMatrix() const;
-template QGenericMatrix<4, 2, float> QMatrix4x4::toGenericMatrix() const;
-template QGenericMatrix<4, 3, float> QMatrix4x4::toGenericMatrix() const;
+// None for now
 
 // Template class instantiations
-template class QGenericMatrix<2, 2, float>;
-template class QGenericMatrix<2, 3, float>;
-template class QGenericMatrix<2, 4, float>;
-template class QGenericMatrix<3, 2, float>;
-template class QGenericMatrix<3, 3, float>;
-template class QGenericMatrix<3, 4, float>;
-template class QGenericMatrix<4, 2, float>;
-template class QGenericMatrix<4, 3, float>;
-
-template class QGenericMatrix<2, 2, double>;
-template class QGenericMatrix<2, 3, double>;
-template class QGenericMatrix<2, 4, double>;
-template class QGenericMatrix<3, 2, double>;
-template class QGenericMatrix<3, 3, double>;
-template class QGenericMatrix<3, 4, double>;
-template class QGenericMatrix<4, 2, double>;
-template class QGenericMatrix<4, 3, double>;
+// None for now
 
 // STL template instantiations
 namespace std {

@@ -45,15 +45,6 @@
 #include <QtGui/qopengl.h>
 #include <QtGui/qopenglext.h>
 #include <QtGui/QColor>
-#include <QtGui/QMatrix2x2>
-#include <QtGui/QMatrix2x3>
-#include <QtGui/QMatrix2x4>
-#include <QtGui/QMatrix3x2>
-#include <QtGui/QMatrix3x3>
-#include <QtGui/QMatrix3x4>
-#include <QtGui/QMatrix4x2>
-#include <QtGui/QMatrix4x3>
-#include <QtGui/QMatrix4x4>
 #include <QtGui/QQuaternion>
 #include <QtGui/QVector2D>
 #include <QtGui/QVector3D>
@@ -98,34 +89,7 @@
 constexpr float M_PI = 3.141592653589793f;
 #endif
 
-// Template method instantiations (don't do it for inline methods!)
-extern template QGenericMatrix<2, 2, float> QMatrix4x4::toGenericMatrix() const;
-extern template QGenericMatrix<2, 3, float> QMatrix4x4::toGenericMatrix() const;
-extern template QGenericMatrix<2, 4, float> QMatrix4x4::toGenericMatrix() const;
-extern template QGenericMatrix<3, 2, float> QMatrix4x4::toGenericMatrix() const;
-extern template QGenericMatrix<3, 3, float> QMatrix4x4::toGenericMatrix() const;
-extern template QGenericMatrix<3, 4, float> QMatrix4x4::toGenericMatrix() const;
-extern template QGenericMatrix<4, 2, float> QMatrix4x4::toGenericMatrix() const;
-extern template QGenericMatrix<4, 3, float> QMatrix4x4::toGenericMatrix() const;
-
 // Template class instantiations
-extern template class QGenericMatrix<2, 2, float>;
-extern template class QGenericMatrix<2, 3, float>;
-extern template class QGenericMatrix<2, 4, float>;
-extern template class QGenericMatrix<3, 2, float>;
-extern template class QGenericMatrix<3, 3, float>;
-extern template class QGenericMatrix<3, 4, float>;
-extern template class QGenericMatrix<4, 2, float>;
-extern template class QGenericMatrix<4, 3, float>;
-
-extern template class QGenericMatrix<2, 2, double>;
-extern template class QGenericMatrix<2, 3, double>;
-extern template class QGenericMatrix<2, 4, double>;
-extern template class QGenericMatrix<3, 2, double>;
-extern template class QGenericMatrix<3, 3, double>;
-extern template class QGenericMatrix<3, 4, double>;
-extern template class QGenericMatrix<4, 2, double>;
-extern template class QGenericMatrix<4, 3, double>;
 
 using glm::vec2;
 using glm::vec3;
