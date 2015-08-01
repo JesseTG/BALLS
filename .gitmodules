@@ -1,0 +1,6 @@
+[submodule "qt-solutions"]
+	path = qt-solutions
+	url = https://github.com/qtproject/qt-solutions.git
+[submodule "Qtilities"]
+	path = Qtilities
+	url = https://github.com/JPNaude/Qtilities.git
