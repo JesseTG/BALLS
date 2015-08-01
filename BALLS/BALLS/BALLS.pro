@@ -8,6 +8,10 @@ QT       += core gui widgets
 TARGET = BALLS
 TEMPLATE = app
 
+DEFINES += QTILITIES_PROPERTY_BROWSER
+include(../qt-solutions/qtpropertybrowser/src/qtpropertybrowser.pri)
+include(../Qtilities/src/Qtilities.pri)
+
 QMAKE_CXXFLAGS_WARN_ON += \
 	-Wno-missing-braces \
 	-Wno-switch \

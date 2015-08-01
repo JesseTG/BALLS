@@ -1,3 +1,6 @@
 [submodule "BALLS/qt-solutions"]
 	path = BALLS/qt-solutions
 	url = http://code.qt.io/qt-solutions/qt-solutions.git
+[submodule "BALLS/Qtilities"]
+	path = BALLS/Qtilities
+	url = https://github.com/JPNaude/Qtilities.git
