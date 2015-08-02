@@ -6,4 +6,4 @@ SUBDIRS = \
 		QPropertyEditor \
 		BALLS \
 		BALLS-Tests \
-		external/glm.pro
+		$$files(external/*.pro, false)
