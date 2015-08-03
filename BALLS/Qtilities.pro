@@ -7,5 +7,6 @@ UI_DIR = temp
 RCC_DIR = temp
 QTILITIES = core coregui
 DEFINES += QTILITIES_PROPERTY_BROWSER
-QMAKE_CXXFLAGS += -DQTILITIES_PROPERTY_BROWSER
+
+message(Qtilities: $$CONFIG)
 SUBDIRS = Qtilities/src/Qtilities.pro

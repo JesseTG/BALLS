@@ -1,4 +1,4 @@
-TARGET = glm
+# TARGET = glm
 TEMPLATE = aux
 
 CONFIG += c++11
