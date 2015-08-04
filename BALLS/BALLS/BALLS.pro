@@ -1,3 +1,5 @@
+include(../common.pri)
+
 # BALLS Build Configuration File
 
 ### <User-Configurable Settings> ###############################################
@@ -16,11 +18,6 @@ TEMPLATE = app
 CONFIG += qt c++14 warn_on precompile_header qscintilla2
 PRECOMPILED_HEADER = precompiled.hpp
 
-OBJECTS_DIR = $${BALLS_TEMP_DIR}
-MOC_DIR = $${BALLS_TEMP_DIR}
-UI_DIR = $${BALLS_TEMP_DIR}
-RCC_DIR = $${BALLS_TEMP_DIR}
-
 DEFINES += \
 	QTILITIES_PROPERTY_BROWSER \
 	GLM_META_PROG_HELPERS
@@ -31,21 +28,9 @@ precompile_header:!isEmpty(PRECOMPILED_HEADER) {
 
 QMAKE_RESOURCE_FLAGS += -threshold 0 -compress 9
 
-CONFIG(debug, debug|release) {
-	BUILD_TYPE = debug
-}
-else:CONFIG(release, debug|release) {
-	BUILD_TYPE = release
-}
-else {
-	warning("Unknown build type; defaulting to debug")
-	BUILD_TYPE = debug
-}
-
-message("Building in $${BUILD_TYPE} mode")
 message("TARGET: $${TARGET}")
 message("CONFIG: $${CONFIG}")
-message("Temp files to be stored in $${BALLS_TEMP_DIR}")
+message("DESTDIR: $${DESTDIR}")
 ### </General Configuration> ###################################################
 
 ### <Source Files> #############################################################
@@ -153,7 +138,6 @@ warn_on {
 
 CONFIG(debug, debug|release) {
 	DEFINES += DEBUG
-	DESTDIR = $$PWD/../build/Debug
 
 	gcc|clang {
 		QMAKE_CXXFLAGS_DEBUG += \
@@ -171,10 +155,8 @@ CONFIG(debug, debug|release) {
 			-fsanitize=undefined
 	}
 }
-
-CONFIG(release, debug|release) {
+else:CONFIG(release, debug|release) {
 	DEFINES += NDEBUG QT_NO_DEBUG_OUTPUT QT_NO_DEBUG
-	DESTDIR = $$PWD/../build/Release
 
 	gcc|clang {
 		QMAKE_CXXFLAGS_RELEASE += -Ofast -flto
@@ -187,12 +169,12 @@ CONFIG(release, debug|release) {
 
 INCLUDEPATH += \
 	$$PWD/../external/glm \
-	$$PWD/../external/Qtilities/include \
+#	$$PWD/../external/Qtilities/include \
 	$$PWD/../external/qt-solutions/qtpropertybrowser/src \
 	$$PWD/../QPropertyEditor
 
 DEPENDPATH += \
-	$$files($$PWD/../external/Qtilities/*, true) \
+#	$$files($$PWD/../external/Qtilities/*, true) \
 	$$PWD/../QPropertyEditor
 
 ## Libraries to link

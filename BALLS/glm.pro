@@ -1,3 +1,5 @@
+include(common.pri)
+
 # TARGET = glm
 TEMPLATE = aux
 
