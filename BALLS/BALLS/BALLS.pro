@@ -7,6 +7,14 @@ include(../common.pri)
 	BALLS_TEMP_DIR = temp
 }
 
+# define UPX in the build process to compress the output with UPX
+upx:!UPX_FLAGS {
+	UPX_FLAGS = -7
+}
+
+upx:!UPX {
+	UPX = upx
+}
 ### </User-Configurable Settings> ##############################################
 
 
@@ -14,6 +22,8 @@ include(../common.pri)
 QT = core gui widgets
 TARGET = BALLS
 TEMPLATE = app
+QTILITIES += core coregui
+include(../Qtilities/src/Qtilities.pri)
 
 CONFIG += qt c++14 warn_on precompile_header qscintilla2
 PRECOMPILED_HEADER = precompiled.hpp
@@ -203,4 +213,16 @@ else {
 
 ### </Includes and Dependencies> ###############################################
 
+### <Pre/Post-Compilation> #####################################################
+upx {
+	message("Compressing $${TARGET} with UPX flags $${UPX_FLAGS}")
+	system("$${UPX} $${UPX_FLAGS}") {
+		message("upx compression succeeded")
+	}
+	else: {
+		message("upx compression failed")
+	}
+}
+
+### </Pre/Post-Compilation> ####################################################
 
