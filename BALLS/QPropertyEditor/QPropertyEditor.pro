@@ -1,3 +1,5 @@
+include(../common.pri)
+
 QT       += core gui widgets
 
 TARGET = QPropertyEditor
@@ -29,17 +31,12 @@ HEADERS = \
 
 PRECOMPILED_HEADER = precompiled.hpp
 
-OBJECTS_DIR = temp
-MOC_DIR = temp
-UI_DIR = temp
-RCC_DIR = temp
-
 CONFIG(debug, debug|release) {
 }
 
-CONFIG(release, debug|release) { 
-  DEFINES += NDEBUG QT_NO_DEBUG QT_NO_DEBUG_OUTPUT
-  QMAKE_CXXFLAGS_RELEASE += -Ofast
+CONFIG(release, debug|release) {
+	DEFINES += NDEBUG QT_NO_DEBUG QT_NO_DEBUG_OUTPUT
+	QMAKE_CXXFLAGS_RELEASE += -Ofast
 }
 
 

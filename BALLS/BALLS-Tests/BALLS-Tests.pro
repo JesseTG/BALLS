@@ -1,3 +1,5 @@
+include(../common.pri)
+
 TEMPLATE = subdirs
 CONFIG += testcase console c++14
 
