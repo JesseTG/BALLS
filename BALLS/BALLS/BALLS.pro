@@ -144,18 +144,16 @@ CONFIG(debug, debug|release) {
 
 	gcc|clang {
 		QMAKE_CXXFLAGS_DEBUG += \
-			-fsanitize=address \
-			-fsanitize-blacklist=$$PWD/balls.san \
-			-fsanitize=integer \
-			-fsanitize=undefined \
-			-ftemplate-backtrace-limit=0 \
 			-O0
 	}
 
 	clang {
 		QMAKE_LFLAGS_DEBUG += \
+			-fsanitize-blacklist=$$PWD/balls.san \
 			-fsanitize=address \
-			-fsanitize=undefined
+			-fsanitize=undefined \
+			-ftemplate-backtrace-limit=0 \
+			-fsanitize=integer
 	}
 }
 else:CONFIG(release, debug|release) {
