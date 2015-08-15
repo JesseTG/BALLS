@@ -5,16 +5,13 @@
 #include <utility>
 #include <unordered_map>
 
-#include <QPropertyEditor/Property.h>
+#include <QString>
 
 #include <qopengl.h>
 #include <qopenglext.h>
-#include <QtGui/QGenericMatrix>
-#include <QtGui/QMatrix4x4>
-#include <QtGui/QQuaternion>
-#include <QtGui/QVector2D>
-#include <QtGui/QVector3D>
-#include <QtGui/QVector4D>
+
+class QObject;
+class Property;
 
 namespace balls {
 namespace util {

@@ -1,9 +1,3 @@
-[submodule "glm"]
-	path = BALLS/glm
-	url = https://github.com/g-truc/glm.git
 [submodule "Qtilities"]
 	path = BALLS/Qtilities
 	url = https://github.com/JesseTG/Qtilities.git
-[submodule "qt-solutions"]
-	path = BALLS/qt-solutions
-	url = https://github.com/qtproject/qt-solutions.git

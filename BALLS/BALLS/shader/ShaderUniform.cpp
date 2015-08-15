@@ -1,7 +1,6 @@
 #include "precompiled.hpp"
 #include "shader/ShaderUniform.hpp"
 
-#include <QPropertyEditor/Property.h>
 #include "ui/property/VectorProperty.hpp"
 #include "ui/property/Vector2Property.hpp"
 #include "ui/property/Vector3Property.hpp"
@@ -11,6 +10,8 @@
 #include "util/Logging.hpp"
 #include "util/TypeInfo.hpp"
 #include "Constants.hpp"
+
+#include <QPropertyEditor/Property.h>
 
 namespace balls {
 namespace shader {

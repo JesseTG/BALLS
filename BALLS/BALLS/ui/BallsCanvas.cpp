@@ -16,8 +16,6 @@
 #include <QtGui/QSurfaceFormat>
 #include <QtWidgets/QOpenGLWidget>
 
-#include <QPropertyEditor/Property.h>
-
 #include "util/Logging.hpp"
 #include "util/Util.hpp"
 #include "Constants.hpp"

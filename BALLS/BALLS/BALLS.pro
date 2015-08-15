@@ -22,25 +22,16 @@ upx:!UPX {
 QT = core gui widgets
 TARGET = BALLS
 TEMPLATE = app
-QTILITIES += core coregui
+QTILITIES = core coregui
 include(../Qtilities/src/Qtilities.pri)
 
 CONFIG += qt c++14 warn_on precompile_header qscintilla2
 PRECOMPILED_HEADER = precompiled.hpp
 
 DEFINES += \
-	QTILITIES_PROPERTY_BROWSER \
 	GLM_META_PROG_HELPERS
 
-precompile_header:!isEmpty(PRECOMPILED_HEADER) {
-	DEFINES += USING_PCH
-}
-
 QMAKE_RESOURCE_FLAGS += -threshold 0 -compress 9
-
-message("TARGET: $${TARGET}")
-message("CONFIG: $${CONFIG}")
-message("DESTDIR: $${DESTDIR}")
 ### </General Configuration> ###################################################
 
 ### <Source Files> #############################################################
@@ -75,6 +66,7 @@ SOURCES += \
 	util/MetaTypeConverters.cpp \
 	ui/Uniforms.cpp \
 	util/TypeInfo.cpp \
+	ui/QsciLexerGLSL.cpp \
 	ui/property/MatrixProperties.cpp
 
 HEADERS  += \
@@ -104,6 +96,7 @@ HEADERS  += \
 	util/Logging.hpp \
 	ui/property/MatrixProperty.hpp \
 	shader/syntax/GLSLSyntax.hpp \
+	ui/QsciLexerGLSL.h \
 	util/Trackball.hpp \
 	ui/property/SamplerProperty.hpp \
 	util/MetaTypeConverters.hpp \
@@ -151,18 +144,16 @@ CONFIG(debug, debug|release) {
 
 	gcc|clang {
 		QMAKE_CXXFLAGS_DEBUG += \
-			-fsanitize=address \
-			-fsanitize-blacklist=$$PWD/balls.san \
-			-fsanitize=integer \
-			-fsanitize=undefined \
-			-ftemplate-backtrace-limit=0 \
 			-O0
 	}
 
 	clang {
 		QMAKE_LFLAGS_DEBUG += \
+			-fsanitize-blacklist=$$PWD/balls.san \
 			-fsanitize=address \
-			-fsanitize=undefined
+			-fsanitize=undefined \
+			-ftemplate-backtrace-limit=0 \
+			-fsanitize=integer
 	}
 }
 else:CONFIG(release, debug|release) {
@@ -178,33 +169,31 @@ else:CONFIG(release, debug|release) {
 ### <Includes and Dependencies> ################################################
 
 INCLUDEPATH += \
-	$$PWD/../external/glm \
-#	$$PWD/../external/Qtilities/include \
-	$$PWD/../external/qt-solutions/qtpropertybrowser/src \
-	$$PWD/../QPropertyEditor
+	$$PWD/../ \
+	$$PWD/../QPropertyEditor \
+	$$PWD/../Qtilities
 
 DEPENDPATH += \
-#	$$files($$PWD/../external/Qtilities/*, true) \
-	$$PWD/../QPropertyEditor
+	$$DESTDIR \
+	$$PWD/../QPropertyEditor \
+	$$PWD/../Qtilities
+
 
 ## Libraries to link
-win32 {
-	LIBS += -L$$OUT_PWD/../QPropertyEditor/$${BUILD_TYPE}/ -lQPropertyEditor
-}
-else:unix {
-	LIBS += -L$$OUT_PWD/../QPropertyEditor/ -lQPropertyEditor
-}
+LIBS += \
+	-L$$DESTDIR \
+	-lQPropertyEditor
 ## /Libraries to link
 
 ## Dependencies
 win32-g++ {
-	PRE_TARGETDEPS += $$OUT_PWD/../QPropertyEditor/$${BUILD_TYPE}/libQPropertyEditor.a
+	PRE_TARGETDEPS += $$DESTDIR/libQPropertyEditor.a
 }
 else:win32:!win32-g++ {
-	PRE_TARGETDEPS += $$OUT_PWD/../QPropertyEditor/$${BUILD_TYPE}/QPropertyEditor.lib
+	PRE_TARGETDEPS += $$DESTDIR/QPropertyEditor.lib
 }
 else:unix {
-	PRE_TARGETDEPS += $$OUT_PWD/../QPropertyEditor/libQPropertyEditor.a
+	PRE_TARGETDEPS += $$DESTDIR/libQPropertyEditor.a
 }
 else {
 	warning("What the hell are you building this thing on?")

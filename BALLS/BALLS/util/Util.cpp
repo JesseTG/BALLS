@@ -509,7 +509,7 @@ QVariant getDefaultValue(const GLenum type) noexcept {
     return false;
 
   case GL_INT:
-    return 0i;
+    return 0;
 
   case GL_UNSIGNED_INT:
     return 0u;

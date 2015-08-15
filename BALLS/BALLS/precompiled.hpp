@@ -241,7 +241,7 @@ template<> struct hash<QByteArray>;
 extern template struct pair<GLenum, GLenum>;
 extern template struct pair<QString, QVariant>;
 
-extern template class unordered_map<GLenum, GLenum>;
+//extern template class unordered_map<GLenum, GLenum>;
 
 extern template class vector<float>;
 extern template class vector<uint16_t>;

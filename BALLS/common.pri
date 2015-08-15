@@ -14,4 +14,9 @@ MOC_DIR = temp
 UI_DIR = temp
 RCC_DIR = temp
 
-DESTDIR = $$clean_path($$PWD/../build/$${BUILD_TYPE}/dist)
+INCLUDEPATH *= \
+	$$MOC_DIR \
+	$$UI_DIR \
+	$$RCC_DIR
+
+DESTDIR = $$PWD/../build/$${BUILD_TYPE}/dist

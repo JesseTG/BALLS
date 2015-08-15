@@ -133,7 +133,7 @@ public:
    * Returns true if the given type is one of the base-level types supported
    * by Property (int, float, etc.)
    */
-  static constexpr bool isBasicType(const QVariant::Type type) noexcept;
+  static bool isBasicType(const QVariant::Type type) noexcept;
 
 private slots:
   /**
@@ -159,7 +159,7 @@ protected:
 
 };
 
-constexpr bool Property::isBasicType(const QVariant::Type type) noexcept {
+inline bool Property::isBasicType(const QVariant::Type type) noexcept {
   switch (type) {
   case QVariant::Int:
   case QVariant::UInt:
