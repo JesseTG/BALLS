@@ -4,6 +4,8 @@
 #
 #-------------------------------------------------
 
+include(../../common.pri)
+
 QT       += widgets testlib
 
 TARGET = tst_TestConversions
