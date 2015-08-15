@@ -66,6 +66,7 @@ SOURCES += \
 	util/MetaTypeConverters.cpp \
 	ui/Uniforms.cpp \
 	util/TypeInfo.cpp \
+	ui/QsciLexerGLSL.cpp \
 	ui/property/MatrixProperties.cpp
 
 HEADERS  += \
@@ -95,6 +96,7 @@ HEADERS  += \
 	util/Logging.hpp \
 	ui/property/MatrixProperty.hpp \
 	shader/syntax/GLSLSyntax.hpp \
+	ui/QsciLexerGLSL.h \
 	util/Trackball.hpp \
 	ui/property/SamplerProperty.hpp \
 	util/MetaTypeConverters.hpp \
