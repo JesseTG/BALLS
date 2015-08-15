@@ -8,8 +8,6 @@
 #include <QtWidgets/QFileDialog>
 #include <QtWidgets/QMessageBox>
 
-#include "QPropertyEditor/QPropertyModel.h"
-
 #include "ui/QsciLexerGLSL.h"
 #include "exception/FileException.hpp"
 #include "exception/JsonException.hpp"
@@ -19,6 +17,7 @@
 #include "mesh/MeshGenerator.hpp"
 #include "mesh/Generators.hpp"
 #include "util/Util.hpp"
+#include "shader/ShaderUniform.hpp"
 
 Q_DECLARE_METATYPE(balls::mesh::MeshGenerator*)
 
@@ -133,7 +132,7 @@ void BallsWindow::forceShaderUpdate() noexcept {
   QString fragment = ui.fragmentEditor->text();
   ui.log->clear();
 
-  this->ui.uniforms->setObject(&ui.canvas->getUniforms());
+  ui.uniforms->setObject(&ui.canvas->getUniforms());
   ui.canvas->makeCurrent();
 
   if (this->ui.canvas->updateShaders(vertex, geometry, fragment))

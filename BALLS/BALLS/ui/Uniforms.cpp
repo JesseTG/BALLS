@@ -11,6 +11,7 @@
 #include "util/TypeInfo.hpp"
 #include "util/Util.hpp"
 
+// TODO Should implement  Qtilities::Core::Interfaces::IModificationNotifier
 namespace balls {
 
 constexpr float ZOOM_INTERVAL = 1.0f;

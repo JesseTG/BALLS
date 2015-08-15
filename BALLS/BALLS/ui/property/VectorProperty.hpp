@@ -4,10 +4,8 @@
 #include <array>
 
 #include <QObject>
-#include <QPropertyEditor/Property.h>
-
 #include "Constants.hpp"
-
+#include <QPropertyEditor/Property.h>
 class QRegularExpression;
 class QRegularExpressionMatch;
 

@@ -14,6 +14,7 @@ class QFileDialog;
 class QSettings;
 class QCloseEvent;
 
+
 namespace balls {
 
 using std::random_device;
