@@ -169,14 +169,15 @@ else:CONFIG(release, debug|release) {
 ### <Includes and Dependencies> ################################################
 
 INCLUDEPATH += \
-	$$PWD/../external/glm \
-#	$$PWD/../external/Qtilities/include \
-	$$PWD/../external/qt-solutions/qtpropertybrowser/src \
-	$$PWD/../QPropertyEditor
+	$$PWD/../ \
+	$$PWD/../QPropertyEditor \
+	$$PWD/../Qtilities
 
 DEPENDPATH += \
-#	$$files($$PWD/../external/Qtilities/*, true) \
-	$$PWD/../QPropertyEditor
+	$$DESTDIR \
+	$$PWD/../QPropertyEditor \
+	$$PWD/../Qtilities
+
 
 ## Libraries to link
 LIBS += \
