@@ -4,29 +4,19 @@
 # i.e. BALLS+=spain
 # Better document this for later
 
-cache()
-
 TEMPLATE = subdirs
 
 SUBDIRS = \
-		QPropertyEditor \
-		glm \
-		qtpropertybrowser \
-		Qtilities \
-		BALLS \
-		BALLS-Tests
+	QPropertyEditor \
+	Qtilities \
+	BALLS \
+	BALLS-Tests
 
-glm.file = glm.pro
-glm.makefile = ""
-
-qtpropertybrowser.subdir = qt-solutions/qtpropertybrowser
+QTILITIES = core coregui
 
 Qtilities.file = Qtilities/src/Qtilities.pro
-Qtilities.depends = qtpropertybrowser
 
-BALLS.depends = glm qtpropertybrowser Qtilities
-
-BALLS-Tests.depends = glm
+BALLS.depends = Qtilities QPropertyEditor
 
 lessThan(QT_MAJOR_VERSION, 5) {
 	error("Qt 5 is required, but only $${QT_VERSION} is available")
