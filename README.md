@@ -1,4 +1,6 @@
 # BALLS
+
+[![Join the chat at https://gitter.im/JesseTG/BALLS](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/JesseTG/BALLS?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 Badass Looker for Ludicrous Shaders
 
 [![Build Status](https://travis-ci.org/JesseTG/BALLS.svg?branch=master)](https://travis-ci.org/JesseTG/BALLS)
