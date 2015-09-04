@@ -1,17 +1,27 @@
+addons:
+  apt:
+    sources:
+    - ubuntu-toolchain-r-test
+    - ubuntu-sdk-team
+    packages:
+    - qtcreator
+    - qtcreator-dev
+
 language: cpp
-sudo: required
+sudo: false
+cache:
+    apt: true
+    ccache: true
+    directories:
+        deps
+
 compiler:
-  - gcc
   - clang
+  - g++
 
 before_install:
   - echo $LANG
   - echo $LC_ALL
-  - sudo apt-add-repository -y ppa:kubuntu-ci/stable-daily
-  - sudo apt-get update -qqy
-
-install:
-  - sudo apt-get install -qqy qtcreator qtcreator-dev
 
 script:
   - qmake ./BALLS/BALLS.pro
