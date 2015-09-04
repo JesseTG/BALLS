@@ -22,6 +22,10 @@ compiler:
 before_install:
   - echo $LANG
   - echo $LC_ALL
+  - git clone https://github.com/g-truc/glm.git
+  - mkdir deps
+  - cd ./glm
+  - cmake . -D CMAKE_INSTALL_PREFIX:FILEPATH=deps
 
 script:
   - qmake ./BALLS/BALLS.pro
