@@ -24,7 +24,7 @@ before_install:
   - ls
   - git clone https://github.com/g-truc/glm.git
   - cd ./glm
-  - cmake . -D CMAKE_INSTALL_PREFIX:FILEPATH=deps
+  - cmake -DCMAKE_INSTALL_PREFIX:FILEPATH="deps"
 
 script:
   - qmake ./BALLS/BALLS.pro
