@@ -20,6 +20,8 @@ compiler:
   - g++
 
 before_install:
+  - cd ./deps
+  - ls
   - git clone https://github.com/g-truc/glm.git
   - cd ./glm
   - cmake . -D CMAKE_INSTALL_PREFIX:FILEPATH=deps
