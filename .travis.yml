@@ -21,12 +21,7 @@ compiler:
   - g++
 
 before_install:
-  - 'mkdir -p ~/repos'
-  - cd ~/repos
-  - ls
-  - "[[ ! -e glm ]] && git clone https://github.com/g-truc/glm.git"
-  - cd ./glm
-  - '[[ ! -e CMakeCache.txt ]] && cmake -DCMAKE_INSTALL_PREFIX:FILEPATH="~/deps"'
+  - $TRAVIS_BUILD_DIR/before_install.sh
 
 before_script:
   - ls ~/deps
