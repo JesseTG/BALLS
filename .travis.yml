@@ -4,8 +4,8 @@ addons:
     - ubuntu-toolchain-r-test
     - ubuntu-sdk-team
     packages:
-    - qtcreator
-    - qtcreator-dev
+    - ubuntu-sdk
+    - libboost-all-dev
 
 language: cpp
 sudo: false
