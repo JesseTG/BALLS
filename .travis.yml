@@ -14,17 +14,18 @@ cache:
     ccache: true
     directories:
         deps
+        repos
 
 compiler:
   - clang
   - g++
 
 before_install:
-  - cd ./deps
+  - cd ./repos
   - ls
   - git clone https://github.com/g-truc/glm.git
   - cd ./glm
-  - cmake -DCMAKE_INSTALL_PREFIX:FILEPATH="deps"
+  - cmake -DCMAKE_INSTALL_PREFIX:FILEPATH="~/deps"
 
 script:
   - qmake ./BALLS/BALLS.pro
