@@ -22,13 +22,13 @@ compiler:
 
 before_install:
   - cd ./repos
-  - ls
   - "[[ ! -e glm ]] && git clone https://github.com/g-truc/glm.git"
   - cd ./glm
   - '[[ ! -e CMakeCache.txt ]] && cmake -DCMAKE_INSTALL_PREFIX:FILEPATH="~/deps"'
 
 before_script:
   - cd
+  - ls
 
 script:
   - qmake ./BALLS/BALLS.pro
