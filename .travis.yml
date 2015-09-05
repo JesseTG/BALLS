@@ -23,6 +23,7 @@ compiler:
 before_install:
   - 'mkdir -p ~/repos'
   - cd ~/repos
+  - ls
   - "[[ ! -e glm ]] && git clone https://github.com/g-truc/glm.git"
   - cd ./glm
   - '[[ ! -e CMakeCache.txt ]] && cmake -DCMAKE_INSTALL_PREFIX:FILEPATH="~/deps"'
