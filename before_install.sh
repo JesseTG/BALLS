@@ -4,6 +4,7 @@
 
 mkdir -p ~/repos
 cd ~/repos
+echo "Cached repos:"
 ls
 if [[ ! -e glm ]]
 then
