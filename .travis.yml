@@ -28,7 +28,7 @@ before_install:
   - '[[ ! -e CMakeCache.txt ]] && cmake -DCMAKE_INSTALL_PREFIX:FILEPATH="~/deps"'
 
 before_script:
-  - cd
+  - cd $TRAVIS_BUILD_DIR
   - ls
 
 script:
