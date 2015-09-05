@@ -27,6 +27,9 @@ before_install:
   - cd ./glm
   - cmake -DCMAKE_INSTALL_PREFIX:FILEPATH="~/deps"
 
+before_script:
+  - cd
+
 script:
   - qmake ./BALLS/BALLS.pro
   - make
