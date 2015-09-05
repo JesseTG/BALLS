@@ -3,9 +3,13 @@
 # This script file is used by Travis CI for continuous integration.  You, the user, do not need to run it.
 
 mkdir -p ~/repos
-cd ~/repos
+mkdir -p ~/deps
+
+echo "Cached dependencies:"
+ls ~/deps
+
 echo "Cached repos:"
-ls
+ls ~/repos
 
 clone() {
     name=$1
@@ -28,5 +32,6 @@ clone() {
     fi
 }
 
+cd ~/repos
 clone glm https://github.com/g-truc/glm.git
 clone gli https://github.com/g-truc/gli.git
