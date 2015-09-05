@@ -14,6 +14,15 @@ clone() {
     then
         echo "Cloning the latest version of $name"
         git clone -q $url
+
+        if [[ -e $name/CMakeLists.txt ]]
+        then
+            echo "$url is a CMake project"
+            cd $name
+            cmake -DCMAKE_INSTALL_PREFIX:FILEPATH="~/deps"
+            cd ..
+        fi
+
     else
         echo "Not cloning $name, it's in the cache"
     fi
@@ -21,9 +30,3 @@ clone() {
 
 clone glm https://github.com/g-truc/glm.git
 clone gli https://github.com/g-truc/gli.git
-
-if [[ ! -e glm/CMakeCache.txt ]]
-then
-    cd glm
-    cmake -DCMAKE_INSTALL_PREFIX:FILEPATH="~/deps"
-fi
