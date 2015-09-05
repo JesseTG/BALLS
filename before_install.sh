@@ -6,10 +6,21 @@ mkdir -p ~/repos
 cd ~/repos
 echo "Cached repos:"
 ls
-if [[ ! -e glm ]]
-then
-    git clone https://github.com/g-truc/glm.git
-fi
+
+clone() {
+    name=$1
+    url=$2
+    if [[ ! -e $name ]]
+    then
+        echo "Cloning the latest version of $name"
+        git clone -q $url
+    else
+        echo "Not cloning $name, it's in the cache"
+    fi
+}
+
+clone glm https://github.com/g-truc/glm.git
+clone gli https://github.com/g-truc/gli.git
 
 if [[ ! -e glm/CMakeCache.txt ]]
 then
