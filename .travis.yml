@@ -13,8 +13,8 @@ cache:
     apt: true
     ccache: true
     directories:
-        deps
-        repos
+        ~/deps
+        ~/repos
 
 compiler:
   - clang
