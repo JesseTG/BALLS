@@ -9,6 +9,8 @@ case "$CC" in
 
     "clang")
     SPEC=clang
+    export CC=clang-3.8
+    export CXX=clang++-3.8
     ;;
 esac
 

@@ -4,11 +4,13 @@ addons:
     - ubuntu-toolchain-r-test
     - ubuntu-sdk-team
     - beineri/opt-qt55
+    - llvm-toolchain-jessie-3.6
     packages:
     - ubuntu-sdk
     - libboost-all-dev
     - qt55-meta
     - gcc-5
+    - llvm-toolchain-snapshot
 
 language: cpp
 sudo: false
