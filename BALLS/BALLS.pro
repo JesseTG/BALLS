@@ -5,7 +5,7 @@
 # Better document this for later
 
 TEMPLATE = subdirs
-
+CONFIG += c++14
 SUBDIRS = \
 	QPropertyEditor \
 	Qtilities \
