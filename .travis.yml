@@ -30,5 +30,4 @@ before_script:
   - ls
 
 script:
-  - qmake ./BALLS/BALLS.pro -r -spec linux-$CC
-  - make
+  - $TRAVIS_BUILD_DIR/script.sh
