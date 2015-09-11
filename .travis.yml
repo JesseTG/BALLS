@@ -30,5 +30,5 @@ before_script:
   - ls
 
 script:
-  - qmake ./BALLS/BALLS.pro
+  - qmake ./BALLS/BALLS.pro -r -spec linux-$CC
   - make
