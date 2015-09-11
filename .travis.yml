@@ -3,9 +3,11 @@ addons:
     sources:
     - ubuntu-toolchain-r-test
     - ubuntu-sdk-team
+    - beineri/opt-qt55
     packages:
     - ubuntu-sdk
     - libboost-all-dev
+    - qt55-meta
 
 language: cpp
 sudo: false
