@@ -18,6 +18,8 @@ Qtilities.file = Qtilities/src/Qtilities.pro
 
 BALLS.depends = Qtilities QPropertyEditor
 
+BALLS-Tests.depends = BALLS
+
 lessThan(QT_MAJOR_VERSION, 5) {
 	error("Qt 5 is required, but only $${QT_VERSION} is available")
 }
