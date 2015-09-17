@@ -214,7 +214,7 @@ void Uniforms::_updateProjection() noexcept {
 }
 
 bool Uniforms::event(QEvent* e) {
-  return false;
+  return QObject::event(e);
 }
 
 bool Uniforms::eventFilter(QObject* obj, QEvent* event) {
@@ -236,7 +236,7 @@ bool Uniforms::eventFilter(QObject* obj, QEvent* event) {
     return false;
 
   default:
-    return false;
+    return QObject::eventFilter(obj, event);
   }
 }
 
