@@ -36,6 +36,13 @@ struct UniformInfo {
   bool operator<(const UniformInfo& o) const noexcept {
     return name < o.name;
   }
+
+  bool operator==(const UniformInfo& o) const noexcept {
+    return
+      type == o.type &&
+      size == o.size &&
+      name == o.name;
+  }
 };
 
 using UniformCollection = std::vector<UniformInfo>;
