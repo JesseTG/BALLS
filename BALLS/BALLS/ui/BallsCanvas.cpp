@@ -303,7 +303,7 @@ void BallsCanvas::_updateUniformList() noexcept {
     QString sname(name.data());
     Q_ASSERT(sname.size() == length);
 
-    uniformInfo.push_back({sname, i, type, size});
+    uniformInfo.push_back({sname, type, size});
   }
 
   this->uniformsDiscovered(uniformInfo);
@@ -423,9 +423,8 @@ void BallsCanvas::setUniform(const UniformInfo& info, const QVariant& var) noexc
   // If the shader wasn't compiled properly, the object's ID will be 0 (no shader)
 
   Q_ASSERT(var.isValid());
-  Q_ASSERT(_shader.uniformLocation(info.name) == info.index);
 
-  int index = info.index;
+  int index = _shader.uniformLocation(info.name);
 
   if (index != -1) {
     this->makeCurrent();

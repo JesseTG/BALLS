@@ -30,12 +30,11 @@ extern TypeInfoMap info;
 
 struct UniformInfo {
   QString name;
-  int index;
   GLenum type;
   GLint size;
 
   bool operator<(const UniformInfo& o) const noexcept {
-    return index < o.index;
+    return name < o.name;
   }
 };
 
