@@ -47,11 +47,7 @@ class Uniforms final : public QObject {
   // But maybe use tags for deciding how often to update a static property?
 public:
   explicit Uniforms(QObject* = nullptr) noexcept;
-  // TODO: Figure out how to minimize calls to READs (because that means we're
-  // probably also transferring stuff to the GPU).
-public /* getters */:
-  const UniformCollection& uniformInfo() const noexcept;
-
+  // TODO: Minimize calls to READs (because we're probably also sending stuff to the GPU).
 private /* uniform property accessors */:
   uint elapsedTime() const noexcept;
   ivec2 mousePos() const noexcept;
@@ -65,6 +61,7 @@ private /* uniform property accessors */:
   const mat4 modelView() const noexcept;
 
 public /* uniform list queries */:
+  const UniformCollection& uniformInfo() const noexcept;
   bool active(const QString& name) const noexcept;
 public /* setters */:
   void setFov(const float) noexcept;
@@ -159,7 +156,6 @@ inline uvec2 Uniforms::lastCanvasSize() const noexcept {
 inline const mat4& Uniforms::trackball() const noexcept {
   return _trackball.getMatrix();
 }
-
 }
 
 #endif // UNIFORMMEDIATOR_HPP
