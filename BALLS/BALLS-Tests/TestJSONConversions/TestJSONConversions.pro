@@ -15,11 +15,15 @@ CONFIG   -= app_bundle
 
 TEMPLATE = app
 
-DEFINES += SRCDIR=\\\"$$PWD/\\\"
-DEFINES += GLM_META_PROG_HELPERS
+DEFINES += \
+	SRCDIR=\\\"$$PWD/\\\" \
+	GLM_META_PROG_HELPERS
 
 INCLUDEPATH += ../../BALLS
 
-SOURCES += tst_TestJSONConversionsTest.cpp \
-	../../BALLS/util/MetaTypeConverters.cpp \
-	../../BALLS/precompiled.cpp
+SOURCES += \
+	tst_TestJSONConversionsTest.cpp
+
+OBJECTS += \
+	../../BALLS/$${OBJECTS_DIR}/MetaTypeConverters.o \
+	../../BALLS/$${OBJECTS_DIR}/precompiled.o
