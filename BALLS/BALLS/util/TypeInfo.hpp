@@ -51,4 +51,7 @@ void init() noexcept;
 }
 }
 }
+
+Q_DECLARE_METATYPE(balls::util::types::UniformInfo)
+
 #endif // TYPEINFO_HPP
