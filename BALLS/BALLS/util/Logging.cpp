@@ -39,6 +39,8 @@ Q_LOGGING_CATEGORY(Name, "uniform")
 Q_LOGGING_CATEGORY(Value, "uniform.value")
 Q_LOGGING_CATEGORY(Type, "uniform.type")
 Q_LOGGING_CATEGORY(Env, "uniform.env")
+Q_LOGGING_CATEGORY(Removed, "uniform.removed")
+Q_LOGGING_CATEGORY(New, "uniform.new")
 }
 
 namespace shader {
