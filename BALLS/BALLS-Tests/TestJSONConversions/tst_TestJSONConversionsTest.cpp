@@ -215,7 +215,7 @@ class TestJsonConversions : public QObject {
   Q_OBJECT
 
 public:
-private Q_SLOTS:
+private slots:
   void initTestCase();
 
   void objectValueConversion();
@@ -511,7 +511,6 @@ void TestJsonConversions::toMat() {
   QCOMPARE(dm42, dmat4x2(expected));
   QCOMPARE(dm43, dmat4x3(expected));
   QCOMPARE(dm44, dmat4x4(expected));
-
 }
 
 
