@@ -149,7 +149,7 @@ CONFIG(debug, debug|release) {
 
 	clang {
 		QMAKE_LFLAGS_DEBUG += \
-			-fsanitize-blacklist=$$PWD/balls.san \
+#			-fsanitize-blacklist=$$PWD/balls.san \
 			-fsanitize=address \
 			-fsanitize=undefined \
 			-ftemplate-backtrace-limit=0 \

@@ -85,9 +85,10 @@ void Uniforms::receiveUniforms(const UniformCollection& uniforms) noexcept {
   this->_uniformList = uniforms;
 }
 
-void Uniforms::_handleDiscardedUniforms(const UniformCollection& temp)
-noexcept {
-  qCDebug(logs::uniform::Name) << temp.size() << "discarded uniforms";
+void Uniforms::_handleDiscardedUniforms(const UniformCollection& temp) noexcept {
+  #ifdef DEBUG
+  QStringList removed;
+  #endif
 
   for (const UniformInfo& i : temp) {
     // For each uniform we're throwing away...
@@ -102,13 +103,21 @@ noexcept {
       // Then clear it
       Q_ASSERT(!property(name_cstr).isValid());
 
-      qCDebug(logs::uniform::Name) << "Removed" << i.name;
+      #ifdef DEBUG
+      removed << i.name;
+      #endif
     }
   }
+
+  #ifdef DEBUG
+  qCDebug(logs::uniform::Removed).noquote() << (removed.empty() ? "None" : removed.join(", "));
+  #endif
 }
 
 void Uniforms::_handleNewUniforms(const UniformCollection& temp) noexcept {
-  qCDebug(logs::uniform::Name) << temp.size() << "new uniforms";
+  #ifdef DEBUG
+  QStringList added;
+  #endif
 
   for (const UniformInfo& i : temp) {
     // For each uniform we're adding...
@@ -120,20 +129,25 @@ void Uniforms::_handleNewUniforms(const UniformCollection& temp) noexcept {
     if (_meta->indexOfProperty(name_cstr) == -1) {
       // If this is a custom uniform...
 
-      qCDebug(logs::uniform::Name)
-          << "Discovered custom" << QMetaType::typeName(qtype) << i.name;
+      #ifdef DEBUG
+      added << QString("%1(%2)").arg(i.name, QMetaType::typeName(qtype));
+      #endif
 
-      Q_ASSERT(!property(name_cstr).isValid());
+      //Q_ASSERT(!property(name_cstr).isValid());
       this->setProperty(name_cstr, QVariant(qtype, nullptr));
       Q_ASSERT(property(name_cstr).isValid());
       // Add a default-constructed uniform
     }
     else {
-      qCDebug(logs::uniform::Name)
-          << "Now using built-in" << QMetaType::typeName(qtype)
-          << i.name;
+      #if DEBUG
+      added << QString("%1(built-in %2)").arg(i.name, QMetaType::typeName(qtype));
+      #endif
     }
   }
+
+  #ifdef DEBUG
+  qCDebug(logs::uniform::New).noquote() << (added.empty() ? "None" : added.join(", "));
+  #endif
 }
 
 void Uniforms::_handleKeptUniforms(const UniformCollection& temp) noexcept {
@@ -200,7 +214,7 @@ void Uniforms::_updateProjection() noexcept {
 }
 
 bool Uniforms::event(QEvent* e) {
-  return false;
+  return QObject::event(e);
 }
 
 bool Uniforms::eventFilter(QObject* obj, QEvent* event) {
@@ -222,26 +236,24 @@ bool Uniforms::eventFilter(QObject* obj, QEvent* event) {
     return false;
 
   default:
-    return false;
+    return QObject::eventFilter(obj, event);
   }
 }
 
 
 void Uniforms::mouseMoveEvent(QMouseEvent* e) noexcept {
+  this->_lastMousePos = this->_mousePos;
+
   this->_mousePos.x = e->x();
   this->_mousePos.y = e->y();
 
-  vec2 localPos = { e->localPos().x(), e->localPos().y() };
-
   if (e->buttons() & Qt::LeftButton) {
     // If the left mouse button is being held down...
-
+    vec2 localPos = { e->localPos().x(), e->localPos().y() };
     vec2 delta = localPos - vec2(_lastMousePos);
     _model = glm::rotate(_model, glm::radians(delta.x), vec3(0, 1, 0));
     _model = glm::rotate(_model, glm::radians(delta.y), vec3(1, 0, 0));
   }
-
-  this->_lastMousePos = localPos;
 }
 
 void Uniforms::mousePressEvent(QMouseEvent* e) noexcept {

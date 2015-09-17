@@ -31,16 +31,11 @@ class Uniforms final : public QObject {
   // canonical type, and let BallsCanvas work out the conversions
   Q_PROPERTY(uint elapsedTime READ elapsedTime STORED false DESIGNABLE active("elapsedTime") FINAL)
   Q_PROPERTY(ivec2 mousePos READ mousePos DESIGNABLE active("mousePos") FINAL)
-  Q_PROPERTY(ivec2 lastMousePos READ lastMousePos DESIGNABLE
-             active("lastMousePos") FINAL)
-  Q_PROPERTY(uvec2 canvasSize READ canvasSize DESIGNABLE active("canvasSize")
-             FINAL)
-  Q_PROPERTY(uint canvasWidth READ canvasWidth DESIGNABLE active("canvasWidth")
-             STORED false FINAL)
-  Q_PROPERTY(uint canvasHeight READ canvasHeight DESIGNABLE active("canvasHeight")
-             STORED false FINAL)
-  Q_PROPERTY(uvec2 lastCanvasSize READ lastCanvasSize DESIGNABLE
-             active("lastCanvasSize") FINAL)
+  Q_PROPERTY(ivec2 lastMousePos READ lastMousePos DESIGNABLE active("lastMousePos") FINAL)
+  Q_PROPERTY(uvec2 canvasSize READ canvasSize DESIGNABLE active("canvasSize") FINAL)
+  Q_PROPERTY(uint canvasWidth READ canvasWidth DESIGNABLE active("canvasWidth") STORED false FINAL)
+  Q_PROPERTY(uint canvasHeight READ canvasHeight DESIGNABLE active("canvasHeight") STORED false FINAL)
+  Q_PROPERTY(uvec2 lastCanvasSize READ lastCanvasSize DESIGNABLE active("lastCanvasSize") FINAL)
   Q_PROPERTY(mat4 trackball READ trackball DESIGNABLE active("trackball") STORED false FINAL)
   Q_PROPERTY(mat4 matrix READ matrix DESIGNABLE active("matrix") STORED false FINAL)
   Q_PROPERTY(mat4 model MEMBER _model DESIGNABLE active("model") FINAL)
@@ -52,11 +47,7 @@ class Uniforms final : public QObject {
   // But maybe use tags for deciding how often to update a static property?
 public:
   explicit Uniforms(QObject* = nullptr) noexcept;
-  // TODO: Figure out how to minimize calls to READs (because that means we're
-  // probably also transferring stuff to the GPU).
-public /* getters */:
-  const UniformCollection& uniformInfo() const noexcept;
-
+  // TODO: Minimize calls to READs (because we're probably also sending stuff to the GPU).
 private /* uniform property accessors */:
   uint elapsedTime() const noexcept;
   ivec2 mousePos() const noexcept;
@@ -70,6 +61,7 @@ private /* uniform property accessors */:
   const mat4 modelView() const noexcept;
 
 public /* uniform list queries */:
+  const UniformCollection& uniformInfo() const noexcept;
   bool active(const QString& name) const noexcept;
 public /* setters */:
   void setFov(const float) noexcept;
@@ -164,7 +156,6 @@ inline uvec2 Uniforms::lastCanvasSize() const noexcept {
 inline const mat4& Uniforms::trackball() const noexcept {
   return _trackball.getMatrix();
 }
-
 }
 
 #endif // UNIFORMMEDIATOR_HPP

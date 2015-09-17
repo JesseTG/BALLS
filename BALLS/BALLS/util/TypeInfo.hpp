@@ -30,12 +30,18 @@ extern TypeInfoMap info;
 
 struct UniformInfo {
   QString name;
-  int index;
   GLenum type;
   GLint size;
 
   bool operator<(const UniformInfo& o) const noexcept {
-    return index < o.index;
+    return name < o.name;
+  }
+
+  bool operator==(const UniformInfo& o) const noexcept {
+    return
+      type == o.type &&
+      size == o.size &&
+      name == o.name;
   }
 };
 
@@ -45,4 +51,7 @@ void init() noexcept;
 }
 }
 }
+
+Q_DECLARE_METATYPE(balls::util::types::UniformInfo)
+
 #endif // TYPEINFO_HPP

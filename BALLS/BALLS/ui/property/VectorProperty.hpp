@@ -14,26 +14,15 @@ using std::array;
 
 namespace _impl_ {
 template<int Size>
-QString _getDisplayText(const array<Property*, Size>&,
-                        const int) noexcept;
+QString _getDisplayText(const array<Property*, Size>&, const int) noexcept;
 
-template<> QString _getDisplayText<2>(const array<Property*, 2>&,
-                                      const int) noexcept;
+template<> QString _getDisplayText<2>(const array<Property*, 2>&, const int) noexcept;
+template<> QString _getDisplayText<3>(const array<Property*, 3>&, const int) noexcept;
+template<> QString _getDisplayText<4>(const array<Property*, 4>&, const int) noexcept;
 
-template<> QString _getDisplayText<3>(const array<Property*, 3>&,
-                                      const int) noexcept;
-
-template<> QString _getDisplayText<4>(const array<Property*, 4>&,
-                                      const int) noexcept;
-
-extern template QString _getDisplayText<2>(const array<Property*, 2>&,
-    const int) noexcept;
-
-extern template QString _getDisplayText<3>(const array<Property*, 3>&,
-    const int) noexcept;
-
-extern template QString _getDisplayText<4>(const array<Property*, 4>&,
-    const int) noexcept;
+extern template QString _getDisplayText<2>(const array<Property*, 2>&, const int) noexcept;
+extern template QString _getDisplayText<3>(const array<Property*, 3>&, const int) noexcept;
+extern template QString _getDisplayText<4>(const array<Property*, 4>&, const int) noexcept;
 
 QString parseHints(const QString& hints, const QChar component) noexcept;
 

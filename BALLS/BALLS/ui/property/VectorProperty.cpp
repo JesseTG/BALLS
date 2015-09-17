@@ -12,14 +12,16 @@ QString _getDisplayText<2>(const array<Property*, 2>& dims,
   switch (role) {
 
   case Qt::DisplayRole:
-    return Property::tr("[ %1, %2 ]")
-    .arg(dims[0]->value().toString())
-    .arg(dims[1]->value().toString());
+    return Property::tr("[ %1, %2 ]").arg(
+      dims[0]->value().toString(),
+      dims[1]->value().toString()
+    );
 
   case Qt::EditRole:
-    return Property::tr("%1, %2")
-    .arg(dims[0]->value().toString())
-    .arg(dims[1]->value().toString());
+    return Property::tr("%1, %2").arg(
+      dims[0]->value().toString(),
+      dims[1]->value().toString()
+    );
 
   default:
     return "";
@@ -32,16 +34,18 @@ QString _getDisplayText<3>(const array<Property*, 3>& dims,
   switch (role) {
 
   case Qt::DisplayRole:
-    return Property::tr("[ %1, %2, %3 ]")
-    .arg(dims[0]->value().toString())
-    .arg(dims[1]->value().toString())
-    .arg(dims[2]->value().toString());
+    return Property::tr("[ %1, %2, %3 ]").arg(
+      dims[0]->value().toString(),
+      dims[1]->value().toString(),
+      dims[2]->value().toString()
+    );
 
   case Qt::EditRole:
-    return Property::tr("%1, %2, %3")
-    .arg(dims[0]->value().toString())
-    .arg(dims[1]->value().toString())
-    .arg(dims[2]->value().toString());
+    return Property::tr("%1, %2, %3").arg(
+      dims[0]->value().toString(),
+      dims[1]->value().toString(),
+      dims[2]->value().toString()
+    );
 
   default:
     return "";
@@ -54,18 +58,20 @@ QString _getDisplayText<4>(const array<Property*, 4>& dims,
   switch (role) {
 
   case Qt::DisplayRole:
-    return Property::tr("[ %1, %2, %3, %4 ]")
-    .arg(dims[0]->value().toString())
-    .arg(dims[1]->value().toString())
-    .arg(dims[2]->value().toString())
-    .arg(dims[3]->value().toString());
+    return Property::tr("[ %1, %2, %3, %4 ]").arg(
+      dims[0]->value().toString(),
+      dims[1]->value().toString(),
+      dims[2]->value().toString(),
+      dims[3]->value().toString()
+    );
 
   case Qt::EditRole:
-    return Property::tr("%1, %2, %3, %4")
-    .arg(dims[0]->value().toString())
-    .arg(dims[1]->value().toString())
-    .arg(dims[2]->value().toString())
-    .arg(dims[3]->value().toString());
+    return Property::tr("%1, %2, %3, %4").arg(
+      dims[0]->value().toString(),
+      dims[1]->value().toString(),
+      dims[2]->value().toString(),
+      dims[3]->value().toString()
+    );
 
   default:
     return "";
@@ -73,7 +79,7 @@ QString _getDisplayText<4>(const array<Property*, 4>& dims,
 }
 
 QString parseHints(const QString& hints, const QChar component) noexcept {
-  if (hints.isEmpty()) return "";
+  if (hints.isEmpty()) { return ""; }
 
   QRegExp rx(QString("(.*)(") + component + QString("{1})(=\\s*)(.*)(;{1})"));
   rx.setMinimal(true);
