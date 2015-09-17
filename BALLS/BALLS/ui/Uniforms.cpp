@@ -242,20 +242,18 @@ bool Uniforms::eventFilter(QObject* obj, QEvent* event) {
 
 
 void Uniforms::mouseMoveEvent(QMouseEvent* e) noexcept {
+  this->_lastMousePos = this->_mousePos;
+
   this->_mousePos.x = e->x();
   this->_mousePos.y = e->y();
 
-  vec2 localPos = { e->localPos().x(), e->localPos().y() };
-
   if (e->buttons() & Qt::LeftButton) {
     // If the left mouse button is being held down...
-
+    vec2 localPos = { e->localPos().x(), e->localPos().y() };
     vec2 delta = localPos - vec2(_lastMousePos);
     _model = glm::rotate(_model, glm::radians(delta.x), vec3(0, 1, 0));
     _model = glm::rotate(_model, glm::radians(delta.y), vec3(1, 0, 0));
   }
-
-  this->_lastMousePos = localPos;
 }
 
 void Uniforms::mousePressEvent(QMouseEvent* e) noexcept {
