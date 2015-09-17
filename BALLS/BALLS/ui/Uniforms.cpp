@@ -85,9 +85,10 @@ void Uniforms::receiveUniforms(const UniformCollection& uniforms) noexcept {
   this->_uniformList = uniforms;
 }
 
-void Uniforms::_handleDiscardedUniforms(const UniformCollection& temp)
-noexcept {
-  qCDebug(logs::uniform::Name) << temp.size() << "discarded uniforms";
+void Uniforms::_handleDiscardedUniforms(const UniformCollection& temp) noexcept {
+  #ifdef DEBUG
+  QStringList removed;
+  #endif
 
   for (const UniformInfo& i : temp) {
     // For each uniform we're throwing away...
@@ -102,13 +103,21 @@ noexcept {
       // Then clear it
       Q_ASSERT(!property(name_cstr).isValid());
 
-      qCDebug(logs::uniform::Name) << "Removed" << i.name;
+      #ifdef DEBUG
+      removed << i.name;
+      #endif
     }
   }
+
+  #ifdef DEBUG
+  qCDebug(logs::uniform::Removed).noquote() << (removed.empty() ? "None" : removed.join(", "));
+  #endif
 }
 
 void Uniforms::_handleNewUniforms(const UniformCollection& temp) noexcept {
-  qCDebug(logs::uniform::Name) << temp.size() << "new uniforms";
+  #ifdef DEBUG
+  QStringList added;
+  #endif
 
   for (const UniformInfo& i : temp) {
     // For each uniform we're adding...
@@ -120,20 +129,25 @@ void Uniforms::_handleNewUniforms(const UniformCollection& temp) noexcept {
     if (_meta->indexOfProperty(name_cstr) == -1) {
       // If this is a custom uniform...
 
-      qCDebug(logs::uniform::Name)
-          << "Discovered custom" << QMetaType::typeName(qtype) << i.name;
+      #ifdef DEBUG
+      added << QString("%1(%2)").arg(i.name, QMetaType::typeName(qtype));
+      #endif
 
-      Q_ASSERT(!property(name_cstr).isValid());
+      //Q_ASSERT(!property(name_cstr).isValid());
       this->setProperty(name_cstr, QVariant(qtype, nullptr));
       Q_ASSERT(property(name_cstr).isValid());
       // Add a default-constructed uniform
     }
     else {
-      qCDebug(logs::uniform::Name)
-          << "Now using built-in" << QMetaType::typeName(qtype)
-          << i.name;
+      #if DEBUG
+      added << QString("%1(built-in %2)").arg(i.name, QMetaType::typeName(qtype));
+      #endif
     }
   }
+
+  #ifdef DEBUG
+  qCDebug(logs::uniform::New).noquote() << (added.empty() ? "None" : added.join(", "));
+  #endif
 }
 
 void Uniforms::_handleKeptUniforms(const UniformCollection& temp) noexcept {
