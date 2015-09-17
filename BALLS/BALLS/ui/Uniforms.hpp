@@ -31,16 +31,11 @@ class Uniforms final : public QObject {
   // canonical type, and let BallsCanvas work out the conversions
   Q_PROPERTY(uint elapsedTime READ elapsedTime STORED false DESIGNABLE active("elapsedTime") FINAL)
   Q_PROPERTY(ivec2 mousePos READ mousePos DESIGNABLE active("mousePos") FINAL)
-  Q_PROPERTY(ivec2 lastMousePos READ lastMousePos DESIGNABLE
-             active("lastMousePos") FINAL)
-  Q_PROPERTY(uvec2 canvasSize READ canvasSize DESIGNABLE active("canvasSize")
-             FINAL)
-  Q_PROPERTY(uint canvasWidth READ canvasWidth DESIGNABLE active("canvasWidth")
-             STORED false FINAL)
-  Q_PROPERTY(uint canvasHeight READ canvasHeight DESIGNABLE active("canvasHeight")
-             STORED false FINAL)
-  Q_PROPERTY(uvec2 lastCanvasSize READ lastCanvasSize DESIGNABLE
-             active("lastCanvasSize") FINAL)
+  Q_PROPERTY(ivec2 lastMousePos READ lastMousePos DESIGNABLE active("lastMousePos") FINAL)
+  Q_PROPERTY(uvec2 canvasSize READ canvasSize DESIGNABLE active("canvasSize") FINAL)
+  Q_PROPERTY(uint canvasWidth READ canvasWidth DESIGNABLE active("canvasWidth") STORED false FINAL)
+  Q_PROPERTY(uint canvasHeight READ canvasHeight DESIGNABLE active("canvasHeight") STORED false FINAL)
+  Q_PROPERTY(uvec2 lastCanvasSize READ lastCanvasSize DESIGNABLE active("lastCanvasSize") FINAL)
   Q_PROPERTY(mat4 trackball READ trackball DESIGNABLE active("trackball") STORED false FINAL)
   Q_PROPERTY(mat4 matrix READ matrix DESIGNABLE active("matrix") STORED false FINAL)
   Q_PROPERTY(mat4 model MEMBER _model DESIGNABLE active("model") FINAL)
