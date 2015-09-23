@@ -27,6 +27,21 @@ private slots:
   void mouseCoordinates_data();
   void receiveUniforms();
   void receiveUniforms_data();
+
+  void rejectInvalidTypes();
+  void rejectInvalidTypes_data();
+
+  void handleUnsupportedTypes();
+  void handleUnsupportedTypes_data();
+
+  void uniformsRemoved();
+  void uniformsRemoved_data();
+
+  void uniformsAdded();
+  void uniformsAdded_data();
+
+  void uniformsRetyped();
+  void uniformsRetyped_data();
 };
 
 void TestUniformsTest::initTestCase() {
@@ -36,6 +51,46 @@ void TestUniformsTest::initTestCase() {
 
   QVERIFY(balls::util::types::info.size() > 0);
   QVERIFY(QMetaType::type("vec2") != QMetaType::UnknownType);
+}
+
+void TestUniformsTest::uniformsRetyped() {
+
+}
+
+void TestUniformsTest::uniformsRetyped_data() {
+
+}
+
+void TestUniformsTest::uniformsAdded() {
+
+}
+
+void TestUniformsTest::uniformsAdded_data() {
+
+}
+
+void TestUniformsTest::uniformsRemoved() {
+
+}
+
+void TestUniformsTest::uniformsRemoved_data() {
+
+}
+
+void TestUniformsTest::handleUnsupportedTypes() {
+
+}
+
+void TestUniformsTest::handleUnsupportedTypes_data() {
+
+}
+
+void TestUniformsTest::rejectInvalidTypes() {
+
+}
+
+void TestUniformsTest::rejectInvalidTypes_data() {
+
 }
 
 void TestUniformsTest::receiveUniforms_data() {
