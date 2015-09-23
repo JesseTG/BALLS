@@ -50,6 +50,8 @@ cd ~/repos/qt5
 
 if [[ ! -e Makefile ]]
 then
+    mkdir -p ~/deps/qt5
+
     export OLD_CC=$CC
     export OLD_CXX=$CXX
 
