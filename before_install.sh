@@ -22,12 +22,12 @@ clone() {
         git clone -q $url
 
         cd $name
-        git checkout $branch
+        git checkout -q $branch
 
         if [[ -e $name/CMakeLists.txt ]]
         then
             echo "$url is a CMake project"
-            cmake -DCMAKE_INSTALL_PREFIX:FILEPATH="~/deps" $flags
+            cmake -DCMAKE_INSTALL_PREFIX:FILEPATH="~/deps" $flags >/dev/null
         elif [[ -e $name/configure ]]
         then
             echo "$url uses configure"
