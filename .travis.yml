@@ -35,6 +35,9 @@ compiler:
 before_install:
   - $TRAVIS_BUILD_DIR/before_install.sh
 
+install:
+  - $TRAVIS_BUILD_DIR/install.sh
+
 before_script:
   - ls ~/deps
   - ls ~/repos
