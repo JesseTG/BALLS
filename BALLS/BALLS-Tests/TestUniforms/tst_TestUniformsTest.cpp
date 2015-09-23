@@ -40,15 +40,76 @@ void TestUniformsTest::initTestCase() {
 
 void TestUniformsTest::receiveUniforms_data() {
   QTest::addColumn<UniformCollection>("beforeCompile");
-  QTest::addColumn<UniformCollection>("afterCompile");
+  QTest::addColumn<UniformCollection>("result");
 
-  QTest::newRow("empty -> empty") << UniformCollection {} << UniformCollection {};
+  QTest::newRow("empty -> empty")
+      << UniformCollection {}
+      << UniformCollection {};
 
+  QTest::newRow("empty -> one matrix")
+  << UniformCollection {
+  }
+  << UniformCollection {
+    { "matrix", GL_FLOAT_MAT4, 1 }
+  };
+
+  QTest::newRow("one matrix -> empty")
+  << UniformCollection {
+    { "matrix", GL_FLOAT_MAT4, 1 }
+  }
+  << UniformCollection {
+  };
+
+  QTest::newRow("matrix -> vector")
+  << UniformCollection {
+    { "matrix", GL_FLOAT_MAT4, 1 }
+  }
+  << UniformCollection {
+    { "matrix", GL_FLOAT_VEC4, 1 }
+  };
+
+  QTest::newRow("rearrange")
+  << UniformCollection {
+    { "matrix", GL_DOUBLE_MAT4, 1},
+    { "scale", GL_FLOAT, 1},
+    { "available", GL_BOOL, 1},
+  }
+  << UniformCollection {
+    { "available", GL_BOOL, 1},
+    { "matrix", GL_DOUBLE_MAT4, 1},
+    { "scale", GL_FLOAT, 1},
+  };
+
+  QTest::newRow("rearrange and change types")
+  << UniformCollection {
+    { "mvp", GL_FLOAT_MAT3, 1 },
+    { "color", GL_FLOAT_VEC4, 1 },
+    { "repetitions", GL_INT, 1 },
+    { "seed", GL_INT_VEC2, 1 },
+  }
+  << UniformCollection {
+    { "color", GL_DOUBLE_VEC4, 1 },
+    { "seed", GL_UNSIGNED_INT, 1 },
+    { "mvp", GL_FLOAT_MAT3x4, 1 },
+    { "repetitions", GL_UNSIGNED_INT, 1 },
+  };
+
+  QTest::newRow("unsupported types")
+  << UniformCollection {
+    { "coords", GL_FLOAT_VEC2, 1 },
+    { "threshold", GL_FLOAT, 1 },
+  }
+  << UniformCollection {
+    { "threshold", GL_FLOAT, 1 },
+    { "texture", GL_SAMPLER_2D, 1 },
+    { "coords", GL_FLOAT_VEC2, 1 },
+    { "palette", GL_INT_SAMPLER_1D, 1 },
+  };
 }
 
 void TestUniformsTest::receiveUniforms() {
   QFETCH(UniformCollection, beforeCompile);
-  QFETCH(UniformCollection, afterCompile);
+  QFETCH(UniformCollection, result);
 
   QObject object;
   Uniforms uniforms;
@@ -59,9 +120,9 @@ void TestUniformsTest::receiveUniforms() {
 
   QCOMPARE(uniforms.uniformInfo(), beforeCompile);
 
-  uniforms.receiveUniforms(afterCompile);
+  uniforms.receiveUniforms(result);
 
-
+  QCOMPARE(uniforms.uniformInfo(), result);
 }
 
 void TestUniformsTest::mouseCoordinates_data() {
