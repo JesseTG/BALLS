@@ -50,6 +50,12 @@ cd ~/repos/qt5
 
 if [[ ! -e Makefile ]]
 then
+    export OLD_CC=$CC
+    export OLD_CXX=$CXX
+
+    export CC=gcc
+    export CXX=g++
+
     ./init-repository --module-subset=qtbase,qt3d,qtimageformats
     ./configure \
         -c++std c++11 \
@@ -91,6 +97,9 @@ then
     # (Can't put these comments next to the things they actually reference. Blame bash.)
 
     make -s -j2
+
+    export CC=$OLD_CC
+    export CXX=$OLD_CXX
 fi
 
 cd ..
