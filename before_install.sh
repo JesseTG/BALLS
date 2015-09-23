@@ -66,7 +66,7 @@ then
         -optimized-qmake \
         -pch \
         -platform linux-g++ \
-        -prefix="~/deps/qt5" \
+        -prefix "~/deps/qt5" \
         -qt-xcb \
         -silent \
         -static \
