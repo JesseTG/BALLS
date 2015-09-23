@@ -14,10 +14,12 @@ ls ~/repos
 clone() {
     name=$1
     url=$2
+    branch=$3
     if [[ ! -e $name ]]
     then
         echo "Cloning the latest version of $name"
         git clone -q $url
+        git checkout $branch
 
         if [[ -e $name/CMakeLists.txt ]]
         then
@@ -33,5 +35,5 @@ clone() {
 }
 
 cd ~/repos
-clone glm https://github.com/g-truc/glm.git
-clone gli https://github.com/g-truc/gli.git
+clone glm https://github.com/g-truc/glm.git master
+clone gli https://github.com/g-truc/gli.git master
