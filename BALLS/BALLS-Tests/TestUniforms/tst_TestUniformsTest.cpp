@@ -70,8 +70,8 @@ void TestUniformsTest::mouseCoordinates_data() {
   using QPointList = QList<QPoint>;
   QTest::newRow("basic") << QPointList {{1, 1}, {42, 43}, {100, 99}};
   QTest::newRow("not moving") << QPointList {{0, 0}, {0, 0}, {0, 0}};
-  QTest::newRow("negative") << QPointList {{-1, -43}, {-119, -32}, {-55, -22}};
-  QTest::newRow("change signs") << QPointList {{0, 0}, {34, -66}, {-22, 78}, {-99, -101}, {0, 0}, {1, 0}};
+  QTest::newRow("negative") << QPointList {{ -1, -43}, { -119, -32}, { -55, -22}};
+  QTest::newRow("change signs") << QPointList {{0, 0}, {34, -66}, { -22, 78}, { -99, -101}, {0, 0}, {1, 0}};
 }
 
 void TestUniformsTest::mouseCoordinates() {
@@ -84,7 +84,8 @@ void TestUniformsTest::mouseCoordinates() {
   object.installEventFilter(&uniforms);
 
   for (const QPoint& p : points) {
-    QMouseEvent event(QEvent::MouseMove, p, Qt::NoButton, Qt::NoButton, Qt::NoModifier);
+    QMouseEvent event(QEvent::MouseMove, p, Qt::NoButton, Qt::NoButton,
+                      Qt::NoModifier);
     QCoreApplication::sendEvent(&object, &event);
     // WORKAROUND: QTest::mouseMove doesn't actually fire a QMouseEvent (it just sets the mouse cursor)
   }
