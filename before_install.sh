@@ -90,7 +90,7 @@ then
     # tslib: We need touch screen-specific logic
     # (Can't put these comments next to the things they actually reference. Blame bash.)
 
-    make -s -j
+    make -s -j2
 fi
 
 cd ..
