@@ -135,7 +135,7 @@ void Uniforms::_handleNewUniforms(const UniformCollection& temp) noexcept {
 
       //Q_ASSERT(!property(name_cstr).isValid());
       this->setProperty(name_cstr, QVariant(qtype, nullptr));
-      Q_ASSERT(property(name_cstr).isValid());
+      //Q_ASSERT(property(name_cstr).isValid());
       // Add a default-constructed uniform
     }
     else {
