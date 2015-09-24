@@ -63,4 +63,3 @@ then
 fi
 
 cd
-ls -R ~/deps
