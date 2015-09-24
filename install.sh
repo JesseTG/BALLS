@@ -22,7 +22,8 @@ then
         -optimized-qmake \
         -pch \
         -platform linux-g++ \
-        -extprefix "~/deps/qt5" \
+        -prefix "/home/travis/deps/qt5" \
+        -hostprefix "~/deps/qt5" \
         -qt-xcb \
         -silent \
         -static \
