@@ -55,6 +55,8 @@ then
     # (Can't put these comments next to the things they actually reference. Blame bash.)
 
     make -s -j2
+    make install
+    make clean
 
     export CC=$OLD_CC
     export CXX=$OLD_CXX
