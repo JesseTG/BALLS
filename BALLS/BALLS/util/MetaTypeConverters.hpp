@@ -75,6 +75,7 @@ using Len4Subscripts = joint_view<glm::Len4s, single_view<QVector4D>>;
 
 using JsonObj = list<QJsonObject, QJsonValue>;
 using JsonArr = list<QJsonArray, QJsonValue>;
+using String = single_view<QString>;
 }
 
 template<class Seq, class T>
