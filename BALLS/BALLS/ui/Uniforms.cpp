@@ -277,8 +277,8 @@ void Uniforms::wheelEvent(QWheelEvent* e) noexcept {
 
 void Uniforms::resizeEvent(QResizeEvent* e) noexcept {
   const QSize& size = e->size();
-  int w = size.width();
-  int h = size.height();
+  int w = std::max(1, size.width());
+  int h = std::max(1, size.height());
 
   _canvasSize.x = w;
   _canvasSize.y = h;
