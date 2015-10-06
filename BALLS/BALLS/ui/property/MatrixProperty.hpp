@@ -19,9 +19,9 @@ class MatrixProperty : public Property {
   );
 
   using Column = typename Matrix::col_type;
-  using Type = Matrix;
   static const glm::length_t Size =  Matrix::components;
 public:
+  using Type = Matrix;
   MatrixProperty(const QString& name = "",
                  QObject* subject = nullptr,
                  QObject* parent = nullptr
