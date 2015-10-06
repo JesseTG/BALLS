@@ -231,7 +231,7 @@ convert(const From& from) noexcept {
 
 // vec4 -> vec4
 template<class From, class To>
-inline enable_if_t < is_vec4<From>()&&  is_vec4<To>()&&
+inline enable_if_t < (is_vec4<From>() || is_quat<From>()) &&  is_vec4<To>()&&
 !is_builtin_conv<From, To>(), To >
 convert(const From& from) noexcept {
   return To(
@@ -239,19 +239,6 @@ convert(const From& from) noexcept {
     static_cast<E<To>>(from[1]),
     static_cast<E<To>>(from[2]),
     static_cast<E<To>>(from[3])
-  );
-}
-
-// quat -> vec4
-template<class From, class To>
-inline enable_if_t < is_quat<From>()&&  is_vec4<To>()&&
-!is_builtin_conv<From, To>(), To >
-convert(const From& from) noexcept {
-  return To(
-    static_cast<E<To>>(from[0]), // quat x -> vector x
-    static_cast<E<To>>(from[1]), // quat y -> vector y
-    static_cast<E<To>>(from[2]), // quat z -> vector z
-    static_cast<E<To>>(from[3]) // quat w -> vector w
   );
 }
 
