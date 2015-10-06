@@ -23,9 +23,9 @@ extern template class VectorProperty<vec3>;
 class BVec3Property : public VectorProperty<bvec3> {
   Q_OBJECT
 
-  Q_PROPERTY(bool x READ (_get<0>) WRITE (_set<0>) DESIGNABLE true FINAL)
-  Q_PROPERTY(bool y READ (_get<1>) WRITE (_set<1>) DESIGNABLE true FINAL)
-  Q_PROPERTY(bool z READ (_get<2>) WRITE (_set<2>) DESIGNABLE true FINAL)
+  Q_PROPERTY(bool x READ (_get<0>) WRITE (_set<0>) STORED false FINAL)
+  Q_PROPERTY(bool y READ (_get<1>) WRITE (_set<1>) STORED false FINAL)
+  Q_PROPERTY(bool z READ (_get<2>) WRITE (_set<2>) STORED false FINAL)
 
 public:
   using VectorProperty<bvec3>::VectorProperty;
@@ -36,9 +36,9 @@ protected:
 class IVec3Property : public VectorProperty<ivec3> {
   Q_OBJECT
 
-  Q_PROPERTY(int x READ (_get<0>) WRITE (_set<0>) DESIGNABLE true FINAL)
-  Q_PROPERTY(int y READ (_get<1>) WRITE (_set<1>) DESIGNABLE true FINAL)
-  Q_PROPERTY(int z READ (_get<2>) WRITE (_set<2>) DESIGNABLE true FINAL)
+  Q_PROPERTY(int x READ (_get<0>) WRITE (_set<0>) STORED false FINAL)
+  Q_PROPERTY(int y READ (_get<1>) WRITE (_set<1>) STORED false FINAL)
+  Q_PROPERTY(int z READ (_get<2>) WRITE (_set<2>) STORED false FINAL)
 
 public:
   using VectorProperty<ivec3>::VectorProperty;
@@ -49,9 +49,9 @@ protected:
 class UVec3Property : public VectorProperty<uvec3> {
   Q_OBJECT
 
-  Q_PROPERTY(unsigned int x READ (_get<0>) WRITE (_set<0>) DESIGNABLE true FINAL)
-  Q_PROPERTY(unsigned int y READ (_get<1>) WRITE (_set<1>) DESIGNABLE true FINAL)
-  Q_PROPERTY(unsigned int z READ (_get<2>) WRITE (_set<2>) DESIGNABLE true FINAL)
+  Q_PROPERTY(unsigned int x READ (_get<0>) WRITE (_set<0>) STORED false FINAL)
+  Q_PROPERTY(unsigned int y READ (_get<1>) WRITE (_set<1>) STORED false FINAL)
+  Q_PROPERTY(unsigned int z READ (_get<2>) WRITE (_set<2>) STORED false FINAL)
 
 public:
   using VectorProperty<uvec3>::VectorProperty;
@@ -62,9 +62,9 @@ protected:
 class Vec3Property : public VectorProperty<vec3> {
   Q_OBJECT
 
-  Q_PROPERTY(float x READ (_get<0>) WRITE (_set<0>) DESIGNABLE true FINAL)
-  Q_PROPERTY(float y READ (_get<1>) WRITE (_set<1>) DESIGNABLE true FINAL)
-  Q_PROPERTY(float z READ (_get<2>) WRITE (_set<2>) DESIGNABLE true FINAL)
+  Q_PROPERTY(float x READ (_get<0>) WRITE (_set<0>) STORED false FINAL)
+  Q_PROPERTY(float y READ (_get<1>) WRITE (_set<1>) STORED false FINAL)
+  Q_PROPERTY(float z READ (_get<2>) WRITE (_set<2>) STORED false FINAL)
 
 public:
   using VectorProperty<vec3>::VectorProperty;
@@ -75,9 +75,9 @@ protected:
 class DVec3Property : public VectorProperty<dvec3> {
   Q_OBJECT
 
-  Q_PROPERTY(double x READ (_get<0>) WRITE (_set<0>) DESIGNABLE true FINAL)
-  Q_PROPERTY(double y READ (_get<1>) WRITE (_set<1>) DESIGNABLE true FINAL)
-  Q_PROPERTY(double z READ (_get<2>) WRITE (_set<2>) DESIGNABLE true FINAL)
+  Q_PROPERTY(double x READ (_get<0>) WRITE (_set<0>) STORED false FINAL)
+  Q_PROPERTY(double y READ (_get<1>) WRITE (_set<1>) STORED false FINAL)
+  Q_PROPERTY(double z READ (_get<2>) WRITE (_set<2>) STORED false FINAL)
 
 public:
   using VectorProperty<dvec3>::VectorProperty;

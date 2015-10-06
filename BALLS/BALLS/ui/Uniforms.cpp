@@ -135,7 +135,7 @@ void Uniforms::_handleNewUniforms(const UniformCollection& temp) noexcept {
 
       //Q_ASSERT(!property(name_cstr).isValid());
       this->setProperty(name_cstr, QVariant(qtype, nullptr));
-      Q_ASSERT(property(name_cstr).isValid());
+      //Q_ASSERT(property(name_cstr).isValid());
       // Add a default-constructed uniform
     }
     else {
@@ -277,8 +277,8 @@ void Uniforms::wheelEvent(QWheelEvent* e) noexcept {
 
 void Uniforms::resizeEvent(QResizeEvent* e) noexcept {
   const QSize& size = e->size();
-  int w = size.width();
-  int h = size.height();
+  int w = std::max(1, size.width());
+  int h = std::max(1, size.height());
 
   _canvasSize.x = w;
   _canvasSize.y = h;

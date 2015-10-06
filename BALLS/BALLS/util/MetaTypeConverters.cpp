@@ -8,8 +8,10 @@
 #include <boost/mpl/single_view.hpp>
 
 #include <glm/glm.hpp>
+#include <glm/gtx/string_cast.hpp>
 #include <QtGlobal>
 #include <QMetaType>
+#include <QString>
 #include <QJsonArray>
 #include <QJsonObject>
 #include <QJsonValue>
@@ -45,6 +47,9 @@ using E = typename Element<T>::type;
 
 template<class T>
 using is_QQuaternion = is_same<QQuaternion, T>;
+
+template<class T>
+using is_QString = is_same<QString, T>;
 
 template<class T>
 using is_scalar = contains<types::Scalars, T>;
@@ -226,7 +231,7 @@ convert(const From& from) noexcept {
 
 // vec4 -> vec4
 template<class From, class To>
-inline enable_if_t < is_vec4<From>()&&  is_vec4<To>()&&
+inline enable_if_t < (is_vec4<From>() || is_quat<From>()) &&  is_vec4<To>()&&
 !is_builtin_conv<From, To>(), To >
 convert(const From& from) noexcept {
   return To(
@@ -234,19 +239,6 @@ convert(const From& from) noexcept {
     static_cast<E<To>>(from[1]),
     static_cast<E<To>>(from[2]),
     static_cast<E<To>>(from[3])
-  );
-}
-
-// quat -> vec4
-template<class From, class To>
-inline enable_if_t < is_quat<From>()&&  is_vec4<To>()&&
-!is_builtin_conv<From, To>(), To >
-convert(const From& from) noexcept {
-  return To(
-    static_cast<E<To>>(from[0]), // quat x -> vector x
-    static_cast<E<To>>(from[1]), // quat y -> vector y
-    static_cast<E<To>>(from[2]), // quat z -> vector z
-    static_cast<E<To>>(from[3]) // quat w -> vector w
   );
 }
 
@@ -404,6 +396,7 @@ convert(const From& from) noexcept {
 
   for (int c = 0, cols = min((int)To::cols, json.count()); c < cols; ++c) {
     QJsonArray col = json[c].toArray();
+
     // TODO: This does not fill in blanks with the identity matrix
     for (int r = 0, rows = min((int)To::rows, col.count()); r < rows; ++r) {
       mat[c][r] = col[r].toDouble();
@@ -467,6 +460,14 @@ convert(const From& from) noexcept {
 }
 // J ========================================================================= J
 
+// convert to string ========================================================= S
+template<class From, class To>
+inline enable_if_t <is_QString<To>::value , To>
+convert(const From& from) noexcept {
+  return QString::fromStdString(glm::to_string(from));
+}
+// S ========================================================================= S
+
 template<typename From>
 struct other_handler {
   template<typename To>
@@ -509,5 +510,8 @@ void registerMetaTypeConverters() noexcept {
   _registerTypes<types::glm::Mats, types::glm::Mats>();
   _registerTypes<types::glm::Mats, types::all::JsonArr>();
   _registerTypes<types::all::JsonArr, types::glm::Mats>();
+
+  _registerTypes<types::glm::Vecs, types::all::String>();
+  _registerTypes<types::glm::Mats, types::all::String>();
 }
 }
