@@ -171,7 +171,13 @@ else:CONFIG(release, debug|release) {
 INCLUDEPATH += \
 	$$PWD/../ \
 	$$PWD/../QPropertyEditor \
-	$$PWD/../Qtilities
+	$$PWD/../Qtilities \
+	/usr/include \
+	/usr/local/include \
+	/usr/include/x86_64-linux-gnu \
+	/usr/include/x86_64-linux-gnu/qt5 \
+	/usr/include/qt5 \
+
 
 DEPENDPATH += \
 	$$DESTDIR \

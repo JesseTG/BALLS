@@ -17,6 +17,11 @@ RCC_DIR = temp
 INCLUDEPATH *= \
 	$$MOC_DIR \
 	$$UI_DIR \
-	$$RCC_DIR
+	$$RCC_DIR \
+	/usr/include \
+	/usr/local/include \
+	/usr/include/x86_64-linux-gnu \
+	/usr/include/x86_64-linux-gnu/qt5 \
+	/usr/include/qt5 \
 
 DESTDIR = $$PWD/../build/$${BUILD_TYPE}/dist
