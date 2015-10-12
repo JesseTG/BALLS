@@ -19,7 +19,7 @@ clone() {
     if [[ -e $name/CMakeLists.txt ]]
     then
         echo "$url is a CMake project"
-        cmake $flags >/dev/null
+        cmake . $flags
     elif [[ -e $name/configure ]]
     then
         echo "$url uses configure"
