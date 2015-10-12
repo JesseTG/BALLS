@@ -20,13 +20,6 @@ compiler:
   - g++
 
 before_install:
-  - mkdir -p ~/repos
-  - sudo add-apt-repository -y 'deb http://ppa.launchpad.net/beineri/opt-qt55-trusty/ubuntu trusty main'
-  - sudo add-apt-repository -y 'deb http://llvm.org/apt/jessie/ llvm-toolchain-jessie-3.7 main'
-  - sudo apt-get -qqy update
-  - sudo apt-get install --no-install-recommends --force-yes --no-upgrade -qqy qt553d qt55base libboost-dev gcc-5 clang-3.8 llvm-3.8 libc++-dev libc++abi-dev libx11-xcb-dev libglu1-mesa-dev libxrender-dev libxi-dev
-  - sudo chmod -f +x /opt/qt55/bin/qt55-env.sh
-  - /opt/qt55/bin/qt55-env.sh
   - $TRAVIS_BUILD_DIR/before_install.sh
 
 install:

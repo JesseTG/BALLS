@@ -29,6 +29,24 @@ clone() {
     cd ..
 }
 
+export COMMON_PACKAGES="qt553d qt55base libboost-dev libx11-xcb-dev libglu1-mesa-dev libxrender-dev libxi-dev"
+case "$CC" in
+    "gcc")
+    export PLATFORM_PACKAGES="gcc-5"
+    ;;
+
+    "clang")
+    sudo add-apt-repository -y 'deb http://llvm.org/apt/jessie/ llvm-toolchain-jessie-3.7 main'
+    export PLATFORM_PACKAGES="clang-3.7 llvm-3.7 libc++-dev libc++abi-dev"
+    ;;
+esac
+
+sudo add-apt-repository -y 'deb http://ppa.launchpad.net/beineri/opt-qt55-trusty/ubuntu trusty main'
+sudo apt-get -qqy update
+sudo apt-get install --no-install-recommends --force-yes --no-upgrade -qqy $COMMON_PACKAGES $PLATFORM_PACKAGES
+sudo chmod -f +x /opt/qt55/bin/qt55-env.sh
+/opt/qt55/bin/qt55-env.sh
+
 cd ~/repos
 
 clone glm https://github.com/g-truc/glm.git master
