@@ -14,5 +14,5 @@ case "$CC" in
     ;;
 esac
 
-~/deps/qt5/qtbase/bin/qmake ./BALLS/BALLS.pro -r -spec linux-$SPEC INCLUDEPATH+="~/deps/qt5/include" LIBS+="~/deps/qt5/libs"
+/opt/qt55/bin/qmake ./BALLS/BALLS.pro -spec linux-$SPEC
 make -s
