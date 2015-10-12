@@ -2,9 +2,12 @@
 
 # This script file is used by Travis CI for continuous integration.  You, the user, do not need to run it.
 
+pushd .
 mkdir -p ~/repos
 
 clone() {
+    pushd .
+
     name=$1
     url=$2
     branch=$3
@@ -26,7 +29,7 @@ clone() {
         ./configure $flags
     fi
 
-    cd ..
+    popd
 }
 
 export COMMON_PACKAGES="qt553d qt55base libboost-dev libx11-xcb-dev libglu1-mesa-dev libxrender-dev libxi-dev"
@@ -53,4 +56,4 @@ clone glm https://github.com/g-truc/glm.git master
 clone gli https://github.com/g-truc/gli.git master
 # clone qt5 http://code.qt.io/qt/qt5.git 5.6
 
-cd
+popd
