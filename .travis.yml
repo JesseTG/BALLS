@@ -31,6 +31,7 @@ before_install:
   - sudo apt-get -qqy update
   - sudo apt-get install --no-install-recommends --force-yes --no-upgrade -qqy qt553d qt55base qt55-meta-full
   - sudo chmod -f +x /opt/qt55/bin/qt55-env.sh
+  - sudo update-alternatives --set clang++ /usr/bin/clang++-3.8
   - /opt/qt55/bin/qt55-env.sh
   - $TRAVIS_BUILD_DIR/before_install.sh
 
