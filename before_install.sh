@@ -37,7 +37,7 @@ clone() {
 export COMMON_PACKAGES="qt553d qt55base libboost-dev libx11-xcb-dev libglu1-mesa-dev libxrender-dev libxi-dev libqt5scintilla2-dev libqt5scintilla2-l10n libqt5scintilla2-11"
 case "$CC" in
     "gcc")
-    export PLATFORM_PACKAGES="gcc-5"
+    export PLATFORM_PACKAGES="gcc-5 g++-5 cpp-5"
     ;;
 
     "clang")
@@ -55,13 +55,13 @@ sudo chmod -f +x /opt/qt55/bin/qt55-env.sh
 case "$CC" in
     "gcc")
     sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 10
-    sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/x86_64-linux-gnu-g++-5 100
+    sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-5 100
 
     sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.8 10
     sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 100
 
-    sudo update-alternatives --auto g++
-    sudo update-alternatives --auto gcc
+    sudo update-alternatives --set g++ /usr/bin/g++-5
+    sudo update-alternatives --set gcc /usr/bin/gcc-5
     ;;
 
     "clang")
@@ -71,8 +71,8 @@ case "$CC" in
     sudo update-alternatives --install /usr/bin/clang clang /usr/local/clang-3.5.0/bin/clang 10
     sudo update-alternatives --install /usr/bin/clang clang /usr/bin/clang-3.7 100
 
-    sudo update-alternatives --auto clang++
-    sudo update-alternatives --auto clang
+    sudo update-alternatives --set clang++ /usr/bin/clang++-3.7
+    sudo update-alternatives --set clang /usr/bin/clang-3.7
     ;;
 esac
 
