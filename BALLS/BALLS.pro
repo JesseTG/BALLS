@@ -26,3 +26,5 @@ lessThan(QT_MAJOR_VERSION, 5):lessThan(QT_MINOR_VERSION, 2) {
 
 message(CONFIG: $$CONFIG)
 message(Qt version: $$QT_VERSION)
+message(Compiler: $$QMAKE_CC/$$QMAKE_CXX)
+message($$system($$QMAKE_CXX --version))
