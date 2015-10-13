@@ -8,6 +8,8 @@ mkdir -p ~/repos
 clone() {
     pushd .
 
+    cd ~/repos
+
     name=$1
     url=$2
     branch=$3
@@ -19,7 +21,7 @@ clone() {
     cd $name
     git checkout -q $branch
 
-    if [[ -e $name/CMakeLists.txt ]]
+    if [[ -e ./CMakeLists.txt ]]
     then
         echo "$url is a CMake project"
         cmake . $flags
@@ -49,8 +51,6 @@ sudo apt-get -qqy update
 sudo apt-get install --no-install-recommends --force-yes --no-upgrade -qqy $COMMON_PACKAGES $PLATFORM_PACKAGES
 sudo chmod -f +x /opt/qt55/bin/qt55-env.sh
 /opt/qt55/bin/qt55-env.sh
-
-cd ~/repos
 
 clone glm https://github.com/g-truc/glm.git master
 clone gli https://github.com/g-truc/gli.git master
