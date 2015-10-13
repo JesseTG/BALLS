@@ -185,9 +185,17 @@ DEPENDPATH += \
 
 
 ## Libraries to link
-LIBS += \
+LIBS *= \
 	-L$$DESTDIR \
-	-lQPropertyEditor
+	-L/usr/lib \
+	-L/usr/local/lib \
+	-L/usr/local/clang-3.5.0/lib \
+	-L/usr/local/clang-3.6.0/lib \
+	-L/usr/local/clang-3.7.0/lib \
+	-L/usr/local/clang-3.8.0/lib \
+	-lQPropertyEditor \
+	-lqt5scintilla2 \
+
 ## /Libraries to link
 
 ## Dependencies
