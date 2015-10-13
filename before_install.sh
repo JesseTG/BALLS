@@ -41,7 +41,7 @@ case "$CC" in
     ;;
 
     "clang")
-    export PLATFORM_PACKAGES="clang-3.7 llvm-3.7 libc++-dev libc++abi-dev"
+    export PLATFORM_PACKAGES="clang-3.7 llvm-3.7 llvm-3.7-dev libclang-3.7-dev libc++-dev libc++abi-dev libasan2"
     sudo add-apt-repository -y 'deb http://llvm.org/apt/jessie/ llvm-toolchain-jessie-3.7 main'
     ;;
 esac
@@ -66,13 +66,13 @@ case "$CC" in
 
     "clang")
     sudo update-alternatives --install /usr/bin/clang++ clang++ /usr/local/clang-3.5.0/bin/clang++ 10
-    sudo update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-3.7 100
+    sudo update-alternatives --install /usr/bin/clang++ clang++ /usr/lib/llvm-3.7/bin/clang++ 100
 
     sudo update-alternatives --install /usr/bin/clang clang /usr/local/clang-3.5.0/bin/clang 10
-    sudo update-alternatives --install /usr/bin/clang clang /usr/bin/clang-3.7 100
+    sudo update-alternatives --install /usr/bin/clang clang /usr/lib/llvm-3.7/bin/clang 100
 
-    sudo update-alternatives --set clang++ /usr/bin/clang++-3.7
-    sudo update-alternatives --set clang /usr/bin/clang-3.7
+    sudo update-alternatives --set clang++ /usr/lib/llvm-3.7/bin/clang++
+    sudo update-alternatives --set clang /usr/lib/llvm-3.7/bin/clang
     ;;
 esac
 
