@@ -41,8 +41,8 @@ case "$CC" in
     ;;
 
     "clang")
-    sudo add-apt-repository -y 'deb http://llvm.org/apt/jessie/ llvm-toolchain-jessie-3.7 main'
     export PLATFORM_PACKAGES="clang-3.7 llvm-3.7 libc++-dev libc++abi-dev"
+    sudo add-apt-repository -y 'deb http://llvm.org/apt/jessie/ llvm-toolchain-jessie-3.7 main'
     ;;
 esac
 
@@ -51,6 +51,30 @@ sudo apt-get -qqy update
 sudo apt-get install --no-install-recommends --force-yes --no-upgrade -qqy $COMMON_PACKAGES $PLATFORM_PACKAGES
 sudo chmod -f +x /opt/qt55/bin/qt55-env.sh
 /opt/qt55/bin/qt55-env.sh
+
+case "$CC" in
+    "gcc")
+    sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 10
+    sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/x86_64-linux-gnu-g++-5 100
+
+    sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.8 10
+    sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 100
+
+    sudo update-alternatives --auto g++
+    sudo update-alternatives --auto gcc
+    ;;
+
+    "clang")
+    sudo update-alternatives --install /usr/bin/clang++ clang++ /usr/local/clang-3.5.0/bin/clang++ 10
+    sudo update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-3.7 100
+
+    sudo update-alternatives --install /usr/bin/clang clang /usr/local/clang-3.5.0/bin/clang 10
+    sudo update-alternatives --install /usr/bin/clang clang /usr/bin/clang-3.7 100
+
+    sudo update-alternatives --auto clang++
+    sudo update-alternatives --auto clang
+    ;;
+esac
 
 clone glm https://github.com/g-truc/glm.git master
 clone gli https://github.com/g-truc/gli.git master
