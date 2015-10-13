@@ -34,7 +34,7 @@ clone() {
     popd
 }
 
-export COMMON_PACKAGES="qt553d qt55base libboost-dev libx11-xcb-dev libglu1-mesa-dev libxrender-dev libxi-dev"
+export COMMON_PACKAGES="qt553d qt55base libboost-dev libx11-xcb-dev libglu1-mesa-dev libxrender-dev libxi-dev libqt5scintilla2-dev libqt5scintilla2-l10n libqt5scintilla2-11"
 case "$CC" in
     "gcc")
     export PLATFORM_PACKAGES="gcc-5"
