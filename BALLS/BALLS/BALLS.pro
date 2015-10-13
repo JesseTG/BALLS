@@ -125,8 +125,7 @@ OTHER_FILES += \
 	../README.md \
 	bar-descriptor.xml \
 	text/BALLS_es.ts \
-	text/BALLS_en.ts \
-	balls.san
+	text/BALLS_en.ts
 ### </Source Files> ############################################################
 
 ### <Compiler Flags> ###########################################################
@@ -150,10 +149,10 @@ CONFIG(debug, debug|release) {
 	clang {
 		QMAKE_LFLAGS_DEBUG += \
 #			-fsanitize-blacklist=$$PWD/balls.san \
-			-fsanitize=address \
-			-fsanitize=undefined \
+#			-fsanitize=address \
+#			-fsanitize=undefined \
 			-ftemplate-backtrace-limit=0 \
-			-fsanitize=integer
+#			-fsanitize=integer
 	}
 }
 else:CONFIG(release, debug|release) {
