@@ -69,5 +69,5 @@ before_script:
     - /opt/qt55/bin/qt55-env.sh
 
 script:
-    - /opt/qt55/bin/qmake ./BALLS/BALLS.pro -spec linux-$SPEC QMAKE_CC=$CC QMAKE_CXX=$CXX
+    - /opt/qt55/bin/qmake ./BALLS/BALLS.pro -spec linux-$SPEC QMAKE_CC=$CC QMAKE_CXX=$CXX CONFIG-=release CONFIG+=debug
     - make -s -j2
