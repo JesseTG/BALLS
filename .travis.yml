@@ -57,6 +57,7 @@ install:
     - sudo apt-get install --no-install-recommends --force-yes --no-upgrade -qqy $COMMON_PACKAGES $PLATFORM_PACKAGES
     - sudo update-alternatives --install /usr/bin/$OLD_CC $OLD_CC /usr/bin/$CC 100
     - sudo update-alternatives --install /usr/bin/$OLD_CXX $OLD_CXX /usr/bin/$CXX 100
+    - sudo update-alternatives --install /usr/bin/ld ld /usr/bin/ld.gold 100
     - sudo update-alternatives --auto $OLD_CC
     - sudo update-alternatives --auto $OLD_CXX
     - $TRAVIS_BUILD_DIR/travis/makeit.sh glm
