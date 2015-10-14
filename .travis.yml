@@ -24,6 +24,7 @@ before_install:
 
 install:
   - $TRAVIS_BUILD_DIR/install.sh
+  - update-alternatives --get-selections
 
 before_script:
   - cd $TRAVIS_BUILD_DIR
