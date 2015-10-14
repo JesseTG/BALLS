@@ -54,25 +54,21 @@ sudo chmod -f +x /opt/qt55/bin/qt55-env.sh
 
 case "$CC" in
     "gcc")
-    sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 10
     sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-5 100
-
-    sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.8 10
     sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 100
 
-    sudo update-alternatives --set g++ /usr/bin/g++-5
-    sudo update-alternatives --set gcc /usr/bin/gcc-5
+    sudo update-alternatives --auto g++
+    sudo update-alternatives --auto gcc
     ;;
 
     "clang")
-    sudo update-alternatives --install /usr/bin/clang++ clang++ /usr/local/clang-3.5.0/bin/clang++ 10
-    sudo update-alternatives --install /usr/bin/clang++ clang++ /usr/lib/llvm-3.7/bin/clang++ 100
+    sudo update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-3.7 100
+    sudo update-alternatives --install /usr/bin/clang clang /usr/bin/clang-3.7 100
+    sudo update-alternatives --install /usr/bin/c++ c++ /usr/bin/clang++ 1000
 
-    sudo update-alternatives --install /usr/bin/clang clang /usr/local/clang-3.5.0/bin/clang 10
-    sudo update-alternatives --install /usr/bin/clang clang /usr/lib/llvm-3.7/bin/clang 100
-
-    sudo update-alternatives --set clang++ /usr/lib/llvm-3.7/bin/clang++
-    sudo update-alternatives --set clang /usr/lib/llvm-3.7/bin/clang
+    sudo update-alternatives --auto clang++
+    sudo update-alternatives --auto clang
+    sudo update-alternatives --auto c++
     ;;
 esac
 
