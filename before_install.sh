@@ -25,7 +25,7 @@ clone() {
     then
         echo "$url is a CMake project"
         cmake . $flags
-    elif [[ -e $name/configure ]]
+    elif [[ -e configure ]]
     then
         echo "$url uses configure"
         ./configure $flags
