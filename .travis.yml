@@ -42,16 +42,32 @@ matrix:
             SPEC=g++
 
 before_install:
+    - export OLD_CC=$CC
+    - export OLD_CXX=$CXX
     - export CC=$CC-$VERSION
     - export CXX=$CXX-$VERSION
-    - $TRAVIS_BUILD_DIR/before_install.sh
+    - mkdir -p ~/repos
+    - sudo add-apt-repository -y 'deb http://llvm.org/apt/jessie/ llvm-toolchain-jessie-3.7 main'
+    - sudo add-apt-repository -y 'deb http://ppa.launchpad.net/beineri/opt-qt55-trusty/ubuntu trusty main'
+    - sudo apt-get -qqy update
+    - $TRAVIS_BUILD_DIR/travis/clone.sh glm https://github.com/g-truc/glm.git master
+    - $TRAVIS_BUILD_DIR/travis/clone.sh gli https://github.com/g-truc/gli.git master
 
 install:
-    - $TRAVIS_BUILD_DIR/install.sh
+    - sudo apt-get install --no-install-recommends --force-yes --no-upgrade -qqy $COMMON_PACKAGES $PLATFORM_PACKAGES
+    - sudo update-alternatives --install /usr/bin/$OLD_CC $OLD_CC /usr/bin/$CC 100
+    - sudo update-alternatives --install /usr/bin/$OLD_CXX $OLD_CXX /usr/bin/$CXX 100
+    - sudo update-alternatives --auto $OLD_CC
+    - sudo update-alternatives --auto $OLD_CXX
+    - $TRAVIS_BUILD_DIR/travis/makeit.sh glm
+    - $TRAVIS_BUILD_DIR/travis/makeit.sh gli
     - update-alternatives --get-selections
 
 before_script:
     - cd $TRAVIS_BUILD_DIR
+    - sudo chmod +x /opt/qt55/bin/qt55-env.sh
+    - /opt/qt55/bin/qt55-env.sh
 
 script:
-    - $TRAVIS_BUILD_DIR/script.sh
+    - /opt/qt55/bin/qmake ./BALLS/BALLS.pro -spec linux-$SPEC QMAKE_CC=$CC QMAKE_CXX=$CXX
+    - make -s -j2
