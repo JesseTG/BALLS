@@ -14,20 +14,44 @@ cache:
     directories:
         ~/deps
         ~/repos
-
-compiler:
-  - clang
-  - g++
+env:
+    global:
+        - > 
+            COMMON_PACKAGES="
+            qt553d 
+            qt55base 
+            libboost-dev 
+            libx11-xcb-dev 
+            libglu1-mesa-dev 
+            libxrender-dev 
+            libxi-dev 
+            libqt5scintilla2-dev 
+            libqt5scintilla2-l10n 
+            libqt5scintilla2-11"
+matrix:
+    include:
+        - compiler: clang
+          env: >
+            VERSION=3.7
+            PLATFORM_PACKAGES="clang-3.7 llvm-3.7 llvm-3.7-dev libclang-3.7-dev libc++-dev libc++abi-dev libasan2"
+            SPEC=clang
+        - compiler: gcc
+          env: >
+            VERSION=5
+            PLATFORM_PACKAGES="gcc-5 g++-5 cpp-5"
+            SPEC=g++
 
 before_install:
-  - $TRAVIS_BUILD_DIR/before_install.sh
+    - export CC=$CC-$VERSION
+    - export CXX=$CXX-$VERSION
+    - $TRAVIS_BUILD_DIR/before_install.sh
 
 install:
-  - $TRAVIS_BUILD_DIR/install.sh
-  - update-alternatives --get-selections
+    - $TRAVIS_BUILD_DIR/install.sh
+    - update-alternatives --get-selections
 
 before_script:
-  - cd $TRAVIS_BUILD_DIR
+    - cd $TRAVIS_BUILD_DIR
 
 script:
-  - $TRAVIS_BUILD_DIR/script.sh
+    - $TRAVIS_BUILD_DIR/script.sh
