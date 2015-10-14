@@ -37,6 +37,7 @@ CONFIG(debug, debug|release) {
 CONFIG(release, debug|release) {
 	DEFINES += NDEBUG QT_NO_DEBUG QT_NO_DEBUG_OUTPUT
 	QMAKE_CXXFLAGS_RELEASE += -Ofast
+	QMAKE_LFLAGS_RELEASE += -Ofast
 }
 
 

@@ -159,8 +159,8 @@ else:CONFIG(release, debug|release) {
 	DEFINES += NDEBUG QT_NO_DEBUG_OUTPUT QT_NO_DEBUG
 
 	gcc|clang {
-		QMAKE_CXXFLAGS_RELEASE += -Ofast -flto
-		QMAKE_LFLAGS_RELEASE += -flto
+		QMAKE_CXXFLAGS_RELEASE += -Ofast
+		QMAKE_LFLAGS_RELEASE += -Ofast
 	}
 }
 ### </Compiler Flags> ##########################################################
