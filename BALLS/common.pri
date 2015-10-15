@@ -24,6 +24,8 @@ INCLUDEPATH *= \
 	/usr/include/x86_64-linux-gnu/qt5 \
 	/usr/include/qt5 \
 
+DESTDIR = $$PWD/../build/$${BUILD_TYPE}-$${QMAKE_CC}/dist
+
 LIBS *= \
 	-L/usr/lib \
 	-L/usr/local/lib \
@@ -32,4 +34,3 @@ LIBS *= \
 	-L/usr/local/clang-3.7.0/lib \
 	-L/usr/local/clang-3.8.0/lib \
 
-DESTDIR = $$PWD/../build/$${BUILD_TYPE}/dist
