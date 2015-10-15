@@ -125,8 +125,7 @@ OTHER_FILES += \
 	../README.md \
 	bar-descriptor.xml \
 	text/BALLS_es.ts \
-	text/BALLS_en.ts \
-	balls.san
+	text/BALLS_en.ts
 ### </Source Files> ############################################################
 
 ### <Compiler Flags> ###########################################################
@@ -150,18 +149,18 @@ CONFIG(debug, debug|release) {
 	clang {
 		QMAKE_LFLAGS_DEBUG += \
 #			-fsanitize-blacklist=$$PWD/balls.san \
-			-fsanitize=address \
-			-fsanitize=undefined \
+#			-fsanitize=address \
+#			-fsanitize=undefined \
 			-ftemplate-backtrace-limit=0 \
-			-fsanitize=integer
+#			-fsanitize=integer \
 	}
 }
 else:CONFIG(release, debug|release) {
 	DEFINES += NDEBUG QT_NO_DEBUG_OUTPUT QT_NO_DEBUG
 
 	gcc|clang {
-		QMAKE_CXXFLAGS_RELEASE += -Ofast -flto
-		QMAKE_LFLAGS_RELEASE += -flto
+		QMAKE_CXXFLAGS_RELEASE += -Ofast
+		QMAKE_LFLAGS_RELEASE += -Ofast
 	}
 }
 ### </Compiler Flags> ##########################################################
@@ -171,7 +170,13 @@ else:CONFIG(release, debug|release) {
 INCLUDEPATH += \
 	$$PWD/../ \
 	$$PWD/../QPropertyEditor \
-	$$PWD/../Qtilities
+	$$PWD/../Qtilities \
+	/usr/include \
+	/usr/local/include \
+	/usr/include/x86_64-linux-gnu \
+	/usr/include/x86_64-linux-gnu/qt5 \
+	/usr/include/qt5 \
+
 
 DEPENDPATH += \
 	$$DESTDIR \
@@ -180,9 +185,17 @@ DEPENDPATH += \
 
 
 ## Libraries to link
-LIBS += \
+LIBS *= \
 	-L$$DESTDIR \
-	-lQPropertyEditor
+	-L/usr/lib \
+	-L/usr/local/lib \
+	-L/usr/local/clang-3.5.0/lib \
+	-L/usr/local/clang-3.6.0/lib \
+	-L/usr/local/clang-3.7.0/lib \
+	-L/usr/local/clang-3.8.0/lib \
+	-lQPropertyEditor \
+	-lqt5scintilla2 \
+
 ## /Libraries to link
 
 ## Dependencies

@@ -23,10 +23,10 @@ extern template class VectorProperty<uvec4>;
 class BVec4Property : public VectorProperty<bvec4> {
   Q_OBJECT
 
-  Q_PROPERTY(bool x READ (_get<0>) WRITE (_set<0>) STORED false FINAL)
-  Q_PROPERTY(bool y READ (_get<1>) WRITE (_set<1>) STORED false FINAL)
-  Q_PROPERTY(bool z READ (_get<2>) WRITE (_set<2>) STORED false FINAL)
-  Q_PROPERTY(bool w READ (_get<3>) WRITE (_set<3>) STORED false FINAL)
+  Q_PROPERTY(bool x READ _getx WRITE _setx STORED false FINAL)
+  Q_PROPERTY(bool y READ _gety WRITE _sety STORED false FINAL)
+  Q_PROPERTY(bool z READ _getz WRITE _setz STORED false FINAL)
+  Q_PROPERTY(bool w READ _getw WRITE _setw STORED false FINAL)
 
 public:
   using VectorProperty<bvec4>::VectorProperty;
@@ -37,10 +37,10 @@ protected:
 class IVec4Property : public VectorProperty<ivec4> {
   Q_OBJECT
 
-  Q_PROPERTY(int x READ (_get<0>) WRITE (_set<0>) STORED false FINAL)
-  Q_PROPERTY(int y READ (_get<1>) WRITE (_set<1>) STORED false FINAL)
-  Q_PROPERTY(int z READ (_get<2>) WRITE (_set<2>) STORED false FINAL)
-  Q_PROPERTY(int w READ (_get<3>) WRITE (_set<3>) STORED false FINAL)
+  Q_PROPERTY(int x READ _getx WRITE _setx STORED false FINAL)
+  Q_PROPERTY(int y READ _gety WRITE _sety STORED false FINAL)
+  Q_PROPERTY(int z READ _getz WRITE _setz STORED false FINAL)
+  Q_PROPERTY(int w READ _getw WRITE _setw STORED false FINAL)
 
 public:
   using VectorProperty<ivec4>::VectorProperty;
@@ -51,10 +51,10 @@ protected:
 class UVec4Property : public VectorProperty<uvec4> {
   Q_OBJECT
 
-  Q_PROPERTY(unsigned int x READ (_get<0>) WRITE (_set<0>) STORED false FINAL)
-  Q_PROPERTY(unsigned int y READ (_get<1>) WRITE (_set<1>) STORED false FINAL)
-  Q_PROPERTY(unsigned int z READ (_get<2>) WRITE (_set<2>) STORED false FINAL)
-  Q_PROPERTY(unsigned int w READ (_get<3>) WRITE (_set<3>) STORED false FINAL)
+  Q_PROPERTY(unsigned int x READ _getx WRITE _setx STORED false FINAL)
+  Q_PROPERTY(unsigned int y READ _gety WRITE _sety STORED false FINAL)
+  Q_PROPERTY(unsigned int z READ _getz WRITE _setz STORED false FINAL)
+  Q_PROPERTY(unsigned int w READ _getw WRITE _setw STORED false FINAL)
 
 public:
   using VectorProperty<uvec4>::VectorProperty;
@@ -65,10 +65,10 @@ protected:
 class Vec4Property : public VectorProperty<vec4> {
   Q_OBJECT
 
-  Q_PROPERTY(float x READ (_get<0>) WRITE (_set<0>) STORED false FINAL)
-  Q_PROPERTY(float y READ (_get<1>) WRITE (_set<1>) STORED false FINAL)
-  Q_PROPERTY(float z READ (_get<2>) WRITE (_set<2>) STORED false FINAL)
-  Q_PROPERTY(float w READ (_get<3>) WRITE (_set<3>) STORED false FINAL)
+  Q_PROPERTY(float x READ _getx WRITE _setx STORED false FINAL)
+  Q_PROPERTY(float y READ _gety WRITE _sety STORED false FINAL)
+  Q_PROPERTY(float z READ _getz WRITE _setz STORED false FINAL)
+  Q_PROPERTY(float w READ _getw WRITE _setw STORED false FINAL)
 
 public:
   using VectorProperty<vec4>::VectorProperty;
@@ -79,10 +79,10 @@ protected:
 class DVec4Property : public VectorProperty<dvec4> {
   Q_OBJECT
 
-  Q_PROPERTY(double x READ (_get<0>) WRITE (_set<0>) STORED false FINAL)
-  Q_PROPERTY(double y READ (_get<1>) WRITE (_set<1>) STORED false FINAL)
-  Q_PROPERTY(double z READ (_get<2>) WRITE (_set<2>) STORED false FINAL)
-  Q_PROPERTY(double w READ (_get<3>) WRITE (_set<3>) STORED false FINAL)
+  Q_PROPERTY(double x READ _getx WRITE _setx STORED false FINAL)
+  Q_PROPERTY(double y READ _gety WRITE _sety STORED false FINAL)
+  Q_PROPERTY(double z READ _getz WRITE _setz STORED false FINAL)
+  Q_PROPERTY(double w READ _getw WRITE _setw STORED false FINAL)
 
 public:
   using VectorProperty<dvec4>::VectorProperty;

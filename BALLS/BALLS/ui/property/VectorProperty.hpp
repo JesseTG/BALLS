@@ -98,21 +98,22 @@ public:
 protected:
   array<Property*, Size> dimProps;
 
-  template<int C>
-  Component _get() const noexcept {
-    static_assert(0 <= C && C < Value::components, "");
-    return value().template value<Value>()[C];
-  }
+  inline Component _getx() const noexcept { return _get<0>(); }
+  inline void _setx(const Component c) noexcept { _set<0>(c); }
 
-  template<int C>
-  void _set(const Component& c) noexcept {
-    static_assert(0 <= C&&  C < Value::components, "");
+  inline Component _gety() const noexcept { return _get<1>(); }
+  inline void _sety(const Component c) noexcept { _set<1>(c); }
 
-    Value v = value().template value<Value>();
-    v[C] = c;
+  inline Component _getz() const noexcept { return _get<2>(); }
+  inline void _setz(const Component c) noexcept { _set<2>(c); }
 
-    Property::setValue(QVariant::fromValue<Value>(v));
-  }
+  inline Component _getw() const noexcept { return _get<3>(); }
+  inline void _setw(const Component c) noexcept { _set<3>(c); }
+  // I'm delegating these to one internal templated method for the sake of DRY.
+  // I'd just use these methods in Q_PROPERTY directly, but it turns out that's
+  // undocumented behavior, so different versions of Qt aren't consistent in
+  // allowing it.
+
 
   void setEditorHints(const QString& hints) noexcept override {
     for (int i = 0; i < Size; ++i) {
@@ -122,6 +123,19 @@ protected:
 private:
   // TODO: Replace this (maybe with a constructor parameter)
   virtual const QRegularExpression& regex() const noexcept = 0;
+
+  template<int C>
+  Component _get() const noexcept {
+    return value().template value<Value>()[C];
+  }
+
+  template<int C>
+  void _set(const Component& c) noexcept {
+    Value v = value().template value<Value>();
+    v[C] = c;
+
+    Property::setValue(QVariant::fromValue<Value>(v));
+  }
 };
 }
 

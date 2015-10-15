@@ -67,16 +67,26 @@ public:
 protected:
   array<ColProp*, Matrix::cols> colProps;
 
+  inline Column _getx() const noexcept { return _get<0>(); }
+  inline void _setx(const Column c) noexcept { _set<0>(c); }
+
+  inline Column _gety() const noexcept { return _get<1>(); }
+  inline void _sety(const Column c) noexcept { _set<1>(c); }
+
+  inline Column _getz() const noexcept { return _get<2>(); }
+  inline void _setz(const Column c) noexcept { _set<2>(c); }
+
+  inline Column _getw() const noexcept { return _get<3>(); }
+  inline void _setw(const Column c) noexcept { _set<3>(c); }
+
+private:
   template<int C>
   Column _get() const noexcept {
-    static_assert(0 <= C && C < Matrix::cols, "");
     return value().template value<Matrix>()[C];
   }
 
   template<int C>
   void _set(const Column& c) noexcept {
-    static_assert(0 <= C&&  C < Matrix::cols, "");
-
     Matrix v = value().template value<Matrix>();
     v[C] = c;
 
