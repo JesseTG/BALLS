@@ -8,15 +8,10 @@ TEMPLATE = subdirs
 CONFIG += c++14
 SUBDIRS = \
 	QPropertyEditor \
-	Qtilities \
 	BALLS \
 	BALLS-Tests
 
-QTILITIES = core coregui
-
-Qtilities.file = Qtilities/src/Qtilities.pro
-
-BALLS.depends = Qtilities QPropertyEditor
+BALLS.depends = QPropertyEditor
 
 BALLS-Tests.depends = BALLS
 
