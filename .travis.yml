@@ -92,4 +92,8 @@ script:
 
 after_success:
     - cd ./build/$BUILD_CONFIG-$CC/dist
+    - ./tst_PropertyObjectTests
+    - ./tst_TestConversions
+    - ./tst_TestJsonsConversionsTest
+    - ./tst_TestUniformsTest
     - ./BALLS
