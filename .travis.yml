@@ -89,3 +89,7 @@ before_script:
 script:
     - /opt/qt55/bin/qmake ./BALLS/BALLS.pro -spec linux-$SPEC QMAKE_CC=$CC QMAKE_CXX=$CXX CONFIG-=release CONFIG-=debug CONFIG+=$BUILD_CONFIG
     - make -s -j2
+
+after_success:
+    - cd ./build/$BUILD_CONFIG-$CC/dist
+    - ./BALLS
