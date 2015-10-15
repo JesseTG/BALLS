@@ -18,6 +18,7 @@ env:
     global:
         - > 
             COMMON_PACKAGES="
+            cmake
             qt553d 
             qt55base 
             libboost-dev 
@@ -28,18 +29,34 @@ env:
             libqt5scintilla2-dev 
             libqt5scintilla2-l10n 
             libqt5scintilla2-11"
+            LLVM_PACKAGES="clang-3.7 llvm-3.7 llvm-3.7-dev libclang-3.7-dev libc++-dev libc++abi-dev libasan2"
+            GCC_PACKAGES="gcc-5 g++-5 cpp-5"
 matrix:
     include:
         - compiler: clang
           env: >
             VERSION=3.7
-            PLATFORM_PACKAGES="clang-3.7 llvm-3.7 llvm-3.7-dev libclang-3.7-dev libc++-dev libc++abi-dev libasan2"
+            PLATFORM_PACKAGES=$LLVM_PACKAGES
             SPEC=clang
+            BUILD_CONFIG=debug
+        - compiler: clang
+          env: >
+            VERSION=3.7
+            PLATFORM_PACKAGES=$LLVM_PACKAGES
+            SPEC=clang
+            BUILD_CONFIG=release
         - compiler: gcc
           env: >
             VERSION=5
-            PLATFORM_PACKAGES="gcc-5 g++-5 cpp-5"
+            PLATFORM_PACKAGES=$GCC_PACKAGES
             SPEC=g++
+            BUILD_CONFIG=debug
+        - compiler: gcc
+          env: >
+            VERSION=5
+            PLATFORM_PACKAGES=$GCC_PACKAGES
+            SPEC=g++
+            BUILD_CONFIG=release
 
 before_install:
     - export OLD_CC=$CC
@@ -70,5 +87,5 @@ before_script:
     - /opt/qt55/bin/qt55-env.sh
 
 script:
-    - /opt/qt55/bin/qmake ./BALLS/BALLS.pro -spec linux-$SPEC QMAKE_CC=$CC QMAKE_CXX=$CXX CONFIG-=release CONFIG+=debug
+    - /opt/qt55/bin/qmake ./BALLS/BALLS.pro -spec linux-$SPEC QMAKE_CC=$CC QMAKE_CXX=$CXX CONFIG-=release CONFIG-=debug CONFIG+=$BUILD_CONFIG
     - make -s -j2
