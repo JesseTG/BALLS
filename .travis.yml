@@ -78,7 +78,7 @@ before_install:
     - export CXX=$CXX-$VERSION
     - mkdir -p ~/repos
     - sudo add-apt-repository -y 'deb http://llvm.org/apt/jessie/ llvm-toolchain-jessie-3.7 main'
-    - sudo add-apt-repository -y 'deb http://ppa.launchpad.net/beineri/opt-qt55-trusty/ubuntu trusty main'
+    - sudo add-apt-repository -y 'deb http://ppa.launchpad.net/beineri/opt-qt551-trusty/ubuntu trusty main'
     - sudo apt-get -qqy update
     - $TRAVIS_BUILD_DIR/travis/clone.sh glm https://github.com/g-truc/glm.git master
     - $TRAVIS_BUILD_DIR/travis/clone.sh gli https://github.com/g-truc/gli.git master
