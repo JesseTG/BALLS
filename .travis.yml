@@ -4,8 +4,20 @@ addons:
     - ubuntu-toolchain-r-test
     - ubuntu-sdk-team
 
+deploy:
+  provider: releases
+  api_key:
+    secure: $GITHUB_OAUTH
+  file: build/$BUILD_CONFIG-$CC/dist
+  skip_cleanup: true
+  on:
+    branch: master
+    condition: $SPEC = clang
+    repo: JesseTG/BALLS
+
 language: cpp
 sudo: required
+dist: trusty
 services:
     - docker
 cache:
@@ -25,10 +37,9 @@ env:
             libx11-xcb-dev 
             libglu1-mesa-dev 
             libxrender-dev 
-            libxi-dev 
-            libqt5scintilla2-dev 
-            libqt5scintilla2-l10n 
-            libqt5scintilla2-11"
+            libxi-dev
+            libqt5scintilla2-*
+            xvfb"
             LLVM_PACKAGES="clang-3.7 llvm-3.7 llvm-3.7-dev libclang-3.7-dev libc++-dev libc++abi-dev libasan2"
             GCC_PACKAGES="gcc-5 g++-5 cpp-5"
 matrix:
@@ -39,12 +50,14 @@ matrix:
             PLATFORM_PACKAGES=$LLVM_PACKAGES
             SPEC=clang
             BUILD_CONFIG=debug
+            QMAKESPEC=linux-clang
         - compiler: clang
           env: >
             VERSION=3.7
             PLATFORM_PACKAGES=$LLVM_PACKAGES
             SPEC=clang
             BUILD_CONFIG=release
+            QMAKESPEC=linux-clang
         - compiler: gcc
           env: >
             VERSION=5
@@ -69,6 +82,8 @@ before_install:
     - sudo apt-get -qqy update
     - $TRAVIS_BUILD_DIR/travis/clone.sh glm https://github.com/g-truc/glm.git master
     - $TRAVIS_BUILD_DIR/travis/clone.sh gli https://github.com/g-truc/gli.git master
+    - $TRAVIS_BUILD_DIR/travis/clone.sh Qtilities https://github.com/JPNaude/Qtilities.git master
+    - qmake -version
 
 install:
     - sudo apt-get install --no-install-recommends --force-yes --no-upgrade -qqy $COMMON_PACKAGES $PLATFORM_PACKAGES
@@ -89,11 +104,9 @@ before_script:
 script:
     - /opt/qt55/bin/qmake ./BALLS/BALLS.pro -spec linux-$SPEC QMAKE_CC=$CC QMAKE_CXX=$CXX CONFIG-=release CONFIG-=debug CONFIG+=$BUILD_CONFIG
     - make -s -j2
+    - cd ./build/$BUILD_CONFIG-$CC/dist
+    - for test in `find tst_*`; do xvfb-run -a ./`basename $test`||exit 1; done
 
 after_success:
-    - cd ./build/$BUILD_CONFIG-$CC/dist
-    - ./tst_PropertyObjectTests
-    - ./tst_TestConversions
-    - ./tst_TestJsonsConversionsTest
-    - ./tst_TestUniformsTest
-    - ./BALLS
+    - strip ./BALLS
+    - upx --best --ultra-brute ./BALLS
