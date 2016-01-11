@@ -1,0 +1,43 @@
+environment:
+  global:
+    MINGW: C:\Qt\Tools\mingw492_32
+  matrix:
+    - QTDIR: C:\Qt\5.5\mingw492_32
+    - QTDIR: C:\Qt\5.5\msvc2013_64
+
+configuration:
+  - Debug
+  - Release
+
+install:
+  - mkdir deps
+  - cd ./deps
+  - git clone -q https://github.com/g-truc/glm.git
+  - cd ./glm
+  - cmake . -Wno-dev
+  - cmake --build . --config Release --target install 2> nul
+  - cd ..
+  - git clone -q https://github.com/g-truc/gli.git
+  - cd ./gli
+  - cmake . -Wno-dev
+  - cd ..
+  - git clone -q https://github.com/JPNaude/Qtilities.git
+  - cd ..
+  - set PATH=%PATH%;%QTDIR%\bin;%MINGW%\bin;C:\Qt\Tools\QtCreator\bin
+
+build_script:
+  - qbs setup-toolchains --detect
+  - qbs config profiles.i686-w64-mingw32.cpp.archiverPath ar.exe
+  - qbs config profiles.i686-w64-mingw32.cpp.nmPath nm.exe
+  - qbs config profiles.i686-w64-mingw32.cpp.objcopyPath objcopy.exe
+  - qbs config profiles.i686-w64-mingw32.cpp.stripPath strip.exe
+  - qbs setup-qt %QTDIR%\bin\qmake.exe qt
+  - qbs config defaultProfile qt
+  - qbs install --all-products --install-root install-root release
+
+test_script:
+  - ./dist/tst_TestConversions.exe
+
+artifacts:
+  - name: Release
+    path: 'dist/BALLS.exe'
