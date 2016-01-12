@@ -7,7 +7,7 @@ addons:
 deploy:
   provider: releases
   api_key:
-    secure: $GITHUB_OAUTH
+    secure: U6AV2L4w7d968dU9SSU8xZh1ZEqAybi3Mbt62fOzRwRtKTMcLuLYSYT3Dt6GOINbgrVEHf0vU7LNI0JcBfeGlTOWkPsdaxGCYcn9i7HX335J5Qh2wxAUllkJhBuYFStSIFWO+50MiypknUmHSzViMrsJYRZCg3cvsoAe9Bs612Q=
   file: build/release-clang/dist
   skip_cleanup: true
   on:
