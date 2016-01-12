@@ -11,8 +11,8 @@ deploy:
   file: build/$BUILD_CONFIG-$CC/dist
   skip_cleanup: true
   on:
-    branch: master
-    condition: $SPEC = clang
+    all_branches: true
+    condition: $SPEC = clang && $BUILD_CONFIG = release
     repo: JesseTG/BALLS
 
 language: cpp
