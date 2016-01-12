@@ -8,7 +8,7 @@ deploy:
   provider: releases
   api_key:
     secure: "j2f3sNUuZayOOBt/VYXDfmujQK1GgH6vc1HbSGNYmBgwiDUx0MVh/J53kGKGkBiNRJLedh/SINf0GG/bRflUYp7hgcE3nrosQGYdrsMnmJxif42YHEsvi7toQ/nKbUylFGPz562SZMhlGfUAqjBqey+bHJi9rP4si+5GfXrcmkM="
-  file: build/release-clang/dist
+  file: build/release-clang/dist/BALLS
   skip_cleanup: true
   on:
     all_branches: true
