@@ -8,11 +8,11 @@ deploy:
   provider: releases
   api_key:
     secure: $GITHUB_OAUTH
-  file: build/$BUILD_CONFIG-$CC/dist
+  file: build/release-clang/dist
   skip_cleanup: true
   on:
     all_branches: true
-    condition: $SPEC = clang && $BUILD_CONFIG = release
+    condition: $SPEC = clang
     repo: JesseTG/BALLS
 
 language: cpp
