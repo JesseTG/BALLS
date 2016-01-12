@@ -9,6 +9,15 @@ configuration:
   - Debug
   - Release
 
+deploy:
+  - provider: GitHub
+    artifact: build\release-clang\dist\BALLS.exe
+    draft: true
+    prerelease: true
+    description: "Test"
+    auth_token:
+      secure: F+9fpTlJaNRDtYoGDl82JokzaG9Tkjt/Um/Kxh2+K6ickKcOxfxgOJ1bdepolZcD
+
 install:
   - mkdir deps
   - cd ./deps
