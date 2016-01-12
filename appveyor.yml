@@ -35,7 +35,7 @@ install:
   - set PATH=%PATH%;%QTDIR%\bin;%MINGW%\bin;C:\Qt\Tools\QtCreator\bin
 
 build_script:
-  - cd ./BALLS
+  - cd C:\projects\balls
   - qbs setup-toolchains --detect
   - qbs config profiles.i686-w64-mingw32.cpp.archiverPath ar.exe
   - qbs config profiles.i686-w64-mingw32.cpp.nmPath nm.exe
