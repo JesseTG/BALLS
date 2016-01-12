@@ -14,7 +14,7 @@ deploy:
     all_branches: true
     condition: $SPEC = clang
     repo: JesseTG/BALLS
-    tags: false
+    tags: true
 
 language: cpp
 sudo: required
