@@ -1,8 +1,6 @@
 #ifndef METATYPECONVERTERS_HPP
 #define METATYPECONVERTERS_HPP
 
-//#include <QtCore/QMetaType>
-
 #include <boost/mpl/list.hpp>
 #include <boost/mpl/joint_view.hpp>
 #include <boost/mpl/single_view.hpp>

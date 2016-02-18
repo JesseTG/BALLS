@@ -79,11 +79,9 @@ void TestConversions::typeConversions() {
   QFETCH(int, from);
   QFETCH(int, to);
 
-
   QVariant v(from, nullptr);
 
   QCOMPARE(static_cast<int>(v.userType()), from);
-  //  QVERIFY(QMetaType::hasRegisteredConverterFunction(from, to));
   QVERIFY(v.canConvert(to));
 
 }
