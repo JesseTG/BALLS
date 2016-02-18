@@ -502,10 +502,9 @@ void registerMetaTypeConverters() noexcept {
   _registerTypes<types::glm::VecsQuats, types::all::JsonObj>();
   _registerTypes<types::all::JsonObj, types::glm::Vecs>();
 
-  //_registerTypes<types::qt::Vecs, types::glm::VecsQuats>();
-  //_registerTypes<types::qt::Quats, types::glm::Vec3s>();
-  //_registerTypes<types::qt::Quats, types::glm::Vec4s>();
-  // TODO: Support QQuaternion conversions properly
+  _registerTypes<types::qt::Vecs, types::glm::VecsQuats>();
+  _registerTypes<types::glm::VecsQuats, types::qt::Vecs>();
+  // QQuaternion NOT SUPPORTED
 
   _registerTypes<types::glm::Mats, types::glm::Mats>();
   _registerTypes<types::glm::Mats, types::all::JsonArr>();

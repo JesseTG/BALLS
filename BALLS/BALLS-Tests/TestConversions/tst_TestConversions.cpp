@@ -64,9 +64,14 @@ void TestConversions::typeConversions_data() {
   QTest::addColumn<int>("to");
 
   _makeTests<types::Scalars, types::Scalars>();
-  _makeTests<types::Scalars, types::all::VecsQuats>();
-  _makeTests<types::all::VecsQuats, types::Scalars>();
-  _makeTests<types::all::VecsQuats, types::all::VecsQuats>();
+  _makeTests<types::Scalars, types::qt::Vecs>();
+  _makeTests<types::Scalars, types::glm::VecsQuats>();
+
+  _makeTests<types::qt::Vecs, types::Scalars>();
+  _makeTests<types::qt::Vecs, types::glm::VecsQuats>();
+  _makeTests<types::glm::VecsQuats, types::Scalars>();
+  _makeTests<types::glm::VecsQuats, types::qt::Vecs>();
+  _makeTests<types::glm::VecsQuats, types::glm::VecsQuats>();
   _makeTests<types::all::Mats, types::all::Mats>();
 }
 
