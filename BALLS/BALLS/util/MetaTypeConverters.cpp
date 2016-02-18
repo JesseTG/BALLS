@@ -11,6 +11,10 @@
 #include <glm/gtx/string_cast.hpp>
 #include <glm/gtx/type_trait.hpp>
 #include <glm/gtx/range.hpp>
+
+#include <QVector2D>
+#include <QVector3D>
+#include <QVector4D>
 #include <QtGlobal>
 #include <QMetaType>
 #include <QString>
