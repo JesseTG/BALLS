@@ -9,6 +9,9 @@
 
 #include <glm/glm.hpp>
 #include <glm/gtx/string_cast.hpp>
+#include <QVector2D>
+#include <QVector3D>
+#include <QVector4D>
 #include <QtGlobal>
 #include <QMetaType>
 #include <QString>
