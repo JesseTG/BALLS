@@ -22,8 +22,6 @@ upx:!UPX {
 QT = core gui widgets
 TARGET = BALLS
 TEMPLATE = app
-QTILITIES = core coregui
-include(../Qtilities/src/Qtilities.pri)
 
 CONFIG += qt c++14 warn_on precompile_header qscintilla2
 PRECOMPILED_HEADER = precompiled.hpp
@@ -170,7 +168,6 @@ else:CONFIG(release, debug|release) {
 INCLUDEPATH += \
 	$$PWD/../ \
 	$$PWD/../QPropertyEditor \
-	$$PWD/../Qtilities \
 	/usr/include \
 	/usr/local/include \
 	/usr/include/x86_64-linux-gnu \
