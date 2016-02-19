@@ -75,14 +75,14 @@ public:
 
       Value vec;
 
-        // If the vector string is in the format we want...
-        for (int i = 0; i < Size && i < components.length(); ++i) {
-          QVariant v = components[i].trimmed();
-          Q_ASSERT(v.canConvert<Component>());
-          Component t = v.template value<Component>();
-          dimProps[i]->setValue(QVariant(t));
-          vec[i] = t;
-        }
+      // If the vector string is in the format we want...
+      for (int i = 0; i < Size && i < components.length(); ++i) {
+        QVariant v = components[i].trimmed();
+        Q_ASSERT(v.canConvert<Component>());
+        Component t = v.template value<Component>();
+        dimProps[i]->setValue(QVariant(t));
+        vec[i] = t;
+      }
 
       Property::setValue(QVariant::fromValue<Value>(vec));
     }
