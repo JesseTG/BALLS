@@ -228,9 +228,7 @@ void PropertyObjectTests::fromString_data() {
   fromString_add<UVec4Property>("4, 6, 7, 8", uvec4(4, 6, 7, 8));
 
   fromString_add<Vec4Property>("no spaces", "3,3,3,3", vec4(3, 3, 3, 3));
-  fromString_add<Vec4Property>(
-    "lots of space", "   4,    0   , 12 , 33 ", vec4(4, 0, 12, 33)
-  );
+
   fromString_add<BVec4Property>(
     "bools from numbers", "1, 0, -1, 12", bvec4(true, false, true, true)
   );
@@ -239,6 +237,11 @@ void PropertyObjectTests::fromString_data() {
     "bools from t/f", "t, f, T, F", bvec4(true, false, true, false)
   );
 
+  fromString_add<Vec4Property>(
+    "lots of space", "   4,    0   , 12 , 33 ", vec4(4, 0, 12, 33)
+
+  ); // For some reason, I can't put this above "bools from numbers"; its data
+  // spills over
   fromString_add<BVec4Property>(
     "case insensitive bools", "TRUE, fAlSe, TRuE, falsE", bvec4(1, 0, 1, 0)
   );
