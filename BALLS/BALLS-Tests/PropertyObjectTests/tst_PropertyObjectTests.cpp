@@ -232,9 +232,8 @@ void PropertyObjectTests::fromString_data() {
   fromString_add<BVec4Property>(
     "bools from numbers", "1, 0, -1, 12", bvec4(true, false, true, true)
   );
-
-  fromString_add<BVec4Property>(
-    "bools from t/f", "t, f, T, F", bvec4(true, false, true, false)
+  fromString_add<BVec3Property>(
+    "bools from numbers 2", "5, 1, 0", bvec3(true, true, false)
   );
 
   fromString_add<Vec4Property>(
@@ -242,14 +241,11 @@ void PropertyObjectTests::fromString_data() {
 
   ); // For some reason, I can't put this above "bools from numbers"; its data
   // spills over
+  fromString_add<IVec3Property>(
+    "5, 1, 0", ivec3(5, 1, 0)
+  );
   fromString_add<BVec4Property>(
     "case insensitive bools", "TRUE, fAlSe, TRuE, falsE", bvec4(1, 0, 1, 0)
-  );
-  fromString_add<BVec4Property>(
-    "bools from yes/no", "y, n, YES, No", bvec4(true, false, true, false)
-  );
-  fromString_add<BVec4Property>(
-    "bools from on/off", "on, off, ON, OFF", bvec4(true, false, true, false)
   );
   fromString_add<Vec2Property>("trailing commas OK", "0, 2,", vec2(0, 2));
   fromString_add<Vec2Property>(
