@@ -49,11 +49,40 @@ private Q_SLOTS:
   void initTestCase();
   void typeConversions();
   void typeConversions_data();
+  void specificConversions();
+  void specificConversions_data();
 };
 
 void TestConversions::initTestCase()
 {
   balls::registerMetaTypeConverters();
+}
+
+void TestConversions::specificConversions() {
+     QFETCH(QVariant, from);
+     QFETCH(QVariant, to);
+
+     QVERIFY(from.canConvert(to.userType()));
+
+     QVariant target = from;
+     QVERIFY(target.convert(to.userType()));
+
+     QCOMPARE(target, to);
+}
+
+void TestConversions::specificConversions_data() {
+    QTest::addColumn<QVariant>("from");
+    QTest::addColumn<QVariant>("to");
+
+    QTest::newRow("ivec4 -> bvec4")
+            << QVariant::fromValue(ivec4(1, 0, -1, 12))
+            << QVariant::fromValue(bvec4(true, false, true, true));
+    QTest::newRow("uvec3 -> bvec3")
+            << QVariant::fromValue(uvec3(5, 1, 0))
+            << QVariant::fromValue(bvec3(true, true, false));
+    QTest::newRow("ivec2 -> ivec2")
+            << QVariant::fromValue(ivec2(5, 6))
+            << QVariant::fromValue(ivec4(5, 6, 0, 0));
 }
 
 void TestConversions::typeConversions_data() {
