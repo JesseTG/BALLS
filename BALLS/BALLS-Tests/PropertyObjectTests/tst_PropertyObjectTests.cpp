@@ -265,14 +265,6 @@ void PropertyObjectTests::fromString_data() {
     "words as input", "france, spain, china", vec3(0, 0, 0)
   );
   fromString_add<Vec3Property>("some words", "cheese, 2, 5", vec3(0, 2, 5));
-  fromString_add<Vec2Property>("square brackets OK", "[ 1, 4]", vec2(1, 4));
-  fromString_add<Vec2Property>("parens OK", "(5, 6)", vec2(5, 6));
-  fromString_add<BVec2Property>(
-    "curly braces OK", "{true,false}", bvec2(true, false)
-  );
-  fromString_add<Vec2Property>("angle brackets OK", "<8,0>", vec2(8, 0));
-  fromString_add<Vec3Property>("mismatched brackets", "(1,8, 7>", vec3(1, 8, 7));
-  // TODO: Support scientific notation for floats
   // TODO: Support hexadecimal/binary/octal for integers
 }
 
