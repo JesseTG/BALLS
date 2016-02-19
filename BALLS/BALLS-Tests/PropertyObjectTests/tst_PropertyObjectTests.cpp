@@ -264,7 +264,9 @@ void PropertyObjectTests::fromString_data() {
   fromString_add<Vec3Property>(
     "words as input", "france, spain, china", vec3(0, 0, 0)
   );
-  fromString_add<Vec3Property>("some words", "cheese, 2, 5", vec3(0, 2, 5));
+  fromString_add<IVec3Property>("some words", "cheese, 2, 5", ivec3(0, 2, 5));
+  fromString_add<IVec2Property>("some words 2", "4, france", ivec2(4, 0));
+  fromString_add<Vec3Property>("scientific notation", "1.0e5, -2.3e+4, 1.1e-4", vec3(1.0e5, -2.3e+4, 1.1e-4));
   // TODO: Support hexadecimal/binary/octal for integers
 }
 
