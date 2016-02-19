@@ -70,21 +70,19 @@ public:
 
     if (value.userType() == QVariant::String) {
       // If the user just modified the whole vector (as opposed to a single component)...
-      const QRegularExpression& rx = this->regex();
-      QRegularExpressionMatch match = rx.match(value.toString());
+      QString string = value.toString();
+      QStringList components = string.split(",");
 
       Value vec;
 
-      if (match.hasMatch()) {
         // If the vector string is in the format we want...
-        for (int i = 0; i < Size; ++i) {
-          QVariant v = match.captured(groups::XYZW[i]);
+        for (int i = 0; i < Size && i < components.length(); ++i) {
+          QVariant v = components[i].trimmed();
           Q_ASSERT(v.canConvert<Component>());
           Component t = v.template value<Component>();
           dimProps[i]->setValue(QVariant(t));
           vec[i] = t;
         }
-      }
 
       Property::setValue(QVariant::fromValue<Value>(vec));
     }
