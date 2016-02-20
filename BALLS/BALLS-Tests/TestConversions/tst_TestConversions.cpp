@@ -83,6 +83,21 @@ void TestConversions::specificConversions_data() {
     QTest::newRow("ivec2 -> ivec2")
             << QVariant::fromValue(ivec2(5, 6))
             << QVariant::fromValue(ivec4(5, 6, 0, 0));
+    QTest::newRow("mat4 -> vec4")
+            << QVariant::fromValue(mat4(4.0f))
+            << QVariant::fromValue(vec4(4.0f, 0.0f, 0.0f, 0.0f));
+    QTest::newRow("bool -> bool")
+            << QVariant::fromValue(true)
+            << QVariant::fromValue(true);
+    QTest::newRow("float -> bool")
+            << QVariant::fromValue(1.0f)
+            << QVariant::fromValue(true);
+    QTest::newRow("ivec3 -> bool")
+            << QVariant::fromValue(ivec3(1, 0, 0))
+            << QVariant::fromValue(true);
+    QTest::newRow("ivec4 -> bool")
+            << QVariant::fromValue(ivec4(0, 5, 5, 1))
+            << QVariant::fromValue(false);
 }
 
 void TestConversions::typeConversions_data() {
