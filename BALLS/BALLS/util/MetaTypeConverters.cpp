@@ -9,6 +9,9 @@
 
 #include <glm/glm.hpp>
 #include <glm/gtx/string_cast.hpp>
+#include <QVector2D>
+#include <QVector3D>
+#include <QVector4D>
 #include <QtGlobal>
 #include <QMetaType>
 #include <QString>
@@ -37,16 +40,8 @@ struct Element {
   using type = const typename decay<decltype(T()[0])>::type;
 };
 
-template<>
-struct Element<QQuaternion> {
-  using type = const typename decay<decltype(QQuaternion().x())>::type;
-};
-
 template<class T>
 using E = typename Element<T>::type;
-
-template<class T>
-using is_QQuaternion = is_same<QQuaternion, T>;
 
 template<class T>
 using is_QString = is_same<QString, T>;
@@ -123,18 +118,6 @@ convert(const From& from) noexcept {
   );
 }
 
-// QQuaternion -> vec2
-template<class From, class To>
-inline enable_if_t < is_QQuaternion<From>()&&   is_vec2<To>(), To >
-convert(const From& from) noexcept {
-  return To(
-    static_cast<E<To>>(from.x()), // quat x -> vec2 x
-    static_cast<E<To>>(from.y()) // quat y -> vec2 y
-  );
-}
-// TODO: glm vec's operator[] might return a reference, while QQuaternion's
-// x() returns an actual float; try a decay?
-
 // 2 ========================================================================= 2
 
 // convert to vec3 =========================================================== 3
@@ -172,17 +155,6 @@ convert(const From& from) noexcept {
     static_cast<E<To>>(from[0]),
     static_cast<E<To>>(from[1]),
     static_cast<E<To>>(from[2])
-  );
-}
-
-// QQuaternion -> vec3
-template<class From, class To>
-inline enable_if_t < is_QQuaternion<From>()&&   is_vec3<To>(), To >
-convert(const From& from) noexcept {
-  return To(
-    static_cast<E<To>>(from.x()), // quat x -> vec3 x
-    static_cast<E<To>>(from.y()), // quat y -> vec3 y
-    static_cast<E<To>>(from.z()) // quat z -> vec3 z
   );
 }
 
@@ -242,17 +214,6 @@ convert(const From& from) noexcept {
   );
 }
 
-// QQuaternion -> vec4
-template<class From, class To>
-inline enable_if_t < is_QQuaternion<From>()&&   is_vec4<To>(), To >
-convert(const From& from) noexcept {
-  return To(
-    static_cast<E<To>>(from.x()), // quat x -> vec4 x
-    static_cast<E<To>>(from.y()), // quat y -> vec4 y
-    static_cast<E<To>>(from.z()), // quat z -> vec4 z
-    static_cast<E<To>>(from.scalar()) // quat w -> vec4 w
-  );
-}
 // 4 ========================================================================= 4
 
 // convert to quaternion ===================================================== Q
@@ -306,17 +267,6 @@ convert(const From& from) noexcept {
   );
 }
 
-// QQuaternion -> quat
-template<class From, class To>
-inline enable_if_t < is_QQuaternion<From>()&&   is_quat<To>(), To >
-convert(const From& from) noexcept {
-  return To(
-    static_cast<E<To>>(from.scalar()), // quat scalar -> scalar
-    static_cast<E<To>>(from.x()), // quat x -> vec3 x
-    static_cast<E<To>>(from.y()), // quat y -> vec3 y
-    static_cast<E<To>>(from.z()) // quat z -> vec3 z
-  );
-}
 // Q ========================================================================= Q
 
 // convert to matrix ======================================================= mxn
@@ -472,7 +422,7 @@ template<typename From>
 struct other_handler {
   template<typename To>
   inline void operator()(To&) noexcept {
-    Q_ASSUME((QMetaType::registerConverter<From, To, To(*)(const From&)>(&convert<From, To>)));
+    (QMetaType::registerConverter<From, To, To(*)(const From&)>(&convert<From, To>));
   }
 };
 
@@ -503,9 +453,8 @@ void registerMetaTypeConverters() noexcept {
   _registerTypes<types::all::JsonObj, types::glm::Vecs>();
 
   //_registerTypes<types::qt::Vecs, types::glm::VecsQuats>();
-  //_registerTypes<types::qt::Quats, types::glm::Vec3s>();
-  //_registerTypes<types::qt::Quats, types::glm::Vec4s>();
-  // TODO: Support QQuaternion conversions properly
+  //_registerTypes<types::glm::VecsQuats, types::qt::Vecs>();
+  // QQuaternion NOT SUPPORTED
 
   _registerTypes<types::glm::Mats, types::glm::Mats>();
   _registerTypes<types::glm::Mats, types::all::JsonArr>();

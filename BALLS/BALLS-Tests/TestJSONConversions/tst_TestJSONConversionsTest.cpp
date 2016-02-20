@@ -491,7 +491,6 @@ void TestJsonConversions::toMat() {
   dmat4x3 dm43 = v.value<dmat4x3>();
   dmat4x4 dm44 = v.value<dmat4x4>();
 
-  qDebug() << glm::to_string(m33).data() << glm::to_string(mat3(expected)).data();
   QCOMPARE(m22, mat2x2(expected));
   QCOMPARE(m23, mat2x3(expected));
   QCOMPARE(m24, mat2x4(expected));

@@ -1,19 +1,17 @@
 #ifndef METATYPECONVERTERS_HPP
 #define METATYPECONVERTERS_HPP
 
-#include <QtCore/QMetaType>
-#include <QtGui/QVector2D>
-#include <QtGui/QVector3D>
-#include <QtGui/QVector4D>
-#include <QtGui/QQuaternion>
-
 #include <boost/mpl/list.hpp>
 #include <boost/mpl/joint_view.hpp>
 #include <boost/mpl/single_view.hpp>
 #include <boost/mpl/count.hpp>
 
-#include <glm/glm.hpp>
+#include <glm/fwd.hpp>
 
+class QVector2D;
+class QVector3D;
+class QVector4D;
+class QQuaternion;
 
 namespace balls {
 void registerMetaTypeConverters() noexcept;

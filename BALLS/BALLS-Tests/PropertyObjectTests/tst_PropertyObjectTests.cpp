@@ -228,25 +228,24 @@ void PropertyObjectTests::fromString_data() {
   fromString_add<UVec4Property>("4, 6, 7, 8", uvec4(4, 6, 7, 8));
 
   fromString_add<Vec4Property>("no spaces", "3,3,3,3", vec4(3, 3, 3, 3));
-  fromString_add<Vec4Property>(
-    "lots of space", "   4,    0   , 12 , 33 ", vec4(4, 0, 12, 33)
-  );
+
   fromString_add<BVec4Property>(
     "bools from numbers", "1, 0, -1, 12", bvec4(true, false, true, true)
   );
-
-  fromString_add<BVec4Property>(
-    "bools from t/f", "t, f, T, F", bvec4(true, false, true, false)
+  fromString_add<BVec3Property>(
+    "bools from numbers 2", "5, 1, 0", bvec3(true, true, false)
   );
 
+  fromString_add<Vec4Property>(
+    "lots of space", "   4,    0   , 12 , 33 ", vec4(4, 0, 12, 33)
+
+  ); // For some reason, I can't put this above "bools from numbers"; its data
+  // spills over
+  fromString_add<IVec3Property>(
+    "5, 1, 0", ivec3(5, 1, 0)
+  );
   fromString_add<BVec4Property>(
     "case insensitive bools", "TRUE, fAlSe, TRuE, falsE", bvec4(1, 0, 1, 0)
-  );
-  fromString_add<BVec4Property>(
-    "bools from yes/no", "y, n, YES, No", bvec4(true, false, true, false)
-  );
-  fromString_add<BVec4Property>(
-    "bools from on/off", "on, off, ON, OFF", bvec4(true, false, true, false)
   );
   fromString_add<Vec2Property>("trailing commas OK", "0, 2,", vec2(0, 2));
   fromString_add<Vec2Property>(
@@ -265,15 +264,9 @@ void PropertyObjectTests::fromString_data() {
   fromString_add<Vec3Property>(
     "words as input", "france, spain, china", vec3(0, 0, 0)
   );
-  fromString_add<Vec3Property>("some words", "cheese, 2, 5", vec3(0, 2, 5));
-  fromString_add<Vec2Property>("square brackets OK", "[ 1, 4]", vec2(1, 4));
-  fromString_add<Vec2Property>("parens OK", "(5, 6)", vec2(5, 6));
-  fromString_add<BVec2Property>(
-    "curly braces OK", "{true,false}", bvec2(true, false)
-  );
-  fromString_add<Vec2Property>("angle brackets OK", "<8,0>", vec2(8, 0));
-  fromString_add<Vec3Property>("mismatched brackets", "(1,8, 7>", vec3(1, 8, 7));
-  // TODO: Support scientific notation for floats
+  fromString_add<IVec3Property>("some words", "cheese, 2, 5", ivec3(0, 2, 5));
+  fromString_add<IVec2Property>("some words 2", "4, france", ivec2(4, 0));
+  fromString_add<Vec3Property>("scientific notation", "1.0e5, -2.3e+4, 1.1e-4", vec3(1.0e5, -2.3e+4, 1.1e-4));
   // TODO: Support hexadecimal/binary/octal for integers
 }
 

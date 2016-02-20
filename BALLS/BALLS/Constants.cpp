@@ -66,7 +66,9 @@ const char* DEFAULT_GEOMETRY = ":/glsl/default.geom";
 }
 
 namespace patterns {
-const QString BOOL = "[01]|t(rue)?|f(alse)?|on|off|y(es)?|no?";
+// NOTE: QVariant only converts "false" and "0" (or varying capitalizations
+// thereof) to false.  Everything else is true.
+const QString BOOL = R"|(\w|0|false)|";
 const QString FLOAT = R"|([-+]?\d+\.?\d*([eE][-+]?\d+)?)|";
 const QString INT = R"|([+-]?\d+)|";
 const QString UINT = R"|(\+?(\d+))|";
