@@ -422,7 +422,7 @@ template<typename From>
 struct other_handler {
   template<typename To>
   inline void operator()(To&) noexcept {
-    Q_ASSUME((QMetaType::registerConverter<From, To, To(*)(const From&)>(&convert<From, To>)));
+    (QMetaType::registerConverter<From, To, To(*)(const From&)>(&convert<From, To>));
   }
 };
 
@@ -452,8 +452,8 @@ void registerMetaTypeConverters() noexcept {
   _registerTypes<types::glm::VecsQuats, types::all::JsonObj>();
   _registerTypes<types::all::JsonObj, types::glm::Vecs>();
 
-  _registerTypes<types::qt::Vecs, types::glm::VecsQuats>();
-  _registerTypes<types::glm::VecsQuats, types::qt::Vecs>();
+  //_registerTypes<types::qt::Vecs, types::glm::VecsQuats>();
+  //_registerTypes<types::glm::VecsQuats, types::qt::Vecs>();
   // QQuaternion NOT SUPPORTED
 
   _registerTypes<types::glm::Mats, types::glm::Mats>();
