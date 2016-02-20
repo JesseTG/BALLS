@@ -242,32 +242,32 @@ void TestUniformsTest::receiveUniforms_data() {
 
   QTest::newRow("matrix -> vector")
   << UniformTestData {{
-      { {"mat", GL_FLOAT_MAT4, 1}, mat4(4) }
+      { {"mat", GL_FLOAT_MAT4, 1}, mat4(4.0f) }
     }
   }
   << UniformTestData {{
-      { {"mat", GL_FLOAT_VEC4, 1}, vec4(4, 0, 0, 0) }
+      { {"mat", GL_FLOAT_VEC4, 1}, vec4(4.0f, 0.0f, 0.0f, 0.0f) }
     }
   };
 
   QTest::newRow("rearrange")
   << UniformTestData {{
-      { {"mat", GL_DOUBLE_MAT4, 1}, dmat4()},
-      { {"scale", GL_FLOAT, 1}, 1.0f},
+      { {"mat", GL_DOUBLE_MAT4, 1}, dmat4(5)},
+      { {"scale", GL_FLOAT, 1}, 8.4f},
       { {"available", GL_BOOL, 1}, true},
     }
   }
   << UniformTestData {{
       { {"available", GL_BOOL, 1}, true},
-      { {"mat", GL_DOUBLE_MAT4, 1}, dmat4()},
-      { {"scale", GL_FLOAT, 1}, 1.0f},
+      { {"mat", GL_DOUBLE_MAT4, 1}, dmat4(5)},
+      { {"scale", GL_FLOAT, 1}, 8.4f},
     }
   };
 
   QTest::newRow("rearrange and change types")
   << UniformTestData {{
       { {"mvp", GL_FLOAT_MAT3, 1}, mat3() },
-      { {"color", GL_FLOAT_VEC4, 1}, vec4(0.5, 0.0, 0.0, 0.0) },
+      { {"color", GL_FLOAT_VEC4, 1}, vec4(0.5f, 0.0f, 0.0f, 0.0f) },
       { {"repetitions", GL_INT, 1}, 74 },
       { {"seed", GL_INT_VEC2, 1}, ivec2(16, 14)},
     }
