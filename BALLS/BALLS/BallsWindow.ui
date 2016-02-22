@@ -470,7 +470,7 @@
    <attribute name="dockWidgetArea">
     <number>1</number>
    </attribute>
-   <widget class="QWidget" name="sceneDockContents">
+   <widget class="balls::SceneSettings" name="sceneSettings">
     <layout class="QFormLayout" name="sceneDockLayout">
      <property name="fieldGrowthPolicy">
       <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
@@ -478,81 +478,6 @@
      <property name="topMargin">
       <number>0</number>
      </property>
-     <item row="1" column="0">
-      <widget class="QLabel" name="meshLabel">
-       <property name="text">
-        <string>Mesh</string>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="0" colspan="2">
-      <layout class="QFormLayout" name="formLayout">
-       <item row="1" column="0">
-        <widget class="QCheckBox" name="wireframeCheck">
-         <property name="statusTip">
-          <string>When checked, renders wire frames instead of filled polygons</string>
-         </property>
-         <property name="whatsThis">
-          <string/>
-         </property>
-         <property name="text">
-          <string>Wireframe</string>
-         </property>
-         <property name="option" stdset="0">
-          <string notr="true">wireframe</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="0">
-        <widget class="QCheckBox" name="depthTestCheck">
-         <property name="statusTip">
-          <string/>
-         </property>
-         <property name="text">
-          <string>Depth Testing</string>
-         </property>
-         <property name="checked">
-          <bool>true</bool>
-         </property>
-         <property name="option" stdset="0">
-          <string notr="true">depth-test</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="1">
-        <widget class="QCheckBox" name="ditherCheck">
-         <property name="text">
-          <string>Dithering</string>
-         </property>
-         <property name="checked">
-          <bool>true</bool>
-         </property>
-         <property name="option" stdset="0">
-          <string notr="true">dithering</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1">
-        <widget class="QCheckBox" name="backfaceCheck">
-         <property name="statusTip">
-          <string>When checked, doesn't draw a polygon that's not facing the camera</string>
-         </property>
-         <property name="text">
-          <string>Backface Culling</string>
-         </property>
-         <property name="checked">
-          <bool>true</bool>
-         </property>
-         <property name="option" stdset="0">
-          <string notr="true">face-culling</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
-     <item row="1" column="1">
-      <widget class="QComboBox" name="meshComboBox"/>
-     </item>
     </layout>
    </widget>
   </widget>
@@ -581,8 +506,8 @@
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>256</width>
-          <height>169</height>
+          <width>236</width>
+          <height>74</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="uniformScrollCotentsLayout">
@@ -885,8 +810,10 @@
   </customwidget>
   <customwidget>
    <class>TextureManager</class>
+  <customwidget>
+   <class>balls::SceneSettings</class>
    <extends>QWidget</extends>
-   <header>ui/docks/TextureManager.hpp</header>
+   <header location="global">ui/docks/SceneSettings.hpp</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
@@ -1003,86 +930,6 @@
     <hint type="destinationlabel">
      <x>199</x>
      <y>376</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>meshComboBox</sender>
-   <signal>currentIndexChanged(int)</signal>
-   <receiver>BallsWindow</receiver>
-   <slot>setMesh(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>269</x>
-     <y>121</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>399</x>
-     <y>265</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>wireframeCheck</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>canvas</receiver>
-   <slot>setOption(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>72</x>
-     <y>210</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>112</x>
-     <y>70</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>ditherCheck</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>canvas</receiver>
-   <slot>setOption(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>254</x>
-     <y>238</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>112</x>
-     <y>70</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>backfaceCheck</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>canvas</receiver>
-   <slot>setOption(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>254</x>
-     <y>210</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>112</x>
-     <y>70</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>depthTestCheck</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>canvas</receiver>
-   <slot>setOption(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>83</x>
-     <y>238</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>112</x>
-     <y>70</y>
     </hint>
    </hints>
   </connection>

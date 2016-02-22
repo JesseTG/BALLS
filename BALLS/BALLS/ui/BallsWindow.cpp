@@ -39,6 +39,7 @@ QMainWindow(parent),
             _error(new QErrorMessage(this)),
 _settings(new QSettings(this)) {
   ui.setupUi(this);
+  ui.sceneSettings->initCanvas(ui.canvas);
 
   ui.vertexEditor->setLexer(_vertLexer);
   ui.fragmentEditor->setLexer(_fragLexer);
@@ -85,11 +86,11 @@ ProjectConfig BallsWindow::getProjectConfig() const noexcept {
 }
 
 void BallsWindow::setMesh(const int index) noexcept {
-  QVariant var = this->ui.meshComboBox->currentData();
-  mesh::MeshGenerator* generator = var.value<mesh::MeshGenerator*>();
+  QVariant var = this->ui.sceneSettings->ui.meshComboBox->currentData();
+  mesh::MeshGenerator *generator = var.value<mesh::MeshGenerator *>();
 
   Q_ASSERT(generator != nullptr);
-  Q_ASSERT(0 <= index&&   index < ui.meshComboBox->count());
+  Q_ASSERT(0 <= index && index < ui.sceneSettings->ui.meshComboBox->count());
   Q_ASSERT(var.isValid());
 
   this->ui.canvas->setMesh(generator);
@@ -102,10 +103,11 @@ void BallsWindow::initializeMeshGenerators() noexcept {
 
   if (Q_LIKELY(!this->_generatorsInitialized)) {
     auto _addGenerator = [this](MeshGenerator * gen) noexcept {
-      QVariant var = QVariant::fromValue(static_cast<MeshGenerator*>(gen));
-      ui.meshComboBox->addItem(tr(qPrintable(gen->getName())), var);
+      QVariant var = QVariant::fromValue(static_cast<MeshGenerator *>(gen));
+      ui.sceneSettings->ui.meshComboBox->addItem(tr(qPrintable(gen->getName())), var);
 
-      qCDebug(logs::ui::Name) << "Added mesh generator" << gen->getName() << "to selector";
+      qCDebug(logs::ui::Name) << "Added mesh generator" << gen->getName()
+                              << "to selector";
     };
     _addGenerator(&generators::quad);
     _addGenerator(&generators::box);
