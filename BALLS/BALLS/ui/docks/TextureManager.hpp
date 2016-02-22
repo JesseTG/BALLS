@@ -4,12 +4,9 @@
 #include <QWidget>
 #include "ui_TextureManager.h"
 
-namespace Ui {
-class TextureManager;
-}
+namespace balls {
 
-class TextureManager : public QWidget
-{
+class TextureManager : public QWidget {
   Q_OBJECT
 
 public:
@@ -18,5 +15,5 @@ public:
 private:
   Ui::TextureManager ui;
 };
-
+}
 #endif // TEXTUREMANAGER_HPP
