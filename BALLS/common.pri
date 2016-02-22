@@ -33,4 +33,5 @@ LIBS *= \
   -L/usr/local/clang-3.6.0/lib \
   -L/usr/local/clang-3.7.0/lib \
   -L/usr/local/clang-3.8.0/lib \
+  -L/usr/lib/x86_64-linux-gnu
 
