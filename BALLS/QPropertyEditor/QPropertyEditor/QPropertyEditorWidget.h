@@ -27,6 +27,7 @@
 
 class QPropertyModel;
 class Property;
+class QListWidgetItem;
 
 /**
  * \mainpage QPropertyEditor
@@ -103,6 +104,8 @@ public slots:
    *        with this view
    */
   void setObject(QObject* subject) noexcept;
+
+  void setObject(QListWidgetItem* subject) noexcept;
 
   /**
    * Updates the view for the given object. This can be useful if a property was
