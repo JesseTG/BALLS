@@ -66,6 +66,9 @@ SOURCES += \
   util/TypeInfo.cpp \
   ui/QsciLexerGLSL.cpp \
   ui/property/MatrixProperties.cpp \
+    ui/docks/TextureManager.cpp \
+    model/Texture.cpp \
+    model/ImageTexture.cpp
 
 HEADERS  += \
   precompiled.hpp \
@@ -101,11 +104,15 @@ HEADERS  += \
   util/TypeInfo.hpp \
   ui/Uniforms.hpp \
   ui/property/MatrixProperties.hpp \
+    ui/docks/TextureManager.hpp \
+    model/Texture.hpp \
+    model/ImageTexture.hpp
 
 FORMS += \
   BallsWindow.ui \
   ui/docks/SceneSettings.ui \
   ui/docks/OpenGLInfo.ui \
+    ui/docks/TextureManager.ui
 
 RESOURCES += \
   resources.qrc
