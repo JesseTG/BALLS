@@ -7,16 +7,16 @@
 TEMPLATE = subdirs
 CONFIG += c++14
 SUBDIRS = \
-	QPropertyEditor \
-	BALLS \
-	BALLS-Tests
+  QPropertyEditor \
+  BALLS \
+  BALLS-Tests
 
 BALLS.depends = QPropertyEditor
 
 BALLS-Tests.depends = BALLS
 
 lessThan(QT_MAJOR_VERSION, 5):lessThan(QT_MINOR_VERSION, 2) {
-	error("Qt 5.2 is required, but only $${QT_VERSION} is available")
+  error("Qt 5.2 is required, but only $${QT_VERSION} is available")
 }
 
 message(CONFIG: $$CONFIG)
