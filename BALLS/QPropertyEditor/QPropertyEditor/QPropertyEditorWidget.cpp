@@ -22,6 +22,8 @@
 // *************************************************************************************************
 #include "precompiled.hpp"
 
+#include <QListWidgetItem>
+
 #include "QPropertyEditorWidget.h"
 #include "QPropertyModel.h"
 #include "QVariantDelegate.h"
@@ -55,6 +57,20 @@ void QPropertyEditorWidget::setObject(QObject* subject) noexcept
 
   if (subject) {
     addObject(subject);
+  }
+}
+
+void QPropertyEditorWidget::setObject(QListWidgetItem *subject) noexcept {
+  if (subject) {
+    QVariant var = subject->data(0);
+
+    if (var.canConvert<QObject*>()) {
+      setObject(var.value<QObject*>());
+    }
+    else {
+      qCDebug(Properties) << this->objectName() << "given a" << var.typeName()
+                          << "when a QObject* was expected";
+    }
   }
 }
 
