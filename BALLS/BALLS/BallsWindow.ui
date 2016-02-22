@@ -543,7 +543,7 @@
    <attribute name="dockWidgetArea">
     <number>1</number>
    </attribute>
-   <widget class="TextureManager" name="textureManager"/>
+   <widget class="balls::TextureManager" name="textureManager"/>
   </widget>
   <action name="actionNew_Project">
    <property name="text">
@@ -809,7 +809,11 @@
    </slots>
   </customwidget>
   <customwidget>
-   <class>TextureManager</class>
+   <class>balls::TextureManager</class>
+   <extends>QWidget</extends>
+   <header location="global">ui/docks/TextureManager.hpp</header>
+   <container>1</container>
+  </customwidget>
   <customwidget>
    <class>balls::SceneSettings</class>
    <extends>QWidget</extends>
