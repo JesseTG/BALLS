@@ -151,10 +151,6 @@
     <addaction name="separator"/>
     <addaction name="actionReset_Camera"/>
     <addaction name="separator"/>
-    <addaction name="actionEditor"/>
-    <addaction name="actionLog"/>
-    <addaction name="actionScene"/>
-    <addaction name="actionUniforms"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
@@ -722,29 +718,6 @@
     <enum>QAction::AboutQtRole</enum>
    </property>
   </action>
-  <action name="actionEditor">
-   <property name="icon">
-    <iconset resource="resources.qrc">
-     <normaloff>:/icons/accessories-text-editor.png</normaloff>:/icons/accessories-text-editor.png</iconset>
-   </property>
-   <property name="text">
-    <string>&amp;Editor</string>
-   </property>
-  </action>
-  <action name="actionLog">
-   <property name="text">
-    <string>&amp;Log</string>
-   </property>
-  </action>
-  <action name="actionScene">
-   <property name="icon">
-    <iconset resource="resources.qrc">
-     <normaloff>:/icons/video-display.png</normaloff>:/icons/video-display.png</iconset>
-   </property>
-   <property name="text">
-    <string>&amp;Scene Settings</string>
-   </property>
-  </action>
   <action name="actionDefault">
    <property name="text">
     <string>&amp;Default</string>
@@ -759,15 +732,6 @@
    </property>
    <property name="example" stdset="0">
     <string notr="true">phong.balls</string>
-   </property>
-  </action>
-  <action name="actionUniforms">
-   <property name="icon">
-    <iconset resource="resources.qrc">
-     <normaloff>:/icons/applications-accessories.png</normaloff>:/icons/applications-accessories.png</iconset>
-   </property>
-   <property name="text">
-    <string>&amp;Uniforms</string>
    </property>
   </action>
  </widget>
@@ -906,38 +870,6 @@
    </hints>
   </connection>
   <connection>
-   <sender>actionEditor</sender>
-   <signal>triggered()</signal>
-   <receiver>editorDock</receiver>
-   <slot>show()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>-1</x>
-     <y>-1</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>186</x>
-     <y>164</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>actionLog</sender>
-   <signal>triggered()</signal>
-   <receiver>logDock</receiver>
-   <slot>show()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>-1</x>
-     <y>-1</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>199</x>
-     <y>376</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>actionZoom_Out</sender>
    <signal>triggered()</signal>
    <receiver>fragmentEditor</receiver>
@@ -998,22 +930,6 @@
     <hint type="destinationlabel">
      <x>146</x>
      <y>209</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>actionScene</sender>
-   <signal>triggered()</signal>
-   <receiver>sceneDock</receiver>
-   <slot>show()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>-1</x>
-     <y>-1</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>199</x>
-     <y>402</y>
     </hint>
    </hints>
   </connection>
@@ -1062,22 +978,6 @@
     <hint type="destinationlabel">
      <x>499</x>
      <y>319</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>actionUniforms</sender>
-   <signal>triggered()</signal>
-   <receiver>uniformDock</receiver>
-   <slot>show()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>-1</x>
-     <y>-1</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>179</x>
-     <y>597</y>
     </hint>
    </hints>
   </connection>
