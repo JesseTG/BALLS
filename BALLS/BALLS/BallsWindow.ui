@@ -611,6 +611,15 @@
     </layout>
    </widget>
   </widget>
+  <widget class="QDockWidget" name="textureDock">
+   <property name="windowTitle">
+    <string>Te&amp;xtures</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>1</number>
+   </attribute>
+   <widget class="TextureManager" name="textureManager"/>
+  </widget>
   <action name="actionNew_Project">
    <property name="text">
     <string>&amp;New</string>
@@ -845,6 +854,17 @@
    <header>Qsci/qsciscintilla.h</header>
   </customwidget>
   <customwidget>
+   <class>QPropertyEditorWidget</class>
+   <extends>QTreeView</extends>
+   <header>QPropertyEditor/QPropertyEditorWidget.h</header>
+   <slots>
+    <slot>addObject(QObject*)</slot>
+    <slot>setObject(QObject*)</slot>
+    <slot>updateObject(QObject*)</slot>
+    <slot>removeObject(QObject*)</slot>
+   </slots>
+  </customwidget>
+  <customwidget>
    <class>balls::BallsCanvas</class>
    <extends>QOpenGLWidget</extends>
    <header location="global">ui/BallsCanvas.hpp</header>
@@ -864,15 +884,10 @@
    </slots>
   </customwidget>
   <customwidget>
-   <class>QPropertyEditorWidget</class>
-   <extends>QTreeView</extends>
-   <header>QPropertyEditor/QPropertyEditorWidget.h</header>
-   <slots>
-    <slot>addObject(QObject*)</slot>
-    <slot>setObject(QObject*)</slot>
-    <slot>updateObject(QObject*)</slot>
-    <slot>removeObject(QObject*)</slot>
-   </slots>
+   <class>TextureManager</class>
+   <extends>QWidget</extends>
+   <header>ui/docks/TextureManager.hpp</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources>
