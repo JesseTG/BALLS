@@ -104,6 +104,9 @@
    </property>
   </action>
   <action name="actionFrom_Gradient">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>From Gradient</string>
    </property>
