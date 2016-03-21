@@ -22,6 +22,8 @@
 // *************************************************************************************************
 #include "precompiled.hpp"
 
+#include <QListWidgetItem>
+
 #include "QPropertyEditorWidget.h"
 #include "QPropertyModel.h"
 #include "QVariantDelegate.h"

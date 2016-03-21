@@ -1,5 +1,5 @@
 #include "precompiled.hpp"
-#include "ui/Uniforms.hpp"
+#include "model/Uniforms.hpp"
 #include "util/Logging.hpp"
 
 #include <QtCore/QEvent>
@@ -23,12 +23,12 @@ using balls::util::types::UniformCollection;
 
 Uniforms::Uniforms(QObject* parent) noexcept :
 QObject(parent),
+        _meta(metaObject()),
         _view(glm::translate(vec3(0, 0, -8))),
-        _nearPlane(.01f),
-        _farPlane(100),
         _canvasSize(1, 1),
         _lastCanvasSize(1, 1),
-        _meta(metaObject())
+        _farPlane(100),
+        _nearPlane(.01f)
 {
   setFov(glm::radians(45.0f));
   _elapsedTime.start();

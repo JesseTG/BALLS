@@ -89,7 +89,7 @@ bool EnumProperty::setEditorData(QWidget* editor,
                                  const QVariant& data) noexcept
 {
   QComboBox* combo = nullptr;
-  if(combo = qobject_cast<QComboBox*>(editor)){
+  if((combo = qobject_cast<QComboBox*>(editor))) {
     int value = data.toInt();
     const QMetaObject* meta = m_subject->metaObject();
     QMetaProperty prop = meta->property(meta->indexOfProperty(qPrintable(objectName())));
@@ -112,7 +112,7 @@ bool EnumProperty::setEditorData(QWidget* editor,
 QVariant EnumProperty::editorData(QWidget* editor) const noexcept
 {
   QComboBox* combo = nullptr;
-  if(combo = qobject_cast<QComboBox*>(editor)){
+  if ((combo = qobject_cast<QComboBox*>(editor))) {
     return QVariant(combo->currentText());
   } else {
     return QVariant();

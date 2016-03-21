@@ -8,19 +8,15 @@
 
 namespace balls {
 
-using glm::bvec4;
-using glm::dvec4;
-using glm::ivec4;
-using glm::vec4;
-using glm::uvec4;
+using glm::tvec4;
 
-extern template class VectorProperty<ivec4>;
-extern template class VectorProperty<bvec4>;
-extern template class VectorProperty<dvec4>;
-extern template class VectorProperty<vec4>;
-extern template class VectorProperty<uvec4>;
+extern template class VectorProperty<tvec4, int>;
+extern template class VectorProperty<tvec4, bool>;
+extern template class VectorProperty<tvec4, double>;
+extern template class VectorProperty<tvec4, float>;
+extern template class VectorProperty<tvec4, unsigned>;
 
-class BVec4Property : public VectorProperty<bvec4> {
+class BVec4Property : public VectorProperty<tvec4, bool> {
   Q_OBJECT
 
   Q_PROPERTY(bool x READ _getx WRITE _setx STORED false FINAL)
@@ -29,12 +25,12 @@ class BVec4Property : public VectorProperty<bvec4> {
   Q_PROPERTY(bool w READ _getw WRITE _setw STORED false FINAL)
 
 public:
-  using VectorProperty<bvec4>::VectorProperty;
+  using VectorProperty<tvec4, bool>::VectorProperty;
 protected:
   const QRegularExpression& regex() const noexcept override { return constants::regex::BVEC4; }
 };
 
-class IVec4Property : public VectorProperty<ivec4> {
+class IVec4Property : public VectorProperty<tvec4, int> {
   Q_OBJECT
 
   Q_PROPERTY(int x READ _getx WRITE _setx STORED false FINAL)
@@ -43,12 +39,12 @@ class IVec4Property : public VectorProperty<ivec4> {
   Q_PROPERTY(int w READ _getw WRITE _setw STORED false FINAL)
 
 public:
-  using VectorProperty<ivec4>::VectorProperty;
+  using VectorProperty<tvec4, int>::VectorProperty;
 protected:
   const QRegularExpression& regex() const noexcept override { return constants::regex::IVEC4; }
 };
 
-class UVec4Property : public VectorProperty<uvec4> {
+class UVec4Property : public VectorProperty<tvec4, unsigned int> {
   Q_OBJECT
 
   Q_PROPERTY(unsigned int x READ _getx WRITE _setx STORED false FINAL)
@@ -57,12 +53,12 @@ class UVec4Property : public VectorProperty<uvec4> {
   Q_PROPERTY(unsigned int w READ _getw WRITE _setw STORED false FINAL)
 
 public:
-  using VectorProperty<uvec4>::VectorProperty;
+  using VectorProperty<tvec4, unsigned int>::VectorProperty;
 protected:
   const QRegularExpression& regex() const noexcept override { return constants::regex::UVEC4; }
 };
 
-class Vec4Property : public VectorProperty<vec4> {
+class Vec4Property : public VectorProperty<tvec4, float> {
   Q_OBJECT
 
   Q_PROPERTY(float x READ _getx WRITE _setx STORED false FINAL)
@@ -71,12 +67,12 @@ class Vec4Property : public VectorProperty<vec4> {
   Q_PROPERTY(float w READ _getw WRITE _setw STORED false FINAL)
 
 public:
-  using VectorProperty<vec4>::VectorProperty;
+  using VectorProperty<tvec4, float>::VectorProperty;
 protected:
   const QRegularExpression& regex() const noexcept override { return constants::regex::VEC4; }
 };
 
-class DVec4Property : public VectorProperty<dvec4> {
+class DVec4Property : public VectorProperty<tvec4, double> {
   Q_OBJECT
 
   Q_PROPERTY(double x READ _getx WRITE _setx STORED false FINAL)
@@ -85,7 +81,7 @@ class DVec4Property : public VectorProperty<dvec4> {
   Q_PROPERTY(double w READ _getw WRITE _setw STORED false FINAL)
 
 public:
-  using VectorProperty<dvec4>::VectorProperty;
+  using VectorProperty<tvec4, double>::VectorProperty;
 protected:
   const QRegularExpression& regex() const noexcept override { return constants::regex::VEC4; }
 };

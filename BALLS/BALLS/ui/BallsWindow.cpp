@@ -13,13 +13,8 @@
 #include "exception/JsonException.hpp"
 #include "Constants.hpp"
 #include "config/ProjectConfig.hpp"
-#include "mesh/MeshFunction.hpp"
-#include "mesh/MeshGenerator.hpp"
-#include "mesh/Generators.hpp"
 #include "util/Util.hpp"
 #include "shader/ShaderUniform.hpp"
-
-Q_DECLARE_METATYPE(balls::mesh::MeshGenerator*)
 
 namespace balls {
 
@@ -28,17 +23,20 @@ using namespace constants;
 constexpr QSettings::Scope SCOPE = QSettings::UserScope;
 constexpr QSettings::Format FORMAT = QSettings::NativeFormat;
 
-BallsWindow::BallsWindow(QWidget* parent) noexcept :
-QMainWindow(parent),
-            _generatorsInitialized(false),
-            _vertLexer(new QsciLexerGLSL(this)),
-            _fragLexer(new QsciLexerGLSL(this)),
-            _geomLexer(new QsciLexerGLSL(this)),
-            _save(new QFileDialog(this, tr("Save BALLS project"), ".")),
-            _load(new QFileDialog(this, tr("Load BALLS project"), ".")),
-            _error(new QErrorMessage(this)),
-_settings(new QSettings(this)) {
+BallsWindow::BallsWindow(QWidget *parent) noexcept
+    : QMainWindow(parent),
+      _generatorsInitialized(false),
+      _vertLexer(new QsciLexerGLSL(this)),
+      _fragLexer(new QsciLexerGLSL(this)),
+      _geomLexer(new QsciLexerGLSL(this)),
+      _save(new QFileDialog(this, tr("Save BALLS project"), ".")),
+      _load(new QFileDialog(this, tr("Load BALLS project"), ".")),
+      _error(new QErrorMessage(this)),
+      _settings(new QSettings(this)) {
   ui.setupUi(this);
+  this->ui.canvas->setUniformModel(&m_uniforms);
+  ui.meshManager->setMeshModel(&m_meshes);
+  //ui.sceneSettings->initCanvas(ui.canvas);
 
   ui.vertexEditor->setLexer(_vertLexer);
   ui.fragmentEditor->setLexer(_fragLexer);
@@ -58,7 +56,12 @@ _settings(new QSettings(this)) {
   _load->setFileMode(QFileDialog::FileMode::ExistingFile);
   _load->setNameFilterDetailsVisible(true);
 
-  ui.uniforms->setObject(&ui.canvas->getUniforms());
+  this->m_uniforms.setObjectName("Uniforms");
+  this->ui.canvas->installEventFilter(&m_uniforms);
+  // ^ So it will show up
+  // TODO: Handle uniforms whose names start with "_" or "_q_" or even "__"
+
+  ui.uniforms->setObject(&m_uniforms);
   ui.uniforms->registerCustomPropertyCB(shader::createShaderProperty);
 }
 
@@ -71,10 +74,8 @@ ProjectConfig BallsWindow::getProjectConfig() const noexcept {
   project.glMajor = ui.canvas->getOpenGLMajor();
   project.glMinor = ui.canvas->getOpenGLMinor();
 
-  const Uniforms& uniforms = ui.canvas->getUniforms();
-
-  for (const QByteArray& u : uniforms.dynamicPropertyNames()) {
-    QVariant uniform = uniforms.property(u);
+  for (const QByteArray &u : m_uniforms.dynamicPropertyNames()) {
+    QVariant uniform = m_uniforms.property(u);
 
     Q_ASSERT(uniform.isValid());
 
@@ -84,12 +85,13 @@ ProjectConfig BallsWindow::getProjectConfig() const noexcept {
   return project;
 }
 
+/*
 void BallsWindow::setMesh(const int index) noexcept {
-  QVariant var = this->ui.meshComboBox->currentData();
-  mesh::MeshGenerator* generator = var.value<mesh::MeshGenerator*>();
+  QVariant var = this->ui.sceneSettings->ui.meshComboBox->currentData();
+  mesh::MeshGenerator *generator = var.value<mesh::MeshGenerator *>();
 
   Q_ASSERT(generator != nullptr);
-  Q_ASSERT(0 <= index&&   index < ui.meshComboBox->count());
+  Q_ASSERT(0 <= index && index < ui.sceneSettings->ui.meshComboBox->count());
   Q_ASSERT(var.isValid());
 
   this->ui.canvas->setMesh(generator);
@@ -102,10 +104,12 @@ void BallsWindow::initializeMeshGenerators() noexcept {
 
   if (Q_LIKELY(!this->_generatorsInitialized)) {
     auto _addGenerator = [this](MeshGenerator * gen) noexcept {
-      QVariant var = QVariant::fromValue(static_cast<MeshGenerator*>(gen));
-      ui.meshComboBox->addItem(tr(qPrintable(gen->getName())), var);
+      QVariant var = QVariant::fromValue(static_cast<MeshGenerator *>(gen));
+      ui.sceneSettings->ui.meshComboBox->addItem(tr(qPrintable(gen->getName())),
+                                                 var);
 
-      qCDebug(logs::ui::Name) << "Added mesh generator" << gen->getName() << "to selector";
+      qCDebug(logs::ui::Name) << "Added mesh generator" << gen->getName()
+                              << "to selector";
     };
     _addGenerator(&generators::quad);
     _addGenerator(&generators::box);
@@ -125,6 +129,7 @@ void BallsWindow::initializeMeshGenerators() noexcept {
 
   this->_generatorsInitialized = true;
 }
+*/
 
 void BallsWindow::forceShaderUpdate() noexcept {
   QString vertex = ui.vertexEditor->text();
@@ -132,18 +137,17 @@ void BallsWindow::forceShaderUpdate() noexcept {
   QString fragment = ui.fragmentEditor->text();
   ui.log->clear();
 
-  ui.uniforms->setObject(&ui.canvas->getUniforms());
+  ui.uniforms->setObject(&m_uniforms);
   ui.canvas->makeCurrent();
 
-  if (this->ui.canvas->updateShaders(vertex, geometry, fragment))
-  {
+  if (this->ui.canvas->updateShaders(vertex, geometry, fragment)) {
     ui.canvas->update();
     this->ui.log->appendPlainText(tr("Success"));
   }
 
   else {
-    const QOpenGLShaderProgram& shader = this->ui.canvas->getShader();
-    const QOpenGLDebugLogger& log = ui.canvas->getLogger();
+    const QOpenGLShaderProgram &shader = this->ui.canvas->getShader();
+    const QOpenGLDebugLogger &log = ui.canvas->getLogger();
 
     this->ui.log->appendPlainText(shader.log());
     qDebug() << shader.log();
@@ -151,7 +155,7 @@ void BallsWindow::forceShaderUpdate() noexcept {
     if (Q_LIKELY(log.isLogging())) {
       using namespace logs;
 
-      for (const QOpenGLDebugMessage& message : log.loggedMessages()) {
+      for (const QOpenGLDebugMessage &message : log.loggedMessages()) {
         qCDebug(gl::Message) << message;
         this->ui.log->appendPlainText(message.message());
       }
@@ -164,16 +168,14 @@ void BallsWindow::saveProject() noexcept {
   qCDebug(logs::ui::Name) << "Opened save dialog...";
 }
 
-void BallsWindow::_saveProject(const QString& path) noexcept {
+void BallsWindow::_saveProject(const QString &path) noexcept {
   try {
-    balls::config::saveToFile(getProjectConfig(), path, &ui.canvas->getUniforms());
-  }
-  catch (const FileException& error) {
+    balls::config::saveToFile(getProjectConfig(), path, &m_uniforms);
+  } catch (const FileException &error) {
     QString e = error.fullMessage();
     qCWarning(logs::app::project::Name) << e;
     _error->showMessage(e);
-  }
-  catch (...) {
+  } catch (...) {
     qCritical() << "Unknown error";
     _error->showMessage(tr("Unknown error"));
   }
@@ -184,7 +186,7 @@ void BallsWindow::loadProject() {
   qCDebug(logs::ui::Name) << "Opened load dialog...";
 }
 
-void BallsWindow::_loadProject(const QString& path) noexcept {
+void BallsWindow::_loadProject(const QString &path) noexcept {
   try {
     ProjectConfig project = balls::config::loadFromFile(path);
 
@@ -196,24 +198,21 @@ void BallsWindow::_loadProject(const QString& path) noexcept {
 
       forceShaderUpdate();
 
-      for (const auto& u : project.uniforms) {
-        //ui.canvas->setUniform(u., u.second);
+      for (const auto &u : project.uniforms) {
+        // ui.canvas->setUniform(u., u.second);
       }
     }
 
     qCDebug(logs::app::project::Name) << "Loaded project from" << path;
-  }
-  catch (const FileException& error) {
+  } catch (const FileException &error) {
     QString e = error.fullMessage();
     qCWarning(logs::app::project::Name) << e;
     _error->showMessage(e);
-  }
-  catch (const JsonException& error) {
+  } catch (const JsonException &error) {
     QString e = error.fullMessage();
     qCWarning(logs::app::project::Name) << e;
     _error->showMessage(e);
-  }
-  catch (...) {
+  } catch (...) {
     qCritical() << "Unknown error";
     _error->showMessage(tr("Unknown error"));
   }
@@ -221,7 +220,7 @@ void BallsWindow::_loadProject(const QString& path) noexcept {
 
 void BallsWindow::loadExample() noexcept {
 
-  QObject* s = sender();
+  QObject *s = sender();
   Q_ASSERT(s != nullptr); // This should only be called from a signal
 
   QVariant example = s->property(properties::EXAMPLE);
@@ -233,28 +232,31 @@ void BallsWindow::loadExample() noexcept {
   qCDebug(logs::app::project::Name) << "Loaded example project" << e;
 }
 
-void BallsWindow::reportFatalError(const QString& title,
-                                   const QString& text,
+void BallsWindow::reportFatalError(const QString &title, const QString &text,
                                    const int error) noexcept {
   QMessageBox::critical(this, title, text);
   qCritical().nospace() << "Exiting with fatal error " << error << ": " << text;
   qApp->exit(error);
 }
 
-void BallsWindow::closeEvent(QCloseEvent* event)
-{
+void BallsWindow::closeEvent(QCloseEvent *event) {
   _settings->setValue("geometry", saveGeometry());
   _settings->setValue("windowState", saveState());
   QMainWindow::closeEvent(event);
 }
 
-void BallsWindow::reportWarning(const QString& title,
-                                const QString& text) noexcept {
+void BallsWindow::reportWarning(const QString &title,
+                                const QString &text) noexcept {
   QMessageBox::warning(this, title, text);
   qWarning() << text;
 }
 
-void BallsWindow::showAboutQt() noexcept {
-  qApp->aboutQt();
+void BallsWindow::showAboutQt() noexcept { qApp->aboutQt(); }
+
+void BallsWindow::on_meshManager_meshSelected(const Mesh & mesh)
+{
+    ui.canvas->setMesh(mesh);
 }
 }
+
+

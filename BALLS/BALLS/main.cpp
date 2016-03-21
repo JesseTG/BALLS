@@ -5,6 +5,7 @@
 #include "util/Logging.hpp"
 #include "util/MetaTypeConverters.hpp"
 
+#include <generator/generator.hpp>
 #include <QApplication>
 
 int main(int argc, char* argv[]) {
@@ -21,7 +22,6 @@ int main(int argc, char* argv[]) {
   balls.setOrganizationName(constants::meta::AUTHOR);
   balls.setOrganizationDomain(constants::meta::AUTHOR_DOMAIN);
   balls.setApplicationVersion("0.0");
-
   qCDebug(app::Version) << balls.applicationVersion();
   qCDebug(system::session::Key) << balls.sessionKey();
   qCDebug(system::session::ID) << balls.sessionId();

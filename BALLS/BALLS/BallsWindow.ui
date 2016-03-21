@@ -7,13 +7,8 @@
     <x>0</x>
     <y>0</y>
     <width>1000</width>
-    <height>640</height>
+    <height>672</height>
    </rect>
-  </property>
-  <property name="font">
-   <font>
-    <kerning>true</kerning>
-   </font>
   </property>
   <property name="windowTitle">
    <string>BALLS</string>
@@ -86,7 +81,7 @@
      <x>0</x>
      <y>0</y>
      <width>1000</width>
-     <height>20</height>
+     <height>31</height>
     </rect>
    </property>
    <property name="nativeMenuBar">
@@ -122,10 +117,6 @@
     <property name="title">
      <string>Edit</string>
     </property>
-    <addaction name="actionCut"/>
-    <addaction name="actionCopy"/>
-    <addaction name="actionPaste"/>
-    <addaction name="actionDelete"/>
    </widget>
    <widget class="QMenu" name="menuProject">
     <property name="title">
@@ -151,10 +142,6 @@
     <addaction name="separator"/>
     <addaction name="actionReset_Camera"/>
     <addaction name="separator"/>
-    <addaction name="actionEditor"/>
-    <addaction name="actionLog"/>
-    <addaction name="actionScene"/>
-    <addaction name="actionUniforms"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
@@ -162,22 +149,12 @@
    <addaction name="menuView"/>
    <addaction name="menuAbout"/>
   </widget>
-  <widget class="QStatusBar" name="statusBar">
-   <property name="sizeGripEnabled">
-    <bool>true</bool>
-   </property>
-  </widget>
   <widget class="QDockWidget" name="editorDock">
    <property name="sizePolicy">
     <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
      <horstretch>0</horstretch>
      <verstretch>0</verstretch>
     </sizepolicy>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>11</pointsize>
-    </font>
    </property>
    <property name="floating">
     <bool>false</bool>
@@ -360,9 +337,6 @@
      <verstretch>0</verstretch>
     </sizepolicy>
    </property>
-   <property name="floating">
-    <bool>false</bool>
-   </property>
    <property name="features">
     <set>QDockWidget::AllDockWidgetFeatures</set>
    </property>
@@ -451,111 +425,6 @@
     </layout>
    </widget>
   </widget>
-  <widget class="QDockWidget" name="sceneDock">
-   <property name="font">
-    <font>
-     <stylestrategy>PreferDefault</stylestrategy>
-     <kerning>true</kerning>
-    </font>
-   </property>
-   <property name="floating">
-    <bool>false</bool>
-   </property>
-   <property name="features">
-    <set>QDockWidget::AllDockWidgetFeatures</set>
-   </property>
-   <property name="windowTitle">
-    <string>Sce&amp;ne Settings</string>
-   </property>
-   <attribute name="dockWidgetArea">
-    <number>1</number>
-   </attribute>
-   <widget class="QWidget" name="sceneDockContents">
-    <layout class="QFormLayout" name="sceneDockLayout">
-     <property name="fieldGrowthPolicy">
-      <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
-     </property>
-     <property name="topMargin">
-      <number>0</number>
-     </property>
-     <item row="1" column="0">
-      <widget class="QLabel" name="meshLabel">
-       <property name="text">
-        <string>Mesh</string>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="0" colspan="2">
-      <layout class="QFormLayout" name="formLayout">
-       <item row="1" column="0">
-        <widget class="QCheckBox" name="wireframeCheck">
-         <property name="statusTip">
-          <string>When checked, renders wire frames instead of filled polygons</string>
-         </property>
-         <property name="whatsThis">
-          <string/>
-         </property>
-         <property name="text">
-          <string>Wireframe</string>
-         </property>
-         <property name="option" stdset="0">
-          <string notr="true">wireframe</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="0">
-        <widget class="QCheckBox" name="depthTestCheck">
-         <property name="statusTip">
-          <string/>
-         </property>
-         <property name="text">
-          <string>Depth Testing</string>
-         </property>
-         <property name="checked">
-          <bool>true</bool>
-         </property>
-         <property name="option" stdset="0">
-          <string notr="true">depth-test</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="1">
-        <widget class="QCheckBox" name="ditherCheck">
-         <property name="text">
-          <string>Dithering</string>
-         </property>
-         <property name="checked">
-          <bool>true</bool>
-         </property>
-         <property name="option" stdset="0">
-          <string notr="true">dithering</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1">
-        <widget class="QCheckBox" name="backfaceCheck">
-         <property name="statusTip">
-          <string>When checked, doesn't draw a polygon that's not facing the camera</string>
-         </property>
-         <property name="text">
-          <string>Backface Culling</string>
-         </property>
-         <property name="checked">
-          <bool>true</bool>
-         </property>
-         <property name="option" stdset="0">
-          <string notr="true">face-culling</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
-     <item row="1" column="1">
-      <widget class="QComboBox" name="meshComboBox"/>
-     </item>
-    </layout>
-   </widget>
-  </widget>
   <widget class="QDockWidget" name="uniformDock">
    <property name="windowTitle">
     <string>&amp;Uniforms</string>
@@ -582,7 +451,7 @@
           <x>0</x>
           <y>0</y>
           <width>256</width>
-          <height>169</height>
+          <height>191</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="uniformScrollCotentsLayout">
@@ -609,6 +478,34 @@
       </widget>
      </item>
     </layout>
+   </widget>
+  </widget>
+  <widget class="QDockWidget" name="textureDock">
+   <property name="windowTitle">
+    <string>Te&amp;xtures</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>1</number>
+   </attribute>
+   <widget class="balls::TextureManager" name="textureManager">
+    <layout class="QGridLayout" name="textureDockLayout"/>
+   </widget>
+  </widget>
+  <widget class="QDockWidget" name="meshDock">
+   <property name="windowTitle">
+    <string>&amp;Meshes</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>1</number>
+   </attribute>
+   <widget class="balls::MeshManagerWidget" name="meshManager">
+    <property name="minimumSize">
+     <size>
+      <width>0</width>
+      <height>18</height>
+     </size>
+    </property>
+    <layout class="QGridLayout" name="meshDockLayout"/>
    </widget>
   </widget>
   <action name="actionNew_Project">
@@ -658,51 +555,6 @@
    </property>
    <property name="menuRole">
     <enum>QAction::QuitRole</enum>
-   </property>
-  </action>
-  <action name="actionCut">
-   <property name="icon">
-    <iconset resource="resources.qrc">
-     <normaloff>:/icons/edit-cut.png</normaloff>:/icons/edit-cut.png</iconset>
-   </property>
-   <property name="text">
-    <string>&amp;Cut</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+X</string>
-   </property>
-  </action>
-  <action name="actionCopy">
-   <property name="icon">
-    <iconset resource="resources.qrc">
-     <normaloff>:/icons/edit-copy.png</normaloff>:/icons/edit-copy.png</iconset>
-   </property>
-   <property name="text">
-    <string>C&amp;opy</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+C</string>
-   </property>
-  </action>
-  <action name="actionPaste">
-   <property name="icon">
-    <iconset resource="resources.qrc">
-     <normaloff>:/icons/edit-paste.png</normaloff>:/icons/edit-paste.png</iconset>
-   </property>
-   <property name="text">
-    <string>&amp;Paste</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+V</string>
-   </property>
-  </action>
-  <action name="actionDelete">
-   <property name="icon">
-    <iconset resource="resources.qrc">
-     <normaloff>:/icons/edit-delete.png</normaloff>:/icons/edit-delete.png</iconset>
-   </property>
-   <property name="text">
-    <string>&amp;Delete</string>
    </property>
   </action>
   <action name="actionZoom_In">
@@ -788,29 +640,6 @@
     <enum>QAction::AboutQtRole</enum>
    </property>
   </action>
-  <action name="actionEditor">
-   <property name="icon">
-    <iconset resource="resources.qrc">
-     <normaloff>:/icons/accessories-text-editor.png</normaloff>:/icons/accessories-text-editor.png</iconset>
-   </property>
-   <property name="text">
-    <string>&amp;Editor</string>
-   </property>
-  </action>
-  <action name="actionLog">
-   <property name="text">
-    <string>&amp;Log</string>
-   </property>
-  </action>
-  <action name="actionScene">
-   <property name="icon">
-    <iconset resource="resources.qrc">
-     <normaloff>:/icons/video-display.png</normaloff>:/icons/video-display.png</iconset>
-   </property>
-   <property name="text">
-    <string>&amp;Scene Settings</string>
-   </property>
-  </action>
   <action name="actionDefault">
    <property name="text">
     <string>&amp;Default</string>
@@ -827,15 +656,6 @@
     <string notr="true">phong.balls</string>
    </property>
   </action>
-  <action name="actionUniforms">
-   <property name="icon">
-    <iconset resource="resources.qrc">
-     <normaloff>:/icons/applications-accessories.png</normaloff>:/icons/applications-accessories.png</iconset>
-   </property>
-   <property name="text">
-    <string>&amp;Uniforms</string>
-   </property>
-  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
@@ -843,6 +663,18 @@
    <class>QsciScintilla</class>
    <extends>QFrame</extends>
    <header>Qsci/qsciscintilla.h</header>
+  </customwidget>
+  <customwidget>
+   <class>QPropertyEditorWidget</class>
+   <extends>QTreeView</extends>
+   <header>QPropertyEditor/QPropertyEditorWidget.h</header>
+   <slots>
+    <slot>addObject(QObject*)</slot>
+    <slot>setObject(QObject*)</slot>
+    <slot>updateObject(QObject*)</slot>
+    <slot>removeObject(QObject*)</slot>
+    <slot>setObject(QListWidgetItem*)</slot>
+   </slots>
   </customwidget>
   <customwidget>
    <class>balls::BallsCanvas</class>
@@ -856,7 +688,7 @@
     <signal>updateUniform(QObject*)</signal>
     <signal>addUniform(QObject*)</signal>
     <signal>removeUniform(QObject*)</signal>
-    <slot>setMesh(int)</slot>
+    <slot>setMesh(balls::Mesh)</slot>
     <slot>resetCamera()</slot>
     <slot>setOption(bool)</slot>
     <slot>setOption(int)</slot>
@@ -864,14 +696,19 @@
    </slots>
   </customwidget>
   <customwidget>
-   <class>QPropertyEditorWidget</class>
-   <extends>QTreeView</extends>
-   <header>QPropertyEditor/QPropertyEditorWidget.h</header>
+   <class>balls::TextureManager</class>
+   <extends>QWidget</extends>
+   <header location="global">ui/docks/TextureManager.hpp</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>balls::MeshManagerWidget</class>
+   <extends>QWidget</extends>
+   <header location="global">ui/docks/MeshManagerWidget.hpp</header>
+   <container>1</container>
    <slots>
-    <slot>addObject(QObject*)</slot>
-    <slot>setObject(QObject*)</slot>
-    <slot>updateObject(QObject*)</slot>
-    <slot>removeObject(QObject*)</slot>
+    <signal>meshCreated(balls::Mesh)</signal>
+    <signal>meshSelected(balls::Mesh)</signal>
    </slots>
   </customwidget>
  </customwidgets>
@@ -928,22 +765,6 @@
    </hints>
   </connection>
   <connection>
-   <sender>canvas</sender>
-   <signal>finishedInitializing()</signal>
-   <receiver>BallsWindow</receiver>
-   <slot>initializeMeshGenerators()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>112</x>
-     <y>70</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>225</x>
-     <y>148</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>actionReset_Camera</sender>
    <signal>triggered()</signal>
    <receiver>canvas</receiver>
@@ -960,138 +781,10 @@
    </hints>
   </connection>
   <connection>
-   <sender>actionEditor</sender>
-   <signal>triggered()</signal>
-   <receiver>editorDock</receiver>
-   <slot>show()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>-1</x>
-     <y>-1</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>186</x>
-     <y>164</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>actionLog</sender>
-   <signal>triggered()</signal>
-   <receiver>logDock</receiver>
-   <slot>show()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>-1</x>
-     <y>-1</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>199</x>
-     <y>376</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>meshComboBox</sender>
-   <signal>currentIndexChanged(int)</signal>
-   <receiver>BallsWindow</receiver>
-   <slot>setMesh(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>269</x>
-     <y>121</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>399</x>
-     <y>265</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>wireframeCheck</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>canvas</receiver>
-   <slot>setOption(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>72</x>
-     <y>210</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>112</x>
-     <y>70</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>ditherCheck</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>canvas</receiver>
-   <slot>setOption(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>254</x>
-     <y>238</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>112</x>
-     <y>70</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>backfaceCheck</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>canvas</receiver>
-   <slot>setOption(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>254</x>
-     <y>210</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>112</x>
-     <y>70</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>depthTestCheck</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>canvas</receiver>
-   <slot>setOption(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>83</x>
-     <y>238</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>112</x>
-     <y>70</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>actionZoom_Out</sender>
    <signal>triggered()</signal>
    <receiver>fragmentEditor</receiver>
    <slot>zoomOut()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>-1</x>
-     <y>-1</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>146</x>
-     <y>209</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>actionZoom_In</sender>
-   <signal>triggered()</signal>
-   <receiver>geometryEditor</receiver>
-   <slot>zoomIn()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -1132,22 +825,6 @@
     <hint type="destinationlabel">
      <x>146</x>
      <y>209</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>actionScene</sender>
-   <signal>triggered()</signal>
-   <receiver>sceneDock</receiver>
-   <slot>show()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>-1</x>
-     <y>-1</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>199</x>
-     <y>402</y>
     </hint>
    </hints>
   </connection>
@@ -1196,22 +873,6 @@
     <hint type="destinationlabel">
      <x>499</x>
      <y>319</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>actionUniforms</sender>
-   <signal>triggered()</signal>
-   <receiver>uniformDock</receiver>
-   <slot>show()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>-1</x>
-     <y>-1</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>179</x>
-     <y>597</y>
     </hint>
    </hints>
   </connection>

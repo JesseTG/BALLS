@@ -6,6 +6,9 @@
 #include <QObject>
 #include "Constants.hpp"
 #include <QPropertyEditor/Property.h>
+
+#include <glm/gtx/type_trait.hpp>
+
 class QRegularExpression;
 class QRegularExpressionMatch;
 
@@ -28,13 +31,12 @@ QString parseHints(const QString& hints, const QChar component) noexcept;
 
 }
 
-template<class Value>
+template<template <typename, glm::precision> class T, class Component, glm::precision P = glm::defaultp>
 class VectorProperty : public Property {
-  using Component = typename Value::value_type;
-  static const glm::length_t Size =  Value::components;
 
 public:
-  using Type = Value;
+  using Type = T<Component, P>;
+  static constexpr glm::length_t Size = glm::type<T>::components;
 
   VectorProperty(
     const QString& name = "",
@@ -50,7 +52,7 @@ public:
     }
   }
 
-  virtual ~VectorProperty() {}
+  virtual ~VectorProperty() noexcept {}
 
   QVariant value(const int role = Qt::UserRole) const noexcept override final {
     QVariant data = Property::value();
@@ -73,7 +75,7 @@ public:
       const QRegularExpression& rx = this->regex();
       QRegularExpressionMatch match = rx.match(value.toString());
 
-      Value vec;
+      Type vec;
 
       if (match.hasMatch()) {
         // If the vector string is in the format we want...
@@ -86,9 +88,9 @@ public:
         }
       }
 
-      Property::setValue(QVariant::fromValue<Value>(vec));
+      Property::setValue(QVariant::fromValue<Type>(vec));
     }
-    else if (value.userType() == qMetaTypeId<Value>()) {
+    else if (value.userType() == qMetaTypeId<Type>()) {
       // Else if the vector's value was just changed directly...
       Property::setValue(value);
     }
@@ -126,15 +128,15 @@ private:
 
   template<int C>
   Component _get() const noexcept {
-    return value().template value<Value>()[C];
+    return value().template value<Type>()[C];
   }
 
   template<int C>
   void _set(const Component& c) noexcept {
-    Value v = value().template value<Value>();
+    Type v = value().template value<Type>();
     v[C] = c;
 
-    Property::setValue(QVariant::fromValue<Value>(v));
+    Property::setValue(QVariant::fromValue<Type>(v));
   }
 };
 }

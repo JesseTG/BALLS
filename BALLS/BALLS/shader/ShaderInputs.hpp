@@ -13,6 +13,7 @@ using OutName = QString;
 namespace attribute {
 extern const AttributeName POSITION;
 extern const AttributeName NORMAL;
+extern const AttributeName TEXCOORDS;
 }
 
 namespace uniform {

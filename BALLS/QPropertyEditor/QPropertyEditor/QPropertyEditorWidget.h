@@ -27,6 +27,7 @@
 
 class QPropertyModel;
 class Property;
+class QListWidgetItem;
 
 /**
  * \mainpage QPropertyEditor
