@@ -10,7 +10,11 @@ class TextureManager : public QWidget {
   Q_OBJECT
 
 public:
-  explicit TextureManager(QWidget *parent = 0);
+  explicit TextureManager(QWidget *parent = nullptr);
+
+private slots:
+  void loadImage();
+  void on_textureList_currentItemChanged(QListWidgetItem *current, QListWidgetItem *previous);
 
 private:
   Ui::TextureManager ui;

@@ -7,6 +7,8 @@
 
 #include "config/ProjectConfig.hpp"
 #include "shader/ShaderUniform.hpp"
+#include "model/Uniforms.hpp"
+#include "model/Meshes.hpp"
 
 class QsciLexerGLSL;
 class QErrorMessage;
@@ -30,7 +32,7 @@ public:
 
   ProjectConfig getProjectConfig() const noexcept;
 public slots:
-  void setMesh(const int) noexcept;
+//  void setMesh(const int) noexcept;
   void saveProject() noexcept;
   void loadProject();
 protected /* events */:
@@ -48,17 +50,23 @@ private /* UI components/dialogs/etc. */:
   QFileDialog* _save;
   QFileDialog* _load;
   QErrorMessage* _error;
+
+private /* data models */:
+  Uniforms m_uniforms;
+  Meshes m_meshes;
 private slots:
   void _saveProject(const QString&) noexcept;
   void _loadProject(const QString&) noexcept;
   void loadExample() noexcept;
 
-  void initializeMeshGenerators() noexcept;
+//  void initializeMeshGenerators() noexcept;
   void forceShaderUpdate() noexcept;
-  void reportFatalError(const QString&, const QString&,
-                        const int) noexcept;
+  void reportFatalError(const QString&, const QString&, const int) noexcept;
   void reportWarning(const QString&, const QString&) noexcept;
   void showAboutQt() noexcept;
+
+  // HACK: Must figure out why Qt Designer doesn't see meshManager
+  void on_meshManager_meshSelected(const Mesh &);
 };
 }
 

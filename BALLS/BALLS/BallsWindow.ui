@@ -7,13 +7,8 @@
     <x>0</x>
     <y>0</y>
     <width>1000</width>
-    <height>640</height>
+    <height>672</height>
    </rect>
-  </property>
-  <property name="font">
-   <font>
-    <kerning>true</kerning>
-   </font>
   </property>
   <property name="windowTitle">
    <string>BALLS</string>
@@ -86,7 +81,7 @@
      <x>0</x>
      <y>0</y>
      <width>1000</width>
-     <height>20</height>
+     <height>31</height>
     </rect>
    </property>
    <property name="nativeMenuBar">
@@ -122,10 +117,6 @@
     <property name="title">
      <string>Edit</string>
     </property>
-    <addaction name="actionCut"/>
-    <addaction name="actionCopy"/>
-    <addaction name="actionPaste"/>
-    <addaction name="actionDelete"/>
    </widget>
    <widget class="QMenu" name="menuProject">
     <property name="title">
@@ -158,22 +149,12 @@
    <addaction name="menuView"/>
    <addaction name="menuAbout"/>
   </widget>
-  <widget class="QStatusBar" name="statusBar">
-   <property name="sizeGripEnabled">
-    <bool>true</bool>
-   </property>
-  </widget>
   <widget class="QDockWidget" name="editorDock">
    <property name="sizePolicy">
     <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
      <horstretch>0</horstretch>
      <verstretch>0</verstretch>
     </sizepolicy>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>11</pointsize>
-    </font>
    </property>
    <property name="floating">
     <bool>false</bool>
@@ -356,9 +337,6 @@
      <verstretch>0</verstretch>
     </sizepolicy>
    </property>
-   <property name="floating">
-    <bool>false</bool>
-   </property>
    <property name="features">
     <set>QDockWidget::AllDockWidgetFeatures</set>
    </property>
@@ -447,36 +425,6 @@
     </layout>
    </widget>
   </widget>
-  <widget class="QDockWidget" name="sceneDock">
-   <property name="font">
-    <font>
-     <stylestrategy>PreferDefault</stylestrategy>
-     <kerning>true</kerning>
-    </font>
-   </property>
-   <property name="floating">
-    <bool>false</bool>
-   </property>
-   <property name="features">
-    <set>QDockWidget::AllDockWidgetFeatures</set>
-   </property>
-   <property name="windowTitle">
-    <string>Sce&amp;ne Settings</string>
-   </property>
-   <attribute name="dockWidgetArea">
-    <number>1</number>
-   </attribute>
-   <widget class="balls::SceneSettings" name="sceneSettings">
-    <layout class="QFormLayout" name="sceneDockLayout">
-     <property name="fieldGrowthPolicy">
-      <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
-     </property>
-     <property name="topMargin">
-      <number>0</number>
-     </property>
-    </layout>
-   </widget>
-  </widget>
   <widget class="QDockWidget" name="uniformDock">
    <property name="windowTitle">
     <string>&amp;Uniforms</string>
@@ -502,8 +450,8 @@
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>236</width>
-          <height>74</height>
+          <width>256</width>
+          <height>191</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="uniformScrollCotentsLayout">
@@ -539,7 +487,26 @@
    <attribute name="dockWidgetArea">
     <number>1</number>
    </attribute>
-   <widget class="balls::TextureManager" name="textureManager"/>
+   <widget class="balls::TextureManager" name="textureManager">
+    <layout class="QGridLayout" name="textureDockLayout"/>
+   </widget>
+  </widget>
+  <widget class="QDockWidget" name="meshDock">
+   <property name="windowTitle">
+    <string>&amp;Meshes</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>1</number>
+   </attribute>
+   <widget class="balls::MeshManagerWidget" name="meshManager">
+    <property name="minimumSize">
+     <size>
+      <width>0</width>
+      <height>18</height>
+     </size>
+    </property>
+    <layout class="QGridLayout" name="meshDockLayout"/>
+   </widget>
   </widget>
   <action name="actionNew_Project">
    <property name="text">
@@ -588,51 +555,6 @@
    </property>
    <property name="menuRole">
     <enum>QAction::QuitRole</enum>
-   </property>
-  </action>
-  <action name="actionCut">
-   <property name="icon">
-    <iconset resource="resources.qrc">
-     <normaloff>:/icons/edit-cut.png</normaloff>:/icons/edit-cut.png</iconset>
-   </property>
-   <property name="text">
-    <string>&amp;Cut</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+X</string>
-   </property>
-  </action>
-  <action name="actionCopy">
-   <property name="icon">
-    <iconset resource="resources.qrc">
-     <normaloff>:/icons/edit-copy.png</normaloff>:/icons/edit-copy.png</iconset>
-   </property>
-   <property name="text">
-    <string>C&amp;opy</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+C</string>
-   </property>
-  </action>
-  <action name="actionPaste">
-   <property name="icon">
-    <iconset resource="resources.qrc">
-     <normaloff>:/icons/edit-paste.png</normaloff>:/icons/edit-paste.png</iconset>
-   </property>
-   <property name="text">
-    <string>&amp;Paste</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+V</string>
-   </property>
-  </action>
-  <action name="actionDelete">
-   <property name="icon">
-    <iconset resource="resources.qrc">
-     <normaloff>:/icons/edit-delete.png</normaloff>:/icons/edit-delete.png</iconset>
-   </property>
-   <property name="text">
-    <string>&amp;Delete</string>
    </property>
   </action>
   <action name="actionZoom_In">
@@ -751,6 +673,7 @@
     <slot>setObject(QObject*)</slot>
     <slot>updateObject(QObject*)</slot>
     <slot>removeObject(QObject*)</slot>
+    <slot>setObject(QListWidgetItem*)</slot>
    </slots>
   </customwidget>
   <customwidget>
@@ -765,7 +688,7 @@
     <signal>updateUniform(QObject*)</signal>
     <signal>addUniform(QObject*)</signal>
     <signal>removeUniform(QObject*)</signal>
-    <slot>setMesh(int)</slot>
+    <slot>setMesh(balls::Mesh)</slot>
     <slot>resetCamera()</slot>
     <slot>setOption(bool)</slot>
     <slot>setOption(int)</slot>
@@ -779,10 +702,14 @@
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>balls::SceneSettings</class>
+   <class>balls::MeshManagerWidget</class>
    <extends>QWidget</extends>
-   <header location="global">ui/docks/SceneSettings.hpp</header>
+   <header location="global">ui/docks/MeshManagerWidget.hpp</header>
    <container>1</container>
+   <slots>
+    <signal>meshCreated(balls::Mesh)</signal>
+    <signal>meshSelected(balls::Mesh)</signal>
+   </slots>
   </customwidget>
  </customwidgets>
  <resources>
@@ -838,22 +765,6 @@
    </hints>
   </connection>
   <connection>
-   <sender>canvas</sender>
-   <signal>finishedInitializing()</signal>
-   <receiver>BallsWindow</receiver>
-   <slot>initializeMeshGenerators()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>112</x>
-     <y>70</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>225</x>
-     <y>148</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>actionReset_Camera</sender>
    <signal>triggered()</signal>
    <receiver>canvas</receiver>
@@ -874,22 +785,6 @@
    <signal>triggered()</signal>
    <receiver>fragmentEditor</receiver>
    <slot>zoomOut()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>-1</x>
-     <y>-1</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>146</x>
-     <y>209</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>actionZoom_In</sender>
-   <signal>triggered()</signal>
-   <receiver>geometryEditor</receiver>
-   <slot>zoomIn()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>

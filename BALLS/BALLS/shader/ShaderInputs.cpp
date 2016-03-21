@@ -7,6 +7,7 @@ namespace shader {
 namespace attribute {
 const AttributeName POSITION = "position";
 const AttributeName NORMAL = "normal";
+const AttributeName TEXCOORDS = "texCoords";
 }
 
 namespace uniform {

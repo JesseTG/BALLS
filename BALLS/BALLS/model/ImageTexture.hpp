@@ -1,6 +1,7 @@
 #ifndef IMAGETEXTURE_HPP
 #define IMAGETEXTURE_HPP
 
+#include <QImage>
 #include "Texture.hpp"
 
 namespace balls {
@@ -9,12 +10,12 @@ class ImageTexture : public AbstractTexture {
   Q_OBJECT
 
 public:
-  ImageTexture();
+  ImageTexture(QImage& image);
 
-signals:
-
-public slots:
+private:
+  QImage m_image;
 };
 }
 
+Q_DECLARE_METATYPE(balls::ImageTexture*)
 #endif // IMAGETEXTURE_HPP

@@ -132,24 +132,8 @@
  <resources/>
  <connections>
   <connection>
-   <sender>textureList</sender>
-   <signal>currentItemChanged(QListWidgetItem*,QListWidgetItem*)</signal>
-   <receiver>textureProperties</receiver>
-   <slot>setObject(QListWidgetItem*)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>93</x>
-     <y>101</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>93</x>
-     <y>342</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>createTextureButton</sender>
-   <signal>clicked()</signal>
+   <signal>triggered(QAction*)</signal>
    <receiver>createTextureButton</receiver>
    <slot>showMenu()</slot>
    <hints>
@@ -163,5 +147,24 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>actionFrom_Image</sender>
+   <signal>triggered()</signal>
+   <receiver>TextureManager</receiver>
+   <slot>loadImage()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>257</x>
+     <y>222</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
+ <slots>
+  <slot>loadImage()</slot>
+ </slots>
 </ui>

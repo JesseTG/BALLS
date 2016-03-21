@@ -6,6 +6,13 @@
 #include <QObject>
 #include <QOpenGLTexture>
 
+
+Q_DECLARE_METATYPE(QOpenGLTexture::DepthStencilMode)
+Q_DECLARE_METATYPE(QOpenGLTexture::Filter)
+Q_DECLARE_METATYPE(QOpenGLTexture::Target)
+Q_DECLARE_METATYPE(QOpenGLTexture::TextureFormat)
+Q_DECLARE_METATYPE(GLuint)
+
 namespace balls {
 
 class AbstractTexture : public QObject {
@@ -16,6 +23,7 @@ class AbstractTexture : public QObject {
 
   Q_PROPERTY(QOpenGLTexture::DepthStencilMode depthStencilMode READ
                  depthStencilMode WRITE depthStencilMode STORED false FINAL)
+  // TODO: Register foreign enum types
 
   Q_PROPERTY(int faces READ faces STORED false FINAL)
 
@@ -114,8 +122,10 @@ signals:
 
 public slots:
 
-private:
+protected:
   std::unique_ptr<QOpenGLTexture> texture_;
 };
 }
+
+Q_DECLARE_METATYPE(balls::AbstractTexture*)
 #endif // TEXTURE_HPP

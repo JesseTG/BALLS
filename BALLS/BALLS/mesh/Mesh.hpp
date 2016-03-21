@@ -26,6 +26,7 @@ public:
   typedef uint16_t IndexType;
 
   Mesh() noexcept {}
+  virtual ~Mesh() {}
 
   inline IndexType add_vertex(const CoordType, const CoordType,
                               const CoordType) noexcept;

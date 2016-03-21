@@ -105,8 +105,6 @@ public slots:
    */
   void setObject(QObject* subject) noexcept;
 
-  void setObject(QListWidgetItem* subject) noexcept;
-
   /**
    * Updates the view for the given object. This can be useful if a property was
    * changed programmatically instead of using the view. In this case the view

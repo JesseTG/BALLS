@@ -19,7 +19,8 @@ upx:!UPX {
 
 
 ### <General Configuration> ####################################################
-QT = core gui widgets
+QT += core gui widgets
+
 TARGET = BALLS
 TEMPLATE = app
 
@@ -27,7 +28,8 @@ CONFIG += qt c++14 warn_on precompile_header qscintilla2
 PRECOMPILED_HEADER = precompiled.hpp
 
 DEFINES += \
-  GLM_META_PROG_HELPERS
+  GLM_META_PROG_HELPERS \
+  GENERATOR_USE_GLM \
 
 QMAKE_RESOURCE_FLAGS += -threshold 0 -compress 9
 ### </General Configuration> ###################################################
@@ -38,7 +40,6 @@ SOURCES += \
   ui/BallsWindow.cpp \
   mesh/MeshFunction.cpp \
   ui/BallsCanvas.cpp \
-  mesh/Mesh.cpp \
   mesh/MeshGenerator.cpp \
   mesh/Generators.cpp \
   util/Util.cpp \
@@ -47,7 +48,6 @@ SOURCES += \
   Constants.cpp \
   shader/ShaderInputs.cpp \
   config/ProjectConfig.cpp \
-  ui/docks/SceneSettings.cpp \
   ui/docks/OpenGLInfo.cpp \
   shader/ShaderUniform.cpp \
   ui/property/Vector2Property.cpp \
@@ -62,20 +62,27 @@ SOURCES += \
   shader/syntax/GLSLSyntax.cpp \
   util/Trackball.cpp \
   util/MetaTypeConverters.cpp \
-  ui/Uniforms.cpp \
+  model/Uniforms.cpp \
   util/TypeInfo.cpp \
   ui/QsciLexerGLSL.cpp \
   ui/property/MatrixProperties.cpp \
     ui/docks/TextureManager.cpp \
     model/Texture.cpp \
-    model/ImageTexture.cpp
+    model/ImageTexture.cpp \
+    ui/docks/SceneSettings.cpp \
+    model/mesh/Mesh.cpp \
+    model/mesh/BoxMesh.cpp \
+    model/mesh/MeshMesh.cpp \
+    ui/docks/MeshManagerWidget.cpp \
+    model/Meshes.cpp \
+    model/mesh/CappedConeMesh.cpp \
+    gl/OpenGLPointers.cpp
 
 HEADERS  += \
   precompiled.hpp \
   ui/BallsWindow.hpp \
   mesh/MeshFunction.hpp \
   ui/BallsCanvas.hpp \
-  mesh/Mesh.hpp \
   mesh/MeshGenerator.hpp \
   mesh/MeshParameter.hpp \
   Constants.hpp \
@@ -86,7 +93,6 @@ HEADERS  += \
   shader/ShaderInputs.hpp \
   shader/ShaderUniform.hpp \
   config/ProjectConfig.hpp \
-  ui/docks/SceneSettings.hpp \
   ui/docks/OpenGLInfo.hpp \
   ui/property/Vector2Property.hpp \
   ui/property/VectorProperty.hpp \
@@ -102,17 +108,26 @@ HEADERS  += \
   ui/property/SamplerProperty.hpp \
   util/MetaTypeConverters.hpp \
   util/TypeInfo.hpp \
-  ui/Uniforms.hpp \
+  model/Uniforms.hpp \
   ui/property/MatrixProperties.hpp \
     ui/docks/TextureManager.hpp \
     model/Texture.hpp \
-    model/ImageTexture.hpp
+    model/ImageTexture.hpp \
+    ui/docks/SceneSettings.hpp \
+    model/mesh/Mesh.hpp \
+    model/mesh/BoxMesh.hpp \
+    model/mesh/MeshMesh.hpp \
+    ui/docks/MeshManagerWidget.hpp \
+    model/Meshes.hpp \
+    model/mesh/CappedConeMesh.hpp \
+    gl/OpenGLPointers.hpp
 
 FORMS += \
   BallsWindow.ui \
-  ui/docks/SceneSettings.ui \
   ui/docks/OpenGLInfo.ui \
-    ui/docks/TextureManager.ui
+    ui/docks/TextureManager.ui \
+    ui/docks/SceneSettings.ui \
+    ui/docks/MeshManager.ui
 
 RESOURCES += \
   resources.qrc
@@ -148,7 +163,10 @@ CONFIG(debug, debug|release) {
 
   gcc|clang {
     QMAKE_CXXFLAGS_DEBUG += \
-      -O0
+      -O0 \
+      -Wextra \
+      -Wpedantic \
+      -Wno-gnu-zero-variadic-macro-arguments \
   }
 
   clang {
@@ -180,6 +198,7 @@ INCLUDEPATH += \
   /usr/include/x86_64-linux-gnu \
   /usr/include/x86_64-linux-gnu/qt5 \
   /usr/include/qt5 \
+  /usr/include
 
 
 DEPENDPATH += \
@@ -200,6 +219,10 @@ LIBS *= \
   -L/usr/lib/x86_64-linux-gnu \
   -lQPropertyEditor \
   -lqt5scintilla2 \
+  -lKF5KIOCore \
+  -lKF5KIOWidgets \
+  -lKF5KIOFileWidgets \
+  -lgenerator-glm \
 
 ## /Libraries to link
 

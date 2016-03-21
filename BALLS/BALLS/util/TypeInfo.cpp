@@ -117,7 +117,6 @@ void init() noexcept {
   info[GL_DOUBLE_MAT4x2] = info[qMetaTypeId<dmat4x2>()];
   info[GL_DOUBLE_MAT4x3] = info[qMetaTypeId<dmat4x3>()];
   info[GL_DOUBLE_MAT4] = info[qMetaTypeId<dmat4>()];
-
 }
 }
 }

@@ -60,20 +60,6 @@ void QPropertyEditorWidget::setObject(QObject* subject) noexcept
   }
 }
 
-void QPropertyEditorWidget::setObject(QListWidgetItem *subject) noexcept {
-  if (subject) {
-    QVariant var = subject->data(0);
-
-    if (var.canConvert<QObject*>()) {
-      setObject(var.value<QObject*>());
-    }
-    else {
-      qCDebug(Properties) << this->objectName() << "given a" << var.typeName()
-                          << "when a QObject* was expected";
-    }
-  }
-}
-
 void QPropertyEditorWidget::updateObject(QObject* subject) noexcept
 {
   if (subject) {

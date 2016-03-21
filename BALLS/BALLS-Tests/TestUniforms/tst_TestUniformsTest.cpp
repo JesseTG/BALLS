@@ -8,7 +8,7 @@
 #include <QtTest>
 #include <QList>
 #include <QCoreApplication>
-#include "ui/Uniforms.hpp"
+#include "model/Uniforms.hpp"
 #include "util/Logging.hpp"
 
 using std::tuple;
