@@ -9,10 +9,16 @@ else {
   BUILD_TYPE = debug
 }
 
+DEFINES += \
+  GLM_META_PROG_HELPERS \
+  GENERATOR_USE_GLM \
+
 OBJECTS_DIR = temp
 MOC_DIR = temp
 UI_DIR = temp
 RCC_DIR = temp
+
+QT += KIOCore KIOFileWidgets KIOWidgets KNTLM
 
 INCLUDEPATH *= \
   $$MOC_DIR \
@@ -23,6 +29,8 @@ INCLUDEPATH *= \
   /usr/include/x86_64-linux-gnu \
   /usr/include/x86_64-linux-gnu/qt5 \
   /usr/include/qt5 \
+  /usr/include/KF5/KIOCore \
+  /usr/include/KF5/KIOFileWidgets
 
 DESTDIR = $$PWD/../build/$${BUILD_TYPE}-$${QMAKE_CC}/dist
 

@@ -3,6 +3,7 @@
 
 #include <unordered_map>
 
+#include <QtCore/QPointer>
 #include <QtCore/QtGlobal>
 #include <QtGui/QOpenGLBuffer>
 #include <QtGui/QOpenGLDebugLogger>
@@ -11,14 +12,14 @@
 #include <QtGui/QOpenGLVertexArrayObject>
 #include <QtWidgets/QOpenGLWidget>
 
-#include "mesh/Mesh.hpp"
+#include "gl/OpenGLPointers.hpp"
 #include "shader/ShaderInputs.hpp"
 #include "shader/ShaderUniform.hpp"
 #include "config/Settings.hpp"
 #include "util/Logging.hpp"
 #include "util/Trackball.hpp"
 #include "util/TypeInfo.hpp"
-#include "ui/Uniforms.hpp"
+#include "model/Uniforms.hpp"
 
 class QOpenGLFunctions_3_0;
 class QOpenGLFunctions_3_1;
@@ -31,9 +32,8 @@ class QOpenGLFunctions_4_3_Core;
 class QOpenGLShader;
 
 namespace balls {
-namespace mesh {
-class MeshGenerator;
-}
+
+class Mesh;
 
 
 using std::pair;
@@ -48,7 +48,6 @@ constexpr GLuint DEFAULT_INDEX = -1;
 constexpr GLenum DEFAULT_TYPE = -1;
 constexpr GLint DEFAULT_SIZE = 0;
 
-
 class BallsCanvas : public QOpenGLWidget, protected QOpenGLFunctions {
   Q_OBJECT
 
@@ -58,7 +57,6 @@ public:
   void initializeGL() override;
   void paintGL() override;
   void resizeGL(const int, const int) override;
-  void setMesh(mesh::MeshGenerator*) noexcept;
   bool updateShaders(const QString&, const QString&, const QString&) noexcept;
 public /* getters/setters */:
   QOpenGLShaderProgram& getShader() noexcept { return _shader; }
@@ -70,8 +68,12 @@ public /* getters/setters */:
   uint8_t getOpenGLMajor() const noexcept { return _glmajor; }
   uint8_t getOpenGLMinor() const noexcept { return _glminor; }
 
-  const Uniforms& getUniforms() const noexcept { return _uniforms; }
-  Uniforms& getUniforms() noexcept { return _uniforms; }
+  void setUniformModel(Uniforms* uniforms) noexcept {
+    _uniforms = uniforms;
+    _uniformsMeta = uniforms->metaObject();
+    _uniformsPropertyOffset = _uniformsMeta->propertyOffset();
+    _uniformsPropertyCount = _uniformsMeta->propertyCount();
+  }
 signals:
   void geometryShadersSupported(const bool);
   void gl3NotSupported();
@@ -84,18 +86,15 @@ public slots:
   void setOption(const bool) noexcept;
   void setOption(const int) noexcept;
   void resetCamera() noexcept;
+  void setMesh(const Mesh&) noexcept;
 public:
   void setUniform(const UniformInfo&, const QVariant&) noexcept;
 protected:
   void mouseMoveEvent(QMouseEvent *e) override;
   void wheelEvent(QWheelEvent *) override;
   void timerEvent(QTimerEvent *) override;
-private /* mesh information */:
-  mesh::MeshGenerator* _meshgen;
-  mesh::Mesh _mesh;
-
 private /* shader attributes/uniforms */:
-  Uniforms _uniforms;
+  QPointer<Uniforms> _uniforms;
   const QMetaObject* _uniformsMeta;
   int _uniformsPropertyOffset;
   int _uniformsPropertyCount;
@@ -108,18 +107,12 @@ private /* OpenGL structures */:
   QOpenGLBuffer _ibo;
   QOpenGLVertexArrayObject _vao;
   QOpenGLShaderProgram _shader;
+  GLsizei m_indexCount;
   uint8_t _glmajor : 3;
   uint8_t _glminor : 3;
 
 private /* OpenGL function pointers */:
-  QOpenGLFunctions_3_0* _gl30;
-  QOpenGLFunctions_3_1* _gl31;
-  QOpenGLFunctions_3_2_Core* _gl32;
-  QOpenGLFunctions_3_3_Core* _gl33;
-  QOpenGLFunctions_4_0_Core* _gl40;
-  QOpenGLFunctions_4_1_Core* _gl41;
-  QOpenGLFunctions_4_2_Core* _gl42;
-  QOpenGLFunctions_4_3_Core* _gl43;
+  OpenGLPointers gl;
 
 private /* update methods */:
   void _updateUniformList() noexcept;

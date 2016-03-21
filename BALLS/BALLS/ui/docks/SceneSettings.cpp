@@ -12,7 +12,6 @@ SceneSettings::SceneSettings(QWidget *parent) : QWidget(parent) {
 }
 
 void SceneSettings::initCanvas(BallsCanvas *canvas) {
-  connect(ui.meshComboBox, SIGNAL(currentIndexChanged(int)), canvas->window(), SLOT(setMesh(const int)));
   connect(ui.wireframeCheck, SIGNAL(toggled(bool)), canvas, SLOT(setOption(bool)));
   connect(ui.depthTestCheck, SIGNAL(toggled(bool)), canvas, SLOT(setOption(bool)));
   connect(ui.ditherCheck, SIGNAL(toggled(bool)), canvas, SLOT(setOption(bool)));

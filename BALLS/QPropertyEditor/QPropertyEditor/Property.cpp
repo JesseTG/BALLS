@@ -87,7 +87,6 @@ QWidget* Property::createEditor(QWidget* parent,
   using IntLimits = std::numeric_limits<int>;
   using UIntLimits = std::numeric_limits<unsigned int>;
   using FloatLimits = std::numeric_limits<float>;
-  using DoubleLimits = std::numeric_limits<double>;
   QWidget* editor = nullptr;
 
   switch (value().type())

@@ -9,6 +9,7 @@
 
 namespace constants {
 
+constexpr double EPSILON = 0.00001;
 constexpr int MODEL_ROLE = Qt::ItemDataRole::UserRole;
 
 namespace json {

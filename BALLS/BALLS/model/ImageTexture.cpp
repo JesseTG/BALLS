@@ -4,5 +4,7 @@
 
 namespace balls {
 
-ImageTexture::ImageTexture() {}
+ImageTexture::ImageTexture(QImage& image) : m_image(image) {
+  texture_.reset(new QOpenGLTexture(image));
+}
 }

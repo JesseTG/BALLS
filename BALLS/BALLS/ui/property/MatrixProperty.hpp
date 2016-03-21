@@ -5,21 +5,24 @@
 #include <type_traits>
 #include <QString>
 
+#include <glm/gtx/type_trait.hpp>
+
 #include "QPropertyEditor/Property.h"
 #include "Constants.hpp"
 
 namespace balls {
 using std::array;
 
-template<class Matrix, class ColProp>
+template<template <typename, glm::precision> class T, class ColProp>
 class MatrixProperty : public Property {
+  using Matrix = T<typename ColProp::Type::value_type, glm::defaultp>;
   static_assert(
     std::is_same<typename ColProp::Type, typename Matrix::col_type>::value,
     "ColProp's value type must be Matrix's column type"
   );
 
   using Column = typename Matrix::col_type;
-  static const glm::length_t Size =  Matrix::components;
+  static const glm::length_t Size =  glm::type<T>::components;
 public:
   using Type = Matrix;
   MatrixProperty(const QString& name = "",
@@ -29,7 +32,7 @@ public:
   Property(name, subject, parent) {
     using namespace constants;
 
-    for (int i = 0; i < Matrix::cols; ++i) {
+    for (int i = 0; i < ColProp::Size; ++i) {
       this->colProps[i] = new ColProp(properties::COLS[i], this, this);
     }
   }
@@ -53,7 +56,7 @@ public:
       // If we got a matrix...
       Matrix mat = value.value<Matrix>();
 
-      for (int i = 0; i < Matrix::cols; ++i) {
+      for (int i = 0; i < ColProp::Size; ++i) {
         colProps[i]->setValue(QVariant::fromValue(mat[i]));
       }
 
@@ -65,7 +68,7 @@ public:
   }
 
 protected:
-  array<ColProp*, Matrix::cols> colProps;
+  array<ColProp*, ColProp::Size> colProps;
 
   inline Column _getx() const noexcept { return _get<0>(); }
   inline void _setx(const Column c) noexcept { _set<0>(c); }

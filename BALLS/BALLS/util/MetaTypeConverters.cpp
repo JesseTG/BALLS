@@ -9,6 +9,8 @@
 
 #include <glm/glm.hpp>
 #include <glm/gtx/string_cast.hpp>
+#include <glm/gtx/type_trait.hpp>
+#include <glm/gtx/range.hpp>
 #include <QtGlobal>
 #include <QMetaType>
 #include <QString>
@@ -255,6 +257,16 @@ convert(const From& from) noexcept {
 }
 // 4 ========================================================================= 4
 
+// convert to matrix ======================================================= mxn
+
+// glm mat -> glm mat
+template<class From, class To>
+inline enable_if_t < is_mat<From>()&&  is_mat<To>(), To >
+convert(const From& from) noexcept {
+  return To(from);
+}
+// mxn ===================================================================== mxn
+
 // convert to quaternion ===================================================== Q
 // vec2 -> quat
 template<class From, class To>
@@ -319,16 +331,6 @@ convert(const From& from) noexcept {
 }
 // Q ========================================================================= Q
 
-// convert to matrix ======================================================= mxn
-
-// glm mat -> glm mat
-template<class From, class To>
-inline enable_if_t < is_mat<From>()&&  is_mat<To>(), To >
-convert(const From& from) noexcept {
-  return To(from);
-}
-// mxn ===================================================================== mxn
-
 // convert to JSON =========================================================== J
 
 // vec2 -> JSON
@@ -371,12 +373,12 @@ inline enable_if_t < is_mat<From>()&&  is_json_arr<To>(), To >
 convert(const From& from) noexcept {
   QJsonArray mat;
 
-  for (int c = 0; c < From::cols; ++c) {
+  for (int c = 0; c < from.length(); ++c) {
     QJsonArray jcol;
 
     const typename From::col_type& col = from[c];
 
-    for (int r = 0; r < From::rows; ++r) {
+    for (int r = 0; r < col.length(); ++r) {
       jcol.push_back(col[r]);
     }
 
@@ -394,11 +396,11 @@ convert(const From& from) noexcept {
   QJsonArray json = QJsonValue(from).toArray();
   To mat;
 
-  for (int c = 0, cols = min((int)To::cols, json.count()); c < cols; ++c) {
+  for (int c = 0, cols = min((int)(mat.length()), json.count()); c < cols; ++c) {
     QJsonArray col = json[c].toArray();
 
     // TODO: This does not fill in blanks with the identity matrix
-    for (int r = 0, rows = min((int)To::rows, col.count()); r < rows; ++r) {
+    for (int r = 0, rows = min((int)(mat[0].length()), col.count()); r < rows; ++r) {
       mat[c][r] = col[r].toDouble();
     }
   }
@@ -472,7 +474,17 @@ template<typename From>
 struct other_handler {
   template<typename To>
   inline void operator()(To&) noexcept {
-    Q_ASSUME((QMetaType::registerConverter<From, To, To(*)(const From&)>(&convert<From, To>)));
+    /*Q_ASSUME*/((QMetaType::registerConverter<From, To, To(*)(const From&)>(&convert<From, To>)));
+    // If this is triggered, I'm probably instantiating a template function that
+    // doesn't need to be instantiated
+  }
+};
+
+template<typename From>
+struct implicit_handler {
+  template<typename To>
+  inline void operator()(To&) noexcept {
+    /*Q_ASSUME*/((QMetaType::registerConverter<From, To>()));
   }
 };
 
@@ -484,11 +496,25 @@ struct handler {
   }
 };
 
+template<typename FromSeq>
+struct handle_implicit {
+  template<typename To>
+  inline void operator()(To&) noexcept {
+    boost::mpl::for_each<FromSeq>(implicit_handler<To>());
+  }
+};
+
 /// Register a conversion from every type in SeqA to every type in SeqB
 template<class SeqA, class SeqB>
 inline void _registerTypes() noexcept {
   boost::mpl::for_each<SeqA>(handler<SeqB>());
 }
+
+template<class SeqA, class SeqB>
+inline void _registerImplicit() noexcept {
+  boost::mpl::for_each<SeqA>(handle_implicit<SeqB>());
+}
+
 
 void registerMetaTypeConverters() noexcept {
   using namespace glm;
@@ -496,9 +522,16 @@ void registerMetaTypeConverters() noexcept {
   using boost::mpl::list;
   using boost::mpl::single_view;
 
+  _registerImplicit<types::glm::Vec2s, types::glm::Vec2s>();
+  _registerImplicit<types::glm::Vec3s, types::glm::Vec2s>();
+  _registerImplicit<types::glm::Vec3s, types::glm::Vec3s>();
+  _registerImplicit<types::glm::Vec4s, types::glm::Vec2s>();
+  _registerImplicit<types::glm::Vec4s, types::glm::Vec3s>();
+  _registerImplicit<types::glm::Vec4s, types::glm::Vec4s>();
   _registerTypes<types::Scalars, types::glm::VecsQuats>();
   _registerTypes<types::glm::VecsQuats, types::Scalars>();
-  _registerTypes<types::glm::VecsQuats, types::glm::VecsQuats>();
+  _registerTypes<types::glm::Vecs, types::glm::Quats>();
+  _registerTypes<types::glm::Quats, types::glm::Vecs>();
   _registerTypes<types::glm::VecsQuats, types::all::JsonObj>();
   _registerTypes<types::all::JsonObj, types::glm::Vecs>();
 

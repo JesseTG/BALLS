@@ -1,11 +1,6 @@
 #include "precompiled.hpp"
 #include "shader/ShaderUniform.hpp"
 
-#include "ui/property/VectorProperty.hpp"
-#include "ui/property/Vector2Property.hpp"
-#include "ui/property/Vector3Property.hpp"
-#include "ui/property/Vector4Property.hpp"
-#include "ui/Uniforms.hpp"
 #include "util/Util.hpp"
 #include "util/Logging.hpp"
 #include "util/TypeInfo.hpp"
@@ -21,10 +16,9 @@ using namespace logs;
 Property* createShaderProperty(const QString& name, QObject* subject,
                                Property* parent) {
   using util::types::info;
-  Uniforms* uniform = dynamic_cast<Uniforms*>(subject);
 
-  if (uniform != nullptr) {
-    QVariant var = uniform->property(qPrintable(name));
+  if (subject != nullptr) {
+    QVariant var = subject->property(qPrintable(name));
 
     Q_ASSERT(var.isValid());
 
@@ -33,16 +27,16 @@ Property* createShaderProperty(const QString& name, QObject* subject,
     if (info.count(type) && info[type].propertyFactory) {
       const util::types::TypeInfo& i = info[type];
 
-      qCDebug(logs::uniform::Name)
+      qDebug()
           << "Creating property" << var.typeName() << name << "for" <<
-          uniform->objectName();
+          subject->objectName();
 
       return i.propertyFactory(name, subject, parent);
     }
     else {
-      qCDebug(logs::uniform::Name)
+      qDebug()
           << "Using default property" << var.typeName() << name << "for" <<
-          uniform->objectName();
+          subject->objectName();
     }
   }
 

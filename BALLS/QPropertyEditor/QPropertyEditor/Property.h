@@ -49,6 +49,8 @@ public:
   Property(const QString& name = "", QObject* subject = nullptr,
            QObject* parent = nullptr) noexcept;
 
+  virtual ~Property() {}
+
   /**
    * The value stored by this property
    * @return QVariant the data converted to a QVariant
