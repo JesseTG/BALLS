@@ -1,5 +1,5 @@
-#ifndef CAPPEDTUBEMESH_HPP
-#define CAPPEDTUBEMESH_HPP
+#ifndef TUBEMESH_HPP
+#define TUBEMESH_HPP
 
 #include <QObject>
 
@@ -7,27 +7,30 @@
 
 namespace balls {
 
-class CappedTubeMesh : public BaseCylindricalMesh
+class TubeMesh : public BaseCylindricalMesh
 {
   Q_OBJECT
 
   Q_PROPERTY(double innerRadius MEMBER m_innerRadius WRITE setInnerRadius FINAL)
   Q_PROPERTY(uint rings MEMBER m_rings WRITE setRings FINAL)
+  Q_PROPERTY(bool capped MEMBER m_capped WRITE setCapped FINAL)
 
 public:
-  CappedTubeMesh(QObject* parent = nullptr);
+  TubeMesh(QObject* parent = nullptr);
 protected /* methods */:
   void assignMesh() override;
 private /* members */:
   unsigned int m_rings;
   double m_innerRadius;
+  bool m_capped;
 
 private /* setters */:
   void setRings(unsigned int);
   void setInnerRadius(double);
+  void setCapped(bool);
 };
 }
 
-Q_DECLARE_METATYPE(balls::CappedTubeMesh*)
+Q_DECLARE_METATYPE(balls::TubeMesh*)
 
-#endif // CAPPEDTUBEMESH_HPP
+#endif // TUBEMESH_HPP

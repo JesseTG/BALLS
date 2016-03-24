@@ -75,12 +75,13 @@ SOURCES += \
     model/mesh/MeshMesh.cpp \
     ui/docks/MeshManagerWidget.cpp \
     model/Meshes.cpp \
-    model/mesh/CappedConeMesh.cpp \
     gl/OpenGLPointers.cpp \
-    model/mesh/CappedCylinderMesh.cpp \
-    model/mesh/CappedTubeMesh.cpp \
     model/mesh/BaseCylindricalMesh.cpp \
-    model/mesh/CapsuleMesh.cpp
+    model/mesh/CapsuleMesh.cpp \
+    model/mesh/ConeMesh.cpp \
+    model/mesh/CylinderMesh.cpp \
+    model/mesh/TubeMesh.cpp \
+    model/mesh/DiskMesh.cpp
 
 HEADERS  += \
   precompiled.hpp \
@@ -123,12 +124,13 @@ HEADERS  += \
     model/mesh/MeshMesh.hpp \
     ui/docks/MeshManagerWidget.hpp \
     model/Meshes.hpp \
-    model/mesh/CappedConeMesh.hpp \
     gl/OpenGLPointers.hpp \
-    model/mesh/CappedCylinderMesh.hpp \
-    model/mesh/CappedTubeMesh.hpp \
     model/mesh/BaseCylindricalMesh.hpp \
-    model/mesh/CapsuleMesh.hpp
+    model/mesh/CapsuleMesh.hpp \
+    model/mesh/ConeMesh.hpp \
+    model/mesh/CylinderMesh.hpp \
+    model/mesh/TubeMesh.hpp \
+    model/mesh/DiskMesh.hpp
 
 FORMS += \
   BallsWindow.ui \

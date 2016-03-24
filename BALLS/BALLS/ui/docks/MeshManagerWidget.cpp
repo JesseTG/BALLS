@@ -10,16 +10,17 @@ MeshManagerWidget::MeshManagerWidget(QWidget *parent) : QWidget(parent) {
 
   ui.meshProperties->registerCustomPropertyCB(shader::createShaderProperty);
 
-  ui.createMeshButton->addActions({ui.actionBox, ui.actionCapped_Cone,
-                                   ui.actionCapped_Cylinder,
-                                   ui.actionCapped_Tube, ui.actionCapsule});
+  ui.createMeshButton->addActions({
+      ui.actionBox, ui.actionCapsule, ui.actionCone, ui.actionCylinder,
+      ui.actionDisk, ui.actionTube,
+  });
 
   ui.actionBox->setData(QVariant::fromValue(Mesh::Type::Box));
-  ui.actionCapped_Cone->setData(QVariant::fromValue(Mesh::Type::CappedCone));
-  ui.actionCapped_Cylinder->setData(
-      QVariant::fromValue(Mesh::Type::CappedCylinder));
-  ui.actionCapped_Tube->setData(QVariant::fromValue(Mesh::Type::CappedTube));
   ui.actionCapsule->setData(QVariant::fromValue(Mesh::Type::Capsule));
+  ui.actionCone->setData(QVariant::fromValue(Mesh::Type::Cone));
+  ui.actionCylinder->setData(QVariant::fromValue(Mesh::Type::Cylinder));
+  ui.actionDisk->setData(QVariant::fromValue(Mesh::Type::Disk));
+  ui.actionTube->setData(QVariant::fromValue(Mesh::Type::Tube));
 }
 }
 

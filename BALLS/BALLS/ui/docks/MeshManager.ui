@@ -103,24 +103,29 @@
     <string>Box</string>
    </property>
   </action>
-  <action name="actionCapped_Cone">
+  <action name="actionCone">
    <property name="text">
-    <string>Capped Cone</string>
+    <string>Cone</string>
    </property>
   </action>
-  <action name="actionCapped_Cylinder">
+  <action name="actionCylinder">
    <property name="text">
-    <string>Capped Cylinder</string>
+    <string>Cylinder</string>
    </property>
   </action>
-  <action name="actionCapped_Tube">
+  <action name="actionTube">
    <property name="text">
-    <string>Capped Tube</string>
+    <string>Tube</string>
    </property>
   </action>
   <action name="actionCapsule">
    <property name="text">
     <string>Capsule</string>
+   </property>
+  </action>
+  <action name="actionDisk">
+   <property name="text">
+    <string>Disk</string>
    </property>
   </action>
  </widget>

@@ -25,9 +25,6 @@ public /* enums */:
 
   enum Type {
     Box,
-    CappedCone,
-    CappedCylinder,
-    CappedTube,
     Capsule,
     Circle,
     Cone,

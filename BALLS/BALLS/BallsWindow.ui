@@ -487,9 +487,7 @@
    <attribute name="dockWidgetArea">
     <number>1</number>
    </attribute>
-   <widget class="balls::TextureManager" name="textureManager">
-    <layout class="QGridLayout" name="textureDockLayout"/>
-   </widget>
+   <widget class="balls::TextureManager" name="textureManager"/>
   </widget>
   <widget class="QDockWidget" name="meshDock">
    <property name="windowTitle">
@@ -505,7 +503,6 @@
       <height>18</height>
      </size>
     </property>
-    <layout class="QGridLayout" name="meshDockLayout"/>
    </widget>
   </widget>
   <action name="actionNew_Project">
