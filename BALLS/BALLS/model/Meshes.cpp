@@ -7,6 +7,7 @@
 #include "model/mesh/ConeMesh.hpp"
 #include "model/mesh/CylinderMesh.hpp"
 #include "model/mesh/DiskMesh.hpp"
+#include "model/mesh/SphericalConeMesh.hpp"
 #include "model/mesh/TubeMesh.hpp"
 
 namespace balls {
@@ -29,6 +30,9 @@ Mesh &Meshes::createMesh(Mesh::Type type) noexcept {
     break;
   case Mesh::Disk:
     m_meshes.push_back(new DiskMesh(this));
+    break;
+  case Mesh::SphericalCone:
+    m_meshes.push_back(new SphericalConeMesh(this));
     break;
   case Mesh::Tube:
     m_meshes.push_back(new TubeMesh(this));

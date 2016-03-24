@@ -12,7 +12,7 @@ MeshManagerWidget::MeshManagerWidget(QWidget *parent) : QWidget(parent) {
 
   ui.createMeshButton->addActions({
       ui.actionBox, ui.actionCapsule, ui.actionCone, ui.actionCylinder,
-      ui.actionDisk, ui.actionTube,
+      ui.actionDisk, ui.actionSpherical_Cone, ui.actionTube,
   });
 
   ui.actionBox->setData(QVariant::fromValue(Mesh::Type::Box));
@@ -20,6 +20,8 @@ MeshManagerWidget::MeshManagerWidget(QWidget *parent) : QWidget(parent) {
   ui.actionCone->setData(QVariant::fromValue(Mesh::Type::Cone));
   ui.actionCylinder->setData(QVariant::fromValue(Mesh::Type::Cylinder));
   ui.actionDisk->setData(QVariant::fromValue(Mesh::Type::Disk));
+  ui.actionSpherical_Cone->setData(
+      QVariant::fromValue(Mesh::Type::SphericalCone));
   ui.actionTube->setData(QVariant::fromValue(Mesh::Type::Tube));
 }
 }

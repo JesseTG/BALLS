@@ -81,7 +81,8 @@ SOURCES += \
     model/mesh/ConeMesh.cpp \
     model/mesh/CylinderMesh.cpp \
     model/mesh/TubeMesh.cpp \
-    model/mesh/DiskMesh.cpp
+    model/mesh/DiskMesh.cpp \
+    model/mesh/SphericalConeMesh.cpp
 
 HEADERS  += \
   precompiled.hpp \
@@ -130,7 +131,8 @@ HEADERS  += \
     model/mesh/ConeMesh.hpp \
     model/mesh/CylinderMesh.hpp \
     model/mesh/TubeMesh.hpp \
-    model/mesh/DiskMesh.hpp
+    model/mesh/DiskMesh.hpp \
+    model/mesh/SphericalConeMesh.hpp
 
 FORMS += \
   BallsWindow.ui \

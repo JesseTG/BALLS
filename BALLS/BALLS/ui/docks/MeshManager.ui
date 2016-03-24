@@ -128,6 +128,11 @@
     <string>Disk</string>
    </property>
   </action>
+  <action name="actionSpherical_Cone">
+   <property name="text">
+    <string>Spherical Cone</string>
+   </property>
+  </action>
  </widget>
  <customwidgets>
   <customwidget>
