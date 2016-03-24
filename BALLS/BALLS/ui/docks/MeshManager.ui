@@ -15,7 +15,11 @@
   </property>
   <layout class="QGridLayout" name="meshManagerLayout">
    <item row="0" column="0">
-    <widget class="QListWidget" name="meshList"/>
+    <widget class="QListWidget" name="meshList">
+     <property name="movement">
+      <enum>QListView::Free</enum>
+     </property>
+    </widget>
    </item>
    <item row="0" column="1" rowspan="4">
     <widget class="QPropertyEditorWidget" name="meshProperties"/>
@@ -102,6 +106,21 @@
   <action name="actionCapped_Cone">
    <property name="text">
     <string>Capped Cone</string>
+   </property>
+  </action>
+  <action name="actionCapped_Cylinder">
+   <property name="text">
+    <string>Capped Cylinder</string>
+   </property>
+  </action>
+  <action name="actionCapped_Tube">
+   <property name="text">
+    <string>Capped Tube</string>
+   </property>
+  </action>
+  <action name="actionCapsule">
+   <property name="text">
+    <string>Capsule</string>
    </property>
   </action>
  </widget>

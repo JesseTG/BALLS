@@ -4,6 +4,9 @@
 
 #include "model/mesh/BoxMesh.hpp"
 #include "model/mesh/CappedConeMesh.hpp"
+#include "model/mesh/CappedCylinderMesh.hpp"
+#include "model/mesh/CappedTubeMesh.hpp"
+#include "model/mesh/CapsuleMesh.hpp"
 
 namespace balls {
 
@@ -16,6 +19,15 @@ Mesh &Meshes::createMesh(Mesh::Type type) noexcept {
     break;
   case Mesh::CappedCone:
     m_meshes.push_back(new CappedConeMesh(this));
+    break;
+  case Mesh::CappedCylinder:
+    m_meshes.push_back(new CappedCylinderMesh(this));
+    break;
+  case Mesh::CappedTube:
+    m_meshes.push_back(new CappedTubeMesh(this));
+    break;
+  case Mesh::Capsule:
+    m_meshes.push_back(new CapsuleMesh(this));
     break;
   default:
     break; // TODO: Support other mesh types

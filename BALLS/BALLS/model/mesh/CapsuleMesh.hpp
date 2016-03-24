@@ -1,5 +1,5 @@
-#ifndef CAPPEDCONEMESH_HPP
-#define CAPPEDCONEMESH_HPP
+#ifndef CAPSULEMESH_HPP
+#define CAPSULEMESH_HPP
 
 #include <QObject>
 
@@ -7,14 +7,14 @@
 
 namespace balls {
 
-class CappedConeMesh : public BaseCylindricalMesh
+class CapsuleMesh : public BaseCylindricalMesh
 {
   Q_OBJECT
 
   Q_PROPERTY(uint rings MEMBER m_rings WRITE setRings FINAL)
 
 public:
-  CappedConeMesh(QObject* parent = nullptr);
+  CapsuleMesh(QObject* parent = nullptr);
 protected /* methods */:
   void assignMesh() override;
 private /* members */:
@@ -25,5 +25,6 @@ private /* setters */:
 };
 }
 
-Q_DECLARE_METATYPE(balls::CappedConeMesh*)
-#endif // CAPPEDCONEMESH_HPP
+Q_DECLARE_METATYPE(balls::CapsuleMesh*)
+
+#endif // CAPSULEMESH_HPP

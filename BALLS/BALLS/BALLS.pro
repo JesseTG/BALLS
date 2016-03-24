@@ -76,7 +76,11 @@ SOURCES += \
     ui/docks/MeshManagerWidget.cpp \
     model/Meshes.cpp \
     model/mesh/CappedConeMesh.cpp \
-    gl/OpenGLPointers.cpp
+    gl/OpenGLPointers.cpp \
+    model/mesh/CappedCylinderMesh.cpp \
+    model/mesh/CappedTubeMesh.cpp \
+    model/mesh/BaseCylindricalMesh.cpp \
+    model/mesh/CapsuleMesh.cpp
 
 HEADERS  += \
   precompiled.hpp \
@@ -120,7 +124,11 @@ HEADERS  += \
     ui/docks/MeshManagerWidget.hpp \
     model/Meshes.hpp \
     model/mesh/CappedConeMesh.hpp \
-    gl/OpenGLPointers.hpp
+    gl/OpenGLPointers.hpp \
+    model/mesh/CappedCylinderMesh.hpp \
+    model/mesh/CappedTubeMesh.hpp \
+    model/mesh/BaseCylindricalMesh.hpp \
+    model/mesh/CapsuleMesh.hpp
 
 FORMS += \
   BallsWindow.ui \
