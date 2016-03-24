@@ -3,30 +3,26 @@
 
 #include <QObject>
 
-#include "model/mesh/MeshMesh.hpp"
+#include "model/mesh/BaseSphereMesh.hpp"
 
 namespace balls {
 
-class BaseCylindricalMesh : public MeshMesh
+class BaseCylindricalMesh : public BaseSphereMesh
 {
   Q_OBJECT
 
-  Q_PROPERTY(double radius MEMBER m_radius WRITE setRadius FINAL)
   Q_PROPERTY(double size MEMBER m_size WRITE setSize FINAL)
   Q_PROPERTY(uint slices MEMBER m_slices WRITE setSlices FINAL)
-  Q_PROPERTY(uint segments MEMBER m_segments WRITE setSegments FINAL)
   Q_PROPERTY(double start MEMBER m_start WRITE setStart FINAL)
   Q_PROPERTY(double sweep MEMBER m_sweep WRITE setSweep FINAL)
 
 public:
   virtual ~BaseCylindricalMesh() {}
 protected /* constructors */:
-  using MeshMesh::MeshMesh;
+  using BaseSphereMesh::BaseSphereMesh;
 protected /* members */:
-  double m_radius;
   double m_size;
   unsigned int m_slices;
-  unsigned int m_segments;
 
   // Stored in degrees, but passed to mesh generator in radians
   double m_start;

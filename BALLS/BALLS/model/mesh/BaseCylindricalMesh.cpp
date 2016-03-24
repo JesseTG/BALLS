@@ -5,14 +5,6 @@
 
 namespace balls {
 
-void BaseCylindricalMesh::setRadius(double radius) {
-  if (glm::epsilonNotEqual(radius, m_radius, constants::EPSILON)) {
-    // If the user actually adjusted the radius...
-    m_radius = radius;
-    updateMesh();
-  }
-}
-
 void BaseCylindricalMesh::setSize(double size) {
   if (glm::epsilonNotEqual(size, m_size, constants::EPSILON)) {
     // If the user actually adjusted the size...
@@ -25,14 +17,6 @@ void BaseCylindricalMesh::setSlices(unsigned int slices) {
   if (slices != m_slices) {
     // If the user actually adjusted the number of slices...
     m_slices = slices;
-    updateMesh();
-  }
-}
-
-void BaseCylindricalMesh::setSegments(unsigned int segments) {
-  if (segments != m_segments) {
-    // If the user actually adjusted the number of segments...
-    m_segments = segments;
     updateMesh();
   }
 }

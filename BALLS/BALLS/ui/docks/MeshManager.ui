@@ -133,6 +133,16 @@
     <string>Spherical Cone</string>
    </property>
   </action>
+  <action name="actionIcosahedron">
+   <property name="text">
+    <string>Icosahedron</string>
+   </property>
+  </action>
+  <action name="actionIcosphere">
+   <property name="text">
+    <string>Icosphere</string>
+   </property>
+  </action>
  </widget>
  <customwidgets>
   <customwidget>

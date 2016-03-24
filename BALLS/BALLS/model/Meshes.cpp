@@ -7,6 +7,8 @@
 #include "model/mesh/ConeMesh.hpp"
 #include "model/mesh/CylinderMesh.hpp"
 #include "model/mesh/DiskMesh.hpp"
+#include "model/mesh/IcosahedronMesh.hpp"
+#include "model/mesh/IcoSphereMesh.hpp"
 #include "model/mesh/SphericalConeMesh.hpp"
 #include "model/mesh/TubeMesh.hpp"
 
@@ -30,6 +32,12 @@ Mesh &Meshes::createMesh(Mesh::Type type) noexcept {
     break;
   case Mesh::Disk:
     m_meshes.push_back(new DiskMesh(this));
+    break;
+  case Mesh::Icosahedron:
+    m_meshes.push_back(new IcosahedronMesh(this));
+    break;
+  case Mesh::IcoSphere:
+    m_meshes.push_back(new IcoSphereMesh(this));
     break;
   case Mesh::SphericalCone:
     m_meshes.push_back(new SphericalConeMesh(this));
