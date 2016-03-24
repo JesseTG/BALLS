@@ -85,7 +85,12 @@ SOURCES += \
     model/mesh/SphericalConeMesh.cpp \
     model/mesh/BaseSphereMesh.cpp \
     model/mesh/IcosahedronMesh.cpp \
-    model/mesh/IcoSphereMesh.cpp
+    model/mesh/IcoSphereMesh.cpp \
+    model/mesh/SphereMesh.cpp \
+    model/mesh/SpringMesh.cpp \
+    model/mesh/TorusMesh.cpp \
+    model/mesh/TorusKnotMesh.cpp \
+    model/mesh/PlaneMesh.cpp
 
 HEADERS  += \
   precompiled.hpp \
@@ -138,7 +143,12 @@ HEADERS  += \
     model/mesh/SphericalConeMesh.hpp \
     model/mesh/BaseSphereMesh.hpp \
     model/mesh/IcosahedronMesh.hpp \
-    model/mesh/IcoSphereMesh.hpp
+    model/mesh/IcoSphereMesh.hpp \
+    model/mesh/SphereMesh.hpp \
+    model/mesh/SpringMesh.hpp \
+    model/mesh/TorusMesh.hpp \
+    model/mesh/TorusKnotMesh.hpp \
+    model/mesh/PlaneMesh.hpp
 
 FORMS += \
   BallsWindow.ui \

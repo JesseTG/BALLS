@@ -9,7 +9,12 @@
 #include "model/mesh/DiskMesh.hpp"
 #include "model/mesh/IcosahedronMesh.hpp"
 #include "model/mesh/IcoSphereMesh.hpp"
+#include "model/mesh/PlaneMesh.hpp"
+#include "model/mesh/SphereMesh.hpp"
 #include "model/mesh/SphericalConeMesh.hpp"
+#include "model/mesh/SpringMesh.hpp"
+#include "model/mesh/TorusMesh.hpp"
+#include "model/mesh/TorusKnotMesh.hpp"
 #include "model/mesh/TubeMesh.hpp"
 
 namespace balls {
@@ -39,8 +44,23 @@ Mesh &Meshes::createMesh(Mesh::Type type) noexcept {
   case Mesh::IcoSphere:
     m_meshes.push_back(new IcoSphereMesh(this));
     break;
+  case Mesh::Plane:
+    m_meshes.push_back(new PlaneMesh(this));
+    break;
+  case Mesh::Sphere:
+    m_meshes.push_back(new SphereMesh(this));
+    break;
   case Mesh::SphericalCone:
     m_meshes.push_back(new SphericalConeMesh(this));
+    break;
+  case Mesh::Spring:
+    m_meshes.push_back(new SpringMesh(this));
+    break;
+  case Mesh::Torus:
+    m_meshes.push_back(new TorusMesh(this));
+    break;
+  case Mesh::TorusKnot:
+    m_meshes.push_back(new TorusKnotMesh(this));
     break;
   case Mesh::Tube:
     m_meshes.push_back(new TubeMesh(this));

@@ -143,6 +143,31 @@
     <string>Icosphere</string>
    </property>
   </action>
+  <action name="actionSphere">
+   <property name="text">
+    <string>Sphere</string>
+   </property>
+  </action>
+  <action name="actionSpring">
+   <property name="text">
+    <string>Spring</string>
+   </property>
+  </action>
+  <action name="actionTorus">
+   <property name="text">
+    <string>Torus</string>
+   </property>
+  </action>
+  <action name="actionTorus_Knot">
+   <property name="text">
+    <string>Torus Knot</string>
+   </property>
+  </action>
+  <action name="actionPlane">
+   <property name="text">
+    <string>Plane</string>
+   </property>
+  </action>
  </widget>
  <customwidgets>
   <customwidget>

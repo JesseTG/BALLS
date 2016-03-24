@@ -12,8 +12,8 @@ MeshManagerWidget::MeshManagerWidget(QWidget *parent) : QWidget(parent) {
 
   ui.createMeshButton->addActions({
       ui.actionBox, ui.actionCapsule, ui.actionCone, ui.actionCylinder,
-      ui.actionDisk, ui.actionIcosahedron, ui.actionIcosphere,
-      ui.actionSpherical_Cone, ui.actionTube,
+      ui.actionDisk, ui.actionIcosahedron, ui.actionIcosphere, ui.actionPlane, ui.actionSphere,
+      ui.actionSpherical_Cone, ui.actionSpring, ui.actionTorus, ui.actionTorus_Knot, ui.actionTube,
   });
 
   ui.actionBox->setData(QVariant::fromValue(Mesh::Type::Box));
@@ -23,8 +23,13 @@ MeshManagerWidget::MeshManagerWidget(QWidget *parent) : QWidget(parent) {
   ui.actionDisk->setData(QVariant::fromValue(Mesh::Type::Disk));
   ui.actionIcosahedron->setData(QVariant::fromValue(Mesh::Type::Icosahedron));
   ui.actionIcosphere->setData(QVariant::fromValue(Mesh::Type::IcoSphere));
+  ui.actionPlane->setData(QVariant::fromValue(Mesh::Type::Plane));
+  ui.actionSphere->setData(QVariant::fromValue(Mesh::Type::Sphere));
   ui.actionSpherical_Cone->setData(
       QVariant::fromValue(Mesh::Type::SphericalCone));
+  ui.actionSpring->setData(QVariant::fromValue(Mesh::Type::Spring));
+  ui.actionTorus->setData(QVariant::fromValue(Mesh::Type::Torus));
+  ui.actionTorus_Knot->setData(QVariant::fromValue(Mesh::Type::TorusKnot));
   ui.actionTube->setData(QVariant::fromValue(Mesh::Type::Tube));
 }
 }

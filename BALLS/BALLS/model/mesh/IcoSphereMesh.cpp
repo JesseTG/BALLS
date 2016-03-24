@@ -9,7 +9,7 @@ namespace balls {
 IcoSphereMesh::IcoSphereMesh(QObject *parent)
     : BaseSphereMesh(parent, Type::IcoSphere) {
   m_radius = 1.0;
-  m_segments = 1u;
+  m_segments = 4u;
 
   updateMesh();
 }
