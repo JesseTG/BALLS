@@ -168,6 +168,21 @@
     <string>Plane</string>
    </property>
   </action>
+  <action name="actionRounded_Box">
+   <property name="text">
+    <string>Rounded Box</string>
+   </property>
+  </action>
+  <action name="actionSpherical_Triangle">
+   <property name="text">
+    <string>Spherical Triangle</string>
+   </property>
+  </action>
+  <action name="actionTriangle">
+   <property name="text">
+    <string>Triangle</string>
+   </property>
+  </action>
  </widget>
  <customwidgets>
   <customwidget>

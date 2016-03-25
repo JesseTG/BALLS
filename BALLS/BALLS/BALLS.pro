@@ -90,7 +90,10 @@ SOURCES += \
     model/mesh/SpringMesh.cpp \
     model/mesh/TorusMesh.cpp \
     model/mesh/TorusKnotMesh.cpp \
-    model/mesh/PlaneMesh.cpp
+    model/mesh/PlaneMesh.cpp \
+    model/mesh/RoundedBoxMesh.cpp \
+    model/mesh/SphericalTriangleMesh.cpp \
+    model/mesh/TriangleMesh.cpp
 
 HEADERS  += \
   precompiled.hpp \
@@ -148,7 +151,10 @@ HEADERS  += \
     model/mesh/SpringMesh.hpp \
     model/mesh/TorusMesh.hpp \
     model/mesh/TorusKnotMesh.hpp \
-    model/mesh/PlaneMesh.hpp
+    model/mesh/PlaneMesh.hpp \
+    model/mesh/RoundedBoxMesh.hpp \
+    model/mesh/SphericalTriangleMesh.hpp \
+    model/mesh/TriangleMesh.hpp
 
 FORMS += \
   BallsWindow.ui \
