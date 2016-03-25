@@ -75,8 +75,25 @@ SOURCES += \
     model/mesh/MeshMesh.cpp \
     ui/docks/MeshManagerWidget.cpp \
     model/Meshes.cpp \
-    model/mesh/CappedConeMesh.cpp \
-    gl/OpenGLPointers.cpp
+    gl/OpenGLPointers.cpp \
+    model/mesh/BaseCylindricalMesh.cpp \
+    model/mesh/CapsuleMesh.cpp \
+    model/mesh/ConeMesh.cpp \
+    model/mesh/CylinderMesh.cpp \
+    model/mesh/TubeMesh.cpp \
+    model/mesh/DiskMesh.cpp \
+    model/mesh/SphericalConeMesh.cpp \
+    model/mesh/BaseSphereMesh.cpp \
+    model/mesh/IcosahedronMesh.cpp \
+    model/mesh/IcoSphereMesh.cpp \
+    model/mesh/SphereMesh.cpp \
+    model/mesh/SpringMesh.cpp \
+    model/mesh/TorusMesh.cpp \
+    model/mesh/TorusKnotMesh.cpp \
+    model/mesh/PlaneMesh.cpp \
+    model/mesh/RoundedBoxMesh.cpp \
+    model/mesh/SphericalTriangleMesh.cpp \
+    model/mesh/TriangleMesh.cpp
 
 HEADERS  += \
   precompiled.hpp \
@@ -119,8 +136,25 @@ HEADERS  += \
     model/mesh/MeshMesh.hpp \
     ui/docks/MeshManagerWidget.hpp \
     model/Meshes.hpp \
-    model/mesh/CappedConeMesh.hpp \
-    gl/OpenGLPointers.hpp
+    gl/OpenGLPointers.hpp \
+    model/mesh/BaseCylindricalMesh.hpp \
+    model/mesh/CapsuleMesh.hpp \
+    model/mesh/ConeMesh.hpp \
+    model/mesh/CylinderMesh.hpp \
+    model/mesh/TubeMesh.hpp \
+    model/mesh/DiskMesh.hpp \
+    model/mesh/SphericalConeMesh.hpp \
+    model/mesh/BaseSphereMesh.hpp \
+    model/mesh/IcosahedronMesh.hpp \
+    model/mesh/IcoSphereMesh.hpp \
+    model/mesh/SphereMesh.hpp \
+    model/mesh/SpringMesh.hpp \
+    model/mesh/TorusMesh.hpp \
+    model/mesh/TorusKnotMesh.hpp \
+    model/mesh/PlaneMesh.hpp \
+    model/mesh/RoundedBoxMesh.hpp \
+    model/mesh/SphericalTriangleMesh.hpp \
+    model/mesh/TriangleMesh.hpp
 
 FORMS += \
   BallsWindow.ui \

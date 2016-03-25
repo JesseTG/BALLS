@@ -15,7 +15,11 @@
   </property>
   <layout class="QGridLayout" name="meshManagerLayout">
    <item row="0" column="0">
-    <widget class="QListWidget" name="meshList"/>
+    <widget class="QListWidget" name="meshList">
+     <property name="movement">
+      <enum>QListView::Free</enum>
+     </property>
+    </widget>
    </item>
    <item row="0" column="1" rowspan="4">
     <widget class="QPropertyEditorWidget" name="meshProperties"/>
@@ -99,9 +103,84 @@
     <string>Box</string>
    </property>
   </action>
-  <action name="actionCapped_Cone">
+  <action name="actionCone">
    <property name="text">
-    <string>Capped Cone</string>
+    <string>Cone</string>
+   </property>
+  </action>
+  <action name="actionCylinder">
+   <property name="text">
+    <string>Cylinder</string>
+   </property>
+  </action>
+  <action name="actionTube">
+   <property name="text">
+    <string>Tube</string>
+   </property>
+  </action>
+  <action name="actionCapsule">
+   <property name="text">
+    <string>Capsule</string>
+   </property>
+  </action>
+  <action name="actionDisk">
+   <property name="text">
+    <string>Disk</string>
+   </property>
+  </action>
+  <action name="actionSpherical_Cone">
+   <property name="text">
+    <string>Spherical Cone</string>
+   </property>
+  </action>
+  <action name="actionIcosahedron">
+   <property name="text">
+    <string>Icosahedron</string>
+   </property>
+  </action>
+  <action name="actionIcosphere">
+   <property name="text">
+    <string>Icosphere</string>
+   </property>
+  </action>
+  <action name="actionSphere">
+   <property name="text">
+    <string>Sphere</string>
+   </property>
+  </action>
+  <action name="actionSpring">
+   <property name="text">
+    <string>Spring</string>
+   </property>
+  </action>
+  <action name="actionTorus">
+   <property name="text">
+    <string>Torus</string>
+   </property>
+  </action>
+  <action name="actionTorus_Knot">
+   <property name="text">
+    <string>Torus Knot</string>
+   </property>
+  </action>
+  <action name="actionPlane">
+   <property name="text">
+    <string>Plane</string>
+   </property>
+  </action>
+  <action name="actionRounded_Box">
+   <property name="text">
+    <string>Rounded Box</string>
+   </property>
+  </action>
+  <action name="actionSpherical_Triangle">
+   <property name="text">
+    <string>Spherical Triangle</string>
+   </property>
+  </action>
+  <action name="actionTriangle">
+   <property name="text">
+    <string>Triangle</string>
    </property>
   </action>
  </widget>
