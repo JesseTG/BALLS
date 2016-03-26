@@ -27,6 +27,8 @@ private slots:
 
   void on_createMeshButton_triggered(QAction *arg1);
 
+  void on_meshList_itemChanged(QListWidgetItem *item);
+
 private /* fields */:
   Ui::MeshManager ui;
   QPointer<Meshes> m_meshes;

@@ -246,7 +246,7 @@ void QPropertyModel::addItem(QObject *subject) noexcept {
         }
       }
 
-      const QMetaObject* metaObject = subject->metaObject();
+      const QMetaObject *metaObject = subject->metaObject();
       int index = metaObject->indexOfClassInfo(pname);
 
       if (index != -1) {
@@ -257,9 +257,7 @@ void QPropertyModel::addItem(QObject *subject) noexcept {
   }
   endInsertRows();
 
-  if (propertyItem) {
-    addDynamicProperties(propertyItem, subject);
-  }
+  addDynamicProperties(propertyItem, subject);
 }
 
 void QPropertyModel::updateItem(QObject *subject,

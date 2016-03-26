@@ -14,16 +14,6 @@
    <string>Meshes</string>
   </property>
   <layout class="QGridLayout" name="meshManagerLayout">
-   <item row="0" column="0">
-    <widget class="QListWidget" name="meshList">
-     <property name="movement">
-      <enum>QListView::Free</enum>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="1" rowspan="4">
-    <widget class="QPropertyEditorWidget" name="meshProperties"/>
-   </item>
    <item row="1" column="0">
     <layout class="QHBoxLayout" name="meshButtons">
      <item>
@@ -53,6 +43,16 @@
       </widget>
      </item>
     </layout>
+   </item>
+   <item row="0" column="1" rowspan="4">
+    <widget class="QPropertyEditorWidget" name="meshProperties">
+     <property name="indentation">
+      <number>14</number>
+     </property>
+     <property name="uniformRowHeights">
+      <bool>true</bool>
+     </property>
+    </widget>
    </item>
    <item row="2" column="0">
     <widget class="QListWidget" name="modifierList">
@@ -96,6 +96,16 @@
       </widget>
      </item>
     </layout>
+   </item>
+   <item row="0" column="0">
+    <widget class="QListWidget" name="meshList">
+     <property name="editTriggers">
+      <set>QAbstractItemView::DoubleClicked|QAbstractItemView::EditKeyPressed|QAbstractItemView::SelectedClicked</set>
+     </property>
+     <property name="uniformItemSizes">
+      <bool>true</bool>
+     </property>
+    </widget>
    </item>
   </layout>
   <action name="actionBox">

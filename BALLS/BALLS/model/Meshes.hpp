@@ -30,6 +30,7 @@ public slots:
 
 private /* fields */:
   std::vector<Mesh*> m_meshes;
+  QMetaEnum m_metaEnum;
 };
 }
 

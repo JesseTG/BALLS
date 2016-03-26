@@ -22,7 +22,13 @@
 
 namespace balls {
 
-Meshes::Meshes(QObject *parent) : QObject(parent) {}
+Meshes::Meshes(QObject *parent) : QObject(parent) {
+  int index = Mesh::staticMetaObject.indexOfEnumerator("Type");
+
+  Q_ASSUME(index >= 0);
+
+  m_metaEnum = Mesh::staticMetaObject.enumerator(index);
+}
 
 Mesh &Meshes::createMesh(Mesh::Type type) noexcept {
   switch (type) {
@@ -81,8 +87,11 @@ Mesh &Meshes::createMesh(Mesh::Type type) noexcept {
     break; // TODO: Support other mesh types
   }
 
-  qDebug() << "Created mesh of type" << type;
-  m_meshes.back()->setObjectName("Mesh");
+  const char* name = m_metaEnum.valueToKey(type);
+
+  Q_ASSUME(name != nullptr);
+  qDebug() << "Created mesh of type" << name;
+  m_meshes.back()->setObjectName(name);
 
   return *m_meshes.back();
 }
