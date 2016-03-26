@@ -15,6 +15,8 @@ class BoxMesh : public MeshMesh
 {
   Q_OBJECT
 
+  Q_CLASSINFO("segments", "minimum=1;")
+
   Q_PROPERTY(dvec3 size MEMBER m_size WRITE setSize FINAL)
   Q_PROPERTY(uvec3 segments MEMBER m_segments WRITE setSegments FINAL)
 
