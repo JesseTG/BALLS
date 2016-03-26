@@ -56,6 +56,7 @@ void QPropertyEditorWidget::setObject(QObject* subject) noexcept
   qCDebug(Properties) << "Cleared property manager" << this->objectName();
 
   if (subject) {
+    // If the desired subject actually exists...
     addObject(subject);
   }
 }
@@ -63,6 +64,7 @@ void QPropertyEditorWidget::setObject(QObject* subject) noexcept
 void QPropertyEditorWidget::updateObject(QObject* subject) noexcept
 {
   if (subject) {
+    // If the desired subject actually exists...
     m_model->updateItem(subject);
     qCDebug(Properties) << "Object" << subject->objectName() <<
     "updated in property manager" << this->objectName();
@@ -73,6 +75,7 @@ void QPropertyEditorWidget::registerCustomPropertyCB(UserTypeCB cb)
 noexcept
 {
   if (cb) {
+    // If the desired callback actually exists...
     qCDebug(Properties) << "Custom property callback" << reinterpret_cast<void*>(cb)
     << "registered";
     m_model->registerCustomPropertyCB(cb);
