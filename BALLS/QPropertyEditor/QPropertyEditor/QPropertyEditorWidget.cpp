@@ -88,3 +88,12 @@ noexcept
   m_model->unregisterCustomPropertyCB(cb);
 }
 
+void QPropertyEditorWidget::setNameFilter(
+    const QRegularExpression &filter) noexcept {
+  m_model->setNameFilter(filter);
+}
+
+const QRegularExpression &QPropertyEditorWidget::getNameFilter() const
+    noexcept {
+  return m_model->getNameFilter();
+}

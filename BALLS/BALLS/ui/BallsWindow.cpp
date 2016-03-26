@@ -17,6 +17,9 @@
 #include "shader/ShaderUniform.hpp"
 
 namespace balls {
+static const QRegularExpression
+    NAME_FILTER(R"%(^(_q_.+|objectName)$)%",
+                QRegularExpression::OptimizeOnFirstUsageOption);
 
 using namespace constants;
 
@@ -34,6 +37,7 @@ BallsWindow::BallsWindow(QWidget *parent) noexcept
       _error(new QErrorMessage(this)),
       _settings(new QSettings(this)) {
   ui.setupUi(this);
+  ui.uniforms->setNameFilter(NAME_FILTER);
   this->ui.canvas->setUniformModel(&m_uniforms);
   ui.meshManager->setMeshModel(&m_meshes);
   //ui.sceneSettings->initCanvas(ui.canvas);

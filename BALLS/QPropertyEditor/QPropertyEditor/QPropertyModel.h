@@ -26,6 +26,7 @@
 #define QPROPERTYMODEL_H_
 
 #include <QtCore/QAbstractItemModel>
+#include <QRegularExpression>
 
 class Property;
 
@@ -35,8 +36,6 @@ class Property;
 class QPropertyModel : public QAbstractItemModel {
   Q_OBJECT
 
-  Q_PROPERTY(bool showQtProperties READ isShowingQtProperties WRITE
-                 setShowQtProperties)
 public:
   /**
    * A typedef for a callback used to create user defined properties for custom
@@ -85,7 +84,6 @@ public:
    * Creates a dataChanged signal for the given object
    * @param subject the instance of a QObject based class that should be updated
    * @param parent optional model index the propertyObject is child of
-   * TODO Support qualities that can change via member functions like DESIGNABLE
    */
   void updateItem(QObject *subject,
                   const QModelIndex &parent = QModelIndex()) noexcept;
@@ -107,26 +105,31 @@ public:
    */
   void unregisterCustomPropertyCB(UserTypeCB callback) noexcept;
 
-  bool isShowingQtProperties() const noexcept { return m_showQtProperties; }
-
-  void setShowQtProperties(bool showQtProperties) noexcept {
-    m_showQtProperties = showQtProperties;
+  void setNameFilter(const QRegularExpression& filter) noexcept {
+    m_filter = filter;
   }
+
+  const QRegularExpression& getNameFilter() const noexcept {
+    return m_filter;
+  }
+
 
   // TODO: Add the ability to hide properties
   // TODO: Add the ability to remove objects
   // TODO: Set stuff in different roles (e.g. tooltips)
+  // TODO: Add ability to sort properties
 
 private:
   QColor _color;
-
-  bool m_showQtProperties;
 
   /// Adds dynamic properties to the model
   void addDynamicProperties(Property *parent, QObject *propertyObject) noexcept;
 
   /// The Root Property for all objects
   Property *m_rootItem;
+
+  /// Any property names that match this filter will not be visible.
+  QRegularExpression m_filter;
 
   /// Custom callback
   QList<UserTypeCB> m_userCallbacks;

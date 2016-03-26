@@ -23,6 +23,7 @@
 #ifndef QPROPERTYEDITORWIDGET_H_
 #define QPROPERTYEDITORWIDGET_H_
 
+#include <QRegularExpression>
 #include <QtWidgets/QTreeView>
 #include "QPropertyEditor/QPropertyModel.h"
 
@@ -124,6 +125,11 @@ public:
    * in use, unregister it with this method.
    */
   void unregisterCustomPropertyCB(UserTypeCB callback) noexcept;
+
+  void setNameFilter(const QRegularExpression& filter) noexcept;
+
+  const QRegularExpression& getNameFilter() const noexcept;
+
 
 private:
   /// The Model for this view

@@ -200,7 +200,11 @@ void QPropertyModel::addItem(QObject *subject) noexcept {
 
       if (property.isDesignable(subject)) {
         // If this class is meant to be user-modified...
-        properties.push_back(property);
+        QString name = property.name();
+        if (m_filter.pattern().isEmpty() || !m_filter.match(name).hasMatch()) {
+          // If there's a filter and the name passes it...
+          properties.push_back(property);
+        }
       }
     }
   }
