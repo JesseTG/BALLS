@@ -2,12 +2,18 @@
 
 #include "ui/docks/MeshManagerWidget.hpp"
 #include "shader/ShaderUniform.hpp"
+#include "Constants.hpp"
 
 namespace balls {
+
+static const QRegularExpression
+    NAME_FILTER(R"%(^(_q_.+|objectName)$)%",
+                QRegularExpression::OptimizeOnFirstUsageOption);
 
 MeshManagerWidget::MeshManagerWidget(QWidget *parent) : QWidget(parent) {
   ui.setupUi(this);
 
+  ui.meshProperties->setNameFilter(NAME_FILTER);
   ui.meshProperties->registerCustomPropertyCB(shader::createShaderProperty);
 
   ui.createMeshButton->addActions({
@@ -59,9 +65,23 @@ void balls::MeshManagerWidget::on_createMeshButton_triggered(QAction *arg1) {
 
   QListWidgetItem *item = new QListWidgetItem();
 
-  item->setData(Qt::DisplayRole, arg1->objectName());
+  item->setFlags(constants::RESOURCE_FLAGS);
+
+  item->setData(Qt::DisplayRole, mesh.objectName());
   item->setData(Qt::UserRole, QVariant::fromValue(static_cast<Mesh *>(&mesh)));
 
   ui.meshList->addItem(item);
   this->meshCreated(mesh);
+}
+
+/// Renames a Mesh object when a user changes its name in the editor
+void balls::MeshManagerWidget::on_meshList_itemChanged(QListWidgetItem *item)
+{
+  QVariant mesh = item->data(Qt::UserRole);
+  if (mesh.isValid()) {
+    Mesh* meshPtr = mesh.value<Mesh*>();
+
+    QVariant name = item->data(Qt::DisplayRole);
+    meshPtr->setObjectName(name.toString());
+  }
 }

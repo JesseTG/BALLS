@@ -4,10 +4,12 @@
 //
 // --------------------------------------
 // Copyright (C) 2007 Volker Wiendl
-// Acknowledgements to Roman alias banal from qt-apps.org for the Enum enhancement
+// Acknowledgements to Roman alias banal from qt-apps.org for the Enum
+// enhancement
 //
 //
-// The QPropertyEditor Library is free software; you can redistribute it and/or modify
+// The QPropertyEditor Library is free software; you can redistribute it and/or
+// modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation version 3 of the License
 //
@@ -29,32 +31,29 @@
 #include <QtWidgets/QAbstractItemView>
 #include <QtCore/QSignalMapper>
 
+static const QRegularExpression
+    HINTS(R"%(([a-zA-Z_][\d\w]+)=([\d\w.]+))%",
+          QRegularExpression::CaseInsensitiveOption |
+              QRegularExpression::OptimizeOnFirstUsageOption);
 
-QVariantDelegate::QVariantDelegate(QObject* parent) noexcept :
-QItemDelegate(parent), m_finishedMapper(new QSignalMapper(this))
-{
-  connect(m_finishedMapper, SIGNAL(mapped(QWidget*)), this,
-          SIGNAL(commitData(QWidget*)));
-  connect(m_finishedMapper, SIGNAL(mapped(QWidget*)), this,
-          SIGNAL(closeEditor(QWidget*)));
+QVariantDelegate::QVariantDelegate(QObject *parent) noexcept
+    : QItemDelegate(parent),
+      m_finishedMapper(new QSignalMapper(this)) {
+  connect(m_finishedMapper, SIGNAL(mapped(QWidget *)), this,
+          SIGNAL(commitData(QWidget *)));
+  connect(m_finishedMapper, SIGNAL(mapped(QWidget *)), this,
+          SIGNAL(closeEditor(QWidget *)));
 }
 
+QVariantDelegate::~QVariantDelegate() {}
 
-QVariantDelegate::~QVariantDelegate()
-{
-}
+QWidget *QVariantDelegate::createEditor(QWidget *parent,
+                                        const QStyleOptionViewItem &option,
+                                        const QModelIndex &index) const {
+  QWidget *editor = nullptr;
+  Property *p = static_cast<Property *>(index.internalPointer());
 
-QWidget* QVariantDelegate::createEditor(
-  QWidget* parent,
-  const QStyleOptionViewItem& option ,
-  const QModelIndex& index
-) const
-{
-  QWidget* editor = nullptr;
-  Property* p = static_cast<Property*>(index.internalPointer());
-
-  switch (p->value().type())
-  {
+  switch (p->value().type()) {
   case QVariant::Color:
   case QVariant::Int:
   case QMetaType::Float:
@@ -63,10 +62,10 @@ QWidget* QVariantDelegate::createEditor(
   case QVariant::UserType:
     editor = p->createEditor(parent, option);
 
-    if (editor)
-    {
-      if (editor->metaObject()->indexOfSignal("editFinished()") != -1)
-      {
+    if (editor) {
+      // If we could create an editor for this property...
+      if (editor->metaObject()->indexOfSignal("editFinished()") != -1) {
+        // If the new editor has a "editFinished()" signal...
         connect(editor, SIGNAL(editFinished()), m_finishedMapper, SLOT(map()));
         m_finishedMapper->setMapping(editor, editor);
       }
@@ -82,53 +81,51 @@ QWidget* QVariantDelegate::createEditor(
   return editor;
 }
 
-void QVariantDelegate::setEditorData(QWidget* editor,
-                                     const QModelIndex& index) const
-{
+void QVariantDelegate::setEditorData(QWidget *editor,
+                                     const QModelIndex &index) const {
   m_finishedMapper->blockSignals(true);
-  QVariant data = index.model()->data(index, Qt::EditRole);
-
-  switch (data.type())
   {
-  case QVariant::Color:
-  case QMetaType::Double:
-  case QMetaType::Float:
-  case QVariant::UserType:
-  case QVariant::Bool:
-  case QVariant::Int:
-    if (static_cast<Property*>(index.internalPointer())->setEditorData(editor,
-        data)) { // if editor couldn't be recognized use default
-      break;
+    QVariant data = index.model()->data(index, Qt::EditRole);
+
+    switch (data.type()) {
+    case QVariant::Color:
+    case QMetaType::Double:
+    case QMetaType::Float:
+    case QVariant::UserType:
+    case QVariant::Bool:
+    case QVariant::Int: {
+      Property *p = static_cast<Property *>(index.internalPointer());
+      if (p->setEditorData(editor, data)) {
+        // If we gave the editor the right type of data...
+        break;
+      }
     }
 
-  default:
-    QItemDelegate::setEditorData(editor, index);
-    break;
+    default:
+      QItemDelegate::setEditorData(editor, index);
+      break;
+    }
   }
-
   m_finishedMapper->blockSignals(false);
 }
 
-void QVariantDelegate::setModelData(QWidget* editor, QAbstractItemModel* model,
-                                    const QModelIndex& index) const
-{
+void QVariantDelegate::setModelData(QWidget *editor, QAbstractItemModel *model,
+                                    const QModelIndex &index) const {
   QVariant data = index.model()->data(index, Qt::EditRole);
 
-  switch (data.type())
-  {
+  switch (data.type()) {
   case QVariant::Color:
   case QMetaType::Double:
   case QMetaType::Float:
   case QVariant::UserType:
   case QVariant::Bool:
-  case QVariant::Int:
-  {
-    QVariant data = static_cast<Property*>(index.internalPointer())->editorData(
-                      editor);
+  case QVariant::Int: {
+    QVariant data =
+        static_cast<Property *>(index.internalPointer())->editorData(editor);
 
-    if (data.isValid())
-    {
-      model->setData(index, data , Qt::EditRole);
+    if (data.isValid()) {
+      // If the property's editor has something valid...
+      model->setData(index, data, Qt::EditRole);
       break;
     }
   }
@@ -139,25 +136,26 @@ void QVariantDelegate::setModelData(QWidget* editor, QAbstractItemModel* model,
   }
 }
 
-void QVariantDelegate::parseEditorHints(QWidget* editor,
-                                        const QString& editorHints) const noexcept
-{
-  if (editor && !editorHints.isEmpty())
-  {
+void QVariantDelegate::parseEditorHints(QWidget *editor,
+                                        const QString &editorHints) const
+    noexcept {
+  if (editor && !editorHints.isEmpty()) {
+    // If we have a valid property editor and some hints to give it...
     editor->blockSignals(true);
-    // Parse for property values
-    QRegExp rx("(.*)(=\\s*)(.*)(;{1})");
-    rx.setMinimal(true);
-    int pos = 0;
-
-    while ((pos = rx.indexIn(editorHints, pos)) != -1)
     {
-      //qDebug("Setting %s to %s", qPrintable(rx.cap(1)), qPrintable(rx.cap(3)));
-      editor->setProperty(qPrintable(rx.cap(1).trimmed()), rx.cap(3).trimmed());
-      pos += rx.matchedLength();
-    }
+      QRegularExpressionMatchIterator matches = HINTS.globalMatch(editorHints);
+      if (matches.isValid() && matches.hasNext()) {
+        // If there were any hints to use...
+        do {
+          auto m = matches.next();
+          QString property = m.captured(1);
+          QString value = m.captured(2);
+          qDebug() << "Setting" << property << "to" << value;
 
+          editor->setProperty(qPrintable(property), value);
+        } while (matches.hasNext());
+      }
+    }
     editor->blockSignals(false);
   }
 }
-

@@ -2,7 +2,7 @@
 #define PRECOMPILED_HPP
 
 // Standard libraries
-#include <unordered_map>
+#include <vector>
 
 // Qt Core
 #include <QtGlobal>

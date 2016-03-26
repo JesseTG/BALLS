@@ -5,6 +5,7 @@
 
 #include <QObject>
 #include "Constants.hpp"
+
 #include <QPropertyEditor/Property.h>
 
 #include <glm/gtx/type_trait.hpp>
@@ -119,7 +120,7 @@ protected:
 
   void setEditorHints(const QString& hints) noexcept override {
     for (int i = 0; i < Size; ++i) {
-      dimProps[i]->setEditorHints(_impl_::parseHints(hints, "xyzw"[i]));
+      dimProps[i]->setEditorHints(hints);
     }
   }
 private:

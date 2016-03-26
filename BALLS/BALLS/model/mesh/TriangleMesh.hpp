@@ -14,6 +14,8 @@ class TriangleMesh : public MeshMesh
 {
   Q_OBJECT
 
+  Q_CLASSINFO("segments", "minimum=1;")
+
   Q_PROPERTY(dvec3 a MEMBER m_a WRITE setA FINAL)
   Q_PROPERTY(dvec3 b MEMBER m_b WRITE setB FINAL)
   Q_PROPERTY(dvec3 c MEMBER m_c WRITE setC FINAL)

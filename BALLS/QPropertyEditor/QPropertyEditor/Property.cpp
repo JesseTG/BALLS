@@ -167,7 +167,9 @@ bool Property::setEditorData(QWidget* editor,
   switch (value().type())
   {
   case QVariant::Color:
+    editor->blockSignals(true);
     static_cast<ColorCombo*>(editor)->setColor(data.value<QColor>());
+    editor->blockSignals(false);
     return true;
 
   case QVariant::Bool:

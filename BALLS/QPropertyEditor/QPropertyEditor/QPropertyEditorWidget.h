@@ -23,9 +23,10 @@
 #ifndef QPROPERTYEDITORWIDGET_H_
 #define QPROPERTYEDITORWIDGET_H_
 
+#include <QRegularExpression>
 #include <QtWidgets/QTreeView>
+#include "QPropertyEditor/QPropertyModel.h"
 
-class QPropertyModel;
 class Property;
 class QListWidgetItem;
 
@@ -61,12 +62,8 @@ class QPropertyEditorWidget : public QTreeView {
   Q_OBJECT
 public:
 
-  /**
-   * A typedef for a callback used to create user defined properties for custom
-   * datatypes
-   */
-  typedef Property* (*UserTypeCB)(const QString& name, QObject* subject,
-                                  Property* parent);
+  using UserTypeCB = QPropertyModel::UserTypeCB;
+
 
   /**
    * \brief Constructor
@@ -128,6 +125,11 @@ public:
    * in use, unregister it with this method.
    */
   void unregisterCustomPropertyCB(UserTypeCB callback) noexcept;
+
+  void setNameFilter(const QRegularExpression& filter) noexcept;
+
+  const QRegularExpression& getNameFilter() const noexcept;
+
 
 private:
   /// The Model for this view
