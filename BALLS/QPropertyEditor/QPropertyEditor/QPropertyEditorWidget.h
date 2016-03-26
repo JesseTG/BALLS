@@ -24,8 +24,8 @@
 #define QPROPERTYEDITORWIDGET_H_
 
 #include <QtWidgets/QTreeView>
+#include "QPropertyEditor/QPropertyModel.h"
 
-class QPropertyModel;
 class Property;
 class QListWidgetItem;
 
@@ -61,12 +61,8 @@ class QPropertyEditorWidget : public QTreeView {
   Q_OBJECT
 public:
 
-  /**
-   * A typedef for a callback used to create user defined properties for custom
-   * datatypes
-   */
-  typedef Property* (*UserTypeCB)(const QString& name, QObject* subject,
-                                  Property* parent);
+  using UserTypeCB = QPropertyModel::UserTypeCB;
+
 
   /**
    * \brief Constructor

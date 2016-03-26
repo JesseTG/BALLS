@@ -25,8 +25,6 @@
 
 #include <QtCore/QAbstractItemModel>
 
-#include "QPropertyEditorWidget.h"
-
 class Property;
 
 /**
@@ -35,7 +33,11 @@ class Property;
 class QPropertyModel : public QAbstractItemModel {
   Q_OBJECT
 public:
-  using UserTypeCB = QPropertyEditorWidget::UserTypeCB;
+  /**
+   * A typedef for a callback used to create user defined properties for custom
+   * datatypes
+   */
+  typedef Property *(*UserTypeCB)(const QString &, QObject *, Property *);
 
   /**
    * Constructor

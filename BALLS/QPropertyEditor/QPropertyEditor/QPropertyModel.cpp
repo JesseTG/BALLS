@@ -29,7 +29,7 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QItemEditorFactory>
 
-using UserTypeCB = QPropertyEditorWidget::UserTypeCB;
+using UserTypeCB = QPropertyModel::UserTypeCB;
 
 
 QPropertyModel::QPropertyModel(QObject* parent) noexcept :
