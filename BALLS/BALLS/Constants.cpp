@@ -124,68 +124,47 @@ const std::array<const char*, 4> ROWS = {ROW0, ROW1, ROW2, ROW3};
 namespace regex {
 using namespace patterns;
 
-const QRegularExpression VEC2(
-  V2.arg(FLOAT),
-  QRegularExpression::OptimizeOnFirstUsageOption
-);
+const QRegularExpression
+  VEC2(V2.arg(FLOAT), QRegularExpression::OptimizeOnFirstUsageOption);
 
 const QRegularExpression BVEC2(
   V2.arg(BOOL),
-  QRegularExpression::OptimizeOnFirstUsageOption |
-  QRegularExpression::CaseInsensitiveOption
-);
-
-const QRegularExpression IVEC2(
-  V2.arg(INT),
   QRegularExpression::OptimizeOnFirstUsageOption
-);
+    | QRegularExpression::CaseInsensitiveOption);
 
-const QRegularExpression UVEC2(
-  V2.arg(UINT),
-  QRegularExpression::OptimizeOnFirstUsageOption
-);
+const QRegularExpression
+  IVEC2(V2.arg(INT), QRegularExpression::OptimizeOnFirstUsageOption);
 
-const QRegularExpression VEC3(
-  V3.arg(FLOAT),
-  QRegularExpression::OptimizeOnFirstUsageOption
-);
+const QRegularExpression
+  UVEC2(V2.arg(UINT), QRegularExpression::OptimizeOnFirstUsageOption);
+
+const QRegularExpression
+  VEC3(V3.arg(FLOAT), QRegularExpression::OptimizeOnFirstUsageOption);
 
 const QRegularExpression BVEC3(
   V3.arg(BOOL),
-  QRegularExpression::OptimizeOnFirstUsageOption |
-  QRegularExpression::CaseInsensitiveOption
-);
-
-const QRegularExpression IVEC3(
-  V3.arg(INT),
   QRegularExpression::OptimizeOnFirstUsageOption
-);
+    | QRegularExpression::CaseInsensitiveOption);
 
-const QRegularExpression UVEC3(
-  V3.arg(UINT),
-  QRegularExpression::OptimizeOnFirstUsageOption
-);
+const QRegularExpression
+  IVEC3(V3.arg(INT), QRegularExpression::OptimizeOnFirstUsageOption);
 
-const QRegularExpression VEC4(
-  V4.arg(FLOAT),
-  QRegularExpression::OptimizeOnFirstUsageOption
-);
+const QRegularExpression
+  UVEC3(V3.arg(UINT), QRegularExpression::OptimizeOnFirstUsageOption);
+
+const QRegularExpression
+  VEC4(V4.arg(FLOAT), QRegularExpression::OptimizeOnFirstUsageOption);
 
 const QRegularExpression BVEC4(
   V4.arg(BOOL),
-  QRegularExpression::OptimizeOnFirstUsageOption |
-  QRegularExpression::CaseInsensitiveOption
-);
-
-const QRegularExpression IVEC4(
-  V4.arg(INT),
   QRegularExpression::OptimizeOnFirstUsageOption
-);
+    | QRegularExpression::CaseInsensitiveOption);
 
-const QRegularExpression UVEC4(
-  V4.arg(UINT),
-  QRegularExpression::OptimizeOnFirstUsageOption
-);
+const QRegularExpression
+  IVEC4(V4.arg(INT), QRegularExpression::OptimizeOnFirstUsageOption);
+
+const QRegularExpression
+  UVEC4(V4.arg(UINT), QRegularExpression::OptimizeOnFirstUsageOption);
 }
 
 std::random_device RANDOM_DEVICE;

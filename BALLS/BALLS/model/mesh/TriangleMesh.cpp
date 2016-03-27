@@ -1,17 +1,18 @@
 #include "precompiled.hpp"
 
-#include "model/mesh/TriangleMesh.hpp"
 #include "Constants.hpp"
+#include "model/mesh/TriangleMesh.hpp"
 
 #include <generator/TriangleMesh.hpp>
 
 namespace balls {
 
 TriangleMesh::TriangleMesh(QObject *parent)
-    : MeshMesh(parent, Type::Triangle),
-      m_a(glm::normalize(dvec3(-1.0, -1.0, 0.0))),
-      m_b(glm::normalize(dvec3(1.0, -1.0, 0.0))), m_c(0.0, 1.0, 0.0),
-      m_segments(4u) {
+  : MeshMesh(parent, Type::Triangle),
+    m_a(glm::normalize(dvec3(-1.0, -1.0, 0.0))),
+    m_b(glm::normalize(dvec3(1.0, -1.0, 0.0))),
+    m_c(0.0, 1.0, 0.0),
+    m_segments(4u) {
   updateMesh();
 }
 

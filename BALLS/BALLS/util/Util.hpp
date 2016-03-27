@@ -6,15 +6,15 @@
 
 #include <QtCore/QDebug>
 #include <QtCore/QHash>
+#include <QtCore/QJsonValue>
 #include <QtCore/QMetaTypeId>
 #include <QtCore/QString>
-#include <QtCore/QJsonValue>
 
-#include <QtGui/QMatrix4x4>
 #include <QtGui/QGenericMatrix>
+#include <QtGui/QMatrix4x4>
 
-#include <qopenglext.h>
 #include <qopengl.h>
+#include <qopenglext.h>
 
 namespace balls {
 namespace util {
@@ -33,7 +33,8 @@ bool isVectorType(const GLenum) noexcept;
 bool isMatrixType(const GLenum) noexcept;
 bool isScalarType(const GLenum) noexcept;
 
-/// Returns a value suitable for storing in an OpenGL vector or matrix (e.g. bvec2)
+/// Returns a value suitable for storing in an OpenGL vector or matrix (e.g.
+/// bvec2)
 QVariant asGlComponent(const GLenum, const QVariant&) noexcept;
 
 const char* resolveGLType(const GLenum) noexcept;
@@ -44,9 +45,8 @@ QJsonValue toJsonValue(const GLenum, const QVariant&) noexcept;
 
 float fastInvSqrt(float number) noexcept;
 
-template<class T>
-T mapRange(T x, T in_min, T in_max, T out_min, T out_max) noexcept
-{
+template <class T>
+T mapRange(T x, T in_min, T in_max, T out_min, T out_max) noexcept {
   return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 }
 }
@@ -63,7 +63,7 @@ struct hash<QString> {
   }
 };
 
-template<>
+template <>
 struct hash<QByteArray> {
   using argument_type = QByteArray;
   using result_type = size_t;

@@ -3,6 +3,4 @@
 
 using namespace glm;
 
-namespace balls {
-
-}
+namespace balls {}

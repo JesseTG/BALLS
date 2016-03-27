@@ -7,7 +7,7 @@
 
 namespace balls {
 
-class FileException : public std::exception {
+class Q_DECL_DEPRECATED FileException : public std::exception {
 public:
   FileException(const QFileDevice&) noexcept;
   FileException(const QFileDevice*) noexcept;

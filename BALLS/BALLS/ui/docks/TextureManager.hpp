@@ -14,7 +14,8 @@ public:
 
 private slots:
   void loadImage();
-  void on_textureList_currentItemChanged(QListWidgetItem *current, QListWidgetItem *previous);
+  void on_textureList_currentItemChanged(
+    QListWidgetItem *current, QListWidgetItem *previous);
 
 private:
   Ui::TextureManager ui;

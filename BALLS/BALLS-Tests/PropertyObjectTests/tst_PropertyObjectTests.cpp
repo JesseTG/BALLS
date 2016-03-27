@@ -2,16 +2,16 @@
 
 #include <memory>
 
-#include "util/MetaTypeConverters.hpp"
+#include <QtTest>
+#include <QMetaType>
+#include <QString>
+#include <QVariant>
+
 #include "ui/property/MatrixProperties.hpp"
 #include "ui/property/Vector2Property.hpp"
 #include "ui/property/Vector3Property.hpp"
 #include "ui/property/Vector4Property.hpp"
-
-#include <QString>
-#include <QtTest>
-#include <QMetaType>
-#include <QVariant>
+#include "util/MetaTypeConverters.hpp"
 
 using namespace balls;
 
@@ -24,46 +24,43 @@ class PropertyObjectTests : public QObject {
 private:
   QObject object;
 
-  template<class Prop>
+  template <class Prop>
   inline void changeValue_addProp(const typename Prop::Type& t) noexcept {
     const char* name = QMetaType::typeName(qMetaTypeId<typename Prop::Type>());
-    QTest::newRow(name)
-        << static_cast<Property*>(new Prop(name, &object, &object))
-    << QVariant::fromValue(t);
+    QTest::newRow(name) << static_cast<Property*>(
+                             new Prop(name, &object, &object))
+                        << QVariant::fromValue(t);
   }
 
-  template<class Prop>
-  inline void fromString_add(const QString& input,
-                             const typename Prop::Type& expected) noexcept {
+  template <class Prop>
+  inline void fromString_add(
+    const QString& input, const typename Prop::Type& expected) noexcept {
     const char* name = QMetaType::typeName(qMetaTypeId<typename Prop::Type>());
 
-    QTest::newRow(name)
-        << static_cast<Property*>(new Prop(name, &object, &object))
-    << input
-    << QVariant::fromValue(expected);
+    QTest::newRow(name) << static_cast<Property*>(
+                             new Prop(name, &object, &object))
+                        << input << QVariant::fromValue(expected);
   }
 
-  template<class Prop>
-  inline void fromString_add(const QString& name, const QString& input,
-                             const typename Prop::Type& expected) noexcept {
+  template <class Prop>
+  inline void fromString_add(
+    const QString& name,
+    const QString& input,
+    const typename Prop::Type& expected) noexcept {
     QTest::newRow(qPrintable(name))
-        << static_cast<Property*>(new Prop("property", &object, &object))
-    << input
-    << QVariant::fromValue(expected);
+      << static_cast<Property*>(new Prop("property", &object, &object)) << input
+      << QVariant::fromValue(expected);
   }
 
-  template<class Prop>
+  template <class Prop>
   inline void changeProps_add(
     const QString& name,
     const typename Prop::Type& input,
     const QVariantHash& changes,
-    const typename Prop::Type& expected
-  ) noexcept {
+    const typename Prop::Type& expected) noexcept {
     QTest::newRow(qPrintable(name))
-        << static_cast<Property*>(new Prop("property", &object, &object))
-    << QVariant::fromValue(input)
-    << changes
-    << QVariant::fromValue(expected);
+      << static_cast<Property*>(new Prop("property", &object, &object))
+      << QVariant::fromValue(input) << changes << QVariant::fromValue(expected);
   }
 private slots /* general */:
   void initTestCase();
@@ -146,26 +143,27 @@ void PropertyObjectTests::changeIndividualProperties_data() {
   QTest::addColumn<QVariant>("expected");
 
   changeProps_add<Vec2Property>("vec2", vec2(1, 5), {{"y", 7}}, vec2(1, 7));
-  changeProps_add<Vec3Property>("vec3", vec3(1, 2, 3), {{"x", 0}}, vec3(0, 2, 3));
+  changeProps_add<Vec3Property>(
+    "vec3", vec3(1, 2, 3), {{"x", 0}}, vec3(0, 2, 3));
   changeProps_add<Vec4Property>(
-  "vec4", vec4(0, 0, 0, 0), {{"x", 1}, {"y", 4}, {"z", 6}, {"w", 8}}, vec4(1, 4,
-  6, 8)
-  );
+    "vec4",
+    vec4(0, 0, 0, 0),
+    {{"x", 1}, {"y", 4}, {"z", 6}, {"w", 8}},
+    vec4(1, 4, 6, 8));
   changeProps_add<Mat2Property>(
-  "mat2", mat2(4), {{"col0", QVariant::fromValue(vec2(5, 5))}}, mat2(5, 5, 0, 4)
-  );
+    "mat2",
+    mat2(4),
+    {{"col0", QVariant::fromValue(vec2(5, 5))}},
+    mat2(5, 5, 0, 4));
   changeProps_add<Vec2Property>(
-  "lowercase only", vec2(0, 5), {{"X", 7}}, vec2(0, 5)
-  );
+    "lowercase only", vec2(0, 5), {{"X", 7}}, vec2(0, 5));
   changeProps_add<Vec2Property>(
-  "uint -> float", vec2(5, 7), {{"y", 10u}}, vec2(5, 10)
-  );
+    "uint -> float", vec2(5, 7), {{"y", 10u}}, vec2(5, 10));
   changeProps_add<BVec4Property>(
     "various -> bool",
     bvec4(true, false, false, true),
-  {{"x", 5}, {"y", 0u}, {"z", -6.7f}, {"w", -0.0}},
-  bvec4(true, false, true, false)
-  );
+    {{"x", 5}, {"y", 0u}, {"z", -6.7f}, {"w", -0.0}},
+    bvec4(true, false, true, false));
 }
 
 void PropertyObjectTests::changeIndividualProperties() {
@@ -223,56 +221,45 @@ void PropertyObjectTests::fromString_data() {
   fromString_add<IVec4Property>("0, -6, 12, 1", ivec4(0, -6, 12, 1));
   fromString_add<DVec4Property>("3.5, 3, 5, 0", dvec4(3.5, 3, 5, 0));
   fromString_add<BVec4Property>(
-    "true, true, false, true", bvec4(true, true, false, true)
-  );
+    "true, true, false, true", bvec4(true, true, false, true));
   fromString_add<UVec4Property>("4, 6, 7, 8", uvec4(4, 6, 7, 8));
 
   fromString_add<Vec4Property>("no spaces", "3,3,3,3", vec4(3, 3, 3, 3));
   fromString_add<Vec4Property>(
-    "lots of space", "   4,    0   , 12 , 33 ", vec4(4, 0, 12, 33)
-  );
+    "lots of space", "   4,    0   , 12 , 33 ", vec4(4, 0, 12, 33));
   fromString_add<BVec4Property>(
-    "bools from numbers", "1, 0, -1, 12", bvec4(true, false, true, true)
-  );
+    "bools from numbers", "1, 0, -1, 12", bvec4(true, false, true, true));
 
   fromString_add<BVec4Property>(
-    "bools from t/f", "t, f, T, F", bvec4(true, false, true, false)
-  );
+    "bools from t/f", "t, f, T, F", bvec4(true, false, true, false));
 
   fromString_add<BVec4Property>(
-    "case insensitive bools", "TRUE, fAlSe, TRuE, falsE", bvec4(1, 0, 1, 0)
-  );
+    "case insensitive bools", "TRUE, fAlSe, TRuE, falsE", bvec4(1, 0, 1, 0));
   fromString_add<BVec4Property>(
-    "bools from yes/no", "y, n, YES, No", bvec4(true, false, true, false)
-  );
+    "bools from yes/no", "y, n, YES, No", bvec4(true, false, true, false));
   fromString_add<BVec4Property>(
-    "bools from on/off", "on, off, ON, OFF", bvec4(true, false, true, false)
-  );
+    "bools from on/off", "on, off, ON, OFF", bvec4(true, false, true, false));
   fromString_add<Vec2Property>("trailing commas OK", "0, 2,", vec2(0, 2));
   fromString_add<Vec2Property>(
-    "too many numbers given", "10, 23, 14, 15", vec2(10, 23)
-  );
+    "too many numbers given", "10, 23, 14, 15", vec2(10, 23));
   fromString_add<Vec2Property>(
-    "more than 4 numbers given", "1, 2, 3, 4, 5, 6, 7", vec2(1, 2)
-  );
+    "more than 4 numbers given", "1, 2, 3, 4, 5, 6, 7", vec2(1, 2));
   fromString_add<Vec4Property>(
-    "too few numbers given", "5, 6", vec4(5, 6, 0, 0)
-  );
+    "too few numbers given", "5, 6", vec4(5, 6, 0, 0));
   fromString_add<Vec4Property>("empty input", "", vec4(0, 0, 0, 0));
   fromString_add<Vec4Property>("only whitespace", "     ", vec4(0, 0, 0, 0));
   fromString_add<Vec4Property>("commas, no numbers", " , ,,", vec4(0, 0, 0, 0));
   fromString_add<Vec4Property>("commas misplaced", ",2,,3", vec4(0, 2, 0, 3));
   fromString_add<Vec3Property>(
-    "words as input", "france, spain, china", vec3(0, 0, 0)
-  );
+    "words as input", "france, spain, china", vec3(0, 0, 0));
   fromString_add<Vec3Property>("some words", "cheese, 2, 5", vec3(0, 2, 5));
   fromString_add<Vec2Property>("square brackets OK", "[ 1, 4]", vec2(1, 4));
   fromString_add<Vec2Property>("parens OK", "(5, 6)", vec2(5, 6));
   fromString_add<BVec2Property>(
-    "curly braces OK", "{true,false}", bvec2(true, false)
-  );
+    "curly braces OK", "{true,false}", bvec2(true, false));
   fromString_add<Vec2Property>("angle brackets OK", "<8,0>", vec2(8, 0));
-  fromString_add<Vec3Property>("mismatched brackets", "(1,8, 7>", vec3(1, 8, 7));
+  fromString_add<Vec3Property>(
+    "mismatched brackets", "(1,8, 7>", vec3(1, 8, 7));
   // TODO: Support scientific notation for floats
   // TODO: Support hexadecimal/binary/octal for integers
 }

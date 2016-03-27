@@ -7,8 +7,7 @@
 
 namespace balls {
 
-class TubeMesh : public BaseCylindricalMesh
-{
+class TubeMesh : public BaseCylindricalMesh {
   Q_OBJECT
 
   Q_PROPERTY(double innerRadius MEMBER m_innerRadius WRITE setInnerRadius FINAL)
@@ -17,8 +16,10 @@ class TubeMesh : public BaseCylindricalMesh
 
 public:
   TubeMesh(QObject* parent = nullptr);
+
 protected /* methods */:
   void assignMesh() override;
+
 private /* members */:
   unsigned int m_rings;
   double m_innerRadius;

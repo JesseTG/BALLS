@@ -2,8 +2,8 @@
 #define TYPEINFO_HPP
 
 #include <cstdint>
-#include <utility>
 #include <unordered_map>
+#include <utility>
 
 #include <QString>
 
@@ -38,10 +38,7 @@ struct UniformInfo {
   }
 
   bool operator==(const UniformInfo& o) const noexcept {
-    return
-      type == o.type &&
-      size == o.size &&
-      name == o.name;
+    return type == o.type && size == o.size && name == o.name;
   }
 };
 

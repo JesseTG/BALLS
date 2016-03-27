@@ -7,16 +7,17 @@
 
 namespace balls {
 
-class SphericalConeMesh : public BaseCylindricalMesh
-{
+class SphericalConeMesh : public BaseCylindricalMesh {
   Q_OBJECT
 
   Q_PROPERTY(uint rings MEMBER m_rings WRITE setRings FINAL)
 
 public:
   SphericalConeMesh(QObject* parent = nullptr);
+
 protected /* methods */:
   void assignMesh() override;
+
 private /* members */:
   unsigned int m_rings;
 

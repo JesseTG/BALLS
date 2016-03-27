@@ -6,16 +6,15 @@
 #include <QtGlobal>
 
 #include "config/ProjectConfig.hpp"
-#include "shader/ShaderUniform.hpp"
-#include "model/Uniforms.hpp"
 #include "model/Meshes.hpp"
+#include "model/Uniforms.hpp"
+#include "shader/ShaderUniform.hpp"
 
 class QsciLexerGLSL;
 class QErrorMessage;
 class QFileDialog;
 class QSettings;
 class QCloseEvent;
-
 
 namespace balls {
 
@@ -32,11 +31,11 @@ public:
 
   ProjectConfig getProjectConfig() const noexcept;
 public slots:
-//  void setMesh(const int) noexcept;
+  //  void setMesh(const int) noexcept;
   void saveProject() noexcept;
   void loadProject();
 protected /* events */:
-  void closeEvent(QCloseEvent *) override;
+  void closeEvent(QCloseEvent*) override;
 
 private /* members */:
   Ui::BallsWindow ui;
@@ -59,14 +58,14 @@ private slots:
   void _loadProject(const QString&) noexcept;
   void loadExample() noexcept;
 
-//  void initializeMeshGenerators() noexcept;
+  //  void initializeMeshGenerators() noexcept;
   void forceShaderUpdate() noexcept;
   void reportFatalError(const QString&, const QString&, const int) noexcept;
   void reportWarning(const QString&, const QString&) noexcept;
   void showAboutQt() noexcept;
 
   // HACK: Must figure out why Qt Designer doesn't see meshManager
-  void on_meshManager_meshSelected(const Mesh &);
+  void on_meshManager_meshSelected(const Mesh&);
 };
 }
 

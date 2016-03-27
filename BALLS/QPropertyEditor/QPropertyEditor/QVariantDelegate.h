@@ -4,10 +4,12 @@
 //
 // --------------------------------------
 // Copyright (C) 2007 Volker Wiendl
-// Acknowledgements to Roman alias banal from qt-apps.org for the Enum enhancement
+// Acknowledgements to Roman alias banal from qt-apps.org for the Enum
+// enhancement
 //
 //
-// The QPropertyEditor Library is free software; you can redistribute it and/or modify
+// The QPropertyEditor Library is free software; you can redistribute it and/or
+// modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation version 3 of the License
 //
@@ -28,7 +30,8 @@
 class QSignalMapper;
 
 /**
- * This class is used to create the editor widgets for datatypes encapsulated in QVariant variables
+ * This class is used to create the editor widgets for datatypes encapsulated in
+ * QVariant variables
  */
 class QVariantDelegate : public QItemDelegate {
   Q_OBJECT
@@ -43,36 +46,44 @@ public:
   virtual ~QVariantDelegate();
 
   /**
-   * Creates an editor widget as child of a given widget for a specific QModelIndex
+   * Creates an editor widget as child of a given widget for a specific
+   * QModelIndex
    *
    * @param parent the parent widget for the editor
    * @param option some style options that the editor should use
    * @param index the index of the item the editor will be created for
    * @return QWidget the editor widget
    */
-  QWidget* createEditor(QWidget* parent, const QStyleOptionViewItem& option,
-                        const QModelIndex& index) const override;
+  QWidget* createEditor(
+    QWidget* parent,
+    const QStyleOptionViewItem& option,
+    const QModelIndex& index) const override;
 
   /**
-   * Tries to set the editor data based on the value stored at a specific QModelIndex
+   * Tries to set the editor data based on the value stored at a specific
+   * QModelIndex
    * @param editor the editor widget
    * @param index the model index of the value that should be used in the editor
    */
-  virtual void setEditorData(QWidget* editor,
-                             const QModelIndex& index) const override;
+  virtual void
+    setEditorData(QWidget* editor, const QModelIndex& index) const override;
 
   /**
    * Sets the data of a specific QModelIndex to tha value of the editor widget
    * @param editor the editor widget that contains the new value
    * @param model the model that contains the index
-   * @param index the index within the model whose data value should be set to the data value of the editor
+   * @param index the index within the model whose data value should be set to
+   * the data value of the editor
    */
-  virtual void setModelData(QWidget* editor, QAbstractItemModel* model,
-                            const QModelIndex& index) const override;
+  virtual void setModelData(
+    QWidget* editor,
+    QAbstractItemModel* model,
+    const QModelIndex& index) const override;
 
 private:
-  void parseEditorHints(QWidget* editor, const QString& editorHints) const noexcept;
+  void parseEditorHints(QWidget* editor, const QString& editorHints) const
+    noexcept;
 
-  QSignalMapper*  m_finishedMapper;
+  QSignalMapper* m_finishedMapper;
 };
 #endif

@@ -23,17 +23,17 @@
 //
 // *************************************************************************************************
 #include "precompiled.hpp"
+#include "QPropertyEditorWidget.h"
 
 #include <QListWidgetItem>
 
-#include "QPropertyEditorWidget.h"
+#include "Property.h"
 #include "QPropertyModel.h"
 #include "QVariantDelegate.h"
-#include "Property.h"
 
 QPropertyEditorWidget::QPropertyEditorWidget(QWidget *parent) noexcept
-    : QTreeView(parent),
-      m_model(new QPropertyModel(this)) {
+  : QTreeView(parent),
+    m_model(new QPropertyModel(this)) {
   setModel(m_model);
   setItemDelegate(new QVariantDelegate(this));
   setUniformRowHeights(true);
@@ -82,11 +82,11 @@ void QPropertyEditorWidget::unregisterCustomPropertyCB(UserTypeCB cb) noexcept {
 }
 
 void QPropertyEditorWidget::setNameFilter(
-    const QRegularExpression &filter) noexcept {
+  const QRegularExpression &filter) noexcept {
   m_model->setNameFilter(filter);
 }
 
 const QRegularExpression &QPropertyEditorWidget::getNameFilter() const
-    noexcept {
+  noexcept {
   return m_model->getNameFilter();
 }

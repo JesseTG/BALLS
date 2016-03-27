@@ -7,8 +7,7 @@
 
 namespace balls {
 
-class SpringMesh : public MeshMesh
-{
+class SpringMesh : public MeshMesh {
   Q_OBJECT
 
   Q_PROPERTY(double minor MEMBER m_minor WRITE setMinor FINAL)
@@ -23,8 +22,10 @@ class SpringMesh : public MeshMesh
 
 public:
   SpringMesh(QObject* parent = nullptr);
+
 protected /* methods */:
   void assignMesh() override;
+
 private /* members */:
   double m_minor;
   double m_major;

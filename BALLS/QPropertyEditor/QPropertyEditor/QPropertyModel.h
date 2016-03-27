@@ -51,8 +51,8 @@ public:
   /// Destructor
   virtual ~QPropertyModel();
 
-  QModelIndex index(int, int,
-                    const QModelIndex & = QModelIndex()) const override;
+  QModelIndex
+    index(int, int, const QModelIndex & = QModelIndex()) const override;
 
   QModelIndex parent(const QModelIndex &) const override;
 
@@ -62,13 +62,13 @@ public:
 
   QVariant data(const QModelIndex &, int = Qt::DisplayRole) const override;
 
-  bool setData(const QModelIndex &, const QVariant &,
-               int = Qt::EditRole) override;
+  bool
+    setData(const QModelIndex &, const QVariant &, int = Qt::EditRole) override;
 
   Qt::ItemFlags flags(const QModelIndex &) const override;
 
-  QVariant headerData(int, Qt::Orientation,
-                      int = Qt::DisplayRole) const override;
+  QVariant
+    headerData(int, Qt::Orientation, int = Qt::DisplayRole) const override;
 
   QModelIndex buddy(const QModelIndex &) const override;
 
@@ -85,8 +85,8 @@ public:
    * @param subject the instance of a QObject based class that should be updated
    * @param parent optional model index the propertyObject is child of
    */
-  void updateItem(QObject *subject,
-                  const QModelIndex &parent = QModelIndex()) noexcept;
+  void updateItem(
+    QObject *subject, const QModelIndex &parent = QModelIndex()) noexcept;
 
   /**
    * Removes all objects from the model
@@ -105,11 +105,11 @@ public:
    */
   void unregisterCustomPropertyCB(UserTypeCB callback) noexcept;
 
-  void setNameFilter(const QRegularExpression& filter) noexcept {
+  void setNameFilter(const QRegularExpression &filter) noexcept {
     m_filter = filter;
   }
 
-  const QRegularExpression& getNameFilter() const noexcept {
+  const QRegularExpression &getNameFilter() const noexcept {
     return m_filter;
   }
 

@@ -1,5 +1,5 @@
 
-// Copyright (c) 2011-2012, Daniel M�ller <dm@g4t3.de>
+// Copyright (c) 2011-2012, Daniel Muller <dm@g4t3.de>
 // Computer Graphics Systems Group at the Hasso-Plattner-Institute, Germany
 // All rights reserved.
 //

@@ -4,16 +4,16 @@
 #include <array>
 #include <random>
 
-#include <Qt>
 #include <QMetaType>
+#include <Qt>
 
 namespace constants {
 
 constexpr double EPSILON = 0.00001;
 constexpr int MODEL_ROLE = Qt::ItemDataRole::UserRole;
-constexpr Qt::ItemFlags RESOURCE_FLAGS =
-    Qt::ItemNeverHasChildren | Qt::ItemIsEnabled | Qt::ItemIsSelectable |
-    Qt::ItemIsEditable | Qt::ItemIsDragEnabled | Qt::ItemIsDropEnabled;
+constexpr Qt::ItemFlags RESOURCE_FLAGS = Qt::ItemNeverHasChildren
+  | Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable
+  | Qt::ItemIsDragEnabled | Qt::ItemIsDropEnabled;
 
 namespace json {
 extern const char *VERSION;

@@ -1,35 +1,34 @@
 #ifndef MATRIXPROPERTY_HPP
 #define MATRIXPROPERTY_HPP
 
+#include <QString>
 #include <array>
 #include <type_traits>
-#include <QString>
 
 #include <glm/gtx/type_trait.hpp>
 
-#include "QPropertyEditor/Property.h"
 #include "Constants.hpp"
+#include "QPropertyEditor/Property.h"
 
 namespace balls {
 using std::array;
 
-template<template <typename, glm::precision> class T, class ColProp>
+template <template <typename, glm::precision> class T, class ColProp>
 class MatrixProperty : public Property {
   using Matrix = T<typename ColProp::Type::value_type, glm::defaultp>;
   static_assert(
     std::is_same<typename ColProp::Type, typename Matrix::col_type>::value,
-    "ColProp's value type must be Matrix's column type"
-  );
+    "ColProp's value type must be Matrix's column type");
 
   using Column = typename Matrix::col_type;
-  static const glm::length_t Size =  glm::type<T>::components;
+  static const glm::length_t Size = glm::type<T>::components;
+
 public:
   using Type = Matrix;
-  MatrixProperty(const QString& name = "",
-                 QObject* subject = nullptr,
-                 QObject* parent = nullptr
-              ) noexcept :
-  Property(name, subject, parent) {
+  MatrixProperty(
+    const QString& name = "",
+    QObject* subject = nullptr,
+    QObject* parent = nullptr) noexcept : Property(name, subject, parent) {
     using namespace constants;
 
     for (int i = 0; i < ColProp::Size; ++i) {
@@ -70,25 +69,41 @@ public:
 protected:
   array<ColProp*, ColProp::Size> colProps;
 
-  inline Column _getx() const noexcept { return _get<0>(); }
-  inline void _setx(const Column c) noexcept { _set<0>(c); }
+  inline Column _getx() const noexcept {
+    return _get<0>();
+  }
+  inline void _setx(const Column c) noexcept {
+    _set<0>(c);
+  }
 
-  inline Column _gety() const noexcept { return _get<1>(); }
-  inline void _sety(const Column c) noexcept { _set<1>(c); }
+  inline Column _gety() const noexcept {
+    return _get<1>();
+  }
+  inline void _sety(const Column c) noexcept {
+    _set<1>(c);
+  }
 
-  inline Column _getz() const noexcept { return _get<2>(); }
-  inline void _setz(const Column c) noexcept { _set<2>(c); }
+  inline Column _getz() const noexcept {
+    return _get<2>();
+  }
+  inline void _setz(const Column c) noexcept {
+    _set<2>(c);
+  }
 
-  inline Column _getw() const noexcept { return _get<3>(); }
-  inline void _setw(const Column c) noexcept { _set<3>(c); }
+  inline Column _getw() const noexcept {
+    return _get<3>();
+  }
+  inline void _setw(const Column c) noexcept {
+    _set<3>(c);
+  }
 
 private:
-  template<int C>
+  template <int C>
   Column _get() const noexcept {
     return value().template value<Matrix>()[C];
   }
 
-  template<int C>
+  template <int C>
   void _set(const Column& c) noexcept {
     Matrix v = value().template value<Matrix>();
     v[C] = c;

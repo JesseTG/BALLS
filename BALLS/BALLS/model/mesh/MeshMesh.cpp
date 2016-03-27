@@ -2,15 +2,14 @@
 
 #include "model/mesh/MeshMesh.hpp"
 
-#include <generator/Triangle.hpp>
-#include <generator/MeshVertex.hpp>
 #include <generator/EmptyMesh.hpp>
+#include <generator/MeshVertex.hpp>
+#include <generator/Triangle.hpp>
 
 namespace balls {
 
-MeshMesh::MeshMesh(QObject* parent, Type type)
-    : Mesh(parent, type, Topology::Volume), m_mesh(generator::EmptyMesh()) {}
-
+MeshMesh::MeshMesh(QObject *parent, Type type)
+  : Mesh(parent, type, Topology::Volume), m_mesh(generator::EmptyMesh()) {}
 
 void MeshMesh::updateMesh() {
   this->assignMesh();

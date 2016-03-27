@@ -51,6 +51,5 @@ Q_LOGGING_CATEGORY(Name, "shader")
 namespace ui {
 Q_LOGGING_CATEGORY(Name, "ui")
 }
-
 }
 }

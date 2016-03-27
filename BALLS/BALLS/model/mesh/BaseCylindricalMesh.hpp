@@ -7,8 +7,7 @@
 
 namespace balls {
 
-class BaseCylindricalMesh : public BaseSphereMesh
-{
+class BaseCylindricalMesh : public BaseSphereMesh {
   Q_OBJECT
 
   Q_PROPERTY(double size MEMBER m_size WRITE setSize FINAL)

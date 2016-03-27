@@ -20,8 +20,8 @@
 
 #include <unordered_map>
 
-#include <Qsci/qscistyle.h>
 #include <Qsci/qscilexercustom.h>
+#include <Qsci/qscistyle.h>
 
 class QsciLexerGLSL : public QsciLexerCustom {
   Q_OBJECT
@@ -35,13 +35,13 @@ public:
   const char* blockStartKeyword(int* style = 0) const noexcept override;
   const char* blockStart(int* style = 0) const noexcept override;
   const char* blockEnd(int* style = 0) const noexcept override;
-  int   braceStyle() const noexcept override;
-  void    styleText(int start, int end) noexcept override;
+  int braceStyle() const noexcept override;
+  void styleText(int start, int end) noexcept override;
   QString description(int style) const noexcept override;
-  QFont   defaultFont(int style) const noexcept override;
-  QColor  defaultColor(int style) const noexcept override;
-  QColor  defaultPaper(int style) const noexcept override;
-  bool    defaultEolFill(int style) const noexcept override;
+  QFont defaultFont(int style) const noexcept override;
+  QColor defaultColor(int style) const noexcept override;
+  QColor defaultPaper(int style) const noexcept override;
+  bool defaultEolFill(int style) const noexcept override;
   const char* keywords(int set) const noexcept override;
   const char* wordCharacters() const noexcept override;
 
@@ -49,21 +49,14 @@ private:
   QsciLexerGLSL(const QsciLexerGLSL& other) = delete;
   QsciLexerGLSL& operator=(const QsciLexerGLSL& other) = delete;
 
-  void  styleLine(const QString& line, int size) noexcept;
+  void styleLine(const QString& line, int size) noexcept;
 
 private:
-  enum StyleType {
-    Default = 0,
-    Comment,
-    Keyword,
-    Operator,
-    Macro,
-    Count
-  };
+  enum StyleType { Default = 0, Comment, Keyword, Operator, Macro, Count };
 
 private:
-  std::unordered_map<int, QsciStyle>  _styles;
+  std::unordered_map<int, QsciStyle> _styles;
   QFont _defaultFont;
 };
 
-#endif // SHADERLEXER_H
+#endif // QSCILEXERGLSL_H

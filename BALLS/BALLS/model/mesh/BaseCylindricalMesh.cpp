@@ -1,7 +1,7 @@
 #include "precompiled.hpp"
 
-#include "model/mesh/BaseCylindricalMesh.hpp"
 #include "Constants.hpp"
+#include "model/mesh/BaseCylindricalMesh.hpp"
 
 namespace balls {
 

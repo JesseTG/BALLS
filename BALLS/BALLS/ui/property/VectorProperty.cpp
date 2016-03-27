@@ -7,17 +7,17 @@ using namespace glm;
 
 namespace _impl_ {
 template <>
-QString _getDisplayText<2>(const array<Property *, 2> &dims,
-                           const int role) noexcept {
+QString _getDisplayText<2>(
+  const array<Property *, 2> &dims, const int role) noexcept {
   switch (role) {
 
   case Qt::DisplayRole:
     return Property::tr("[ %1, %2 ]")
-        .arg(dims[0]->value().toString(), dims[1]->value().toString());
+      .arg(dims[0]->value().toString(), dims[1]->value().toString());
 
   case Qt::EditRole:
-    return Property::tr("%1, %2")
-        .arg(dims[0]->value().toString(), dims[1]->value().toString());
+    return Property::tr("%1, %2").arg(
+      dims[0]->value().toString(), dims[1]->value().toString());
 
   default:
     return "";
@@ -25,19 +25,23 @@ QString _getDisplayText<2>(const array<Property *, 2> &dims,
 }
 
 template <>
-QString _getDisplayText<3>(const array<Property *, 3> &dims,
-                           const int role) noexcept {
+QString _getDisplayText<3>(
+  const array<Property *, 3> &dims, const int role) noexcept {
   switch (role) {
 
   case Qt::DisplayRole:
     return Property::tr("[ %1, %2, %3 ]")
-        .arg(dims[0]->value().toString(), dims[1]->value().toString(),
-             dims[2]->value().toString());
+      .arg(
+        dims[0]->value().toString(),
+        dims[1]->value().toString(),
+        dims[2]->value().toString());
 
   case Qt::EditRole:
     return Property::tr("%1, %2, %3")
-        .arg(dims[0]->value().toString(), dims[1]->value().toString(),
-             dims[2]->value().toString());
+      .arg(
+        dims[0]->value().toString(),
+        dims[1]->value().toString(),
+        dims[2]->value().toString());
 
   default:
     return "";
@@ -45,31 +49,29 @@ QString _getDisplayText<3>(const array<Property *, 3> &dims,
 }
 
 template <>
-QString _getDisplayText<4>(const array<Property *, 4> &dims,
-                           const int role) noexcept {
+QString _getDisplayText<4>(
+  const array<Property *, 4> &dims, const int role) noexcept {
   switch (role) {
 
   case Qt::DisplayRole:
     return Property::tr("[ %1, %2, %3, %4 ]")
-        .arg(dims[0]->value().toString(), dims[1]->value().toString(),
-             dims[2]->value().toString(), dims[3]->value().toString());
+      .arg(
+        dims[0]->value().toString(),
+        dims[1]->value().toString(),
+        dims[2]->value().toString(),
+        dims[3]->value().toString());
 
   case Qt::EditRole:
     return Property::tr("%1, %2, %3, %4")
-        .arg(dims[0]->value().toString(), dims[1]->value().toString(),
-             dims[2]->value().toString(), dims[3]->value().toString());
+      .arg(
+        dims[0]->value().toString(),
+        dims[1]->value().toString(),
+        dims[2]->value().toString(),
+        dims[3]->value().toString());
 
   default:
     return "";
   };
-}
-
-QString parseHints(const QString &hints, const QChar) noexcept {
-  if (hints.isEmpty()) {
-    return "";
-  }
-
-  return hints;
 }
 } // _impl_
 

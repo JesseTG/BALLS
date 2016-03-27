@@ -25,26 +25,26 @@
 #include "precompiled.hpp"
 #include "QPropertyModel.h"
 
-#include "Property.h"
-#include "EnumProperty.h"
-
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QItemEditorFactory>
+
+#include "EnumProperty.h"
+#include "Property.h"
 
 using UserTypeCB = QPropertyModel::UserTypeCB;
 
 QPropertyModel::QPropertyModel(QObject *parent) noexcept
-    : QAbstractItemModel(parent),
-      m_rootItem(new Property("Root", nullptr, this)) {
+  : QAbstractItemModel(parent),
+    m_rootItem(new Property("Root", nullptr, this)) {
   _color = QApplication::palette("QTreeView")
-               .brush(QPalette::Normal, QPalette::Button)
-               .color();
+             .brush(QPalette::Normal, QPalette::Button)
+             .color();
 }
 
 QPropertyModel::~QPropertyModel() {}
 
-QModelIndex QPropertyModel::index(int row, int column,
-                                  const QModelIndex &parent) const {
+QModelIndex
+  QPropertyModel::index(int row, int column, const QModelIndex &parent) const {
   Property *parentItem = m_rootItem;
 
   if (parent.isValid()) {
@@ -87,7 +87,9 @@ int QPropertyModel::rowCount(const QModelIndex &parent) const {
   return parentItem->children().size();
 }
 
-int QPropertyModel::columnCount(const QModelIndex &) const { return 2; }
+int QPropertyModel::columnCount(const QModelIndex &) const {
+  return 2;
+}
 
 QVariant QPropertyModel::data(const QModelIndex &index, int role) const {
   if (!index.isValid()) {
@@ -124,8 +126,8 @@ QVariant QPropertyModel::data(const QModelIndex &index, int role) const {
 }
 
 // edit methods
-bool QPropertyModel::setData(const QModelIndex &index, const QVariant &value,
-                             int role) {
+bool QPropertyModel::setData(
+  const QModelIndex &index, const QVariant &value, int role) {
   if (index.isValid() && role == Qt::EditRole) {
     // If there's an editable property here and we're looking to edit it...
     Property *item = static_cast<Property *>(index.internalPointer());
@@ -153,13 +155,13 @@ Qt::ItemFlags QPropertyModel::flags(const QModelIndex &index) const {
     // If this index represents a read-only value...
     return Qt::ItemIsDragEnabled | Qt::ItemIsSelectable;
   } else {
-    return Qt::ItemIsDragEnabled | Qt::ItemIsEnabled | Qt::ItemIsSelectable |
-           Qt::ItemIsEditable;
+    return Qt::ItemIsDragEnabled | Qt::ItemIsEnabled | Qt::ItemIsSelectable
+      | Qt::ItemIsEditable;
   }
 }
 
-QVariant QPropertyModel::headerData(int section, Qt::Orientation orientation,
-                                    int role) const {
+QVariant QPropertyModel::headerData(
+  int section, Qt::Orientation orientation, int role) const {
   if (orientation == Qt::Horizontal && role == Qt::DisplayRole) {
     switch (section) {
     case 0:
@@ -212,7 +214,7 @@ void QPropertyModel::addItem(QObject *subject) noexcept {
   // finally insert properties for classes containing them
   int r = rowCount();
   Property *propertyItem =
-      new Property(subject->objectName(), nullptr, m_rootItem);
+    new Property(subject->objectName(), nullptr, m_rootItem);
   // Root property
   beginInsertRows(QModelIndex(), r, r + properties.size());
   {
@@ -260,8 +262,8 @@ void QPropertyModel::addItem(QObject *subject) noexcept {
   addDynamicProperties(propertyItem, subject);
 }
 
-void QPropertyModel::updateItem(QObject *subject,
-                                const QModelIndex &parent) noexcept {
+void QPropertyModel::updateItem(
+  QObject *subject, const QModelIndex &parent) noexcept {
   Property *parentItem = m_rootItem;
 
   if (parent.isValid()) {
@@ -282,8 +284,9 @@ void QPropertyModel::updateItem(QObject *subject,
     for (int i = 0, removed = 0; i < childs.count(); ++i) {
       QObject *obj = childs[i];
 
-      if (!(!obj->property("__Dynamic").toBool() ||
-            dynamicProperties.contains(qPrintable(obj->objectName())))) {
+      if (
+        !(!obj->property("__Dynamic").toBool()
+          || dynamicProperties.contains(qPrintable(obj->objectName())))) {
         beginRemoveRows(itemIndex.parent(), i - removed, i - removed);
         {
           ++removed;
@@ -293,13 +296,13 @@ void QPropertyModel::updateItem(QObject *subject,
       }
     }
 
-    addDynamicProperties(static_cast<Property *>(parentItem->parent()),
-                         subject);
+    addDynamicProperties(
+      static_cast<Property *>(parentItem->parent()), subject);
   }
 }
 
-void QPropertyModel::addDynamicProperties(Property *parent,
-                                          QObject *subject) noexcept {
+void QPropertyModel::addDynamicProperties(
+  Property *parent, QObject *subject) noexcept {
   // Get dynamic property names
   QByteArrayList dynamicProps = subject->dynamicPropertyNames();
 
@@ -317,9 +320,9 @@ void QPropertyModel::addDynamicProperties(Property *parent,
   }
 
   std::remove_if(
-      dynamicProps.begin(), dynamicProps.end(), [&](const QByteArray &d) {
-        return d.startsWith("_") || !subject->property(d.data()).isValid();
-      });
+    dynamicProps.begin(), dynamicProps.end(), [&](const QByteArray &d) {
+      return d.startsWith("_") || !subject->property(d.data()).isValid();
+    });
   // Remove any properties that are invalid or reserved
 
   if (!dynamicProps.empty()) {

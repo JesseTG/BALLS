@@ -5,8 +5,8 @@
 #include <QtCore/QObject>
 
 #include <glm/glm.hpp>
-#include <glm/gtx/transform.hpp>
 #include <glm/gtx/string_cast.hpp>
+#include <glm/gtx/transform.hpp>
 
 #include "util/Trackball.hpp"
 #include "util/TypeInfo.hpp"
@@ -27,8 +27,7 @@ class BallsCanvas;
 class Uniforms final : public QObject {
   Q_OBJECT
 
-  // Note: We can't have one uniform be read as multiple types.  So pick a
-  // canonical type, and let BallsCanvas work out the conversions
+  // clang-format off
   Q_PROPERTY(uint elapsedTime READ elapsedTime STORED false DESIGNABLE active("elapsedTime") FINAL)
   Q_PROPERTY(ivec2 mousePos READ mousePos DESIGNABLE active("mousePos") FINAL)
   Q_PROPERTY(ivec2 lastMousePos READ lastMousePos DESIGNABLE active("lastMousePos") FINAL)
@@ -42,12 +41,13 @@ class Uniforms final : public QObject {
   Q_PROPERTY(mat4 view MEMBER _view DESIGNABLE active("view") FINAL)
   Q_PROPERTY(mat4 modelView READ modelView DESIGNABLE active("modelView") STORED false FINAL)
   Q_PROPERTY(mat4 projection MEMBER _projection DESIGNABLE active("projection") FINAL)
+  // clang-format on
 
-  // How about I *ignore* the GLSL type here and let BallsCanvas decide what conversion to make?
   // But maybe use tags for deciding how often to update a static property?
 public:
   explicit Uniforms(QObject* = nullptr) noexcept;
-  // TODO: Minimize calls to READs (because we're probably also sending stuff to the GPU).
+  // TODO: Minimize calls to READs (because we're probably also sending stuff to
+  // the GPU).
 private /* uniform property accessors */:
   uint elapsedTime() const noexcept;
   ivec2 mousePos() const noexcept;
@@ -67,6 +67,7 @@ public /* setters */:
   void setFov(const float) noexcept;
 public slots:
   void receiveUniforms(const UniformCollection&) noexcept;
+
 protected:
   bool eventFilter(QObject* obj, QEvent* event) override;
   bool event(QEvent* e) override;
@@ -106,11 +107,9 @@ private /* uniform source values */:
 
 inline bool Uniforms::active(const QString& name) const noexcept {
   return std::any_of(
-           _uniformList.cbegin(),
-           _uniformList.cend(),
-  [&name](const UniformInfo & u) {
-    return u.name == name;
-  });
+    _uniformList.cbegin(), _uniformList.cend(), [&name](const UniformInfo& u) {
+      return u.name == name;
+    });
 }
 
 inline const UniformCollection& Uniforms::uniformInfo() const noexcept {

@@ -1,16 +1,22 @@
 #include "precompiled.hpp"
 
-#include "model/mesh/TorusMesh.hpp"
 #include "Constants.hpp"
+#include "model/mesh/TorusMesh.hpp"
 
 #include <generator/TorusMesh.hpp>
 
 namespace balls {
 
 TorusMesh::TorusMesh(QObject *parent)
-    : MeshMesh(parent, Type::Torus), m_minor(0.25), m_major(1.0),
-      m_slices(16u), m_segments(32u), m_minorStart(0.0), m_minorSweep(360.0),
-      m_majorStart(0.0), m_majorSweep(360.0) {
+  : MeshMesh(parent, Type::Torus),
+    m_minor(0.25),
+    m_major(1.0),
+    m_slices(16u),
+    m_segments(32u),
+    m_minorStart(0.0),
+    m_minorSweep(360.0),
+    m_majorStart(0.0),
+    m_majorSweep(360.0) {
   updateMesh();
 }
 
@@ -80,8 +86,13 @@ void TorusMesh::setMajorSweep(double majorSweep) {
 
 void TorusMesh::assignMesh() {
   m_mesh = generator::TorusMesh(
-      m_minor, m_major, m_slices, m_segments,
-      glm::radians(m_minorStart), glm::radians(m_minorSweep),
-      glm::radians(m_majorStart), glm::radians(m_majorSweep));
+    m_minor,
+    m_major,
+    m_slices,
+    m_segments,
+    glm::radians(m_minorStart),
+    glm::radians(m_minorSweep),
+    glm::radians(m_majorStart),
+    glm::radians(m_majorSweep));
 }
 }

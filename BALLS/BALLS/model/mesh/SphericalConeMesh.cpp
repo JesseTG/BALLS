@@ -1,13 +1,13 @@
 #include "precompiled.hpp"
 
-#include "model/mesh/SphericalConeMesh.hpp"
 #include "Constants.hpp"
+#include "model/mesh/SphericalConeMesh.hpp"
 
 #include <generator/SphericalConeMesh.hpp>
 
 namespace balls {
 SphericalConeMesh::SphericalConeMesh(QObject *parent)
-    : BaseCylindricalMesh(parent, Type::SphericalCone) {
+  : BaseCylindricalMesh(parent, Type::SphericalCone) {
   m_radius = 1.0;
   m_size = 1.0;
   m_slices = 32u;
@@ -28,8 +28,13 @@ void SphericalConeMesh::setRings(unsigned int rings) {
 }
 
 void SphericalConeMesh::assignMesh() {
-  m_mesh = generator::SphericalConeMesh(m_radius, m_size, m_slices, m_segments,
-                                        m_rings, glm::radians(m_start),
-                                        glm::radians(m_sweep));
+  m_mesh = generator::SphericalConeMesh(
+    m_radius,
+    m_size,
+    m_slices,
+    m_segments,
+    m_rings,
+    glm::radians(m_start),
+    glm::radians(m_sweep));
 }
 }

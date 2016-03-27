@@ -11,8 +11,7 @@ namespace balls {
 using glm::dvec2;
 using glm::uvec2;
 
-class PlaneMesh : public MeshMesh
-{
+class PlaneMesh : public MeshMesh {
   Q_OBJECT
 
   Q_PROPERTY(dvec2 size MEMBER m_size WRITE setSize FINAL)

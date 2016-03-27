@@ -26,30 +26,37 @@
 
 #include "QVariantDelegate.h"
 
+#include <QtCore/QSignalMapper>
+#include <QtWidgets/QAbstractItemView>
+
 #include "Property.h"
 
-#include <QtWidgets/QAbstractItemView>
-#include <QtCore/QSignalMapper>
-
-static const QRegularExpression
-    HINTS(R"%(([a-zA-Z_][\d\w]+)=([\d\w.]+))%",
-          QRegularExpression::CaseInsensitiveOption |
-              QRegularExpression::OptimizeOnFirstUsageOption);
+static const QRegularExpression HINTS(
+  R"%(([a-zA-Z_][\d\w]+)=([\d\w.]+))%",
+  QRegularExpression::CaseInsensitiveOption
+    | QRegularExpression::OptimizeOnFirstUsageOption);
 
 QVariantDelegate::QVariantDelegate(QObject *parent) noexcept
-    : QItemDelegate(parent),
-      m_finishedMapper(new QSignalMapper(this)) {
-  connect(m_finishedMapper, SIGNAL(mapped(QWidget *)), this,
-          SIGNAL(commitData(QWidget *)));
-  connect(m_finishedMapper, SIGNAL(mapped(QWidget *)), this,
-          SIGNAL(closeEditor(QWidget *)));
+  : QItemDelegate(parent),
+    m_finishedMapper(new QSignalMapper(this)) {
+  connect(
+    m_finishedMapper,
+    SIGNAL(mapped(QWidget *)),
+    this,
+    SIGNAL(commitData(QWidget *)));
+  connect(
+    m_finishedMapper,
+    SIGNAL(mapped(QWidget *)),
+    this,
+    SIGNAL(closeEditor(QWidget *)));
 }
 
 QVariantDelegate::~QVariantDelegate() {}
 
-QWidget *QVariantDelegate::createEditor(QWidget *parent,
-                                        const QStyleOptionViewItem &option,
-                                        const QModelIndex &index) const {
+QWidget *QVariantDelegate::createEditor(
+  QWidget *parent,
+  const QStyleOptionViewItem &option,
+  const QModelIndex &index) const {
   QWidget *editor = nullptr;
   Property *p = static_cast<Property *>(index.internalPointer());
 
@@ -81,8 +88,8 @@ QWidget *QVariantDelegate::createEditor(QWidget *parent,
   return editor;
 }
 
-void QVariantDelegate::setEditorData(QWidget *editor,
-                                     const QModelIndex &index) const {
+void QVariantDelegate::setEditorData(
+  QWidget *editor, const QModelIndex &index) const {
   m_finishedMapper->blockSignals(true);
   {
     QVariant data = index.model()->data(index, Qt::EditRole);
@@ -109,8 +116,8 @@ void QVariantDelegate::setEditorData(QWidget *editor,
   m_finishedMapper->blockSignals(false);
 }
 
-void QVariantDelegate::setModelData(QWidget *editor, QAbstractItemModel *model,
-                                    const QModelIndex &index) const {
+void QVariantDelegate::setModelData(
+  QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const {
   QVariant data = index.model()->data(index, Qt::EditRole);
 
   switch (data.type()) {
@@ -121,7 +128,7 @@ void QVariantDelegate::setModelData(QWidget *editor, QAbstractItemModel *model,
   case QVariant::Bool:
   case QVariant::Int: {
     QVariant data =
-        static_cast<Property *>(index.internalPointer())->editorData(editor);
+      static_cast<Property *>(index.internalPointer())->editorData(editor);
 
     if (data.isValid()) {
       // If the property's editor has something valid...
@@ -136,9 +143,8 @@ void QVariantDelegate::setModelData(QWidget *editor, QAbstractItemModel *model,
   }
 }
 
-void QVariantDelegate::parseEditorHints(QWidget *editor,
-                                        const QString &editorHints) const
-    noexcept {
+void QVariantDelegate::parseEditorHints(
+  QWidget *editor, const QString &editorHints) const noexcept {
   if (editor && !editorHints.isEmpty()) {
     // If we have a valid property editor and some hints to give it...
     editor->blockSignals(true);

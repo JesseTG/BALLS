@@ -8,12 +8,12 @@
 namespace balls {
 
 // TODO: Provide a variant that allows arbitrary vertices
-class SphericalTriangleMesh : public BaseSphereMesh
-{
+class SphericalTriangleMesh : public BaseSphereMesh {
   Q_OBJECT
 
 public:
   SphericalTriangleMesh(QObject* parent = nullptr);
+
 protected /* methods */:
   void assignMesh() override;
 };

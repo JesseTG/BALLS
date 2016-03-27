@@ -12,14 +12,14 @@
 #include <QtGui/QOpenGLVertexArrayObject>
 #include <QtWidgets/QOpenGLWidget>
 
+#include "config/Settings.hpp"
 #include "gl/OpenGLPointers.hpp"
+#include "model/Uniforms.hpp"
 #include "shader/ShaderInputs.hpp"
 #include "shader/ShaderUniform.hpp"
-#include "config/Settings.hpp"
 #include "util/Logging.hpp"
 #include "util/Trackball.hpp"
 #include "util/TypeInfo.hpp"
-#include "model/Uniforms.hpp"
 
 class QOpenGLFunctions_3_0;
 class QOpenGLFunctions_3_1;
@@ -34,7 +34,6 @@ class QOpenGLShader;
 namespace balls {
 
 class Mesh;
-
 
 using std::pair;
 using std::unordered_map;
@@ -58,15 +57,28 @@ public:
   void paintGL() override;
   void resizeGL(const int, const int) override;
   bool updateShaders(const QString&, const QString&, const QString&) noexcept;
+
 public /* getters/setters */:
-  QOpenGLShaderProgram& getShader() noexcept { return _shader; }
-  const QOpenGLShaderProgram& getShader() const noexcept { return _shader;  }
+  QOpenGLShaderProgram& getShader() noexcept {
+    return _shader;
+  }
+  const QOpenGLShaderProgram& getShader() const noexcept {
+    return _shader;
+  }
 
-  QOpenGLDebugLogger& getLogger() noexcept { return _log; }
-  const QOpenGLDebugLogger& getLogger() const noexcept { return _log; }
+  QOpenGLDebugLogger& getLogger() noexcept {
+    return _log;
+  }
+  const QOpenGLDebugLogger& getLogger() const noexcept {
+    return _log;
+  }
 
-  uint8_t getOpenGLMajor() const noexcept { return _glmajor; }
-  uint8_t getOpenGLMinor() const noexcept { return _glminor; }
+  uint8_t getOpenGLMajor() const noexcept {
+    return _glmajor;
+  }
+  uint8_t getOpenGLMinor() const noexcept {
+    return _glminor;
+  }
 
   void setUniformModel(Uniforms* uniforms) noexcept {
     _uniforms = uniforms;
@@ -74,25 +86,29 @@ public /* getters/setters */:
     _uniformsPropertyOffset = _uniformsMeta->propertyOffset();
     _uniformsPropertyCount = _uniformsMeta->propertyCount();
   }
+
 signals:
   void geometryShadersSupported(const bool);
-  void gl3NotSupported();
+  Q_DECL_DEPRECATED void gl3NotSupported();
   void finishedInitializing();
   void fatalGraphicsError(const QString&, const QString&, const int);
   void graphicsWarning(const QString&, const QString&);
-
   void uniformsDiscovered(const UniformCollection&);
+
 public slots:
-  void setOption(const bool) noexcept;
-  void setOption(const int) noexcept;
+  Q_DECL_DEPRECATED void setOption(const bool) noexcept;
+  Q_DECL_DEPRECATED void setOption(const int) noexcept;
   void resetCamera() noexcept;
   void setMesh(const Mesh&) noexcept;
+
 public:
   void setUniform(const UniformInfo&, const QVariant&) noexcept;
+
 protected:
-  void mouseMoveEvent(QMouseEvent *e) override;
-  void wheelEvent(QWheelEvent *) override;
-  void timerEvent(QTimerEvent *) override;
+  void mouseMoveEvent(QMouseEvent* e) override;
+  void wheelEvent(QWheelEvent*) override;
+  void timerEvent(QTimerEvent*) override;
+
 private /* shader attributes/uniforms */:
   QPointer<Uniforms> _uniforms;
   const QMetaObject* _uniformsMeta;
@@ -101,6 +117,7 @@ private /* shader attributes/uniforms */:
 
   unordered_map<AttributeName, int> _attributes;
   unordered_map<QString, Setting> _settings;
+
 private /* OpenGL structures */:
   QOpenGLDebugLogger _log;
   QOpenGLBuffer _vbo;
@@ -117,13 +134,14 @@ private /* OpenGL function pointers */:
 private /* update methods */:
   void _updateUniformList() noexcept;
   void _updateUniformValues() noexcept;
+
 private /* initializers */:
   void _initAttributeLocations() noexcept;
   void _initSettings() noexcept;
   void _initGLPointers();
   void _initGLMemory();
   void _initLogger() noexcept;
-  void _initShaders() noexcept ;
+  void _initShaders() noexcept;
   void _initAttributes() noexcept;
 
 private /* templated utility methods */:
@@ -131,8 +149,7 @@ private /* templated utility methods */:
   void _glToggle(const bool enabled) noexcept {
     if (enabled) {
       this->glEnable(E);
-    }
-    else {
+    } else {
       this->glDisable(E);
     }
   }

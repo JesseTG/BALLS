@@ -1,16 +1,15 @@
 #include "precompiled.hpp"
 
-#include "model/mesh/TubeMesh.hpp"
 #include "Constants.hpp"
+#include "model/mesh/TubeMesh.hpp"
 
 #include <generator/CappedTubeMesh.hpp>
 #include <generator/TubeMesh.hpp>
 
 namespace balls {
-TubeMesh::TubeMesh(QObject *parent)
-    : BaseCylindricalMesh(parent, Type::Tube) {
+TubeMesh::TubeMesh(QObject *parent) : BaseCylindricalMesh(parent, Type::Tube) {
   m_radius = 1.0; // Can't initialize these in member initializer list,
-  m_size = 1.0;   // don't feel like figuring out why
+  m_size = 1.0; // don't feel like figuring out why
   m_innerRadius = 0.75;
   m_slices = 32u;
   m_segments = 8u;
@@ -50,12 +49,23 @@ void TubeMesh::assignMesh() {
   if (m_capped) {
 
     m_mesh = generator::CappedTubeMesh(
-        m_radius, m_innerRadius, m_size, m_slices, m_segments, m_rings,
-        glm::radians(m_start), glm::radians(m_sweep));
+      m_radius,
+      m_innerRadius,
+      m_size,
+      m_slices,
+      m_segments,
+      m_rings,
+      glm::radians(m_start),
+      glm::radians(m_sweep));
   } else {
-    m_mesh = generator::TubeMesh(m_radius, m_innerRadius, m_size, m_slices,
-                                 m_segments, glm::radians(m_start),
-                                 glm::radians(m_sweep));
+    m_mesh = generator::TubeMesh(
+      m_radius,
+      m_innerRadius,
+      m_size,
+      m_slices,
+      m_segments,
+      glm::radians(m_start),
+      glm::radians(m_sweep));
   }
 }
 }

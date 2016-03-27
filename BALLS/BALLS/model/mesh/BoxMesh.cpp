@@ -1,15 +1,14 @@
 #include "precompiled.hpp"
 
-#include "model/mesh/BoxMesh.hpp"
 #include "Constants.hpp"
+#include "model/mesh/BoxMesh.hpp"
 
 #include <generator/BoxMesh.hpp>
 
 namespace balls {
 
 BoxMesh::BoxMesh(QObject *parent)
-    : MeshMesh(parent, Type::Box), m_size(1.0, 1.0, 1.0),
-      m_segments(8u, 8u, 8u) {
+  : MeshMesh(parent, Type::Box), m_size(1.0, 1.0, 1.0), m_segments(8u, 8u, 8u) {
   updateMesh();
 }
 

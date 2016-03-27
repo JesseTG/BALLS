@@ -50,11 +50,9 @@ Q_DECLARE_LOGGING_CATEGORY(Name)
 }
 
 
-
 namespace ui {
 Q_DECLARE_LOGGING_CATEGORY(Name)
 }
-
 }
 }
 

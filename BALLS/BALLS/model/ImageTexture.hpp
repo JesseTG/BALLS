@@ -1,8 +1,9 @@
 #ifndef IMAGETEXTURE_HPP
 #define IMAGETEXTURE_HPP
 
-#include <QImage>
 #include "Texture.hpp"
+
+#include <QImage>
 
 namespace balls {
 
@@ -18,4 +19,5 @@ private:
 }
 
 Q_DECLARE_METATYPE(balls::ImageTexture*)
+
 #endif // IMAGETEXTURE_HPP

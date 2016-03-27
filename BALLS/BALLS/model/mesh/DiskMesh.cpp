@@ -1,13 +1,12 @@
 #include "precompiled.hpp"
 
-#include "model/mesh/DiskMesh.hpp"
 #include "Constants.hpp"
+#include "model/mesh/DiskMesh.hpp"
 
 #include <generator/DiskMesh.hpp>
 
 namespace balls {
-DiskMesh::DiskMesh(QObject *parent)
-    : MeshMesh(parent, Type::Disk) {
+DiskMesh::DiskMesh(QObject *parent) : MeshMesh(parent, Type::Disk) {
   m_radius = 1.0;
   m_innerRadius = 0.0;
   m_slices = 32u;
@@ -66,7 +65,12 @@ void DiskMesh::setSweep(double sweep) {
 }
 
 void DiskMesh::assignMesh() {
-  m_mesh = generator::DiskMesh(m_radius, m_innerRadius, m_slices, m_rings,
-                               glm::radians(m_start), glm::radians(m_sweep));
+  m_mesh = generator::DiskMesh(
+    m_radius,
+    m_innerRadius,
+    m_slices,
+    m_rings,
+    glm::radians(m_start),
+    glm::radians(m_sweep));
 }
 }

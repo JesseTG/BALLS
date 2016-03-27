@@ -1,7 +1,7 @@
 #include "precompiled.hpp"
 
-#include "model/mesh/BaseSphereMesh.hpp"
 #include "Constants.hpp"
+#include "model/mesh/BaseSphereMesh.hpp"
 
 namespace balls {
 
