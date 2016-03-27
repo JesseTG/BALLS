@@ -36,150 +36,136 @@ QMAKE_RESOURCE_FLAGS += -threshold 0 -compress 9
 
 ### <Source Files> #############################################################
 SOURCES += \
-  main.cpp \
-  ui/BallsWindow.cpp \
-  mesh/MeshFunction.cpp \
-  ui/BallsCanvas.cpp \
-  mesh/MeshGenerator.cpp \
-  mesh/Generators.cpp \
-  util/Util.cpp \
-  config/Settings.cpp \
-  ui/glslsyntax.cpp \
-  Constants.cpp \
-  shader/ShaderInputs.cpp \
   config/ProjectConfig.cpp \
-  ui/docks/OpenGLInfo.cpp \
-  shader/ShaderUniform.cpp \
-  ui/property/Vector2Property.cpp \
-  ui/property/VectorProperty.cpp \
-  precompiled.cpp \
-  ui/property/Vector3Property.cpp \
-  ui/property/Vector4Property.cpp \
+  config/Settings.cpp \
+  Constants.cpp \
   exception/FileException.cpp \
   exception/JsonException.cpp \
-  util/Logging.cpp \
-  ui/property/MatrixProperty.cpp \
-  shader/syntax/GLSLSyntax.cpp \
-  util/Trackball.cpp \
-  util/MetaTypeConverters.cpp \
+  gl/OpenGLPointers.cpp \
+  main.cpp \
+  model/ImageTexture.cpp \
+  model/mesh/BaseCylindricalMesh.cpp \
+  model/mesh/BaseSphereMesh.cpp \
+  model/mesh/BoxMesh.cpp \
+  model/mesh/CapsuleMesh.cpp \
+  model/mesh/ConeMesh.cpp \
+  model/mesh/CylinderMesh.cpp \
+  model/mesh/DiskMesh.cpp \
+  model/Meshes.cpp \
+  model/mesh/IcosahedronMesh.cpp \
+  model/mesh/IcoSphereMesh.cpp \
+  model/mesh/Mesh.cpp \
+  model/mesh/MeshMesh.cpp \
+  model/mesh/PlaneMesh.cpp \
+  model/mesh/RoundedBoxMesh.cpp \
+  model/mesh/SphereMesh.cpp \
+  model/mesh/SphericalConeMesh.cpp \
+  model/mesh/SphericalTriangleMesh.cpp \
+  model/mesh/SpringMesh.cpp \
+  model/mesh/TorusKnotMesh.cpp \
+  model/mesh/TorusMesh.cpp \
+  model/mesh/TriangleMesh.cpp \
+  model/mesh/TubeMesh.cpp \
+  model/Texture.cpp \
   model/Uniforms.cpp \
-  util/TypeInfo.cpp \
-  ui/QsciLexerGLSL.cpp \
+  precompiled.cpp \
+  shader/ShaderInputs.cpp \
+  shader/ShaderUniform.cpp \
+  ui/BallsCanvas.cpp \
+  ui/BallsWindow.cpp \
+  ui/docks/MeshManagerWidget.cpp \
+  ui/docks/OpenGLInfo.cpp \
+  ui/docks/SceneSettings.cpp \
+  ui/docks/TextureManager.cpp \
+  ui/glslsyntax.cpp \
   ui/property/MatrixProperties.cpp \
-    ui/docks/TextureManager.cpp \
-    model/Texture.cpp \
-    model/ImageTexture.cpp \
-    ui/docks/SceneSettings.cpp \
-    model/mesh/Mesh.cpp \
-    model/mesh/BoxMesh.cpp \
-    model/mesh/MeshMesh.cpp \
-    ui/docks/MeshManagerWidget.cpp \
-    model/Meshes.cpp \
-    gl/OpenGLPointers.cpp \
-    model/mesh/BaseCylindricalMesh.cpp \
-    model/mesh/CapsuleMesh.cpp \
-    model/mesh/ConeMesh.cpp \
-    model/mesh/CylinderMesh.cpp \
-    model/mesh/TubeMesh.cpp \
-    model/mesh/DiskMesh.cpp \
-    model/mesh/SphericalConeMesh.cpp \
-    model/mesh/BaseSphereMesh.cpp \
-    model/mesh/IcosahedronMesh.cpp \
-    model/mesh/IcoSphereMesh.cpp \
-    model/mesh/SphereMesh.cpp \
-    model/mesh/SpringMesh.cpp \
-    model/mesh/TorusMesh.cpp \
-    model/mesh/TorusKnotMesh.cpp \
-    model/mesh/PlaneMesh.cpp \
-    model/mesh/RoundedBoxMesh.cpp \
-    model/mesh/SphericalTriangleMesh.cpp \
-    model/mesh/TriangleMesh.cpp
+  ui/property/MatrixProperty.cpp \
+  ui/property/Vector2Property.cpp \
+  ui/property/Vector3Property.cpp \
+  ui/property/Vector4Property.cpp \
+  ui/property/VectorProperty.cpp \
+  ui/QsciLexerGLSL.cpp \
+  util/Logging.cpp \
+  util/MetaTypeConverters.cpp \
+  util/Trackball.cpp \
+  util/TypeInfo.cpp \
+  util/Util.cpp \
+
 
 HEADERS  += \
-  precompiled.hpp \
-  ui/BallsWindow.hpp \
-  mesh/MeshFunction.hpp \
-  ui/BallsCanvas.hpp \
-  mesh/MeshGenerator.hpp \
-  mesh/MeshParameter.hpp \
-  Constants.hpp \
-  mesh/Generators.hpp \
-  util/Util.hpp \
-  config/Settings.hpp \
-  ui/glslsyntax.hpp \
-  shader/ShaderInputs.hpp \
-  shader/ShaderUniform.hpp \
   config/ProjectConfig.hpp \
-  ui/docks/OpenGLInfo.hpp \
-  ui/property/Vector2Property.hpp \
-  ui/property/VectorProperty.hpp \
-  ui/property/Vector3Property.hpp \
-  ui/property/Vector4Property.hpp \
+  config/Settings.hpp \
+  Constants.hpp \
   exception/FileException.hpp \
   exception/JsonException.hpp \
-  util/Logging.hpp \
-  ui/property/MatrixProperty.hpp \
-  shader/syntax/GLSLSyntax.hpp \
-  ui/QsciLexerGLSL.h \
-  util/Trackball.hpp \
-  ui/property/SamplerProperty.hpp \
-  util/MetaTypeConverters.hpp \
-  util/TypeInfo.hpp \
+  gl/OpenGLPointers.hpp \
+  model/ImageTexture.hpp \
+  model/mesh/BaseCylindricalMesh.hpp \
+  model/mesh/BaseSphereMesh.hpp \
+  model/mesh/BoxMesh.hpp \
+  model/mesh/CapsuleMesh.hpp \
+  model/mesh/ConeMesh.hpp \
+  model/mesh/CylinderMesh.hpp \
+  model/mesh/DiskMesh.hpp \
+  model/Meshes.hpp \
+  model/mesh/IcosahedronMesh.hpp \
+  model/mesh/IcoSphereMesh.hpp \
+  model/mesh/Mesh.hpp \
+  model/mesh/MeshMesh.hpp \
+  model/mesh/PlaneMesh.hpp \
+  model/mesh/RoundedBoxMesh.hpp \
+  model/mesh/SphereMesh.hpp \
+  model/mesh/SphericalConeMesh.hpp \
+  model/mesh/SphericalTriangleMesh.hpp \
+  model/mesh/SpringMesh.hpp \
+  model/mesh/TorusKnotMesh.hpp \
+  model/mesh/TorusMesh.hpp \
+  model/mesh/TriangleMesh.hpp \
+  model/mesh/TubeMesh.hpp \
+  model/Texture.hpp \
   model/Uniforms.hpp \
+  precompiled.hpp \
+  shader/ShaderInputs.hpp \
+  shader/ShaderUniform.hpp \
+  ui/BallsCanvas.hpp \
+  ui/BallsWindow.hpp \
+  ui/docks/MeshManagerWidget.hpp \
+  ui/docks/OpenGLInfo.hpp \
+  ui/docks/SceneSettings.hpp \
+  ui/docks/TextureManager.hpp \
+  ui/glslsyntax.hpp \
   ui/property/MatrixProperties.hpp \
-    ui/docks/TextureManager.hpp \
-    model/Texture.hpp \
-    model/ImageTexture.hpp \
-    ui/docks/SceneSettings.hpp \
-    model/mesh/Mesh.hpp \
-    model/mesh/BoxMesh.hpp \
-    model/mesh/MeshMesh.hpp \
-    ui/docks/MeshManagerWidget.hpp \
-    model/Meshes.hpp \
-    gl/OpenGLPointers.hpp \
-    model/mesh/BaseCylindricalMesh.hpp \
-    model/mesh/CapsuleMesh.hpp \
-    model/mesh/ConeMesh.hpp \
-    model/mesh/CylinderMesh.hpp \
-    model/mesh/TubeMesh.hpp \
-    model/mesh/DiskMesh.hpp \
-    model/mesh/SphericalConeMesh.hpp \
-    model/mesh/BaseSphereMesh.hpp \
-    model/mesh/IcosahedronMesh.hpp \
-    model/mesh/IcoSphereMesh.hpp \
-    model/mesh/SphereMesh.hpp \
-    model/mesh/SpringMesh.hpp \
-    model/mesh/TorusMesh.hpp \
-    model/mesh/TorusKnotMesh.hpp \
-    model/mesh/PlaneMesh.hpp \
-    model/mesh/RoundedBoxMesh.hpp \
-    model/mesh/SphericalTriangleMesh.hpp \
-    model/mesh/TriangleMesh.hpp
+  ui/property/MatrixProperty.hpp \
+  ui/property/Vector2Property.hpp \
+  ui/property/Vector3Property.hpp \
+  ui/property/Vector4Property.hpp \
+  ui/property/VectorProperty.hpp \
+  ui/QsciLexerGLSL.h \
+  util/Logging.hpp \
+  util/MetaTypeConverters.hpp \
+  util/Trackball.hpp \
+  util/TypeInfo.hpp \
+  util/Util.hpp \
+
 
 FORMS += \
   BallsWindow.ui \
+  ui/docks/MeshManager.ui \
   ui/docks/OpenGLInfo.ui \
-    ui/docks/TextureManager.ui \
-    ui/docks/SceneSettings.ui \
-    ui/docks/MeshManager.ui
+  ui/docks/SceneSettings.ui \
+  ui/docks/TextureManager.ui \
 
 RESOURCES += \
   resources.qrc
 
 TRANSLATIONS += \
   text/BALLS_en.ts \
-  text/BALLS_es.ts
+  text/BALLS_es.ts \
 
 OTHER_FILES += \
-  shader/default.vert \
-  shader/default.frag \
-  glsl/phong.frag \
-  ../.travis.yml \
-  ../.gitignore \
-  ../README.md \
-  bar-descriptor.xml \
   text/BALLS_es.ts \
-  text/BALLS_en.ts
+  text/BALLS_en.ts \
+
 ### </Source Files> ############################################################
 
 ### <Compiler Flags> ###########################################################
@@ -230,15 +216,12 @@ INCLUDEPATH += \
   /usr/include \
   /usr/local/include \
   /usr/include/x86_64-linux-gnu \
-  /usr/include/x86_64-linux-gnu/qt5 \
-  /usr/include/qt5 \
-  /usr/include
 
 
 DEPENDPATH += \
   $$DESTDIR \
   $$PWD/../QPropertyEditor \
-  $$PWD/../Qtilities
+  $$PWD/../Qtilities \
 
 
 ## Libraries to link
@@ -246,10 +229,6 @@ LIBS *= \
   -L$$DESTDIR \
   -L/usr/lib \
   -L/usr/local/lib \
-  -L/usr/local/clang-3.5.0/lib \
-  -L/usr/local/clang-3.6.0/lib \
-  -L/usr/local/clang-3.7.0/lib \
-  -L/usr/local/clang-3.8.0/lib \
   -L/usr/lib/x86_64-linux-gnu \
   -lQPropertyEditor \
   -lqt5scintilla2 \

@@ -11,6 +11,16 @@ SUBDIRS = \
   BALLS \
   BALLS-Tests
 
+OTHER_FILES += \
+  ../.clang-format \
+  ../CONTRIBUTING.md \
+  ../.gitignore \
+  ../LICENSE \
+  ../README.md \
+  ../travis/clone.sh \
+  ../travis/makeit.sh \
+  ../.travis.yml \
+
 BALLS.depends = QPropertyEditor
 
 BALLS-Tests.depends = BALLS
