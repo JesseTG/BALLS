@@ -1,13 +1,13 @@
 #ifndef BASESPHEREMESH_HPP
 #define BASESPHEREMESH_HPP
+
 #include <QObject>
 
 #include "model/mesh/MeshMesh.hpp"
 
 namespace balls {
 
-class BaseSphereMesh : public MeshMesh
-{
+class BaseSphereMesh : public MeshMesh {
   Q_OBJECT
 
   Q_PROPERTY(double radius MEMBER m_radius WRITE setRadius FINAL)

@@ -1,7 +1,7 @@
 #include "precompiled.hpp"
 
-#include "model/mesh/SphereMesh.hpp"
 #include "Constants.hpp"
+#include "model/mesh/SphereMesh.hpp"
 
 #include <generator/SphereMesh.hpp>
 
@@ -60,8 +60,12 @@ void SphereMesh::setSegmentSweep(double segmentSweep) {
 
 void SphereMesh::assignMesh() {
   m_mesh = generator::SphereMesh(
-      m_radius, m_slices, m_segments, glm::radians(m_sliceStart),
-      glm::radians(m_sliceSweep), glm::radians(m_segmentStart),
-      glm::radians(m_segmentSweep));
+    m_radius,
+    m_slices,
+    m_segments,
+    glm::radians(m_sliceStart),
+    glm::radians(m_sliceSweep),
+    glm::radians(m_segmentStart),
+    glm::radians(m_segmentSweep));
 }
 }

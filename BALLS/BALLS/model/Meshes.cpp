@@ -1,5 +1,4 @@
 #include "precompiled.hpp"
-
 #include "model/Meshes.hpp"
 
 #include "model/mesh/BoxMesh.hpp"
@@ -7,16 +6,16 @@
 #include "model/mesh/ConeMesh.hpp"
 #include "model/mesh/CylinderMesh.hpp"
 #include "model/mesh/DiskMesh.hpp"
-#include "model/mesh/IcosahedronMesh.hpp"
 #include "model/mesh/IcoSphereMesh.hpp"
+#include "model/mesh/IcosahedronMesh.hpp"
 #include "model/mesh/PlaneMesh.hpp"
 #include "model/mesh/RoundedBoxMesh.hpp"
 #include "model/mesh/SphereMesh.hpp"
 #include "model/mesh/SphericalConeMesh.hpp"
 #include "model/mesh/SphericalTriangleMesh.hpp"
 #include "model/mesh/SpringMesh.hpp"
-#include "model/mesh/TorusMesh.hpp"
 #include "model/mesh/TorusKnotMesh.hpp"
+#include "model/mesh/TorusMesh.hpp"
 #include "model/mesh/TriangleMesh.hpp"
 #include "model/mesh/TubeMesh.hpp"
 
@@ -87,7 +86,7 @@ Mesh &Meshes::createMesh(Mesh::Type type) noexcept {
     break; // TODO: Support other mesh types
   }
 
-  const char* name = m_metaEnum.valueToKey(type);
+  const char *name = m_metaEnum.valueToKey(type);
 
   Q_ASSUME(name != nullptr);
   qDebug() << "Created mesh of type" << name;
@@ -98,5 +97,7 @@ Mesh &Meshes::createMesh(Mesh::Type type) noexcept {
 
 void Meshes::removeMesh(int index) {}
 
-void Meshes::clear() { m_meshes.clear(); }
+void Meshes::clear() {
+  m_meshes.clear();
+}
 }

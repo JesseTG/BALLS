@@ -7,8 +7,7 @@
 
 namespace balls {
 
-class DiskMesh : public MeshMesh
-{
+class DiskMesh : public MeshMesh {
   Q_OBJECT
 
   Q_PROPERTY(double radius MEMBER m_radius WRITE setRadius FINAL)

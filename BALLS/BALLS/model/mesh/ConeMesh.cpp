@@ -1,16 +1,15 @@
 #include "precompiled.hpp"
 
-#include "model/mesh/ConeMesh.hpp"
 #include "Constants.hpp"
+#include "model/mesh/ConeMesh.hpp"
 
 #include <generator/CappedConeMesh.hpp>
 #include <generator/ConeMesh.hpp>
 
 namespace balls {
-ConeMesh::ConeMesh(QObject *parent)
-    : BaseCylindricalMesh(parent, Type::Cone) {
+ConeMesh::ConeMesh(QObject *parent) : BaseCylindricalMesh(parent, Type::Cone) {
   m_radius = 1.0; // Can't initialize these in member initializer list,
-  m_size = 1.0;   // don't feel like figuring out why
+  m_size = 1.0; // don't feel like figuring out why
   m_slices = 32u;
   m_segments = 8u;
   m_rings = 4u;
@@ -39,12 +38,22 @@ void ConeMesh::setCapped(bool capped) {
 
 void ConeMesh::assignMesh() {
   if (m_capped) {
-    m_mesh = generator::CappedConeMesh(m_radius, m_size, m_slices, m_segments,
-                                       m_rings, glm::radians(m_start),
-                                       glm::radians(m_sweep));
+    m_mesh = generator::CappedConeMesh(
+      m_radius,
+      m_size,
+      m_slices,
+      m_segments,
+      m_rings,
+      glm::radians(m_start),
+      glm::radians(m_sweep));
   } else {
-    m_mesh = generator::ConeMesh(m_radius, m_size, m_slices, m_segments,
-                                 glm::radians(m_start), glm::radians(m_sweep));
+    m_mesh = generator::ConeMesh(
+      m_radius,
+      m_size,
+      m_slices,
+      m_segments,
+      glm::radians(m_start),
+      glm::radians(m_sweep));
   }
 }
 }

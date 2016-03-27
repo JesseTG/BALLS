@@ -5,7 +5,6 @@
 #include <vector>
 
 // Qt Core
-#include <QtGlobal>
 #include <QtCore/QAbstractItemModel>
 #include <QtCore/QLoggingCategory>
 #include <QtCore/QMetaEnum>
@@ -14,13 +13,14 @@
 #include <QtCore/QModelIndex>
 #include <QtCore/QStringList>
 #include <QtCore/QVariant>
+#include <QtGlobal>
 
 // Qt GUI
 #include <QtGui/QColor>
 
 // Qt Widgets
-#include <QtWidgets/QItemDelegate>
 #include <QtWidgets/QComboBox>
+#include <QtWidgets/QItemDelegate>
 
 Q_DECLARE_LOGGING_CATEGORY(Properties)
 

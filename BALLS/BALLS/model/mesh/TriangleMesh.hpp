@@ -10,8 +10,7 @@ namespace balls {
 
 using glm::dvec3;
 
-class TriangleMesh : public MeshMesh
-{
+class TriangleMesh : public MeshMesh {
   Q_OBJECT
 
   Q_CLASSINFO("segments", "minimum=1;")
@@ -23,8 +22,10 @@ class TriangleMesh : public MeshMesh
 
 public:
   TriangleMesh(QObject* parent = nullptr);
+
 protected /* methods */:
   void assignMesh() override;
+
 private /* members */:
   dvec3 m_a;
   dvec3 m_b;

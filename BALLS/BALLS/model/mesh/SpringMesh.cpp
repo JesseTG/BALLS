@@ -1,16 +1,23 @@
 #include "precompiled.hpp"
 
-#include "model/mesh/SpringMesh.hpp"
 #include "Constants.hpp"
+#include "model/mesh/SpringMesh.hpp"
 
 #include <generator/SpringMesh.hpp>
 
 namespace balls {
 
 SpringMesh::SpringMesh(QObject *parent)
-    : MeshMesh(parent, Type::Spring), m_minor(0.25), m_major(1.0), m_size(1.0),
-      m_slices(8u), m_segments(32u), m_minorStart(0.0), m_minorSweep(360.0),
-      m_majorStart(0.0), m_majorSweep(720.0) {
+  : MeshMesh(parent, Type::Spring),
+    m_minor(0.25),
+    m_major(1.0),
+    m_size(1.0),
+    m_slices(8u),
+    m_segments(32u),
+    m_minorStart(0.0),
+    m_minorSweep(360.0),
+    m_majorStart(0.0),
+    m_majorSweep(720.0) {
   updateMesh();
 }
 
@@ -88,8 +95,14 @@ void SpringMesh::setMajorSweep(double majorSweep) {
 
 void SpringMesh::assignMesh() {
   m_mesh = generator::SpringMesh(
-      m_minor, m_major, m_size, m_slices, m_segments,
-      glm::radians(m_minorStart), glm::radians(m_minorSweep),
-      glm::radians(m_majorStart), glm::radians(m_majorSweep));
+    m_minor,
+    m_major,
+    m_size,
+    m_slices,
+    m_segments,
+    glm::radians(m_minorStart),
+    glm::radians(m_minorSweep),
+    glm::radians(m_majorStart),
+    glm::radians(m_majorSweep));
 }
 }

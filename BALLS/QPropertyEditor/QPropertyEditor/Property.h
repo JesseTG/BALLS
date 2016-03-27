@@ -4,10 +4,12 @@
 //
 // --------------------------------------
 // Copyright (C) 2007 Volker Wiendl
-// Acknowledgements to Roman alias banal from qt-apps.org for the Enum enhancement
+// Acknowledgements to Roman alias banal from qt-apps.org for the Enum
+// enhancement
 //
 //
-// The QPropertyEditor Library is free software; you can redistribute it and/or modify
+// The QPropertyEditor Library is free software; you can redistribute it and/or
+// modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation version 3 of the License
 //
@@ -31,23 +33,26 @@ class QStyleOptionViewItem;
 
 /**
  * The base class for all properties in the QPropertyEditor. Implement custom
- * properties as subclasses of Property to enhance the capabilities of QPropertyEditor
+ * properties as subclasses of Property to enhance the capabilities of
+ * QPropertyEditor
  */
 class Property : public QObject {
   Q_OBJECT
 
 public:
-
   /**
    * Constructor
    *
-   * @param name the name of the property within the propertyObject (will be used
+   * @param name the name of the property within the propertyObject (will be
+   * used
    *        in the QPropertyEditorWidget view too)
    * @param subject the object that contains the property
    * @param parent optional parent object
    */
-  Property(const QString& name = "", QObject* subject = nullptr,
-           QObject* parent = nullptr) noexcept;
+  Property(
+    const QString& name = "",
+    QObject* subject = nullptr,
+    QObject* parent = nullptr) noexcept;
 
   virtual ~Property() {}
 
@@ -64,16 +69,25 @@ public:
 
   /**
    * Returns the QObject which contains the property managed by this instance
-   * @return QObject* pointer to the QObject that contains user defined properties
+   * @return QObject* pointer to the QObject that contains user defined
+   * properties
    */
-  QObject* subject() noexcept {return m_subject;}
-  const QObject* subject() const noexcept { return m_subject; }
+  QObject* subject() noexcept {
+    return m_subject;
+  }
+  const QObject* subject() const noexcept {
+    return m_subject;
+  }
 
   /**
-   * Flag if property is used for indicating a group or really manages a property
-   * @return bool true if this property is only used to display a category in the QPropertyEditorWidget
+   * Flag if property is used for indicating a group or really manages a
+   * property
+   * @return bool true if this property is only used to display a category in
+   * the QPropertyEditorWidget
    */
-  bool isRoot() const noexcept {return m_subject == nullptr;}
+  bool isRoot() const noexcept {
+    return m_subject == nullptr;
+  }
 
   /**
    * Flag if the property can be set
@@ -85,19 +99,29 @@ public:
    * Returns the row of this instance within the QPropertyModel
    * @return int row within the QPropertyModel
    */
-  int row() noexcept {return parent()->children().indexOf(this);}
+  int row() noexcept {
+    return parent()->children().indexOf(this);
+  }
 
   /**
-   * returns optional settings for the editor widget that is used to manipulate the properties value
-   * @return QString a string that contains property settings for the editor widget (e.g. "minimum=1.0;maximum=10.0;")
+   * returns optional settings for the editor widget that is used to manipulate
+   * the properties value
+   * @return QString a string that contains property settings for the editor
+   * widget (e.g. "minimum=1.0;maximum=10.0;")
    */
-  const QString& editorHints() const noexcept {return m_hints;}
+  const QString& editorHints() const noexcept {
+    return m_hints;
+  }
 
   /**
-   * Sets properties for the editor widget that is used to manipulate the data value managed by this instance
-   * @param hints a string containing property settings for the editor widget that manipulates this property
+   * Sets properties for the editor widget that is used to manipulate the data
+   * value managed by this instance
+   * @param hints a string containing property settings for the editor widget
+   * that manipulates this property
    */
-  virtual void setEditorHints(const QString& hints) noexcept {m_hints = hints;}
+  virtual void setEditorHints(const QString& hints) noexcept {
+    m_hints = hints;
+  }
 
   /**
    * Creates an editor for the data managed by this instance
@@ -105,8 +129,8 @@ public:
    * @param option currently not used
    * @return QWidget* pointer to the editor widget
    */
-  virtual QWidget* createEditor(QWidget* parent,
-                                const QStyleOptionViewItem& option) noexcept;
+  virtual QWidget*
+    createEditor(QWidget* parent, const QStyleOptionViewItem& option) noexcept;
 
   /**
    * Returns the data of the editor widget used to manipulate this instance
@@ -119,10 +143,10 @@ public:
    * @param editor the editor widget
    * @param data the data to set in the editor widget
    * @return bool true if editor widget was set to the given data successfully,
-   *         false if the data can not be set in the editor (e.g. wrong datatype)
+   *         false if the data can not be set in the editor (e.g. wrong
+   * datatype)
    */
-  virtual bool setEditorData(QWidget* editor,
-                             const QVariant& data) noexcept;
+  virtual bool setEditorData(QWidget* editor, const QVariant& data) noexcept;
 
   /**
    * Tries to find the first property that manages the given subject
@@ -139,13 +163,15 @@ public:
 
 private slots:
   /**
-   * This slot is used to immediately set the properties when the editor widget's value of a double or float
+   * This slot is used to immediately set the properties when the editor
+   * widget's value of a double or float
    * property has changed
    * @param value the new value
    */
   void setValue(const double value) noexcept;
   /**
-   * This slot is used to immediately set the properties when the editor widget's value of an integer
+   * This slot is used to immediately set the properties when the editor
+   * widget's value of an integer
    * property has changed
    * @param value the new value
    */
@@ -156,9 +182,8 @@ private slots:
   void setValue(const unsigned int value) noexcept;
 
 protected:
-  QObject*  m_subject;
-  QString   m_hints;
-
+  QObject* m_subject;
+  QString m_hints;
 };
 
 inline bool Property::isBasicType(const QVariant::Type type) noexcept {

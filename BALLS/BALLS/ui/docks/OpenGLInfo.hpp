@@ -3,8 +3,7 @@
 
 #include "ui_OpenGLInfo.h"
 
-class OpenGLInfo : public QDockWidget
-{
+class OpenGLInfo : public QDockWidget {
   Q_OBJECT
 
 public:

@@ -7,7 +7,7 @@
 namespace balls {
 namespace config {
 
-namespace SettingKey {
+namespace SettingKey Q_DECL_DEPRECATED {
 const extern QString WireFrame;
 const extern QString DepthTestEnabled;
 const extern QString FaceCullingEnabled;
@@ -16,7 +16,7 @@ const extern QString ClipDistance;
 };
 
 
-enum class ProgramParameter {
+enum class Q_DECL_DEPRECATED ProgramParameter {
   DeleteStatus = GL_DELETE_STATUS,
   LinkStatus = GL_LINK_STATUS,
   ValidateStatus = GL_VALIDATE_STATUS,
@@ -39,13 +39,13 @@ enum class ProgramParameter {
   GeometryOutputType = GL_GEOMETRY_OUTPUT_TYPE,
 };
 
-enum class GLError {
+enum class Q_DECL_DEPRECATED GLError {
   InvalidEnum = GL_INVALID_ENUM,
   InvalidValue = GL_INVALID_VALUE,
   InvalidOperation = GL_INVALID_OPERATION,
 };
 
-enum class QueryType {
+enum class Q_DECL_DEPRECATED QueryType {
   SamplesPassed = GL_SAMPLES_PASSED,
   AnySamplesPassed = GL_ANY_SAMPLES_PASSED,
   AnySamplesPassedConservative = GL_ANY_SAMPLES_PASSED_CONSERVATIVE,
@@ -54,13 +54,13 @@ enum class QueryType {
   TimeElapsed = GL_TIME_ELAPSED,
 };
 
-enum class Primitive {
+enum class Q_DECL_DEPRECATED Primitive {
   Points = GL_POINTS,
   Lines = GL_LINES,
   Triangles = GL_TRIANGLES,
 };
 
-enum class RenderPrimitive {
+enum class Q_DECL_DEPRECATED RenderPrimitive {
   Points = GL_POINTS,
   Lines = GL_LINES,
   Triangles = GL_TRIANGLES,
@@ -70,7 +70,7 @@ enum class RenderPrimitive {
   LineStripAdjacency = GL_LINE_STRIP_ADJACENCY,
 };
 
-enum class BufferType {
+enum class Q_DECL_DEPRECATED BufferType {
   Array = GL_ARRAY_BUFFER,
   Vertex = BufferType::Array,
   AtomicCounter = GL_ATOMIC_COUNTER_BUFFER,
@@ -89,23 +89,23 @@ enum class BufferType {
   Uniform = GL_UNIFORM_BUFFER,
 };
 
-enum class BindBufferTarget {
+enum class Q_DECL_DEPRECATED BindBufferTarget {
   AtomicCounter = GL_ATOMIC_COUNTER_BUFFER,
   TransformFeedback = GL_TRANSFORM_FEEDBACK_BUFFER,
   ShaderStorage = GL_SHADER_STORAGE_BUFFER,
   Uniform = GL_UNIFORM_BUFFER,
 };
 
-enum class BindRenderBufferTarget {
+enum class Q_DECL_DEPRECATED BindRenderBufferTarget {
   RenderBuffer = GL_RENDERBUFFER,
 };
 
-enum class BindTransformFeedbackTarget {
+enum class Q_DECL_DEPRECATED BindTransformFeedbackTarget {
   TransformFeedback = GL_TRANSFORM_FEEDBACK,
 };
 
 
-enum class TextureType {
+enum class Q_DECL_DEPRECATED TextureType {
   OneD = GL_TEXTURE_1D,
   TwoD = GL_TEXTURE_2D,
   ThreeD = GL_TEXTURE_3D,
@@ -119,7 +119,7 @@ enum class TextureType {
   TwoDMultisampleArray = GL_TEXTURE_2D_MULTISAMPLE_ARRAY,
 };
 
-enum class MipMapTarget {
+enum class Q_DECL_DEPRECATED MipMapTarget {
   OneD = GL_TEXTURE_1D,
   TwoD = GL_TEXTURE_2D,
   ThreeD = GL_TEXTURE_3D,
@@ -129,17 +129,17 @@ enum class MipMapTarget {
   CubeMapArray = GL_TEXTURE_CUBE_MAP_ARRAY,
 };
 
-enum class FrameBufferType {
+enum class Q_DECL_DEPRECATED FrameBufferType {
   FrameBuffer = GL_FRAMEBUFFER,
   DrawFrameBuffer = GL_DRAW_FRAMEBUFFER,
   ReadFrameBuffer = GL_READ_FRAMEBUFFER,
 };
 
-enum class ClampColorTarget {
+enum class Q_DECL_DEPRECATED ClampColorTarget {
   ClampReadColor = GL_CLAMP_READ_COLOR,
 };
 
-enum class FrameBufferStatus {
+enum class Q_DECL_DEPRECATED FrameBufferStatus {
   Complete = GL_FRAMEBUFFER_COMPLETE,
   Undefined = GL_FRAMEBUFFER_UNDEFINED,
   IncompleteAttachment = GL_FRAMEBUFFER_INCOMPLETE_ATTACHMENT,
@@ -151,7 +151,7 @@ enum class FrameBufferStatus {
   IncompleteLayerTargets = GL_FRAMEBUFFER_INCOMPLETE_LAYER_TARGETS,
 };
 
-enum class BlendEquation {
+enum class Q_DECL_DEPRECATED BlendEquation {
   Add = GL_FUNC_ADD,
   Subtract = GL_FUNC_SUBTRACT,
   ReverseSubtract = GL_FUNC_REVERSE_SUBTRACT,
@@ -159,7 +159,7 @@ enum class BlendEquation {
   Max = GL_MAX,
 };
 
-enum class BlendFunction {
+enum class Q_DECL_DEPRECATED BlendFunction {
   Zero = GL_ZERO,
   One = GL_ONE,
   SourceColor = GL_SRC_COLOR,
@@ -181,35 +181,35 @@ enum class BlendFunction {
   OneMinusSource1Alpha = GL_ONE_MINUS_SRC1_ALPHA,
 };
 
-enum class BufferFlag {
+enum class Q_DECL_DEPRECATED BufferFlag {
   Color = GL_COLOR_BUFFER_BIT,
   Depth = GL_DEPTH_BUFFER_BIT,
   Stencil = GL_STENCIL_BUFFER_BIT,
 };
 
-enum class ClientWaitSyncFlags {
+enum class Q_DECL_DEPRECATED ClientWaitSyncFlags {
   SyncFlushCommands = GL_SYNC_FLUSH_COMMANDS_BIT,
 };
 
-enum class SyncStatus {
+enum class Q_DECL_DEPRECATED SyncStatus {
   AlreadySignaled = GL_ALREADY_SIGNALED,
   TimeoutExpired = GL_TIMEOUT_EXPIRED,
   ConditionSatisfied = GL_CONDITION_SATISFIED,
   WaitFailed = GL_WAIT_FAILED,
 };
 
-enum class Buffer {
+enum class Q_DECL_DEPRECATED Buffer {
   Color = GL_COLOR,
   Depth = GL_DEPTH,
   Stencil = GL_STENCIL,
 };
 
-enum class Filter {
+enum class Q_DECL_DEPRECATED Filter {
   Nearest = GL_NEAREST,
   Linear = GL_LINEAR,
 };
 
-enum class ColorCopyFunction {
+enum class Q_DECL_DEPRECATED ColorCopyFunction {
   Copy = GL_COPY,
   CopyInverted = GL_COPY_INVERTED,
   Clear = GL_CLEAR,
@@ -228,18 +228,18 @@ enum class ColorCopyFunction {
   OrInverted = GL_OR_INVERTED,
 };
 
-enum class FaceCullMode {
+enum class Q_DECL_DEPRECATED FaceCullMode {
   Front = GL_FRONT,
   Back = GL_BACK,
   FrontAndBack = GL_FRONT_AND_BACK,
 };
 
-enum class VertexWinding {
+enum class Q_DECL_DEPRECATED VertexWinding {
   Clockwise = GL_CW,
   CounterClockwise = GL_CCW,
 };
 
-enum class DepthFunction {
+enum class Q_DECL_DEPRECATED DepthFunction {
   Never = GL_NEVER,
   Less = GL_LESS,
   Equal = GL_EQUAL,
@@ -250,18 +250,16 @@ enum class DepthFunction {
   Always = GL_ALWAYS,
 };
 
-struct Setting {
+struct Q_DECL_DEPRECATED Setting {
   QVariant value;
   bool changed;
 
-Setting() noexcept :
-  Setting(0) {}
-Setting(const QVariant& var, const bool c) noexcept :
-  value(var), changed(c) {}
-Setting(const QVariant& var) noexcept :
-  Setting(var, false) {}
+  Setting() noexcept : Setting(0) {}
+  Setting(const QVariant& var, const bool c) noexcept : value(var),
+                                                        changed(c) {}
+  Setting(const QVariant& var) noexcept : Setting(var, false) {}
 };
 }
 }
 
-#endif // OPTIONS_HPP
+#endif  // OPTIONS_HPP

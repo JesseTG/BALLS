@@ -4,10 +4,12 @@
 //
 // --------------------------------------
 // Copyright (C) 2007 Volker Wiendl
-// Acknowledgements to Roman alias banal from qt-apps.org for the Enum enhancement
+// Acknowledgements to Roman alias banal from qt-apps.org for the Enum
+// enhancement
 //
 //
-// The QPropertyEditor Library is free software; you can redistribute it and/or modify
+// The QPropertyEditor Library is free software; you can redistribute it and/or
+// modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation version 3 of the License
 //
@@ -23,8 +25,8 @@
 #ifndef QPROPERTYEDITORWIDGET_H_
 #define QPROPERTYEDITORWIDGET_H_
 
-#include <QRegularExpression>
 #include <QtWidgets/QTreeView>
+#include <QRegularExpression>
 #include "QPropertyEditor/QPropertyModel.h"
 
 class Property;
@@ -40,7 +42,8 @@ class QListWidgetItem;
  */
 
 /**
- * \brief An easy to use mechanism to visualize properties of a QObject subclass.
+ * \brief An easy to use mechanism to visualize properties of a QObject
+ * subclass.
  *
  * Qt provides a nice way to define class properties by using the Q_PROPERTY
  * macro. The purpose of the QPropertyEditor is to visualize these properties in
@@ -61,7 +64,6 @@ class QListWidgetItem;
 class QPropertyEditorWidget : public QTreeView {
   Q_OBJECT
 public:
-
   using UserTypeCB = QPropertyModel::UserTypeCB;
 
 
@@ -76,8 +78,12 @@ public:
   /// Destructor
   virtual ~QPropertyEditorWidget();
 
-  QPropertyModel* propertyModel() noexcept { return this->m_model; }
-  const QPropertyModel* propertyModel() const noexcept { return this->m_model; }
+  QPropertyModel* propertyModel() noexcept {
+    return this->m_model;
+  }
+  const QPropertyModel* propertyModel() const noexcept {
+    return this->m_model;
+  }
 
 public slots:
   /**
@@ -110,6 +116,7 @@ public slots:
    * whose property was changed.
    */
   void updateObject(QObject* subject) noexcept;
+
 public:
   /**
    * If you define custom datatypes outside of this library the QPropertyModel
@@ -133,7 +140,6 @@ public:
 
 private:
   /// The Model for this view
-  QPropertyModel*     m_model;
-
+  QPropertyModel* m_model;
 };
 #endif

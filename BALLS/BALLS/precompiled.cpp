@@ -13,7 +13,7 @@ template struct array<uint16_t, 3>;
 template struct pair<GLenum, GLenum>;
 template struct pair<QString, QVariant>;
 
-//template class unordered_map<GLenum, GLenum>;
+// template class unordered_map<GLenum, GLenum>;
 
 template class vector<float>;
 template class vector<uint16_t>;

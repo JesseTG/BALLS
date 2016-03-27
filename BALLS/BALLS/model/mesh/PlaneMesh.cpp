@@ -1,15 +1,14 @@
 #include "precompiled.hpp"
 
-#include "model/mesh/PlaneMesh.hpp"
 #include "Constants.hpp"
+#include "model/mesh/PlaneMesh.hpp"
 
 #include <generator/PlaneMesh.hpp>
 
 namespace balls {
 
 PlaneMesh::PlaneMesh(QObject *parent)
-    : MeshMesh(parent, Type::Plane), m_size(1.0, 1.0),
-      m_segments(8u, 8u) {
+  : MeshMesh(parent, Type::Plane), m_size(1.0, 1.0), m_segments(8u, 8u) {
   updateMesh();
 }
 

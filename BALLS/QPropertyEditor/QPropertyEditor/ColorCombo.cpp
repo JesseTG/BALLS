@@ -4,10 +4,12 @@
 //
 // --------------------------------------
 // Copyright (C) 2007 Volker Wiendl
-// Acknowledgements to Roman alias banal from qt-apps.org for the Enum enhancement
+// Acknowledgements to Roman alias banal from qt-apps.org for the Enum
+// enhancement
 //
 //
-// The QPropertyEditor Library is free software; you can redistribute it and/or modify
+// The QPropertyEditor Library is free software; you can redistribute it and/or
+// modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation version 3 of the License
 //
@@ -25,8 +27,7 @@
 
 #include <QtWidgets/QColorDialog>
 
-ColorCombo::ColorCombo(QWidget* parent) noexcept :
-QComboBox(parent) {
+ColorCombo::ColorCombo(QWidget* parent) noexcept : QComboBox(parent) {
   QStringList colorNames = QColor::colorNames();
 
   for (int i = 0; i < colorNames.size(); ++i) {
@@ -36,13 +37,12 @@ QComboBox(parent) {
   }
 
   addItem(tr("Custom"), static_cast<int>(QVariant::UserType));
-  connect(this, SIGNAL(currentIndexChanged(int)), this,
-          SLOT(currentChanged(int)));
+  connect(
+    this, SIGNAL(currentIndexChanged(int)), this, SLOT(currentChanged(int)));
 }
 
 
-ColorCombo::~ColorCombo() {
-}
+ColorCombo::~ColorCombo() {}
 
 
 QColor ColorCombo::color() const noexcept {
@@ -53,8 +53,7 @@ void ColorCombo::setColor(const QColor& color) noexcept {
   m_init = color;
   setCurrentIndex(findData(color, static_cast<int>(Qt::DecorationRole)));
 
-  if (currentIndex() == -1)
-  {
+  if (currentIndex() == -1) {
     addItem(color.name());
     setItemData(count() - 1, color, Qt::DecorationRole);
     setCurrentIndex(count() - 1);
@@ -74,8 +73,7 @@ void ColorCombo::currentChanged(const int index) noexcept {
       }
 
       setCurrentIndex(findData(color, static_cast<int>(Qt::DecorationRole)));
-    }
-    else {
+    } else {
       setCurrentIndex(findData(m_init));
     }
   }

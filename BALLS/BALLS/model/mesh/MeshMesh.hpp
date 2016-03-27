@@ -7,8 +7,7 @@
 
 namespace balls {
 
-class MeshMesh : public Mesh
-{
+class MeshMesh : public Mesh {
   Q_OBJECT
 
 public:
@@ -22,7 +21,6 @@ protected /* fields */:
   generator::AnyMesh m_mesh;
 };
 }
-
 
 Q_DECLARE_METATYPE(balls::MeshMesh*)
 

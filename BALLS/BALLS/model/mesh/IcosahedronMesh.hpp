@@ -7,8 +7,7 @@
 
 namespace balls {
 
-class IcosahedronMesh : public BaseSphereMesh
-{
+class IcosahedronMesh : public BaseSphereMesh {
   Q_OBJECT
 
   Q_CLASSINFO("segments", "minimum=1;")

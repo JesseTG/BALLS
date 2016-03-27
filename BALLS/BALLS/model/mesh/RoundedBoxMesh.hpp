@@ -11,8 +11,7 @@ namespace balls {
 using glm::dvec3;
 using glm::uvec3;
 
-class RoundedBoxMesh : public MeshMesh
-{
+class RoundedBoxMesh : public MeshMesh {
   Q_OBJECT
 
   Q_PROPERTY(double radius MEMBER m_radius WRITE setRadius FINAL)

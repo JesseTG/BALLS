@@ -1,14 +1,13 @@
 #include "precompiled.hpp"
-
 #include "ui/docks/MeshManagerWidget.hpp"
-#include "shader/ShaderUniform.hpp"
+
 #include "Constants.hpp"
+#include "shader/ShaderUniform.hpp"
 
 namespace balls {
 
-static const QRegularExpression
-    NAME_FILTER(R"%(^(_q_.+|objectName)$)%",
-                QRegularExpression::OptimizeOnFirstUsageOption);
+static const QRegularExpression NAME_FILTER(
+  R"%(^(_q_.+|objectName)$)%", QRegularExpression::OptimizeOnFirstUsageOption);
 
 MeshManagerWidget::MeshManagerWidget(QWidget *parent) : QWidget(parent) {
   ui.setupUi(this);
@@ -16,13 +15,26 @@ MeshManagerWidget::MeshManagerWidget(QWidget *parent) : QWidget(parent) {
   ui.meshProperties->setNameFilter(NAME_FILTER);
   ui.meshProperties->registerCustomPropertyCB(shader::createShaderProperty);
 
-  ui.createMeshButton->addActions({
-      ui.actionBox, ui.actionCapsule, ui.actionCone, ui.actionCylinder,
-      ui.actionDisk, ui.actionIcosahedron, ui.actionIcosphere, ui.actionPlane,
-      ui.actionRounded_Box, ui.actionSphere, ui.actionSpherical_Cone,
-      ui.actionSpherical_Triangle, ui.actionSpring, ui.actionTorus,
-      ui.actionTorus_Knot, ui.actionTriangle, ui.actionTube,
-  });
+  ui.createMeshButton->addActions(
+    {
+      ui.actionBox,
+      ui.actionCapsule,
+      ui.actionCone,
+      ui.actionCylinder,
+      ui.actionDisk,
+      ui.actionIcosahedron,
+      ui.actionIcosphere,
+      ui.actionPlane,
+      ui.actionRounded_Box,
+      ui.actionSphere,
+      ui.actionSpherical_Cone,
+      ui.actionSpherical_Triangle,
+      ui.actionSpring,
+      ui.actionTorus,
+      ui.actionTorus_Knot,
+      ui.actionTriangle,
+      ui.actionTube,
+    });
 
   ui.actionBox->setData(QVariant::fromValue(Mesh::Type::Box));
   ui.actionCapsule->setData(QVariant::fromValue(Mesh::Type::Capsule));
@@ -35,9 +47,9 @@ MeshManagerWidget::MeshManagerWidget(QWidget *parent) : QWidget(parent) {
   ui.actionRounded_Box->setData(QVariant::fromValue(Mesh::Type::RoundedBox));
   ui.actionSphere->setData(QVariant::fromValue(Mesh::Type::Sphere));
   ui.actionSpherical_Cone->setData(
-      QVariant::fromValue(Mesh::Type::SphericalCone));
+    QVariant::fromValue(Mesh::Type::SphericalCone));
   ui.actionSpherical_Triangle->setData(
-      QVariant::fromValue(Mesh::Type::SphericalTriangle));
+    QVariant::fromValue(Mesh::Type::SphericalTriangle));
   ui.actionSpring->setData(QVariant::fromValue(Mesh::Type::Spring));
   ui.actionTorus->setData(QVariant::fromValue(Mesh::Type::Torus));
   ui.actionTorus_Knot->setData(QVariant::fromValue(Mesh::Type::TorusKnot));
@@ -47,7 +59,7 @@ MeshManagerWidget::MeshManagerWidget(QWidget *parent) : QWidget(parent) {
 }
 
 void balls::MeshManagerWidget::on_meshList_currentItemChanged(
-    QListWidgetItem *current, QListWidgetItem *) {
+  QListWidgetItem *current, QListWidgetItem *) {
   Mesh *subject = current->data(Qt::UserRole).value<Mesh *>();
   if (subject) {
     qDebug() << "Displaying mesh" << current->data(Qt::DisplayRole).toString();
@@ -75,11 +87,10 @@ void balls::MeshManagerWidget::on_createMeshButton_triggered(QAction *arg1) {
 }
 
 /// Renames a Mesh object when a user changes its name in the editor
-void balls::MeshManagerWidget::on_meshList_itemChanged(QListWidgetItem *item)
-{
+void balls::MeshManagerWidget::on_meshList_itemChanged(QListWidgetItem *item) {
   QVariant mesh = item->data(Qt::UserRole);
   if (mesh.isValid()) {
-    Mesh* meshPtr = mesh.value<Mesh*>();
+    Mesh *meshPtr = mesh.value<Mesh *>();
 
     QVariant name = item->data(Qt::DisplayRole);
     meshPtr->setObjectName(name.toString());

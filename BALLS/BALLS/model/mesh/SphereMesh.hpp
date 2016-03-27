@@ -6,20 +6,23 @@
 
 namespace balls {
 
-class SphereMesh : public BaseSphereMesh
-{
+class SphereMesh : public BaseSphereMesh {
   Q_OBJECT
 
+  // clang-format off
   Q_PROPERTY(uint slices MEMBER m_slices WRITE setSlices FINAL)
   Q_PROPERTY(double sliceStart MEMBER m_sliceStart WRITE setSliceStart FINAL)
   Q_PROPERTY(double sliceSweep MEMBER m_sliceSweep WRITE setSliceSweep FINAL)
   Q_PROPERTY(double segmentStart MEMBER m_segmentStart WRITE setSegmentStart FINAL)
   Q_PROPERTY(double segmentSweep MEMBER m_segmentSweep WRITE setSegmentSweep FINAL)
+  // clang-format on
 
 public:
   SphereMesh(QObject* parent = nullptr);
+
 protected /* methods */:
   void assignMesh() override;
+
 private /* members */:
   unsigned int m_slices;
   double m_sliceStart;

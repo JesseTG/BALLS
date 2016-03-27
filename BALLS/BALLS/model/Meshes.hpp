@@ -1,10 +1,11 @@
 #ifndef MESHMANAGER_HPP
 #define MESHMANAGER_HPP
 
-#include <vector>
 #include <memory>
+#include <vector>
 
 #include <QObject>
+
 #include <generator/AnyMesh.hpp>
 
 #include "model/mesh/Mesh.hpp"
@@ -13,14 +14,12 @@ namespace balls {
 
 class Meshes : public QObject {
   Q_OBJECT
-public /* enums */:
 
 public:
-  explicit Meshes(QObject *parent = 0);
+  explicit Meshes(QObject* parent = 0);
   virtual ~Meshes() {}
 
 signals:
-
   void meshRemoved(const Mesh&);
 
 public slots:

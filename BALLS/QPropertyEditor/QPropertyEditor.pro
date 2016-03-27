@@ -35,15 +35,15 @@ CONFIG(debug, debug|release) {
 }
 
 CONFIG(release, debug|release) {
-	DEFINES += NDEBUG QT_NO_DEBUG QT_NO_DEBUG_OUTPUT
-	QMAKE_CXXFLAGS_RELEASE += -Ofast
-	QMAKE_LFLAGS_RELEASE += -Ofast
+  DEFINES += NDEBUG QT_NO_DEBUG QT_NO_DEBUG_OUTPUT
+  QMAKE_CXXFLAGS_RELEASE += -Ofast
+  QMAKE_LFLAGS_RELEASE += -Ofast
 }
 
 
 
 macx {
-	CONFIG += x86 ppc
-	QMAKE_MAC_SDK = /Developer/SDKs/MacOSX10.4u.sdk
-	QMAKE_LFLAGS += -mmacosx-version-min=10.4
+  CONFIG += x86 ppc
+  QMAKE_MAC_SDK = /Developer/SDKs/MacOSX10.4u.sdk
+  QMAKE_LFLAGS += -mmacosx-version-min=10.4
 }

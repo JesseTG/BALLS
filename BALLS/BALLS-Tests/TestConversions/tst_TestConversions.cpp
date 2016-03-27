@@ -1,36 +1,36 @@
 #include "precompiled.hpp"
-#include "util/MetaTypeConverters.hpp"
 
-#include <QString>
 #include <QtTest>
 #include <QMetaType>
+#include <QString>
 
 #include <boost/mpl/for_each.hpp>
 
-template<typename From>
+#include "util/MetaTypeConverters.hpp"
+
+template <typename From>
 struct other_handler {
-  template<typename To>
+  template <typename To>
   inline void operator()(To&) noexcept {
     if (!balls::types::is_builtin_conv<From, To>()) {
-    // If this isn't one of the default conversions within QVariant...
+      // If this isn't one of the default conversions within QVariant...
 
-    auto from = qMetaTypeId<From>();
-    auto to = qMetaTypeId<To>();
+      auto from = qMetaTypeId<From>();
+      auto to = qMetaTypeId<To>();
 
-    QString tag;
-    tag
-    .append(QMetaType::typeName(from))
-    .append(" -> ")
-    .append(QMetaType::typeName(to));
+      QString tag;
+      tag.append(QMetaType::typeName(from))
+        .append(" -> ")
+        .append(QMetaType::typeName(to));
 
-    QTest::newRow(qPrintable(tag)) << from << to;
+      QTest::newRow(qPrintable(tag)) << from << to;
     }
   }
 };
 
-template<typename FromSeq>
+template <typename FromSeq>
 struct handler {
-  template<typename To>
+  template <typename To>
   inline void operator()(To&) noexcept {
     boost::mpl::for_each<FromSeq>(other_handler<To>());
   }
@@ -38,7 +38,7 @@ struct handler {
 
 
 /// Register a conversion from every type in SeqA to every type in SeqB
-template<class SeqA, class SeqB>
+template <class SeqA, class SeqB>
 inline void _makeTests() noexcept {
   boost::mpl::for_each<SeqA>(handler<SeqB>());
 }
@@ -51,8 +51,7 @@ private Q_SLOTS:
   void typeConversions_data();
 };
 
-void TestConversions::initTestCase()
-{
+void TestConversions::initTestCase() {
   balls::registerMetaTypeConverters();
 }
 
@@ -80,7 +79,6 @@ void TestConversions::typeConversions() {
   QCOMPARE(static_cast<int>(v.userType()), from);
   //  QVERIFY(QMetaType::hasRegisteredConverterFunction(from, to));
   QVERIFY(v.canConvert(to));
-
 }
 
 QTEST_APPLESS_MAIN(TestConversions)

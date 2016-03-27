@@ -7,8 +7,7 @@
 
 namespace balls {
 
-class TorusKnotMesh : public MeshMesh
-{
+class TorusKnotMesh : public MeshMesh {
   Q_OBJECT
 
   Q_PROPERTY(int p MEMBER m_p WRITE setP FINAL)
@@ -18,8 +17,10 @@ class TorusKnotMesh : public MeshMesh
 
 public:
   TorusKnotMesh(QObject* parent = nullptr);
+
 protected /* methods */:
   void assignMesh() override;
+
 private /* members */:
   int m_p;
   int m_q;

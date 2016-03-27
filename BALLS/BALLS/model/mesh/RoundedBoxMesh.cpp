@@ -1,15 +1,18 @@
 #include "precompiled.hpp"
 
-#include "model/mesh/RoundedBoxMesh.hpp"
 #include "Constants.hpp"
+#include "model/mesh/RoundedBoxMesh.hpp"
 
 #include <generator/RoundedBoxMesh.hpp>
 
 namespace balls {
 
 RoundedBoxMesh::RoundedBoxMesh(QObject *parent)
-    : MeshMesh(parent, Type::RoundedBox), m_radius(0.25), m_size(1.0, 1.0, 1.0),
-      m_slices(4u), m_segments(8u, 8u, 8u) {
+  : MeshMesh(parent, Type::RoundedBox),
+    m_radius(0.25),
+    m_size(1.0, 1.0, 1.0),
+    m_slices(4u),
+    m_segments(8u, 8u, 8u) {
   updateMesh();
 }
 

@@ -16,7 +16,8 @@ namespace balls {
 namespace config {
 using std::uint8_t;
 using std::unordered_map;
-struct ProjectConfig {
+
+Q_DECL_DEPRECATED struct ProjectConfig {
 
   /// The vertex shader of this project (required)
   QString vertexShader;
@@ -46,8 +47,10 @@ struct ProjectConfig {
   uint8_t glMinor : 4;
 };
 
-void saveToFile(const ProjectConfig&, const QString&, const QObject*);
-ProjectConfig loadFromFile(const QString&);
+Q_DECL_DEPRECATED void
+  saveToFile(const ProjectConfig&, const QString&, const QObject*);
+
+Q_DECL_DEPRECATED ProjectConfig loadFromFile(const QString&);
 }
 }
 

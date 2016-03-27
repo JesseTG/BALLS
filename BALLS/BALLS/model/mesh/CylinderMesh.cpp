@@ -1,16 +1,16 @@
 #include "precompiled.hpp"
 
-#include "model/mesh/CylinderMesh.hpp"
 #include "Constants.hpp"
+#include "model/mesh/CylinderMesh.hpp"
 
 #include <generator/CappedCylinderMesh.hpp>
 #include <generator/CylinderMesh.hpp>
 
 namespace balls {
 CylinderMesh::CylinderMesh(QObject *parent)
-    : BaseCylindricalMesh(parent, Type::Cylinder) {
+  : BaseCylindricalMesh(parent, Type::Cylinder) {
   m_radius = 1.0; // Can't initialize these in member initializer list,
-  m_size = 1.0;   // don't feel like figuring out why
+  m_size = 1.0; // don't feel like figuring out why
   m_slices = 32u;
   m_segments = 8u;
   m_rings = 4u;
@@ -40,11 +40,21 @@ void CylinderMesh::setCapped(bool capped) {
 void CylinderMesh::assignMesh() {
   if (m_capped) {
     m_mesh = generator::CappedCylinderMesh(
-        m_radius, m_size, m_slices, m_segments, m_rings, glm::radians(m_start),
-        glm::radians(m_sweep));
+      m_radius,
+      m_size,
+      m_slices,
+      m_segments,
+      m_rings,
+      glm::radians(m_start),
+      glm::radians(m_sweep));
   } else {
-    m_mesh = generator::CylinderMesh(m_radius, m_size, m_slices, m_segments,
-                                     glm::radians(m_start), glm::radians(m_sweep));
+    m_mesh = generator::CylinderMesh(
+      m_radius,
+      m_size,
+      m_slices,
+      m_segments,
+      glm::radians(m_start),
+      glm::radians(m_sweep));
   }
 }
 }

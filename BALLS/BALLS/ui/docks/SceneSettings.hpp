@@ -8,14 +8,13 @@ class QOpenGLContext;
 
 namespace balls {
 
-
 class BallsCanvas;
 
-class SceneSettings : public QWidget {
+class Q_DECL_DEPRECATED SceneSettings : public QWidget {
   Q_OBJECT
 
 public:
-  explicit SceneSettings(QWidget *parent = 0);
+  explicit SceneSettings(QWidget* parent = 0);
 
 private:
   friend class BallsWindow; // HACK: restructure properly later

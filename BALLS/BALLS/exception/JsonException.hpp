@@ -7,7 +7,7 @@
 
 namespace balls {
 
-class JsonException : public std::exception
+class Q_DECL_DEPRECATED JsonException : public std::exception
 {
   Q_DECLARE_TR_FUNCTIONS(JsonException)
 

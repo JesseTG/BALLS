@@ -16,9 +16,6 @@
 #include <vector>
 
 // Qt Core
-#include <qmath.h>
-#include <QtCore/Qt>
-#include <QtCore/QtGlobal>
 #include <QtCore/QDateTime>
 #include <QtCore/QDebug>
 #include <QtCore/QLoggingCategory>
@@ -40,20 +37,23 @@
 #include <QtCore/QStringList>
 #include <QtCore/QVariant>
 #include <QtCore/QVector>
+#include <QtCore/Qt>
+#include <QtCore/QtGlobal>
+#include <qmath.h>
 
 // Qt GUI
-#include <QtGui/qopengl.h>
-#include <QtGui/qopenglext.h>
 #include <QtGui/QColor>
 #include <QtGui/QQuaternion>
 #include <QtGui/QVector2D>
 #include <QtGui/QVector3D>
 #include <QtGui/QVector4D>
+#include <QtGui/qopengl.h>
+#include <QtGui/qopenglext.h>
 
 // glm common types
 #include <glm/common.hpp>
-#include <glm/glm.hpp>
 #include <glm/geometric.hpp>
+#include <glm/glm.hpp>
 #include <glm/mat2x2.hpp>
 #include <glm/mat2x3.hpp>
 #include <glm/mat2x4.hpp>
@@ -69,10 +69,10 @@
 
 // glm stable extensions
 #include <glm/gtc/constants.hpp>
+#include <glm/gtc/epsilon.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/quaternion.hpp>
 #include <glm/gtc/type_ptr.hpp>
-#include <glm/gtc/epsilon.hpp>
 
 // glm experimental extensions
 #include <glm/gtx/fast_square_root.hpp>
@@ -192,7 +192,8 @@ Q_DECLARE_METATYPE(dquat)
 // glm explicit template instantiations
 namespace glm {
 
-// Can't instantiate the bool specializations for some reason; I suppose doing so
+// Can't instantiate the bool specializations for some reason; I suppose doing
+// so
 // tries to instantiate all methods, including any decrement/increment operators
 extern template struct tvec2<double>;
 extern template struct tvec2<float>;
@@ -236,13 +237,15 @@ extern template struct tmat4x4<double>;
 namespace std {
 extern template struct array<uint16_t, 3>;
 
-template<> struct hash<QString>;
-template<> struct hash<QByteArray>;
+template <>
+struct hash<QString>;
+template <>
+struct hash<QByteArray>;
 
 extern template struct pair<GLenum, GLenum>;
 extern template struct pair<QString, QVariant>;
 
-//extern template class unordered_map<GLenum, GLenum>;
+// extern template class unordered_map<GLenum, GLenum>;
 
 extern template class vector<float>;
 extern template class vector<uint16_t>;

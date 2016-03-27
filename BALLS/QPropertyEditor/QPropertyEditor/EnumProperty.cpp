@@ -4,10 +4,12 @@
 //
 // --------------------------------------
 // Copyright (C) 2007 Volker Wiendl
-// Acknowledgements to Roman alias banal from qt-apps.org for the Enum enhancement
+// Acknowledgements to Roman alias banal from qt-apps.org for the Enum
+// enhancement
 //
 //
-// The QPropertyEditor Library is free software; you can redistribute it and/or modify
+// The QPropertyEditor Library is free software; you can redistribute it and/or
+// modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation version 3 of the License
 //
@@ -27,19 +29,16 @@
 // Constructor
 /////////////////////////////////////////////////////////////////////////////////////////////
 EnumProperty::EnumProperty(
-  const QString& name,
-  QObject* subject,
-  QObject* parent) noexcept :
-Property(name, subject, parent)
-{
+  const QString& name, QObject* subject, QObject* parent) noexcept
+  : Property(name, subject, parent) {
   // get the meta property object
   const QMetaObject* meta = subject->metaObject();
   QMetaProperty prop = meta->property(meta->indexOfProperty(qPrintable(name)));
 
   // if it is indeed an enum type, fill the QStringList member with the keys
-  if(prop.isEnumType()){
+  if (prop.isEnumType()) {
     QMetaEnum qenum = prop.enumerator();
-    for(int i=0; i < qenum.keyCount(); i++){
+    for (int i = 0; i < qenum.keyCount(); i++) {
       m_enum << qenum.key(i);
     }
   }
@@ -49,15 +48,16 @@ Property(name, subject, parent)
 // value
 /////////////////////////////////////////////////////////////////////////////////////////////
 QVariant EnumProperty::value(const int role) const noexcept {
-  if(role == Qt::DisplayRole){
-    if (m_subject){
+  if (role == Qt::DisplayRole) {
+    if (m_subject) {
       // resolve the value to the corresponding enum key
       int index = m_subject->property(qPrintable(objectName())).toInt();
 
       const QMetaObject* meta = m_subject->metaObject();
-      QMetaProperty prop = meta->property(meta->indexOfProperty(qPrintable(objectName())));
+      QMetaProperty prop =
+        meta->property(meta->indexOfProperty(qPrintable(objectName())));
       return QVariant(prop.enumerator().valueToKey(index));
-    } else{
+    } else {
       return QVariant();
     }
   } else {
@@ -65,38 +65,40 @@ QVariant EnumProperty::value(const int role) const noexcept {
   }
 }
 
-template<class C, class P>
+template <class C, class P>
 using Prop = void (C::*)(P);
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 // createEditor
 /////////////////////////////////////////////////////////////////////////////////////////////
-QWidget* EnumProperty::createEditor(QWidget* parent,
-                                    const QStyleOptionViewItem&) noexcept {
+QWidget* EnumProperty::createEditor(
+  QWidget* parent, const QStyleOptionViewItem&) noexcept {
   // create a QComboBox and fill it with the QStringList values
   QComboBox* editor = new QComboBox(parent);
   editor->addItems(m_enum);
 
-  connect(editor, SIGNAL(currentIndexChanged(const QString)),
-    this, SLOT(valueChanged(const QString)));
+  connect(
+    editor,
+    SIGNAL(currentIndexChanged(const QString)),
+    this,
+    SLOT(valueChanged(const QString)));
   return editor;
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 // setEditorData
 /////////////////////////////////////////////////////////////////////////////////////////////
-bool EnumProperty::setEditorData(QWidget* editor,
-                                 const QVariant& data) noexcept
-{
+bool EnumProperty::setEditorData(
+  QWidget* editor, const QVariant& data) noexcept {
   QComboBox* combo = nullptr;
-  if((combo = qobject_cast<QComboBox*>(editor))) {
+  if ((combo = qobject_cast<QComboBox*>(editor))) {
     int value = data.toInt();
     const QMetaObject* meta = m_subject->metaObject();
-    QMetaProperty prop = meta->property(meta->indexOfProperty(qPrintable(objectName())));
+    QMetaProperty prop =
+      meta->property(meta->indexOfProperty(qPrintable(objectName())));
 
     int index = combo->findText(prop.enumerator().valueToKey(value));
-    if(index == -1)
-      return false;
+    if (index == -1) return false;
 
     combo->setCurrentIndex(index);
   } else {
@@ -109,8 +111,7 @@ bool EnumProperty::setEditorData(QWidget* editor,
 /////////////////////////////////////////////////////////////////////////////////////////////
 // editorData
 /////////////////////////////////////////////////////////////////////////////////////////////
-QVariant EnumProperty::editorData(QWidget* editor) const noexcept
-{
+QVariant EnumProperty::editorData(QWidget* editor) const noexcept {
   QComboBox* combo = nullptr;
   if ((combo = qobject_cast<QComboBox*>(editor))) {
     return QVariant(combo->currentText());

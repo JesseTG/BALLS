@@ -14,13 +14,12 @@ class QOpenGLFunctions_4_3_Core;
 namespace balls {
 
 /**
- * @brief Contains pointers to all QOpenGLFunctions that refer to OpenGL functionality
- * supported by the hardware.  Assumes that if version X is supported, then all
- * features for versions < X are too.
+ * @brief Contains pointers to all QOpenGLFunctions that refer to OpenGL
+ * functionality supported by the hardware.  Assumes that if version X is
+ * supported, then all features for versions < X are too.
  * @todo Support OpenGL 4.4 and 4.5 (when I can upgrade to Qt 5.5 or 5.6)
  */
-struct OpenGLPointers
-{
+struct OpenGLPointers {
   OpenGLPointers(QOpenGLContext*);
   OpenGLPointers();
 

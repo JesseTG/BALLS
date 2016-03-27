@@ -2,15 +2,15 @@
 #define METATYPECONVERTERS_HPP
 
 #include <QtCore/QMetaType>
+#include <QtGui/QQuaternion>
 #include <QtGui/QVector2D>
 #include <QtGui/QVector3D>
 #include <QtGui/QVector4D>
-#include <QtGui/QQuaternion>
 
-#include <boost/mpl/list.hpp>
-#include <boost/mpl/joint_view.hpp>
-#include <boost/mpl/single_view.hpp>
 #include <boost/mpl/count.hpp>
+#include <boost/mpl/joint_view.hpp>
+#include <boost/mpl/list.hpp>
+#include <boost/mpl/single_view.hpp>
 
 #include <glm/glm.hpp>
 
@@ -35,8 +35,17 @@ using Vec3s = list<vec3, ivec3, bvec3, dvec3, uvec3>;
 using Vec4s = list<vec4, ivec4, bvec4, dvec4, uvec4>;
 using Vec34s = joint_view<Vec3s, Vec4s>;
 using Quats = list<quat, dquat>;
-using Fmats = list<mat2, mat2x3, mat2x4, mat3x2, mat3, mat3x4, mat4x2, mat4x3, mat4>;
-using Dmats = list<dmat2, dmat2x3, dmat2x4, dmat3x2, dmat3, dmat3x4, dmat4x2, dmat4x3, dmat4>;
+using Fmats =
+  list<mat2, mat2x3, mat2x4, mat3x2, mat3, mat3x4, mat4x2, mat4x3, mat4>;
+using Dmats = list<dmat2,
+                   dmat2x3,
+                   dmat2x4,
+                   dmat3x2,
+                   dmat3,
+                   dmat3x4,
+                   dmat4x2,
+                   dmat4x3,
+                   dmat4>;
 using Mats = joint_view<Fmats, Dmats>;
 
 using Vecs = joint_view<Vec2s, joint_view<Vec3s, Vec4s>>;
@@ -78,17 +87,14 @@ using JsonArr = list<QJsonArray, QJsonValue>;
 using String = single_view<QString>;
 }
 
-template<class Seq, class T>
-struct contains : integral_constant<bool, count<Seq, T>::type::value> {
-};
+template <class Seq, class T>
+struct contains : integral_constant<bool, count<Seq, T>::type::value> {};
 
-template<class A, class B>
-struct is_builtin_conv : integral_constant < bool,
-contains<types::qt::BuiltIn, A>()&&  contains<types::qt::BuiltIn, B>() > {
-
-};
-
-
+template <class A, class B>
+struct is_builtin_conv
+  : integral_constant<bool,
+                      contains<types::qt::BuiltIn, A>()
+                        && contains<types::qt::BuiltIn, B>()> {};
 }
 }
 #endif // METATYPECONVERTERS_HPP

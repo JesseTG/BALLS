@@ -2,8 +2,8 @@
 #define MATRIXPROPERTIES_HPP
 
 #include <QObject>
-#include <QString>
 #include <QPropertyEditor/Property.h>
+#include <QString>
 
 #include <glm/fwd.hpp>
 
@@ -136,7 +136,6 @@ public:
 // /////////////////////////////////////////////////////////////////////////////
 
 
-
 //==============================================================================
 // Double matrices
 //==============================================================================
@@ -255,7 +254,6 @@ public:
   using MatrixProperty<tmat4x4, DVec4Property>::MatrixProperty;
 };
 // /////////////////////////////////////////////////////////////////////////////
-
 }
 
 #endif // MATRIXPROPERTIES_HPP

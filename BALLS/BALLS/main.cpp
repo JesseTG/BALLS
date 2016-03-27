@@ -1,12 +1,13 @@
 #include "precompiled.hpp"
-#include "ui/BallsWindow.hpp"
+
+#include <QApplication>
+#include <generator/generator.hpp>
 
 #include "Constants.hpp"
+
+#include "ui/BallsWindow.hpp"
 #include "util/Logging.hpp"
 #include "util/MetaTypeConverters.hpp"
-
-#include <generator/generator.hpp>
-#include <QApplication>
 
 int main(int argc, char* argv[]) {
   using namespace balls::logs;

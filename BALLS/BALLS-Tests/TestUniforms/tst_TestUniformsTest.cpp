@@ -1,15 +1,16 @@
 #include "precompiled.hpp"
-#include "util/MetaTypeConverters.hpp"
-#include "util/TypeInfo.hpp"
 
+#include <QtTest>
+#include <QCoreApplication>
+#include <QList>
+#include <QString>
 #include <initializer_list>
 #include <utility>
-#include <QString>
-#include <QtTest>
-#include <QList>
-#include <QCoreApplication>
+
 #include "model/Uniforms.hpp"
 #include "util/Logging.hpp"
+#include "util/MetaTypeConverters.hpp"
+#include "util/TypeInfo.hpp"
 
 using std::tuple;
 using std::get;
@@ -20,9 +21,9 @@ using balls::UniformCollection;
 using balls::UniformInfo;
 
 struct UniformTestDatum {
-  template<class T>
-  UniformTestDatum(const UniformInfo& u, const T& v) :
-    uniform(u), value(QVariant::fromValue(v)) {}
+  template <class T>
+  UniformTestDatum(const UniformInfo& u, const T& v)
+    : uniform(u), value(QVariant::fromValue(v)) {}
   UniformInfo uniform;
   QVariant value;
 };
@@ -187,24 +188,21 @@ void TestUniformsTest::designableIsUpdated() {
   Q_ASSERT(matrix.isValid());
   Q_ASSERT(mousePos.isValid());
 
-  uniforms.receiveUniforms({
-    UniformInfo {"matrix", GL_FLOAT_MAT4, 1}
-  });
+  uniforms.receiveUniforms({UniformInfo{"matrix", GL_FLOAT_MAT4, 1}});
 
   QVERIFY(matrix.isDesignable(&uniforms));
   QVERIFY(!mousePos.isDesignable(&uniforms));
 
-  uniforms.receiveUniforms({
-    UniformInfo {"mousePos", GL_INT_VEC2, 1}
-  });
+  uniforms.receiveUniforms({UniformInfo{"mousePos", GL_INT_VEC2, 1}});
 
   QVERIFY(!matrix.isDesignable(&uniforms));
   QVERIFY(mousePos.isDesignable(&uniforms));
 
-  uniforms.receiveUniforms({
-    UniformInfo {"matrix", GL_FLOAT_MAT4, 1},
-    UniformInfo {"mousePos", GL_INT_VEC2, 1},
-  });
+  uniforms.receiveUniforms(
+    {
+      UniformInfo{"matrix", GL_FLOAT_MAT4, 1},
+      UniformInfo{"mousePos", GL_INT_VEC2, 1},
+    });
 
   QVERIFY(matrix.isDesignable(&uniforms));
   QVERIFY(mousePos.isDesignable(&uniforms));
@@ -220,79 +218,56 @@ void TestUniformsTest::receiveUniforms_data() {
   QTest::addColumn<UniformTestData>("before");
   QTest::addColumn<UniformTestData>("after");
 
-  QTest::newRow("empty -> empty")
-      << UniformTestData {}
-      << UniformTestData {};
+  QTest::newRow("empty -> empty") << UniformTestData{} << UniformTestData{};
 
   QTest::newRow("empty -> one")
-  << UniformTestData {
-  }
-  << UniformTestData {{
-      { {"mat", GL_FLOAT_MAT4, 1}, mat4() }
-    }
-  };
+    << UniformTestData{}
+    << UniformTestData{{{{"mat", GL_FLOAT_MAT4, 1}, mat4()}}};
 
   QTest::newRow("one -> empty")
-  << UniformTestData {{
-      { {"mat", GL_FLOAT_MAT4, 1}, mat4() }
-    }
-  }
-  << UniformTestData {
-  };
+    << UniformTestData{{{{"mat", GL_FLOAT_MAT4, 1}, mat4()}}}
+    << UniformTestData{};
 
   QTest::newRow("matrix -> vector")
-  << UniformTestData {{
-      { {"mat", GL_FLOAT_MAT4, 1}, mat4(4) }
-    }
-  }
-  << UniformTestData {{
-      { {"mat", GL_FLOAT_VEC4, 1}, vec4(4, 0, 0, 0) }
-    }
-  };
+    << UniformTestData{{{{"mat", GL_FLOAT_MAT4, 1}, mat4(4)}}}
+    << UniformTestData{{{{"mat", GL_FLOAT_VEC4, 1}, vec4(4, 0, 0, 0)}}};
 
-  QTest::newRow("rearrange")
-  << UniformTestData {{
-      { {"mat", GL_DOUBLE_MAT4, 1}, dmat4()},
-      { {"scale", GL_FLOAT, 1}, 1.0f},
-      { {"available", GL_BOOL, 1}, true},
-    }
-  }
-  << UniformTestData {{
-      { {"available", GL_BOOL, 1}, true},
-      { {"mat", GL_DOUBLE_MAT4, 1}, dmat4()},
-      { {"scale", GL_FLOAT, 1}, 1.0f},
-    }
-  };
+  QTest::newRow("rearrange") << UniformTestData{{
+                                  {{"mat", GL_DOUBLE_MAT4, 1}, dmat4()},
+                                  {{"scale", GL_FLOAT, 1}, 1.0f},
+                                  {{"available", GL_BOOL, 1}, true},
+                                }}
+                             << UniformTestData{{
+                                  {{"available", GL_BOOL, 1}, true},
+                                  {{"mat", GL_DOUBLE_MAT4, 1}, dmat4()},
+                                  {{"scale", GL_FLOAT, 1}, 1.0f},
+                                }};
 
   QTest::newRow("rearrange and change types")
-  << UniformTestData {{
-      { {"mvp", GL_FLOAT_MAT3, 1}, mat3() },
-      { {"color", GL_FLOAT_VEC4, 1}, vec4(0.5, 0.0, 0.0, 0.0) },
-      { {"repetitions", GL_INT, 1}, 74 },
-      { {"seed", GL_INT_VEC2, 1}, ivec2(16, 14)},
-    }
-  }
-  << UniformTestData {{
-      { {"color", GL_DOUBLE_VEC4, 1}, dvec4(0.5, 0.0, 0.0, 0.0) },
-      { {"seed", GL_UNSIGNED_INT, 1}, 16u },
-      { {"mvp", GL_FLOAT_MAT3x4, 1}, mat3x4() },
-      { {"repetitions", GL_UNSIGNED_INT, 1}, 74u },
-    }
-  };
+    << UniformTestData{{
+         {{"mvp", GL_FLOAT_MAT3, 1}, mat3()},
+         {{"color", GL_FLOAT_VEC4, 1}, vec4(0.5, 0.0, 0.0, 0.0)},
+         {{"repetitions", GL_INT, 1}, 74},
+         {{"seed", GL_INT_VEC2, 1}, ivec2(16, 14)},
+       }}
+    << UniformTestData{{
+         {{"color", GL_DOUBLE_VEC4, 1}, dvec4(0.5, 0.0, 0.0, 0.0)},
+         {{"seed", GL_UNSIGNED_INT, 1}, 16u},
+         {{"mvp", GL_FLOAT_MAT3x4, 1}, mat3x4()},
+         {{"repetitions", GL_UNSIGNED_INT, 1}, 74u},
+       }};
 
   QTest::newRow("unsupported types")
-  << UniformTestData {{
-      { {"coords", GL_FLOAT_VEC2, 1}, vec2() },
-      { {"threshold", GL_FLOAT, 1}, 1.0f },
-    }
-  }
-  << UniformTestData {{
-      { {"threshold", GL_FLOAT, 1}, 1.0f },
-      { {"texture", GL_SAMPLER_2D, 1}, 0 },
-      { {"coords", GL_FLOAT_VEC2, 1}, vec2() },
-      { {"palette", GL_INT_SAMPLER_1D, 1}, 1 },
-    }
-  };
+    << UniformTestData{{
+         {{"coords", GL_FLOAT_VEC2, 1}, vec2()},
+         {{"threshold", GL_FLOAT, 1}, 1.0f},
+       }}
+    << UniformTestData{{
+         {{"threshold", GL_FLOAT, 1}, 1.0f},
+         {{"texture", GL_SAMPLER_2D, 1}, 0},
+         {{"coords", GL_FLOAT_VEC2, 1}, vec2()},
+         {{"palette", GL_INT_SAMPLER_1D, 1}, 1},
+       }};
 }
 
 void TestUniformsTest::receiveUniforms() {
@@ -321,11 +296,12 @@ void TestUniformsTest::mouseCoordinates_data() {
   QTest::addColumn<QList<QPoint>>("points");
 
   using QPointList = QList<QPoint>;
-  QTest::newRow("basic") << QPointList {{1, 1}, {42, 43}, {100, 99}};
-  QTest::newRow("one motion") << QPointList {{0, 0}, {77, 74}};
-  QTest::newRow("not moving") << QPointList {{0, 0}, {0, 0}, {0, 0}};
-  QTest::newRow("negative") << QPointList {{ -1, -43}, { -119, -32}, { -55, -22}};
-  QTest::newRow("change signs") << QPointList {{0, 0}, {34, -66}, { -22, 78}, { -99, -101}, {0, 0}, {1, 0}};
+  QTest::newRow("basic") << QPointList{{1, 1}, {42, 43}, {100, 99}};
+  QTest::newRow("one motion") << QPointList{{0, 0}, {77, 74}};
+  QTest::newRow("not moving") << QPointList{{0, 0}, {0, 0}, {0, 0}};
+  QTest::newRow("negative") << QPointList{{-1, -43}, {-119, -32}, {-55, -22}};
+  QTest::newRow("change signs")
+    << QPointList{{0, 0}, {34, -66}, {-22, 78}, {-99, -101}, {0, 0}, {1, 0}};
 }
 
 void TestUniformsTest::mouseCoordinates() {
@@ -338,10 +314,11 @@ void TestUniformsTest::mouseCoordinates() {
   object.installEventFilter(&uniforms);
 
   for (const QPoint& p : points) {
-    QMouseEvent event(QEvent::MouseMove, p, Qt::NoButton, Qt::NoButton,
-                      Qt::NoModifier);
+    QMouseEvent event(
+      QEvent::MouseMove, p, Qt::NoButton, Qt::NoButton, Qt::NoModifier);
     QCoreApplication::sendEvent(&object, &event);
-    // WORKAROUND: QTest::mouseMove doesn't actually fire a QMouseEvent (it just sets the mouse cursor)
+    // WORKAROUND: QTest::mouseMove doesn't actually fire a QMouseEvent (it just
+    // sets the mouse cursor)
   }
 
   ivec2 mousePos = uniforms.property("mousePos").value<ivec2>();
@@ -361,9 +338,10 @@ void TestUniformsTest::canvasSize_data() {
   QTest::addColumn<QList<QSize>>("sizes");
 
   using QSizeList = QList<QSize>;
-  QTest::newRow("basic") << QSizeList {{1, 1}, {42, 43}, {100, 99}};
-  QTest::newRow("one resize") << QSizeList {{1, 1}, {77, 74}};
-  QTest::newRow("grow then shrink") << QSizeList {{1, 1}, {45, 76}, {12, 100}, {34, 99}};
+  QTest::newRow("basic") << QSizeList{{1, 1}, {42, 43}, {100, 99}};
+  QTest::newRow("one resize") << QSizeList{{1, 1}, {77, 74}};
+  QTest::newRow("grow then shrink")
+    << QSizeList{{1, 1}, {45, 76}, {12, 100}, {34, 99}};
 }
 
 void TestUniformsTest::canvasSize() {
@@ -401,8 +379,8 @@ void TestUniformsTest::canvasSize() {
 void TestUniformsTest::filtersEvents() {
   QObject object;
   Uniforms uniforms;
-  QSize size {100, 100};
-  QResizeEvent resize {size, {2, 2}};
+  QSize size{100, 100};
+  QResizeEvent resize{size, {2, 2}};
 
   object.installEventFilter(&uniforms);
   QCoreApplication::sendEvent(&object, &resize);

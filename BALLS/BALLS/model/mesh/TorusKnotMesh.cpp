@@ -1,15 +1,18 @@
 #include "precompiled.hpp"
 
-#include "model/mesh/TorusKnotMesh.hpp"
 #include "Constants.hpp"
+#include "model/mesh/TorusKnotMesh.hpp"
 
 #include <generator/TorusKnotMesh.hpp>
 
 namespace balls {
 
 TorusKnotMesh::TorusKnotMesh(QObject *parent)
-    : MeshMesh(parent, Type::TorusKnot), m_p(2), m_q(3), m_slices(8u),
-      m_segments(96u) {
+  : MeshMesh(parent, Type::TorusKnot),
+    m_p(2),
+    m_q(3),
+    m_slices(8u),
+    m_segments(96u) {
   updateMesh();
 }
 

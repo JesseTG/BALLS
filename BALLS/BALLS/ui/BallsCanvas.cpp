@@ -16,12 +16,12 @@
 #include <QtGui/QSurfaceFormat>
 #include <QtWidgets/QOpenGLWidget>
 
-#include "util/Logging.hpp"
-#include "util/Util.hpp"
 #include "Constants.hpp"
 #include "config/Settings.hpp"
-#include "ui/BallsWindow.hpp"
 #include "model/mesh/Mesh.hpp"
+#include "ui/BallsWindow.hpp"
+#include "util/Logging.hpp"
+#include "util/Util.hpp"
 
 namespace balls {
 
@@ -39,9 +39,9 @@ using UsagePattern = QOpenGLBuffer::UsagePattern;
 
 constexpr FormatOption FORMAT_OPTION =
 #ifdef DEBUG
-    FormatOption::DebugContext;
+  FormatOption::DebugContext;
 #else
-    FormatOption::StereoBuffers;
+  FormatOption::StereoBuffers;
 #endif
 constexpr OpenGLContextProfile PROFILE = OpenGLContextProfile::CoreProfile;
 constexpr RenderableType RENDER_TYPE = RenderableType::OpenGL;
@@ -49,8 +49,8 @@ constexpr SwapBehavior SWAP_TYPE = SwapBehavior::DefaultSwapBehavior;
 constexpr int SAMPLES = 4;
 constexpr int DEPTH_BUFFER_BITS = 8;
 
-constexpr FormatOptions FLAGS(FORMAT_OPTION | RENDER_TYPE | PROFILE |
-                              SWAP_TYPE);
+constexpr FormatOptions
+  FLAGS(FORMAT_OPTION | RENDER_TYPE | PROFILE | SWAP_TYPE);
 
 constexpr UsagePattern USAGE_PATTERN = UsagePattern::StaticDraw;
 
@@ -58,10 +58,15 @@ constexpr float DEFAULT_ZOOM = -8;
 constexpr float TRACKBALL_RADIUS = 1;
 
 BallsCanvas::BallsCanvas(QWidget *parent)
-    : QOpenGLWidget(parent), _uniforms(nullptr), _uniformsMeta(nullptr),
-      _uniformsPropertyOffset(0), _uniformsPropertyCount(0), _log(nullptr),
-      _vbo(QOpenGLBuffer::VertexBuffer), _ibo(QOpenGLBuffer::IndexBuffer),
-      m_indexCount(0) {
+  : QOpenGLWidget(parent),
+    _uniforms(nullptr),
+    _uniformsMeta(nullptr),
+    _uniformsPropertyOffset(0),
+    _uniformsPropertyCount(0),
+    _log(nullptr),
+    _vbo(QOpenGLBuffer::VertexBuffer),
+    _ibo(QOpenGLBuffer::IndexBuffer),
+    m_indexCount(0) {
   QSurfaceFormat format(FLAGS);
   format.setSamples(SAMPLES);
   format.setDepthBufferSize(DEPTH_BUFFER_BITS);
@@ -84,8 +89,11 @@ BallsCanvas::~BallsCanvas() {
 void BallsCanvas::initializeGL() {
   this->initializeOpenGLFunctions();
 
-  connect(this, &BallsCanvas::uniformsDiscovered, _uniforms,
-          &Uniforms::receiveUniforms);
+  connect(
+    this,
+    &BallsCanvas::uniformsDiscovered,
+    _uniforms,
+    &Uniforms::receiveUniforms);
   _initSettings();
   _initGLPointers();
   _initGLMemory();
@@ -132,26 +140,33 @@ inline void BallsCanvas::_initGLPointers() {
   }
 
   if (!QOpenGLShaderProgram::hasOpenGLShaderPrograms()) {
-    fatalGraphicsError(tr("OpenGL Error: Hardware too old"),
-                       tr("Shaders are not available on this graphics "
-                          "hardware, but BALLS needs"
-                          " them to run."),
-                       constants::errors::SHADER_PROGRAMS_UNAVAILABLE);
+    fatalGraphicsError(
+      tr("OpenGL Error: Hardware too old"),
+      tr(
+        "Shaders are not available on this graphics "
+        "hardware, but BALLS needs"
+        " them to run."),
+      constants::errors::SHADER_PROGRAMS_UNAVAILABLE);
   }
 
-  if (!(QOpenGLShader::hasOpenGLShaders(QOpenGLShader::Vertex) &&
-        QOpenGLShader::hasOpenGLShaders(QOpenGLShader::Fragment))) {
-    fatalGraphicsError(tr("OpenGL Error: Required features not available"),
-                       tr("Vertex and fragment shaders must both be available, "
-                          "but they're not."),
-                       constants::errors::SHADER_TYPES_UNAVAILABLE);
+  if (
+    !(QOpenGLShader::hasOpenGLShaders(QOpenGLShader::Vertex)
+      && QOpenGLShader::hasOpenGLShaders(QOpenGLShader::Fragment))) {
+    fatalGraphicsError(
+      tr("OpenGL Error: Required features not available"),
+      tr(
+        "Vertex and fragment shaders must both be available, "
+        "but they're not."),
+      constants::errors::SHADER_TYPES_UNAVAILABLE);
   }
 
   if (!hasOpenGLFeature(OpenGLFeature::Buffers)) {
-    fatalGraphicsError(tr("OpenGL Error: Required features not available"),
-                       tr("Vertex and index buffer objects must be available, "
-                          "but they're not"),
-                       constants::errors::BUFFERS_UNAVAILABLE);
+    fatalGraphicsError(
+      tr("OpenGL Error: Required features not available"),
+      tr(
+        "Vertex and index buffer objects must be available, "
+        "but they're not"),
+      constants::errors::BUFFERS_UNAVAILABLE);
   }
 
   if (!hasOpenGLFeature(OpenGLFeature::Framebuffers)) {
@@ -159,15 +174,18 @@ inline void BallsCanvas::_initGLPointers() {
   }
 
   if (!gl.gl30) {
-    QString e =
-        QString(tr("OpenGL 3.0 or higher is required to use BALLS, but only "
-                   "%1.%2 is available"))
-            .arg(_glmajor)
-            .arg(_glminor);
+    QString e = QString(
+                  tr(
+                    "OpenGL 3.0 or higher is required to use BALLS, but only "
+                    "%1.%2 is available"))
+                  .arg(_glmajor)
+                  .arg(_glminor);
 
     qCCritical(logs::gl::Feature) << e;
-    this->fatalGraphicsError(tr("OpenGL version is too old"), e,
-                             constants::errors::NEED_BETTER_OPENGL);
+    this->fatalGraphicsError(
+      tr("OpenGL version is too old"),
+      e,
+      constants::errors::NEED_BETTER_OPENGL);
   }
 }
 
@@ -206,7 +224,7 @@ void BallsCanvas::_initLogger() noexcept {
 
   if (!_log.initialize()) {
     qCWarning(logs::gl::Feature)
-        << "OpenGL debug logging unsupported on this driver";
+      << "OpenGL debug logging unsupported on this driver";
   } else {
     _log.enableMessages();
     _log.startLogging();
@@ -217,10 +235,12 @@ void BallsCanvas::_initShaders() noexcept {
   Q_ASSERT(this->isValid());
   Q_ASSERT(this->context() == QOpenGLContext::currentContext());
 
-  Q_ASSUME(_shader.addShaderFromSourceFile(QOpenGLShader::Vertex,
-                                           constants::paths::DEFAULT_VERTEX));
-  Q_ASSUME(_shader.addShaderFromSourceFile(QOpenGLShader::Fragment,
-                                           constants::paths::DEFAULT_FRAGMENT));
+  Q_ASSUME(
+    _shader.addShaderFromSourceFile(
+      QOpenGLShader::Vertex, constants::paths::DEFAULT_VERTEX));
+  Q_ASSUME(
+    _shader.addShaderFromSourceFile(
+      QOpenGLShader::Fragment, constants::paths::DEFAULT_FRAGMENT));
   // These shaders are built into the binary via the resource system
   Q_ASSUME(_shader.link() && _shader.bind());
   // If we've gotten this far, then the code that checked for the availability
@@ -240,8 +260,8 @@ void BallsCanvas::_initAttributeLocations() noexcept {
   _attributes[POSITION] = _shader.attributeLocation(POSITION);
   _attributes[NORMAL] = _shader.attributeLocation(NORMAL);
   _attributes[TEXCOORDS] = _shader.attributeLocation(TEXCOORDS);
-  gl.gl30->glBindFragDataLocation(_shader.programId(), 0,
-                                  qPrintable(out::FRAGMENT));
+  gl.gl30->glBindFragDataLocation(
+    _shader.programId(), 0, qPrintable(out::FRAGMENT));
 }
 
 // Called on recompile
@@ -266,8 +286,8 @@ void BallsCanvas::_updateUniformList() noexcept {
   uniformInfo.reserve(activeUniforms);
 
   for (int i = 0; i < activeUniforms; ++i) {
-    glGetActiveUniform(program, i, name.size() - 1, &length, &size, &type,
-                       name.data());
+    glGetActiveUniform(
+      program, i, name.size() - 1, &length, &size, &type, name.data());
     QString sname(name.data());
     Q_ASSERT(sname.size() == length);
 
@@ -304,11 +324,22 @@ void BallsCanvas::_initAttributes() noexcept {
   int position = _attributes[attribute::POSITION];
   int normal = _attributes[attribute::NORMAL];
   int texCoords = _attributes[attribute::TEXCOORDS];
-  glVertexAttribPointer(position, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float),
-                        (void *)0);
-  glVertexAttribPointer(normal, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float),
-                        (void *)(3 * sizeof(float)));
-  glVertexAttribPointer(texCoords, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
+  glVertexAttribPointer(
+    position, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void *)0);
+  glVertexAttribPointer(
+    normal,
+    3,
+    GL_FLOAT,
+    GL_FALSE,
+    8 * sizeof(float),
+    (void *)(3 * sizeof(float)));
+  glVertexAttribPointer(
+    texCoords,
+    2,
+    GL_FLOAT,
+    GL_FALSE,
+    8 * sizeof(float),
+    (void *)(6 * sizeof(float)));
   _shader.enableAttributeArray(position);
   _shader.enableAttributeArray(normal);
   _shader.enableAttributeArray(texCoords);
@@ -328,9 +359,12 @@ void BallsCanvas::paintGL() {
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
   _updateUniformValues();
-  glDrawElements(_settings[SettingKey::WireFrame].value.toBool() ? GL_LINE_STRIP
-                                                                 : GL_TRIANGLES,
-                 m_indexCount, GL_UNSIGNED_SHORT, nullptr);
+  glDrawElements(
+    _settings[SettingKey::WireFrame].value.toBool() ? GL_LINE_STRIP
+                                                    : GL_TRIANGLES,
+    m_indexCount,
+    GL_UNSIGNED_SHORT,
+    nullptr);
 }
 
 void BallsCanvas::setMesh(const Mesh &mesh) noexcept {
@@ -339,8 +373,8 @@ void BallsCanvas::setMesh(const Mesh &mesh) noexcept {
 
   m_indexCount = indices.size();
   this->_vbo.bind();
-  this->_vbo.allocate(vertices.data(),
-                      vertices.size() * sizeof(Mesh::CoordType));
+  this->_vbo.allocate(
+    vertices.data(), vertices.size() * sizeof(Mesh::CoordType));
   this->_ibo.bind();
   this->_ibo.allocate(indices.data(), indices.size() * sizeof(Mesh::IndexType));
 }
@@ -373,14 +407,14 @@ void BallsCanvas::mouseMoveEvent(QMouseEvent *e) {}
 
 void BallsCanvas::wheelEvent(QWheelEvent *) {}
 
-void BallsCanvas::timerEvent(QTimerEvent *e) { update(); }
+void BallsCanvas::timerEvent(QTimerEvent *e) {
+  update();
+}
 
-void BallsCanvas::setUniform(const UniformInfo &info,
-                             const QVariant &var) noexcept {
-  if (!_shader.isLinked())
-    return;
-  if (_shader.programId() == 0)
-    return;
+void BallsCanvas::setUniform(
+  const UniformInfo &info, const QVariant &var) noexcept {
+  if (!_shader.isLinked()) return;
+  if (_shader.programId() == 0) return;
   // If the shader wasn't compiled properly, the object's ID will be 0 (no
   // shader)
 
@@ -704,8 +738,10 @@ void BallsCanvas::resetCamera() noexcept {
   qCDebug(logs::uniform::Env) << "Reset camera and model rotation to default";
 }
 
-bool BallsCanvas::updateShaders(const QString &vertex, const QString &geometry,
-                                const QString &fragment) noexcept {
+bool BallsCanvas::updateShaders(
+  const QString &vertex,
+  const QString &geometry,
+  const QString &fragment) noexcept {
 
   Q_UNUSED(geometry);
   using namespace balls::shader;
@@ -716,7 +752,7 @@ bool BallsCanvas::updateShaders(const QString &vertex, const QString &geometry,
 
   bool vert = _shader.addShaderFromSourceCode(QOpenGLShader::Vertex, vertex);
   bool frag =
-      _shader.addShaderFromSourceCode(QOpenGLShader::Fragment, fragment);
+    _shader.addShaderFromSourceCode(QOpenGLShader::Fragment, fragment);
   bool link = _shader.link();
   bool bind = _shader.bind();
   bool result = vert && frag && link && bind;

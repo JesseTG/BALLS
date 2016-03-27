@@ -4,10 +4,12 @@
 //
 // --------------------------------------
 // Copyright (C) 2007 Volker Wiendl
-// Acknowledgements to Roman alias banal from qt-apps.org for the Enum enhancement
+// Acknowledgements to Roman alias banal from qt-apps.org for the Enum
+// enhancement
 //
 //
-// The QPropertyEditor Library is free software; you can redistribute it and/or modify
+// The QPropertyEditor Library is free software; you can redistribute it and/or
+// modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation version 3 of the License
 //
@@ -22,36 +24,35 @@
 // *************************************************************************************************
 #include "precompiled.hpp"
 #include "Property.h"
-#include "ColorCombo.h"
 
 #include <QtWidgets/QCheckBox>
 #include <QtWidgets/QSpinBox>
 
+#include "ColorCombo.h"
+
 Q_DECL_CONSTEXPR int DECIMALS = 2;
 const float INCREMENT = std::pow(10, -DECIMALS);
 
-    Property::Property(const QString& name, QObject* subject,
-                   QObject* parent) noexcept :
-QObject(parent), m_subject(subject)
-{
+Property::Property(
+  const QString& name, QObject* subject, QObject* parent) noexcept
+  : QObject(parent),
+    m_subject(subject) {
   setObjectName(name);
 }
 
-QVariant Property::value(const int) const noexcept
-{
-  return (m_subject) ? m_subject->property(qPrintable(objectName())) : QVariant();
+QVariant Property::value(const int) const noexcept {
+  return (m_subject) ? m_subject->property(qPrintable(objectName()))
+                     : QVariant();
 }
 
-void Property::setValue(const QVariant& value) noexcept
-{
+void Property::setValue(const QVariant& value) noexcept {
   if (m_subject) {
     Q_ASSERT(value.isValid());
     m_subject->setProperty(qPrintable(objectName()), value);
   }
 }
 
-bool Property::isReadOnly() const noexcept
-{
+bool Property::isReadOnly() const noexcept {
   if (!m_subject) {
     // If there is no subject...
     return true;
@@ -78,20 +79,18 @@ bool Property::isReadOnly() const noexcept
   return true;
 }
 
-template<class C, class P>
+template <class C, class P>
 using Prop = void (C::*)(P);
 
-QWidget* Property::createEditor(QWidget* parent,
-                                const QStyleOptionViewItem&) noexcept
-{
+QWidget* Property::createEditor(
+  QWidget* parent, const QStyleOptionViewItem&) noexcept {
   using IntLimits = std::numeric_limits<int>;
   using UIntLimits = std::numeric_limits<unsigned int>;
   using FloatLimits = std::numeric_limits<float>;
   QWidget* editor = nullptr;
 
-  switch (value().type())
-  {
-  case QVariant::Color : {
+  switch (value().type()) {
+  case QVariant::Color: {
     editor = new ColorCombo(parent);
     break;
   }
@@ -100,11 +99,7 @@ QWidget* Property::createEditor(QWidget* parent,
     QSpinBox* spin = new QSpinBox(parent);
     spin->setRange(UIntLimits::min(), IntLimits::max());
     connect<Prop<QSpinBox, int>, Prop<Property, unsigned int>>(
-          spin,
-          &QSpinBox::valueChanged,
-          this,
-          &Property::setValue
-        );
+      spin, &QSpinBox::valueChanged, this, &Property::setValue);
     editor = spin;
     break;
   }
@@ -113,11 +108,7 @@ QWidget* Property::createEditor(QWidget* parent,
     QSpinBox* spin = new QSpinBox(parent);
     spin->setRange(IntLimits::min(), IntLimits::max());
     connect<Prop<QSpinBox, int>, Prop<Property, int>>(
-          spin,
-          &QSpinBox::valueChanged,
-          this,
-          &Property::setValue
-        );
+      spin, &QSpinBox::valueChanged, this, &Property::setValue);
     editor = spin;
     break;
   }
@@ -126,11 +117,7 @@ QWidget* Property::createEditor(QWidget* parent,
     QCheckBox* check = new QCheckBox(parent);
     check->setChecked(false);
     connect<Prop<QCheckBox, bool>, Prop<Property, bool>>(
-          check,
-          &QCheckBox::toggled,
-          this,
-          &Property::setValue
-        );
+      check, &QCheckBox::toggled, this, &Property::setValue);
     editor = check;
     break;
   }
@@ -142,11 +129,7 @@ QWidget* Property::createEditor(QWidget* parent,
     spin->setDecimals(DECIMALS);
     spin->setSingleStep(INCREMENT);
     connect<Prop<QDoubleSpinBox, double>, Prop<Property, double>>(
-          spin,
-          &QDoubleSpinBox::valueChanged,
-          this,
-          &Property::setValue
-        );
+      spin, &QDoubleSpinBox::valueChanged, this, &Property::setValue);
     editor = spin;
     break;
   }
@@ -158,14 +141,11 @@ QWidget* Property::createEditor(QWidget* parent,
   return editor;
 }
 
-bool Property::setEditorData(QWidget* editor,
-                             const QVariant& data) noexcept
-{
+bool Property::setEditorData(QWidget* editor, const QVariant& data) noexcept {
   Q_ASSERT(editor != nullptr);
   Q_ASSERT(value().isValid());
 
-  switch (value().type())
-  {
+  switch (value().type()) {
   case QVariant::Color:
     editor->blockSignals(true);
     static_cast<ColorCombo*>(editor)->setColor(data.value<QColor>());
@@ -199,13 +179,11 @@ bool Property::setEditorData(QWidget* editor,
   return false;
 }
 
-QVariant Property::editorData(QWidget* editor) const noexcept
-{
+QVariant Property::editorData(QWidget* editor) const noexcept {
   Q_ASSERT(editor != nullptr);
   Q_ASSERT(value().isValid());
 
-  switch (value().type())
-  {
+  switch (value().type()) {
   case QVariant::Color:
     return static_cast<ColorCombo*>(editor)->color();
 
@@ -225,8 +203,7 @@ QVariant Property::editorData(QWidget* editor) const noexcept
   }
 }
 
-Property* Property::findSubject(const QObject* subject) noexcept
-{
+Property* Property::findSubject(const QObject* subject) noexcept {
   if (m_subject == subject) {
     return this;
   }

@@ -1,11 +1,14 @@
 #include "precompiled.hpp"
 #include "util/Util.hpp"
-#include "util/Logging.hpp"
+
 #include "Constants.hpp"
+#include "util/Logging.hpp"
 
 #include <QtCore/QJsonObject>
 
-#define BALLS_GL_CONSTANT(T) case T: return #T
+#define BALLS_GL_CONSTANT(T)                                                   \
+  case T:                                                                      \
+    return #T
 
 namespace balls {
 namespace util {
@@ -75,9 +78,9 @@ uint8_t getNumComponents(const GLenum type) noexcept {
     return 16;
 
   default:
-    qCDebug(logs::gl::Type).nospace().noquote() <<
-    "Cannot get component count of GLSL type " << resolveGLType(type)
-    << " (" << QString(type).toInt(nullptr, 16) << ')';
+    qCDebug(logs::gl::Type).nospace().noquote()
+      << "Cannot get component count of GLSL type " << resolveGLType(type)
+      << " (" << QString(type).toInt(nullptr, 16) << ')';
     return 0;
   }
 }
@@ -133,8 +136,9 @@ Type getComponentType(const GLenum type) noexcept {
     return Type::Double;
 
   default:
-    qCDebug(logs::gl::Type).nospace().noquote() << "Cannot get component type of GLSL type "
-    << resolveGLType(type) << " (" << QString(type).toInt(nullptr, 16) << ')';
+    qCDebug(logs::gl::Type).nospace().noquote()
+      << "Cannot get component type of GLSL type " << resolveGLType(type)
+      << " (" << QString(type).toInt(nullptr, 16) << ')';
     return Type::UnknownType;
   }
 }
@@ -190,8 +194,9 @@ GLenum getGlComponentType(const GLenum type) noexcept {
     return GL_DOUBLE;
 
   default:
-    qCDebug(logs::gl::Type).nospace().noquote() << "Cannot get component type of GLSL type "
-    << resolveGLType(type) << " (" << QString(type).toInt(nullptr, 16) << ')';
+    qCDebug(logs::gl::Type).nospace().noquote()
+      << "Cannot get component type of GLSL type " << resolveGLType(type)
+      << " (" << QString(type).toInt(nullptr, 16) << ')';
     return 0;
   }
 }
@@ -255,8 +260,9 @@ Type getRepresentingType(const GLenum type) noexcept {
     return Type::QMatrix4x4;
 
   default:
-    qCDebug(logs::gl::Type).nospace().noquote() << "No Qt type to represent GLSL type "
-    << resolveGLType(type) << " (" << QString(type).toInt(nullptr, 16) << ')';
+    qCDebug(logs::gl::Type).nospace().noquote()
+      << "No Qt type to represent GLSL type " << resolveGLType(type) << " ("
+      << QString(type).toInt(nullptr, 16) << ')';
     return Type::UnknownType;
   }
 }
@@ -562,8 +568,9 @@ QVariant getDefaultValue(const GLenum type) noexcept {
     return QMatrix4x4();
 
   default:
-    qCDebug(logs::gl::Type).nospace().noquote() << "No Qt type to represent GLSL type "
-    << resolveGLType(type) << " (" << QString(type).toInt(nullptr, 16) << ')';
+    qCDebug(logs::gl::Type).nospace().noquote()
+      << "No Qt type to represent GLSL type " << resolveGLType(type) << " ("
+      << QString(type).toInt(nullptr, 16) << ')';
     return QVariant();
   }
 }
@@ -601,31 +608,28 @@ QJsonValue toJsonValue(const GLenum gl, const QVariant& v) noexcept {
   case 2: {
     QVector2D v2 = v.value<QVector2D>();
 
-    return QJsonObject {
+    return QJsonObject{
       {json::X, QJsonValue::fromVariant(asGlComponent(gl, v2.x()))},
-      {json::Y, QJsonValue::fromVariant(asGlComponent(gl, v2.y()))}
-    };
+      {json::Y, QJsonValue::fromVariant(asGlComponent(gl, v2.y()))}};
   }
 
   case 3: {
     QVector3D v3 = v.value<QVector3D>();
 
-    return QJsonObject {
+    return QJsonObject{
       {json::X, QJsonValue::fromVariant(asGlComponent(gl, v3.x()))},
       {json::Y, QJsonValue::fromVariant(asGlComponent(gl, v3.y()))},
-      {json::Z, QJsonValue::fromVariant(asGlComponent(gl, v3.z()))}
-    };
+      {json::Z, QJsonValue::fromVariant(asGlComponent(gl, v3.z()))}};
   }
 
   case 4: {
     QVector4D v4 = v.value<QVector4D>();
 
-    return QJsonObject {
+    return QJsonObject{
       {json::X, QJsonValue::fromVariant(asGlComponent(gl, v4.x()))},
       {json::Y, QJsonValue::fromVariant(asGlComponent(gl, v4.y()))},
       {json::Z, QJsonValue::fromVariant(asGlComponent(gl, v4.z()))},
-      {json::W, QJsonValue::fromVariant(asGlComponent(gl, v4.w()))}
-    };
+      {json::W, QJsonValue::fromVariant(asGlComponent(gl, v4.w()))}};
   }
 
   default:
@@ -636,22 +640,21 @@ QJsonValue toJsonValue(const GLenum gl, const QVariant& v) noexcept {
 template int mapRange(int, int, int, int, int) noexcept;
 template float mapRange(float, float, float, float, float) noexcept;
 
-float fastInvSqrt(float number) noexcept
-{
+float fastInvSqrt(float number) noexcept {
   long i;
   float x2, y;
   const float threehalfs = 1.5F;
 
   x2 = number * 0.5F;
-  y  = number;
-  i  = * (long*)& y;                          // evil floating point bit level hacking
-  i  = 0x5f3759df - (i >> 1);                 // what the fuck?
-  y  = * (float*)& i;
-  y  = y * (threehalfs - (x2* y * y));        // 1st iteration
-  //      y  = y * ( threehalfs - ( x2 * y * y ) );   // 2nd iteration, this can be removed
+  y = number;
+  i = *(long*)&y; // evil floating point bit level hacking
+  i = 0x5f3759df - (i >> 1); // what the fuck?
+  y = *(float*)&i;
+  y = y * (threehalfs - (x2 * y * y)); // 1st iteration
+  //      y  = y * ( threehalfs - ( x2 * y * y ) );   // 2nd iteration, this can
+  //      be removed
 
   return y;
 }
-
 }
 }

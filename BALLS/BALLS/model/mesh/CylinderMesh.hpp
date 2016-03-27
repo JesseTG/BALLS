@@ -7,8 +7,7 @@
 
 namespace balls {
 
-class CylinderMesh : public BaseCylindricalMesh
-{
+class CylinderMesh : public BaseCylindricalMesh {
   Q_OBJECT
 
   Q_PROPERTY(uint rings MEMBER m_rings WRITE setRings FINAL)

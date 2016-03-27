@@ -1,13 +1,13 @@
 #include "precompiled.hpp"
 
-#include "model/mesh/IcosahedronMesh.hpp"
 #include "Constants.hpp"
+#include "model/mesh/IcosahedronMesh.hpp"
 
 #include <generator/IcosahedronMesh.hpp>
 
 namespace balls {
 IcosahedronMesh::IcosahedronMesh(QObject *parent)
-    : BaseSphereMesh(parent, Type::Icosahedron) {
+  : BaseSphereMesh(parent, Type::Icosahedron) {
   m_radius = 1.0;
   m_segments = 1u;
 

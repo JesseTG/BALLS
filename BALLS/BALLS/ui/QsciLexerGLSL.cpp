@@ -16,14 +16,12 @@
  */
 
 #include "precompiled.hpp"
-#include <Qsci/qsciscintilla.h>
-
 #include "QsciLexerGLSL.h"
 
+#include <Qsci/qsciscintilla.h>
+
 QsciLexerGLSL::QsciLexerGLSL(QObject* parent) noexcept
-:
-QsciLexerCustom(parent)
-{
+  : QsciLexerCustom(parent) {
   _defaultFont.setFamily("Monospace");
   _defaultFont.setPointSize(9);
   QFont ft(_defaultFont);
@@ -53,23 +51,19 @@ QsciLexerCustom(parent)
   _styles[Macro].setDescription("Macro");
   _styles[Macro].setColor("#001100");
   // _styles[Macro].setFont(ft);
-
 }
 
 QsciLexerGLSL::~QsciLexerGLSL() {}
 
-const char* QsciLexerGLSL::language() const noexcept
-{
+const char* QsciLexerGLSL::language() const noexcept {
   return "GLSL";
 }
 
-QStringList QsciLexerGLSL::autoCompletionWordSeparators() const noexcept
-{
+QStringList QsciLexerGLSL::autoCompletionWordSeparators() const noexcept {
   return {"."};
 }
 
-const char* QsciLexerGLSL::blockStartKeyword(int* style) const noexcept
-{
+const char* QsciLexerGLSL::blockStartKeyword(int* style) const noexcept {
   if (style) {
     *style = Keyword;
   }
@@ -77,8 +71,7 @@ const char* QsciLexerGLSL::blockStartKeyword(int* style) const noexcept
   return ("case catch class default do else for if while");
 }
 
-const char* QsciLexerGLSL::blockStart(int* style) const noexcept
-{
+const char* QsciLexerGLSL::blockStart(int* style) const noexcept {
   if (style) {
     *style = Operator;
   }
@@ -86,8 +79,7 @@ const char* QsciLexerGLSL::blockStart(int* style) const noexcept
   return ("{");
 }
 
-const char* QsciLexerGLSL::blockEnd(int* style) const noexcept
-{
+const char* QsciLexerGLSL::blockEnd(int* style) const noexcept {
   if (style) {
     *style = Operator;
   }
@@ -95,22 +87,20 @@ const char* QsciLexerGLSL::blockEnd(int* style) const noexcept
   return ("}");
 }
 
-int QsciLexerGLSL::braceStyle() const noexcept
-{
+int QsciLexerGLSL::braceStyle() const noexcept {
   return (Operator);
 }
 
-void QsciLexerGLSL::styleText(int start, int end) noexcept
-{
+void QsciLexerGLSL::styleText(int start, int end) noexcept {
   std::vector<char> range(end - start + 1, '\0');
-  editor()->SendScintilla(QsciScintilla::SCI_GETTEXTRANGE, start, end, range.data());
+  editor()->SendScintilla(
+    QsciScintilla::SCI_GETTEXTRANGE, start, end, range.data());
   QString text(range.data());
 
   startStyling(start);
   QStringList lines = text.split('\n');
 
-  for (int i = 0; i < lines.size(); i++)
-  {
+  for (int i = 0; i < lines.size(); i++) {
     int style = Default;
 
     if (lines.at(i).startsWith("//")) {
@@ -129,8 +119,7 @@ void QsciLexerGLSL::styleText(int start, int end) noexcept
   }
 }
 
-QString QsciLexerGLSL::description(int style) const noexcept
-{
+QString QsciLexerGLSL::description(int style) const noexcept {
   if (style < 0 || style >= Count) {
     style = 0;
   }
@@ -138,8 +127,7 @@ QString QsciLexerGLSL::description(int style) const noexcept
   return (_styles.at(style).description());
 }
 
-QFont QsciLexerGLSL::defaultFont(int style) const noexcept
-{
+QFont QsciLexerGLSL::defaultFont(int style) const noexcept {
   if (style < 0 || style >= Count) {
     style = 0;
   }
@@ -147,8 +135,7 @@ QFont QsciLexerGLSL::defaultFont(int style) const noexcept
   return (_styles.at(style).font());
 }
 
-QColor QsciLexerGLSL::defaultColor(int style) const noexcept
-{
+QColor QsciLexerGLSL::defaultColor(int style) const noexcept {
   if (style < 0 || style >= Count) {
     style = 0;
   }
@@ -156,18 +143,15 @@ QColor QsciLexerGLSL::defaultColor(int style) const noexcept
   return (_styles.at(style).color());
 }
 
-QColor QsciLexerGLSL::defaultPaper(int style) const noexcept
-{
+QColor QsciLexerGLSL::defaultPaper(int style) const noexcept {
   return QsciLexer::defaultPaper(style);
 }
 
-bool QsciLexerGLSL::defaultEolFill(int style) const noexcept
-{
+bool QsciLexerGLSL::defaultEolFill(int style) const noexcept {
   return QsciLexer::defaultEolFill(style);
 }
 
-const char* QsciLexerGLSL::keywords(int set) const noexcept
-{
+const char* QsciLexerGLSL::keywords(int set) const noexcept {
   if (set == 1) {
     return ("in out varying uniform");
   }
@@ -175,13 +159,11 @@ const char* QsciLexerGLSL::keywords(int set) const noexcept
   return (0);
 }
 
-const char* QsciLexerGLSL::wordCharacters() const noexcept
-{
+const char* QsciLexerGLSL::wordCharacters() const noexcept {
   return ("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_");
 }
 
-void QsciLexerGLSL::styleLine(const QString& line, int size) noexcept
-{
+void QsciLexerGLSL::styleLine(const QString& line, int size) noexcept {
   setStyling(size, Default);
   qDebug() << "styleLine(" + line;
 }

@@ -11,8 +11,7 @@ namespace balls {
 using glm::dvec3;
 using glm::uvec3;
 
-class BoxMesh : public MeshMesh
-{
+class BoxMesh : public MeshMesh {
   Q_OBJECT
 
   Q_CLASSINFO("segments", "minimum=1;")

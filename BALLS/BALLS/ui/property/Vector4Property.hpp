@@ -3,8 +3,8 @@
 
 #include <glm/fwd.hpp>
 
-#include "ui/property/VectorProperty.hpp"
 #include "Constants.hpp"
+#include "ui/property/VectorProperty.hpp"
 
 namespace balls {
 
@@ -26,8 +26,11 @@ class BVec4Property : public VectorProperty<tvec4, bool> {
 
 public:
   using VectorProperty<tvec4, bool>::VectorProperty;
+
 protected:
-  const QRegularExpression& regex() const noexcept override { return constants::regex::BVEC4; }
+  const QRegularExpression& regex() const noexcept override {
+    return constants::regex::BVEC4;
+  }
 };
 
 class IVec4Property : public VectorProperty<tvec4, int> {
@@ -40,8 +43,11 @@ class IVec4Property : public VectorProperty<tvec4, int> {
 
 public:
   using VectorProperty<tvec4, int>::VectorProperty;
+
 protected:
-  const QRegularExpression& regex() const noexcept override { return constants::regex::IVEC4; }
+  const QRegularExpression& regex() const noexcept override {
+    return constants::regex::IVEC4;
+  }
 };
 
 class UVec4Property : public VectorProperty<tvec4, unsigned int> {
@@ -54,8 +60,11 @@ class UVec4Property : public VectorProperty<tvec4, unsigned int> {
 
 public:
   using VectorProperty<tvec4, unsigned int>::VectorProperty;
+
 protected:
-  const QRegularExpression& regex() const noexcept override { return constants::regex::UVEC4; }
+  const QRegularExpression& regex() const noexcept override {
+    return constants::regex::UVEC4;
+  }
 };
 
 class Vec4Property : public VectorProperty<tvec4, float> {
@@ -68,8 +77,11 @@ class Vec4Property : public VectorProperty<tvec4, float> {
 
 public:
   using VectorProperty<tvec4, float>::VectorProperty;
+
 protected:
-  const QRegularExpression& regex() const noexcept override { return constants::regex::VEC4; }
+  const QRegularExpression& regex() const noexcept override {
+    return constants::regex::VEC4;
+  }
 };
 
 class DVec4Property : public VectorProperty<tvec4, double> {
@@ -82,8 +94,11 @@ class DVec4Property : public VectorProperty<tvec4, double> {
 
 public:
   using VectorProperty<tvec4, double>::VectorProperty;
+
 protected:
-  const QRegularExpression& regex() const noexcept override { return constants::regex::VEC4; }
+  const QRegularExpression& regex() const noexcept override {
+    return constants::regex::VEC4;
+  }
 };
 }
 #endif // VECTOR4PROPERTY_HPP

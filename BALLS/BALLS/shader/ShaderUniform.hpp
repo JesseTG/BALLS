@@ -15,7 +15,6 @@ namespace shader {
 using Type = QMetaType::Type;
 
 Property* createShaderProperty(const QString&, QObject*, Property*);
-
 }
 }
 

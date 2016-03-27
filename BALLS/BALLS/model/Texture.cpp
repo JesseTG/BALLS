@@ -2,6 +2,4 @@
 
 #include "Texture.hpp"
 
-namespace balls {
-
-}
+namespace balls {}

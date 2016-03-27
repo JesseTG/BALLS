@@ -3,8 +3,8 @@
 
 #include <vector>
 
-#include <QObject>
 #include <qopengl.h>
+#include <QObject>
 
 namespace balls {
 
@@ -14,6 +14,7 @@ class Mesh : public QObject {
   Q_ENUMS(Type)
   Q_ENUMS(Attribute)
   Q_ENUMS(Topology)
+
 public /* enums */:
   enum Attribute {
     Position = 0b00000001,
@@ -62,14 +63,15 @@ public /* enums */:
   using CoordType = GLfloat;
   using IndexType = GLushort;
 
-public:
-
 public /* methods */:
   const std::vector<GLfloat> &getVertices() const noexcept;
   const std::vector<GLushort> &getIndices() const noexcept;
-  Type type() const noexcept { return m_type; }
+  Type type() const noexcept {
+    return m_type;
+  }
+
 protected /* methods */:
-  Mesh(QObject*, Type, Topology);
+  Mesh(QObject *, Type, Topology);
   virtual void updateMesh() = 0;
   virtual void assignMesh() = 0;
 
@@ -84,5 +86,6 @@ private /* fields */:
 }
 
 Q_DECLARE_METATYPE(balls::Mesh::Type)
-Q_DECLARE_METATYPE(balls::Mesh*)
+Q_DECLARE_METATYPE(balls::Mesh *)
+
 #endif // MODEL_MESH_HPP
