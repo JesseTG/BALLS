@@ -74,7 +74,6 @@ SOURCES += \
   ui/BallsCanvas.cpp \
   ui/BallsWindow.cpp \
   ui/docks/MeshManagerWidget.cpp \
-  ui/docks/OpenGLInfo.cpp \
   ui/docks/SceneSettings.cpp \
   ui/docks/TextureManager.cpp \
   ui/glslsyntax.cpp \
@@ -90,6 +89,7 @@ SOURCES += \
   util/Trackball.cpp \
   util/TypeInfo.cpp \
   util/Util.cpp \
+    model/OpenGLState.cpp
 
 
 HEADERS  += \
@@ -130,7 +130,6 @@ HEADERS  += \
   ui/BallsCanvas.hpp \
   ui/BallsWindow.hpp \
   ui/docks/MeshManagerWidget.hpp \
-  ui/docks/OpenGLInfo.hpp \
   ui/docks/SceneSettings.hpp \
   ui/docks/TextureManager.hpp \
   ui/glslsyntax.hpp \
@@ -146,12 +145,12 @@ HEADERS  += \
   util/Trackball.hpp \
   util/TypeInfo.hpp \
   util/Util.hpp \
+    model/OpenGLState.hpp
 
 
 FORMS += \
   BallsWindow.ui \
   ui/docks/MeshManager.ui \
-  ui/docks/OpenGLInfo.ui \
   ui/docks/SceneSettings.ui \
   ui/docks/TextureManager.ui \
 
