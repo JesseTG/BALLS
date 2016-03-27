@@ -3,5 +3,6 @@
 
 namespace balls {
 
-OpenGLState::OpenGLState(QObject *parent) : QObject(parent) {}
+OpenGLState::OpenGLState(QOpenGLContext* context, QObject* parent)
+  : QObject(parent), m_gl(context) {}
 }
