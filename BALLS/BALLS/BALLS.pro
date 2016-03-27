@@ -43,6 +43,10 @@ SOURCES += \
   exception/JsonException.cpp \
   gl/OpenGLPointers.cpp \
   main.cpp \
+  model/gl/BlendState.cpp \
+  model/gl/Hints.cpp \
+  model/gl/ImplementationInfo.cpp \
+  model/gl/Limits.cpp \
   model/ImageTexture.cpp \
   model/mesh/BaseCylindricalMesh.cpp \
   model/mesh/BaseSphereMesh.cpp \
@@ -66,6 +70,7 @@ SOURCES += \
   model/mesh/TorusMesh.cpp \
   model/mesh/TriangleMesh.cpp \
   model/mesh/TubeMesh.cpp \
+  model/OpenGLState.cpp \
   model/Texture.cpp \
   model/Uniforms.cpp \
   precompiled.cpp \
@@ -89,7 +94,7 @@ SOURCES += \
   util/Trackball.cpp \
   util/TypeInfo.cpp \
   util/Util.cpp \
-    model/OpenGLState.cpp
+
 
 
 HEADERS  += \
@@ -99,6 +104,10 @@ HEADERS  += \
   exception/FileException.hpp \
   exception/JsonException.hpp \
   gl/OpenGLPointers.hpp \
+  model/gl/BlendState.hpp \
+  model/gl/Hints.hpp \
+  model/gl/ImplementationInfo.hpp \
+  model/gl/Limits.hpp \
   model/ImageTexture.hpp \
   model/mesh/BaseCylindricalMesh.hpp \
   model/mesh/BaseSphereMesh.hpp \
@@ -122,6 +131,7 @@ HEADERS  += \
   model/mesh/TorusMesh.hpp \
   model/mesh/TriangleMesh.hpp \
   model/mesh/TubeMesh.hpp \
+  model/OpenGLState.hpp \
   model/Texture.hpp \
   model/Uniforms.hpp \
   precompiled.hpp \
@@ -145,7 +155,7 @@ HEADERS  += \
   util/Trackball.hpp \
   util/TypeInfo.hpp \
   util/Util.hpp \
-    model/OpenGLState.hpp
+
 
 
 FORMS += \
