@@ -16,7 +16,7 @@ class BlendState : public QObject {
 
   // clang-format off
   Q_PROPERTY(bool enabled MEMBER m_enabled WRITE setEnabled FINAL)
-  Q_PROPERTY(QColor blendColor READ blendColor WRITE setBlendColor FINAL)
+  Q_PROPERTY(QColor blendColor MEMBER m_blendColor WRITE setBlendColor FINAL)
   Q_PROPERTY(BlendEquation blendEquationRgb MEMBER m_blendRgb WRITE setBlendRgb FINAL)
   Q_PROPERTY(BlendEquation blendEquationAlpha MEMBER m_blendAlpha WRITE setBlendAlpha FINAL)
   Q_PROPERTY(BlendFunction sourceRgb MEMBER m_srcRgb WRITE setSrcRgb FINAL)
