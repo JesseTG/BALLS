@@ -10,9 +10,9 @@ using std::array;
 ClipOptions::ClipOptions(OpenGLPointers& gl, QObject* parent)
   : QObject(parent),
     m_gl(gl),
+    m_scissorEnabled(false),
     m_viewportPosition(0, 0),
     m_scissorPosition(0, 0),
-    m_scissorEnabled(false),
     m_origin(ClipControlOrigin::LowerLeft),
     m_depth(ClipControlDepth::NegativeOneToOne) {
   Q_ASSUME(m_gl.gl30 != nullptr);
