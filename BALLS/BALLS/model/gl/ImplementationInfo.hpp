@@ -26,4 +26,7 @@ private /* fields */:
 };
 }
 
+
+Q_DECLARE_METATYPE(balls::ImplementationInfo*)
+
 #endif // IMPLEMENTATIONINFO_HPP

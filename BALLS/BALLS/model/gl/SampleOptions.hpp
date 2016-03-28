@@ -23,4 +23,6 @@ private /* fields */:
 };
 }
 
+Q_DECLARE_METATYPE(balls::SampleOptions*)
+
 #endif // SAMPLEOPTIONS_HPP

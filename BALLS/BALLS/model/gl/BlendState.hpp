@@ -87,6 +87,6 @@ private /* members */:
 };
 }
 
-Q_DECLARE_METATYPE(balls::BlendFunctionState*)
+Q_DECLARE_METATYPE(balls::BlendState*)
 
 #endif // BLENDFUNCTIONSTATE_HPP

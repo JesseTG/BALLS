@@ -16,4 +16,6 @@ public slots:
 };
 }
 
+Q_DECLARE_METATYPE(balls::Limits*)
+
 #endif // LIMITS_HPP

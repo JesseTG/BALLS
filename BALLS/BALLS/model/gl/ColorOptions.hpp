@@ -67,4 +67,7 @@ private /* members */:
 };
 }
 
+
+Q_DECLARE_METATYPE(balls::ColorOptions*)
+
 #endif // COLOROPTIONS_HPP

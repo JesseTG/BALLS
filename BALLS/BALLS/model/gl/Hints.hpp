@@ -47,4 +47,6 @@ private /* members */:
 };
 }
 
+Q_DECLARE_METATYPE(balls::Hints*)
+
 #endif // HINTS_HPP

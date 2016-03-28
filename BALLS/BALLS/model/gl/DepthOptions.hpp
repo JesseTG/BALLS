@@ -64,4 +64,7 @@ private /* members */:
 };
 }
 
+
+Q_DECLARE_METATYPE(balls::DepthOptions*)
+
 #endif // DEPTHOPTIONS_HPP

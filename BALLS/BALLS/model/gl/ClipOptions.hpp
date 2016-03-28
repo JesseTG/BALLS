@@ -68,4 +68,7 @@ private /* members */:
 };
 }
 
+
+Q_DECLARE_METATYPE(balls::ClipOptions*)
+
 #endif // CLIPOPTIONS_HPP
