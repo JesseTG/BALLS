@@ -24,6 +24,7 @@ namespace balls {
 struct OpenGLPointers {
   Q_GADGET
 
+public:
   OpenGLPointers(QOpenGLContext*);
   OpenGLPointers();
 
