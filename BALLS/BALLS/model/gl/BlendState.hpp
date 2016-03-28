@@ -58,10 +58,6 @@ public /* enums */:
 public:
   explicit BlendState(OpenGLPointers&, QObject* = nullptr);
 
-private /* getters */:
-  BlendFunction func(GLenum);
-  BlendEquation eq(GLenum);
-
 private /* setters */:
   void setBlendColor(const QColor&);
   void setBlendRgb(BlendEquation);
