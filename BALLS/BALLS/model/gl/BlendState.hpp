@@ -59,13 +59,13 @@ public:
   explicit BlendState(OpenGLPointers&, QObject* = nullptr);
 
 private /* setters */:
-  void setBlendColor(const QColor&);
-  void setBlendRgb(BlendEquation);
-  void setBlendAlpha(BlendEquation);
-  void setSrcRgb(BlendFunction);
-  void setDstRgb(BlendFunction);
-  void setSrcAlpha(BlendFunction);
-  void setDstAlpha(BlendFunction);
+  void setBlendColor(const QColor&) noexcept;
+  void setBlendRgb(BlendEquation) noexcept;
+  void setBlendAlpha(BlendEquation) noexcept;
+  void setSrcRgb(BlendFunction) noexcept;
+  void setDstRgb(BlendFunction) noexcept;
+  void setSrcAlpha(BlendFunction) noexcept;
+  void setDstAlpha(BlendFunction) noexcept;
 
 private /* update methods */:
   void updateEquation() noexcept;

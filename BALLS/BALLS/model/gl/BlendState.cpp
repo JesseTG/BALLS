@@ -18,44 +18,44 @@ BlendState::BlendState(OpenGLPointers& gl, QObject* parent = nullptr)
 }
 //  ^ Defaults specified in OpenGL
 
-void BlendState::setBlendColor(const QColor& color) {
+void BlendState::setBlendColor(const QColor& color) noexcept {
   m_blendColor = color;
 
   m_gl.gl30->glBlendColor(
     color.redF(), color.greenF(), color.blueF(), color.alphaF());
 }
 
-void BlendState::setBlendRgb(BlendEquation equation) {
+void BlendState::setBlendRgb(BlendEquation equation) noexcept {
   m_blendRgb = equation;
 
   updateEquation();
 }
 
-void BlendState::setBlendAlpha(BlendEquation equation) {
+void BlendState::setBlendAlpha(BlendEquation equation) noexcept {
   m_blendAlpha = equation;
 
   updateEquation();
 }
 
-void BlendState::setSrcRgb(BlendFunction function) {
+void BlendState::setSrcRgb(BlendFunction function) noexcept {
   m_srcRgb = function;
 
   updateFunction();
 }
 
-void BlendState::setDstRgb(BlendFunction function) {
+void BlendState::setDstRgb(BlendFunction function) noexcept {
   m_dstRgb = function;
 
   updateFunction();
 }
 
-void BlendState::setSrcAlpha(BlendFunction function) {
+void BlendState::setSrcAlpha(BlendFunction function) noexcept {
   m_srcAlpha = function;
 
   updateFunction();
 }
 
-void BlendState::setDstAlpha(BlendFunction function) {
+void BlendState::setDstAlpha(BlendFunction function) noexcept {
   m_dstAlpha = function;
 
   updateFunction();
