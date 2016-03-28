@@ -56,7 +56,7 @@ public /* enums */:
   };
 
 public:
-  explicit BlendState(QOpenGLContext*, QObject* = nullptr);
+  explicit BlendState(OpenGLPointers&, QObject* = nullptr);
 
 private /* getters */:
   BlendFunction func(GLenum);
