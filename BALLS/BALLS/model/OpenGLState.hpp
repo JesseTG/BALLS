@@ -22,7 +22,7 @@ class OpenGLState : public QObject {
    * - Limits (GL_MAX_VARYING_COMPONENTS, etc.)
    * - Hints
    * - Stencil
-   * - Depth
+   * - Depth (DONE)
    * - Color
    * - View (scissor, viewport)
    *
@@ -30,7 +30,6 @@ class OpenGLState : public QObject {
 
 
   Q_ENUMS(CullFace)
-  Q_ENUMS(DepthFunction)
   Q_ENUMS(FrontFace)
   Q_ENUMS(LogicOperation)
   Q_ENUMS(PolygonMode)
@@ -41,14 +40,9 @@ class OpenGLState : public QObject {
 
   Q_PROPERTY(bool clampColor READ clampColor WRITE setClampColor STORED false FINAL)
   Q_PROPERTY(QColor clearColor READ clearColor WRITE setClearColor STORED false FINAL)
-  Q_PROPERTY(float clearDepth READ clearDepth WRITE setClearDepth STORED false FINAL)
   Q_PROPERTY(int clearStencil READ clearSTencil WRITE setClearStencil STORED false FINAL)
   Q_PROPERTY(bvec4 colorMask READ colorMask WRITE setColorMask STORED false FINAL)
   Q_PROPERTY(CullFace cullFace READ cullFace WRITE setCullFace STORED false FINAL)
-  Q_PROPERTY(DepthFunction depthFunction READ depthFunction WRITE setDepthFunction STORED false FINAL)
-  Q_PROPERTY(bool depthMask READ depthMask WRITE setDepthMask STORED false FINAL)
-  Q_PROPERTY(float depthNear READ depthNear WRITE setDepthNear STORED false FINAL)
-  Q_PROPERTY(float depthFar READ depthFar WRITE setDepthFar STORED false FINAL)
   Q_PROPERTY(FrontFace frontFace READ frontFace WRITE setFrontFace STORED false FINAL)
   Q_PROPERTY(bool invertSampleCoverage READ invertSampleCoverage WRITE setInvertSampleCoverage STORED false FINAL)
   Q_PROPERTY(float lineWidth READ lineWidth WRITE setLineWidth STORED false FINAL)
@@ -72,17 +66,6 @@ public /* enums */:
     Front = GL_FRONT,
     Back = GL_BACK,
     FrontAndBack = GL_FRONT_AND_BACK,
-  };
-
-  enum DepthFunction {
-    Never = GL_NEVER,
-    Less = GL_LESS,
-    Equal = GL_EQUAL,
-    LessEqual = GL_LEQUAL,
-    Greater = GL_GREATER,
-    NotEqual = GL_NOTEQUAL,
-    GreaterEqual = GL_GEQUAL,
-    Always = GL_ALWAYS,
   };
 
   enum FrontFace {
