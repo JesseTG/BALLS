@@ -23,7 +23,7 @@ class OpenGLState : public QObject {
    * - Hints (DONE)
    * - Stencil
    * - Depth (DONE)
-   * - Color
+   * - Color (DONE)
    * - Sampling
    * - View (scissor, viewport)
    *
@@ -32,17 +32,12 @@ class OpenGLState : public QObject {
 
   Q_ENUMS(CullFace)
   Q_ENUMS(FrontFace)
-  Q_ENUMS(LogicOperation)
   Q_ENUMS(PolygonMode)
   Q_ENUMS(ProvokeMode)
   Q_ENUMS(SpriteCoordOrigin)
 
   // clang-format off
-
-  Q_PROPERTY(bool clampColor READ clampColor WRITE setClampColor STORED false FINAL)
-  Q_PROPERTY(QColor clearColor READ clearColor WRITE setClearColor STORED false FINAL)
   Q_PROPERTY(int clearStencil READ clearSTencil WRITE setClearStencil STORED false FINAL)
-  Q_PROPERTY(bvec4 colorMask READ colorMask WRITE setColorMask STORED false FINAL)
   Q_PROPERTY(CullFace cullFace READ cullFace WRITE setCullFace STORED false FINAL)
   Q_PROPERTY(FrontFace frontFace READ frontFace WRITE setFrontFace STORED false FINAL)
   Q_PROPERTY(float lineWidth READ lineWidth WRITE setLineWidth STORED false FINAL)
@@ -72,24 +67,6 @@ public /* enums */:
     CounterClockwise = GL_CCW,
   };
 
-
-  enum LogicOperation {
-    Clear = GL_CLEAR,
-    Set = GL_SET,
-    Copy = GL_COPY,
-    CopyInverted = GL_COPY_INVERTED,
-    Noop = GL_NOOP,
-    Invert = GL_INVERT,
-    And = GL_AND,
-    Nand = GL_NAND,
-    Or = GL_OR,
-    Xor = GL_XOR,
-    Equivalent = GL_EQUIV,
-    AndReverse = GL_AND_REVERSE,
-    AndInverted = GL_AND_INVERTED,
-    OrReverse = GL_OR_REVERSE,
-    OrInverted = GL_OR_INVERTED,
-  };
 
   enum PolygonMode {
     Point = GL_POINT,
