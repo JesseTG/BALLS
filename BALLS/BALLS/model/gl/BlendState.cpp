@@ -5,7 +5,7 @@
 
 namespace balls {
 
-BlendState::BlendState(OpenGLPointers& gl, QObject* parent = nullptr)
+BlendState::BlendState(OpenGLPointers& gl, QObject* parent)
   : QObject(parent),
     m_gl(gl),
     m_enabled(false),
