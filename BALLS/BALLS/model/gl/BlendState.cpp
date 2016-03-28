@@ -5,36 +5,65 @@
 
 namespace balls {
 
-BlendState::BlendState(
-  QOpenGLContext* context, QObject* parent = nullptr)
-  : QObject(parent), m_gl(context) {}
+BlendState::BlendState(QOpenGLContext* context, QObject* parent = nullptr)
+  : QObject(parent),
+    m_gl(context),
+    m_blendRgb(BlendEquation::Add),
+    m_blendAlpha(BlendEquation::Add),
+    m_srcRgb(BlendFunction::One),
+    m_dstRgb(BlendFunction::Zero),
+    m_srcAlpha(BlendFunction::One),
+    m_dstAlpha(BlendFunction::Zero) {}
+//  ^ Defaults specified in OpenGL
 
-BlendState::BlendFunction BlendState::func(GLenum param) {
-  GLenum g;
-  glGetIntegerv(param, &g);
-  return static_cast<BlendFunction>(g);
+void BlendState::setBlendColor(const QColor& color) {
+  m_blendColor = color;
+
+  m_gl.gl30->glBlendColor(
+    color.redF(), color.greenF(), color.blueF(), color.alphaF());
 }
 
-BlendState::BlendEquation BlendState::eq(GLenum param) {
-  GLenum g;
-  glGetIntegerv(param, &g);
-  return static_cast<BlendEquation>(g);
+void BlendState::setBlendRgb(BlendEquation equation) {
+  m_blendRgb = equation;
+
+  updateEquation();
 }
 
+void BlendState::setBlendAlpha(BlendEquation equation) {
+  m_blendAlpha = equation;
 
-void BlendState::setSrcRgb(BlendState::BlendFunction) {
-
+  updateEquation();
 }
 
-void BlendState::setDstRgb(BlendState::BlendFunction) {
+void BlendState::setSrcRgb(BlendFunction function) {
+  m_srcRgb = function;
 
+  updateFunction();
 }
 
-void BlendState::setSrcAlpha(BlendState::BlendFunction) {
+void BlendState::setDstRgb(BlendFunction function) {
+  m_dstRgb = function;
 
+  updateFunction();
 }
 
-void BlendState::setDstAlpha(BlendState::BlendFunction) {
+void BlendState::setSrcAlpha(BlendFunction function) {
+  m_srcAlpha = function;
 
+  updateFunction();
+}
+
+void BlendState::setDstAlpha(BlendFunction function) {
+  m_dstAlpha = function;
+
+  updateFunction();
+}
+
+void BlendState::updateEquation() noexcept {
+  m_gl.gl30->glBlendEquationSeparate(m_blendRgb, m_blendAlpha);
+}
+
+void BlendState::updateFunction() noexcept {
+  m_gl.gl30->glBlendFuncSeparate(m_srcRgb, m_dstRgb, m_srcAlpha, m_dstAlpha);
 }
 }

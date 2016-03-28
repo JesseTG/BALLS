@@ -15,17 +15,17 @@ class BlendState : public QObject {
   Q_ENUMS(BlendFunction)
 
   // clang-format off
-  Q_PROPERTY(QColor blendColor READ blendColor WRITE setBlendColor STORED false FINAL)
-  Q_PROPERTY(BlendEquation blendEquationRgb READ eq(GL_BLEND_EQUATION_RGB) WRITE setBlendRgb STORED false FINAL)
-  Q_PROPERTY(BlendEquation blendEquationAlpha READ eq(GL_BLEND_EQUATION_ALPHA) WRITE setBlendAlpha STORED false FINAL)
-  Q_PROPERTY(BlendFunction sourceRgb READ func(GL_BLEND_SRC_RGB) WRITE setSrcRgb STORED false FINAL)
-  Q_PROPERTY(BlendFunction destinationRgb READ func(GL_BLEND_DST_RGB) WRITE setDstRgb STORED false FINAL)
-  Q_PROPERTY(BlendFunction sourceAlpha READ func(GL_BLEND_SRC_ALPHA) WRITE setSrcAlpha STORED false FINAL)
-  Q_PROPERTY(BlendFunction destinationAlpha READ func(GL_BLEND_DST_ALPHA) WRITE setDstAlpha STORED false FINAL)
+  Q_PROPERTY(QColor blendColor READ blendColor WRITE setBlendColor FINAL)
+  Q_PROPERTY(BlendEquation blendEquationRgb MEMBER m_blendRgb WRITE setBlendRgb FINAL)
+  Q_PROPERTY(BlendEquation blendEquationAlpha MEMBER m_blendAlpha WRITE setBlendAlpha FINAL)
+  Q_PROPERTY(BlendFunction sourceRgb MEMBER m_srcRgb WRITE setSrcRgb FINAL)
+  Q_PROPERTY(BlendFunction destinationRgb MEMBER m_dstRgb WRITE setDstRgb FINAL)
+  Q_PROPERTY(BlendFunction sourceAlpha MEMBER m_srcAlpha WRITE setSrcAlpha FINAL)
+  Q_PROPERTY(BlendFunction destinationAlpha MEMBER m_dstAlpha WRITE setDstAlpha FINAL)
   // clang-format on
 
 public /* enums */:
-  enum BlendEquation {
+  enum BlendEquation : GLenum {
     Add = GL_FUNC_ADD,
     Subtract = GL_FUNC_SUBTRACT,
     ReverseSubtract = GL_FUNC_REVERSE_SUBTRACT,
@@ -33,7 +33,7 @@ public /* enums */:
     Max = GL_MAX,
   };
 
-  enum BlendFunction {
+  enum BlendFunction : GLenum {
     Zero = GL_ZERO,
     One = GL_ONE,
     SourceColor = GL_SRC_COLOR,
@@ -63,14 +63,28 @@ private /* getters */:
   BlendEquation eq(GLenum);
 
 private /* setters */:
+  void setBlendColor(const QColor&);
   void setBlendRgb(BlendEquation);
   void setBlendAlpha(BlendEquation);
   void setSrcRgb(BlendFunction);
   void setDstRgb(BlendFunction);
   void setSrcAlpha(BlendFunction);
   void setDstAlpha(BlendFunction);
+
+private /* update methods */:
+  void updateEquation() noexcept;
+  void updateFunction() noexcept;
+
 private /* members */:
   OpenGLPointers m_gl;
+
+  QColor m_blendColor;
+  BlendEquation m_blendRgb;
+  BlendEquation m_blendAlpha;
+  BlendFunction m_srcRgb;
+  BlendFunction m_dstRgb;
+  BlendFunction m_srcAlpha;
+  BlendFunction m_dstAlpha;
 };
 }
 
