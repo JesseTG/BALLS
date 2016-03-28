@@ -2,6 +2,7 @@
 #include "model/gl/ClipOptions.hpp"
 
 #include <QOpenGLFunctions_3_0>
+// #include <QOpenGLFunctions_4_5_Core>
 
 namespace balls {
 
@@ -71,12 +72,12 @@ void ClipOptions::setScissorEnabled(bool enabled) noexcept {
 void ClipOptions::setOrigin(ClipControlOrigin origin) noexcept {
   m_origin = origin;
 
-  glClipControl(m_origin, m_depth);
+  // m_gl.gl45->glClipControl(m_origin, m_depth);
 }
 
 void ClipOptions::setDepth(ClipControlDepth depth) noexcept {
   m_depth = depth;
-
-  glClipControl(m_origin, m_depth);
+  // TODO: Enable when I can upgrade from Qt 5.4
+  // m_gl.gl45->glClipControl(m_origin, m_depth);
 }
 }
