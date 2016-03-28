@@ -16,8 +16,8 @@ namespace balls {
 
 namespace {
 template <class QOpenGLF>
-QOpenGLF *_getGl(QOpenGLContext *context) noexcept {
-  QOpenGLF *gl = context->versionFunctions<QOpenGLF>();
+QOpenGLF* _getGl(QOpenGLContext* context) noexcept {
+  QOpenGLF* gl = context->versionFunctions<QOpenGLF>();
 
   if (gl) {
     // If we have this version of OpenGL available...
@@ -28,7 +28,7 @@ QOpenGLF *_getGl(QOpenGLContext *context) noexcept {
 }
 }
 
-OpenGLPointers::OpenGLPointers(QOpenGLContext *context)
+OpenGLPointers::OpenGLPointers(QOpenGLContext* context)
   : gl30(_getGl<QOpenGLFunctions_3_0>(context)),
     gl31(_getGl<QOpenGLFunctions_3_1>(context)),
     gl32(_getGl<QOpenGLFunctions_3_2_Core>(context)),
