@@ -15,6 +15,7 @@ class BlendState : public QObject {
   Q_ENUMS(BlendFunction)
 
   // clang-format off
+  Q_PROPERTY(bool enabled MEMBER m_enabled WRITE setEnabled FINAL)
   Q_PROPERTY(QColor blendColor READ blendColor WRITE setBlendColor FINAL)
   Q_PROPERTY(BlendEquation blendEquationRgb MEMBER m_blendRgb WRITE setBlendRgb FINAL)
   Q_PROPERTY(BlendEquation blendEquationAlpha MEMBER m_blendAlpha WRITE setBlendAlpha FINAL)
@@ -59,6 +60,7 @@ public:
   explicit BlendState(OpenGLPointers&, QObject* = nullptr);
 
 private /* setters */:
+  void setEnabled(bool) noexcept;
   void setBlendColor(const QColor&) noexcept;
   void setBlendRgb(BlendEquation) noexcept;
   void setBlendAlpha(BlendEquation) noexcept;
@@ -74,6 +76,7 @@ private /* update methods */:
 private /* members */:
   OpenGLPointers m_gl;
 
+  bool m_enabled;
   QColor m_blendColor;
   BlendEquation m_blendRgb;
   BlendEquation m_blendAlpha;

@@ -8,6 +8,7 @@ namespace balls {
 BlendState::BlendState(OpenGLPointers& gl, QObject* parent = nullptr)
   : QObject(parent),
     m_gl(gl),
+    m_enabled(false),
     m_blendRgb(BlendEquation::Add),
     m_blendAlpha(BlendEquation::Add),
     m_srcRgb(BlendFunction::One),
@@ -17,6 +18,16 @@ BlendState::BlendState(OpenGLPointers& gl, QObject* parent = nullptr)
   Q_ASSUME(m_gl.gl30 != nullptr);
 }
 //  ^ Defaults specified in OpenGL
+
+void BlendState::setEnabled(bool enabled) noexcept {
+  m_enabled = enabled;
+
+  if (m_enabled) {
+    m_gl.gl30->glEnable(GL_BLEND);
+  } else {
+    m_gl.gl30->glDisable(GL_BLEND);
+  }
+}
 
 void BlendState::setBlendColor(const QColor& color) noexcept {
   m_blendColor = color;
