@@ -90,7 +90,7 @@ public /* getters/setters */:
 signals:
   void geometryShadersSupported(const bool);
   Q_DECL_DEPRECATED void gl3NotSupported();
-  void finishedInitializing();
+  void finishedInitializing(OpenGLPointers&);
   void fatalGraphicsError(const QString&, const QString&, const int);
   void graphicsWarning(const QString&, const QString&);
   void uniformsDiscovered(const UniformCollection&);

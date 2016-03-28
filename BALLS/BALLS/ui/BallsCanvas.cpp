@@ -103,7 +103,7 @@ void BallsCanvas::initializeGL() {
   _initAttributes();
   //_updateUniformList();
 
-  this->finishedInitializing();
+  this->finishedInitializing(this->gl);
   this->startTimer(1000.f / 60, Qt::PreciseTimer);
 }
 
