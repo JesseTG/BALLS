@@ -13,7 +13,9 @@ BlendState::BlendState(OpenGLPointers& gl, QObject* parent = nullptr)
     m_srcRgb(BlendFunction::One),
     m_dstRgb(BlendFunction::Zero),
     m_srcAlpha(BlendFunction::One),
-    m_dstAlpha(BlendFunction::Zero) {}
+    m_dstAlpha(BlendFunction::Zero) {
+  Q_ASSUME(m_gl.gl30 != nullptr);
+}
 //  ^ Defaults specified in OpenGL
 
 void BlendState::setBlendColor(const QColor& color) {
