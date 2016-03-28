@@ -3,6 +3,10 @@
 
 #include <QObject>
 
+#include <qopengl.h>
+
+#include "gl/OpenGLPointers.hpp"
+
 namespace balls {
 
 class Hints : public QObject {
@@ -11,25 +15,35 @@ class Hints : public QObject {
   Q_ENUMS(HintMode)
 
   // clang-format off
-  Q_PROPERTY(HintMode fragmentDerivative READ fragmentDerivative WRITE setFragmentDerivative STORED false FINAL)
-  Q_PROPERTY(HintMode lineSmooth READ lineSmooth WRITE setLineSmooth STORED false FINAL)
-  Q_PROPERTY(HintMode polygonSmooth READ polygonSmooth WRITE setPolygonSmooth STORED false FINAL)
-  Q_PROPERTY(HintMode textureCompression READ textureCompression WRITE setTextureCompression STORED false FINAL)
+  Q_PROPERTY(HintMode fragmentDerivative MEMBER m_fragmentDerivative WRITE setFragmentDerivative FINAL)
+  Q_PROPERTY(HintMode lineSmooth MEMBER m_lineSmooth WRITE setLineSmooth FINAL)
+  Q_PROPERTY(HintMode polygonSmooth MEMBER m_polygonSmooth WRITE setPolygonSmooth FINAL)
+  Q_PROPERTY(HintMode textureCompression MEMBER m_textureCompression WRITE setTextureCompression FINAL)
   // clang-format on
 
 public /* enums */:
-  enum HintMode {
+  enum HintMode : GLenum {
     Fastest = GL_FASTEST,
     Nicest = GL_NICEST,
     DontCare = GL_DONT_CARE,
   };
 
 public:
-  explicit Hints(QObject *parent = 0);
+  explicit Hints(OpenGLPointers&, QObject* = nullptr);
 
-signals:
+private /* setters */:
+  void setFragmentDerivative(HintMode) noexcept;
+  void setLineSmooth(HintMode) noexcept;
+  void setPolygonSmooth(HintMode) noexcept;
+  void setTextureCompression(HintMode) noexcept;
 
-public slots:
+private /* members */:
+  OpenGLPointers m_gl;
+
+  HintMode m_fragmentDerivative;
+  HintMode m_lineSmooth;
+  HintMode m_polygonSmooth;
+  HintMode m_textureCompression;
 };
 }
 
