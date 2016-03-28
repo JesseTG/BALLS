@@ -24,6 +24,7 @@ class OpenGLState : public QObject {
    * - Stencil
    * - Depth (DONE)
    * - Color
+   * - Sampling
    * - View (scissor, viewport)
    *
    */
@@ -44,7 +45,6 @@ class OpenGLState : public QObject {
   Q_PROPERTY(bvec4 colorMask READ colorMask WRITE setColorMask STORED false FINAL)
   Q_PROPERTY(CullFace cullFace READ cullFace WRITE setCullFace STORED false FINAL)
   Q_PROPERTY(FrontFace frontFace READ frontFace WRITE setFrontFace STORED false FINAL)
-  Q_PROPERTY(bool invertSampleCoverage READ invertSampleCoverage WRITE setInvertSampleCoverage STORED false FINAL)
   Q_PROPERTY(float lineWidth READ lineWidth WRITE setLineWidth STORED false FINAL)
   Q_PROPERTY(float pointFadeThresholdSize READ pointFadeThresholdSize WRITE setPointFadeThresholdSize STORED false FINAL)
   Q_PROPERTY(float pointSize READ pointSize WRITE setPointSize STORED false FINAL)
@@ -53,7 +53,6 @@ class OpenGLState : public QObject {
   Q_PROPERTY(float polygonOffsetUnits READ polygonOffsetUnits WRITE setPolygonOffsetUnits STORED false FINAL)
   Q_PROPERTY(uint primitiveRestartIndex READ primitiveRestartIndex WRITE setPrimitiveRestartIndex STORED false FINAL)
   Q_PROPERTY(ProvokeMode provokingVertex READ provokingVertex WRITE setProvokingIndex STORED false FINAL)
-  Q_PROPERTY(float sampleCoverage READ sampleCoverage WRITE setSampleCoverage STORED false FINAL)
   Q_PROPERTY(SpriteCoordOrigin spriteCoordOrigin READ spriteCoordOrigin WRITE setSpriteCoordOrigin STORED false FINAL)
 
   // clang-format on

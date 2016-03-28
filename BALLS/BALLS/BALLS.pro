@@ -50,6 +50,7 @@ SOURCES += \
   model/gl/Hints.cpp \
   model/gl/ImplementationInfo.cpp \
   model/gl/Limits.cpp \
+  model/gl/SampleOptions.cpp \
   model/gl/StencilOptions.cpp \
   model/gl/ViewOptions.cpp \
   model/ImageTexture.cpp \
@@ -102,6 +103,7 @@ SOURCES += \
 
 
 
+
 HEADERS  += \
   config/ProjectConfig.hpp \
   config/Settings.hpp \
@@ -116,6 +118,7 @@ HEADERS  += \
   model/gl/Hints.hpp \
   model/gl/ImplementationInfo.hpp \
   model/gl/Limits.hpp \
+  model/gl/SampleOptions.hpp \
   model/gl/StencilOptions.hpp \
   model/gl/ViewOptions.hpp \
   model/ImageTexture.hpp \
@@ -165,7 +168,6 @@ HEADERS  += \
   util/Trackball.hpp \
   util/TypeInfo.hpp \
   util/Util.hpp \
-
 
 
 FORMS += \
