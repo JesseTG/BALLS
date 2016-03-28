@@ -1,6 +1,8 @@
 #ifndef OPENGLPOINTERS_HPP
 #define OPENGLPOINTERS_HPP
 
+#include <QObject>
+
 class QOpenGLContext;
 class QOpenGLFunctions_3_0;
 class QOpenGLFunctions_3_1;
@@ -20,6 +22,8 @@ namespace balls {
  * @todo Support OpenGL 4.4 and 4.5 (when I can upgrade to Qt 5.5 or 5.6)
  */
 struct OpenGLPointers {
+  Q_GADGET
+
   OpenGLPointers(QOpenGLContext*);
   OpenGLPointers();
 
@@ -33,5 +37,7 @@ struct OpenGLPointers {
   QOpenGLFunctions_4_3_Core* gl43;
 };
 }
+
+Q_DECLARE_METATYPE(balls::OpenGLPointers*)
 
 #endif // OPENGLPOINTERS_HPP
