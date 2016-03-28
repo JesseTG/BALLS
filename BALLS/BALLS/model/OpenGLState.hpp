@@ -24,6 +24,7 @@ class OpenGLState : public QObject {
    * - Stencil
    * - Depth (DONE)
    * - Color (DONE)
+   * - Geometry
    * - Sampling
    * - View (scissor, viewport)
    *
