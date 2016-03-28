@@ -44,9 +44,14 @@ SOURCES += \
   gl/OpenGLPointers.cpp \
   main.cpp \
   model/gl/BlendState.cpp \
+  model/gl/ColorOptions.cpp \
+  model/gl/DepthOptions.cpp \
+  model/gl/GeometryOptions.cpp \
   model/gl/Hints.cpp \
   model/gl/ImplementationInfo.cpp \
   model/gl/Limits.cpp \
+  model/gl/StencilOptions.cpp \
+  model/gl/ViewOptions.cpp \
   model/ImageTexture.cpp \
   model/mesh/BaseCylindricalMesh.cpp \
   model/mesh/BaseSphereMesh.cpp \
@@ -105,9 +110,14 @@ HEADERS  += \
   exception/JsonException.hpp \
   gl/OpenGLPointers.hpp \
   model/gl/BlendState.hpp \
+  model/gl/ColorOptions.hpp \
+  model/gl/DepthOptions.hpp \
+  model/gl/GeometryOptions.hpp \
   model/gl/Hints.hpp \
   model/gl/ImplementationInfo.hpp \
   model/gl/Limits.hpp \
+  model/gl/StencilOptions.hpp \
+  model/gl/ViewOptions.hpp \
   model/ImageTexture.hpp \
   model/mesh/BaseCylindricalMesh.hpp \
   model/mesh/BaseSphereMesh.hpp \
