@@ -18,9 +18,9 @@ class OpenGLState : public QObject {
 
   /* Categories of OpenGL state:
    * - Blend State (DONE)
-   * - Implementation info (vendors, etc.)
+   * - Implementation info (DONE), except extensions
    * - Limits (GL_MAX_VARYING_COMPONENTS, etc.)
-   * - Hints
+   * - Hints (DONE)
    * - Stencil
    * - Depth (DONE)
    * - Color
