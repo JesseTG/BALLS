@@ -6,13 +6,10 @@
 
 namespace balls {
 
-static const QRegularExpression NAME_FILTER(
-  R"%(^(_q_.+|objectName)$)%", QRegularExpression::OptimizeOnFirstUsageOption);
-
 MeshManagerWidget::MeshManagerWidget(QWidget *parent) : QWidget(parent) {
   ui.setupUi(this);
 
-  ui.meshProperties->setNameFilter(NAME_FILTER);
+  ui.meshProperties->setNameFilter(constants::regex::NAME_FILTER);
   ui.meshProperties->registerCustomPropertyCB(shader::createShaderProperty);
 
   ui.createMeshButton->addActions(

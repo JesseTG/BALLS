@@ -151,6 +151,8 @@ extern const QRegularExpression VEC4;
 extern const QRegularExpression BVEC4;
 extern const QRegularExpression IVEC4;
 extern const QRegularExpression UVEC4;
+
+extern const QRegularExpression NAME_FILTER;
 }
 
 extern std::random_device RANDOM_DEVICE;
