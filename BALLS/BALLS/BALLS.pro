@@ -102,8 +102,6 @@ SOURCES += \
   util/Util.cpp \
 
 
-
-
 HEADERS  += \
   config/ProjectConfig.hpp \
   config/Settings.hpp \
