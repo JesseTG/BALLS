@@ -28,8 +28,9 @@ QOpenGLF* _getGl(QOpenGLContext* context) noexcept {
 }
 }
 
-OpenGLPointers::OpenGLPointers(QOpenGLContext* context)
-  : gl30(_getGl<QOpenGLFunctions_3_0>(context)),
+OpenGLPointers::OpenGLPointers(QOpenGLContext* ctx)
+  : context(ctx),
+    gl30(_getGl<QOpenGLFunctions_3_0>(context)),
     gl31(_getGl<QOpenGLFunctions_3_1>(context)),
     gl32(_getGl<QOpenGLFunctions_3_2_Core>(context)),
     gl33(_getGl<QOpenGLFunctions_3_3_Core>(context)),
@@ -37,6 +38,7 @@ OpenGLPointers::OpenGLPointers(QOpenGLContext* context)
     gl41(_getGl<QOpenGLFunctions_4_1_Core>(context)),
     gl42(_getGl<QOpenGLFunctions_4_2_Core>(context)),
     gl43(_getGl<QOpenGLFunctions_4_3_Core>(context)) {
+
   if (gl30) gl30->initializeOpenGLFunctions();
   if (gl31) gl31->initializeOpenGLFunctions();
   if (gl32) gl32->initializeOpenGLFunctions();
@@ -48,7 +50,8 @@ OpenGLPointers::OpenGLPointers(QOpenGLContext* context)
 }
 
 OpenGLPointers::OpenGLPointers()
-  : gl30(nullptr),
+  : context(nullptr),
+    gl30(nullptr),
     gl31(nullptr),
     gl32(nullptr),
     gl40(nullptr),

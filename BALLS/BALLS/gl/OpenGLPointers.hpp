@@ -28,6 +28,7 @@ public:
   OpenGLPointers(QOpenGLContext*);
   OpenGLPointers();
 
+  QOpenGLContext* context;
   QOpenGLFunctions_3_0* gl30;
   QOpenGLFunctions_3_1* gl31;
   QOpenGLFunctions_3_2_Core* gl32;
