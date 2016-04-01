@@ -408,6 +408,9 @@
    </widget>
   </widget>
   <widget class="QDockWidget" name="openGlStateDock">
+   <property name="windowTitle">
+    <string>Ope&amp;nGL State</string>
+   </property>
    <attribute name="dockWidgetArea">
     <number>2</number>
    </attribute>
