@@ -407,6 +407,12 @@
     </property>
    </widget>
   </widget>
+  <widget class="QDockWidget" name="openGlStateDock">
+   <attribute name="dockWidgetArea">
+    <number>2</number>
+   </attribute>
+   <widget class="balls::OpenGLStateWidget" name="openGlStateManager"/>
+  </widget>
   <action name="actionNew_Project">
    <property name="text">
     <string>&amp;New</string>
@@ -609,6 +615,12 @@
     <signal>meshCreated(balls::Mesh)</signal>
     <signal>meshSelected(balls::Mesh)</signal>
    </slots>
+  </customwidget>
+  <customwidget>
+   <class>balls::OpenGLStateWidget</class>
+   <extends>QWidget</extends>
+   <header location="global">ui/docks/OpenGLStateWidget.hpp</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources>
