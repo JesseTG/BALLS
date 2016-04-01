@@ -24,7 +24,6 @@ StencilOptions::StencilOptions(OpenGLPointers& gl, QObject* parent)
     m_backStencilRef(0),
     m_backStencilValueMask(0xFFFFFFFF) {}
 
-
 void StencilOptions::setStencilEnabled(bool enabled) noexcept {
   m_stencilEnabled = enabled;
 

@@ -112,7 +112,6 @@ private /* members */:
 };
 }
 
-
 Q_DECLARE_METATYPE(balls::GeometryOptions*)
 
 #endif // GEOMETRYOPTIONS_HPP
