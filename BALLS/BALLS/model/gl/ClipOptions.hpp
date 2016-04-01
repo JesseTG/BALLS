@@ -4,7 +4,7 @@
 #include <qopengl.h>
 #include <QObject>
 
-#include <glm/vec2.hpp>
+#include <glm/fwd.hpp>
 
 #include "model/OpenGLState.hpp"
 #include "gl/OpenGLPointers.hpp"
