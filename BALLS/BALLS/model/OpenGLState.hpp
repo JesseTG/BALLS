@@ -17,8 +17,6 @@ public:
   virtual ~OpenGLState() {}
 
 protected /* methods */:
-  void ensureContext();
-
   bool hasGl31() const noexcept;
   bool hasGl32() const noexcept;
   bool hasGl33() const noexcept;

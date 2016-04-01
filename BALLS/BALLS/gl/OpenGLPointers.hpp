@@ -37,6 +37,17 @@ public:
   QOpenGLFunctions_4_1_Core* gl41;
   QOpenGLFunctions_4_2_Core* gl42;
   QOpenGLFunctions_4_3_Core* gl43;
+
+  QOpenGLFunctions_3_0* gl30Current() noexcept;
+  QOpenGLFunctions_3_1* gl31Current() noexcept;
+  QOpenGLFunctions_3_2_Core* gl32Current() noexcept;
+  QOpenGLFunctions_3_3_Core* gl33Current() noexcept;
+  QOpenGLFunctions_4_0_Core* gl40Current() noexcept;
+  QOpenGLFunctions_4_1_Core* gl41Current() noexcept;
+  QOpenGLFunctions_4_2_Core* gl42Current() noexcept;
+  QOpenGLFunctions_4_3_Core* gl43Current() noexcept;
+private:
+  void ensureContext() noexcept;
 };
 }
 

@@ -58,4 +58,58 @@ OpenGLPointers::OpenGLPointers()
     gl41(nullptr),
     gl42(nullptr),
     gl43(nullptr) {}
+
+QOpenGLFunctions_3_0* OpenGLPointers::gl30Current() noexcept {
+  ensureContext();
+
+  return gl30;
+}
+
+QOpenGLFunctions_3_1* OpenGLPointers::gl31Current() noexcept {
+  ensureContext();
+
+  return gl31;
+}
+
+QOpenGLFunctions_3_2_Core* OpenGLPointers::gl32Current() noexcept {
+  ensureContext();
+
+  return gl32;
+}
+
+QOpenGLFunctions_3_3_Core* OpenGLPointers::gl33Current() noexcept {
+  ensureContext();
+
+  return gl33;
+}
+
+QOpenGLFunctions_4_0_Core* OpenGLPointers::gl40Current() noexcept {
+  ensureContext();
+
+  return gl40;
+}
+
+QOpenGLFunctions_4_1_Core* OpenGLPointers::gl41Current() noexcept {
+  ensureContext();
+
+  return gl41;
+}
+
+QOpenGLFunctions_4_2_Core* OpenGLPointers::gl42Current() noexcept {
+  ensureContext();
+
+  return gl42;
+}
+
+QOpenGLFunctions_4_3_Core* OpenGLPointers::gl43Current() noexcept {
+  ensureContext();
+
+  return gl43;
+}
+
+void OpenGLPointers::ensureContext() noexcept {
+  if (context != nullptr) {
+    context->makeCurrent(context->surface());
+  }
+}
 }

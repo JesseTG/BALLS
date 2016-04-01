@@ -8,14 +8,6 @@ OpenGLState::OpenGLState(OpenGLPointers& pointers, QObject* parent)
   Q_ASSUME(m_gl.gl30 != nullptr);
 }
 
-void OpenGLState::ensureContext() {
-  bool success = m_gl.context->makeCurrent(m_gl.context->surface());
-
-  if (!success) {
-    throw std::runtime_error("Cannot make the window context current");
-  }
-}
-
 bool OpenGLState::hasGl31() const noexcept {
   return m_gl.gl31 != nullptr;
 }
@@ -55,12 +47,10 @@ bool OpenGLState::hasGl45() const noexcept {
 }
 
 void OpenGLState::setGlFeature(bool enabled, GLenum feature) {
-  ensureContext();
-
   if (enabled) {
-    m_gl.gl30->glEnable(feature);
+    m_gl.gl30Current()->glEnable(feature);
   } else {
-    m_gl.gl30->glDisable(feature);
+    m_gl.gl30Current()->glDisable(feature);
   }
 }
 }
