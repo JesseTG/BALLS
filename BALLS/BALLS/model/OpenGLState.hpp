@@ -16,6 +16,19 @@ public:
   explicit OpenGLState(OpenGLPointers&, QObject* = nullptr);
   virtual ~OpenGLState() {}
 
+protected /* methods */:
+  void initContext();
+
+  bool hasGl31() const noexcept;
+  bool hasGl32() const noexcept;
+  bool hasGl33() const noexcept;
+  bool hasGl40() const noexcept;
+  bool hasGl41() const noexcept;
+  bool hasGl42() const noexcept;
+  bool hasGl43() const noexcept;
+  bool hasGl44() const noexcept;
+  bool hasGl45() const noexcept;
+
 protected /* members */:
   OpenGLPointers m_gl;
 };
