@@ -3,8 +3,10 @@
 
 namespace balls {
 
-OpenGLState::OpenGLState(OpenGLPointers& context, QObject* parent)
-  : QObject(parent), m_gl(context) {}
+OpenGLState::OpenGLState(OpenGLPointers& pointers, QObject* parent)
+  : QObject(parent), m_gl(pointers) {
+  Q_ASSUME(m_gl.gl30 != nullptr);
+}
 
 void OpenGLState::ensureContext() {
   bool success = m_gl.context->makeCurrent(m_gl.context->surface());
