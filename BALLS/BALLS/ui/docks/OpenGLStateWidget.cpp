@@ -17,5 +17,15 @@ OpenGLStateWidget::OpenGLStateWidget(OpenGLPointers& gl, QWidget* parent)
     m_sampleOptions(gl),
     m_stencilOptions(gl) {
   ui.setupUi(this);
+
+  ui.openGlProperties->addObject(&m_blendState);
+  ui.openGlProperties->addObject(&m_clipOptions);
+  ui.openGlProperties->addObject(&m_colorOptions);
+  ui.openGlProperties->addObject(&m_depthOptions);
+  ui.openGlProperties->addObject(&m_geometryOptions);
+  ui.openGlProperties->addObject(&m_hints);
+  ui.openGlProperties->addObject(&m_implementationInfo);
+  ui.openGlProperties->addObject(&m_sampleOptions);
+  ui.openGlProperties->addObject(&m_stencilOptions);
 }
 }
