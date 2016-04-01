@@ -39,6 +39,12 @@ BallsWindow::BallsWindow(QWidget *parent) noexcept
   ui.uniforms->setNameFilter(NAME_FILTER);
   this->ui.canvas->setUniformModel(&m_uniforms);
   ui.meshManager->setMeshModel(&m_meshes);
+
+  connect(
+    ui.canvas,
+    &BallsCanvas::finishedInitializing,
+    ui.openGlStateManager,
+    &OpenGLStateWidget::setOpenGLPointers);
   // ui.sceneSettings->initCanvas(ui.canvas);
 
   ui.vertexEditor->setLexer(_vertLexer);

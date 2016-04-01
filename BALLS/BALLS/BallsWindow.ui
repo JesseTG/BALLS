@@ -621,6 +621,9 @@
    <extends>QWidget</extends>
    <header location="global">ui/docks/OpenGLStateWidget.hpp</header>
    <container>1</container>
+   <slots>
+    <slot>setOpenGLPointers(OpenGLPointers)</slot>
+   </slots>
   </customwidget>
  </customwidgets>
  <resources>
