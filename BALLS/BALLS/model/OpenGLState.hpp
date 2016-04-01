@@ -29,6 +29,8 @@ protected /* methods */:
   bool hasGl44() const noexcept;
   bool hasGl45() const noexcept;
 
+  void setGlFeature(bool, GLenum);
+
 protected /* members */:
   OpenGLPointers m_gl;
 };

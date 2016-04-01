@@ -53,4 +53,14 @@ bool OpenGLState::hasGl45() const noexcept {
   return false;
   // TODO: Upgrade Qt version
 }
+
+void OpenGLState::setGlFeature(bool enabled, GLenum feature) {
+  ensureContext();
+
+  if (enabled) {
+    m_gl.gl30->glEnable(feature);
+  } else {
+    m_gl.gl30->glDisable(feature);
+  }
+}
 }
