@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>OpenGLStateWidget</class>
+ <widget class="QWidget" name="OpenGLStateWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>400</width>
+    <height>300</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>OpenGL Properties</string>
+  </property>
+  <layout class="QGridLayout" name="openGlStateLayout">
+   <item row="0" column="0">
+    <widget class="QPropertyEditorWidget" name="openGlProperties"/>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QPropertyEditorWidget</class>
+   <extends>QTreeView</extends>
+   <header>QPropertyEditor/QPropertyEditorWidget.h</header>
+   <slots>
+    <slot>addObject(QObject*)</slot>
+    <slot>setObject(QObject*)</slot>
+    <slot>updateObject(QObject*)</slot>
+    <slot>removeObject(QObject*)</slot>
+    <slot>setObject(QListWidgetItem*)</slot>
+   </slots>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>
