@@ -21,11 +21,7 @@ ColorOptions::ColorOptions(OpenGLPointers& gl, QObject* parent)
 void ColorOptions::setLogicOpEnabled(bool enabled) noexcept {
   m_logicOpEnabled = enabled;
 
-  if (m_logicOpEnabled) {
-    m_gl.gl30->glEnable(GL_COLOR_LOGIC_OP);
-  } else {
-    m_gl.gl30->glDisable(GL_COLOR_LOGIC_OP);
-  }
+  setGlFeature(m_logicOpEnabled, GL_COLOR_LOGIC_OP);
 }
 
 void ColorOptions::setClampColor(bool clamp) noexcept {
@@ -56,10 +52,6 @@ void ColorOptions::setLogicOperation(LogicOperation operation) noexcept {
 void ColorOptions::setDithering(bool dithering) noexcept {
   m_dithering = dithering;
 
-  if (m_dithering) {
-    m_gl.gl30->glEnable(GL_DITHER);
-  } else {
-    m_gl.gl30->glDisable(GL_DITHER);
-  }
+  setGlFeature(m_dithering, GL_DITHER);
 }
 }

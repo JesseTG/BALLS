@@ -28,11 +28,7 @@ StencilOptions::StencilOptions(OpenGLPointers& gl, QObject* parent)
 void StencilOptions::setStencilEnabled(bool enabled) noexcept {
   m_stencilEnabled = enabled;
 
-  if (m_stencilEnabled) {
-    m_gl.gl30->glEnable(GL_STENCIL_TEST);
-  } else {
-    m_gl.gl30->glDisable(GL_STENCIL_TEST);
-  }
+  setGlFeature(m_stencilEnabled, GL_STENCIL_TEST);
 }
 
 void StencilOptions::setClearStencil(int clearStencil) noexcept {

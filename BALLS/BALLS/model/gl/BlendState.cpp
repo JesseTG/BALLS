@@ -21,11 +21,7 @@ BlendState::BlendState(OpenGLPointers& gl, QObject* parent)
 void BlendState::setEnabled(bool enabled) noexcept {
   m_enabled = enabled;
 
-  if (m_enabled) {
-    m_gl.gl30->glEnable(GL_BLEND);
-  } else {
-    m_gl.gl30->glDisable(GL_BLEND);
-  }
+  setGlFeature(m_enabled, GL_BLEND);
 }
 
 void BlendState::setBlendColor(const QColor& color) noexcept {

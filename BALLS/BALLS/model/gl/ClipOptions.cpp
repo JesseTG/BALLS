@@ -61,11 +61,7 @@ void ClipOptions::setScissorSize(const uvec2& size) noexcept {
 void ClipOptions::setScissorEnabled(bool enabled) noexcept {
   m_scissorEnabled = enabled;
 
-  if (m_scissorEnabled) {
-    m_gl.gl30->glEnable(GL_SCISSOR_TEST);
-  } else {
-    m_gl.gl30->glDisable(GL_SCISSOR_TEST);
-  }
+  setGlFeature(m_scissorEnabled, GL_SCISSOR_TEST);
 }
 
 void ClipOptions::setOrigin(ClipControlOrigin origin) noexcept {

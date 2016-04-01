@@ -21,21 +21,13 @@ DepthOptions::DepthOptions(OpenGLPointers& gl, QObject* parent)
 void DepthOptions::setTestEnabled(bool enabled) noexcept {
   m_testEnabled = enabled;
 
-  if (m_testEnabled) {
-    m_gl.gl30->glEnable(GL_DEPTH_TEST);
-  } else {
-    m_gl.gl30->glDisable(GL_DEPTH_TEST);
-  }
+  setGlFeature(m_testEnabled, GL_DEPTH_TEST);
 }
 
 void DepthOptions::setClampEnabled(bool enabled) noexcept {
   m_clampEnabled = enabled;
 
-  if (m_clampEnabled) {
-    m_gl.gl30->glEnable(GL_DEPTH_CLAMP);
-  } else {
-    m_gl.gl30->glDisable(GL_DEPTH_CLAMP);
-  }
+  setGlFeature(m_clampEnabled, GL_DEPTH_CLAMP);
 }
 
 void DepthOptions::setClearDepth(float clear) noexcept {

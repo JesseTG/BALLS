@@ -85,39 +85,23 @@ void GeometryOptions::setPolygonOffsetUnits(float units) noexcept {
 void GeometryOptions::setPolygonOffsetFill(bool fill) noexcept {
   m_polygonOffsetFill = fill;
 
-  if (m_polygonOffsetFill) {
-    m_gl.gl30->glEnable(GL_POLYGON_OFFSET_FILL);
-  } else {
-    m_gl.gl30->glDisable(GL_POLYGON_OFFSET_FILL);
-  }
+  setGlFeature(m_polygonOffsetFill, GL_POLYGON_OFFSET_FILL);
 }
 void GeometryOptions::setPolygonOffsetPoint(bool point) noexcept {
   m_polygonOffsetPoint = point;
 
-  if (m_polygonOffsetPoint) {
-    m_gl.gl30->glEnable(GL_POLYGON_OFFSET_POINT);
-  } else {
-    m_gl.gl30->glDisable(GL_POLYGON_OFFSET_POINT);
-  }
+  setGlFeature(m_polygonOffsetPoint, GL_POLYGON_OFFSET_POINT);
 }
 void GeometryOptions::setPolygonOffsetLine(bool line) noexcept {
   m_polygonOffsetLine = line;
 
-  if (m_polygonOffsetLine) {
-    m_gl.gl30->glEnable(GL_POLYGON_OFFSET_LINE);
-  } else {
-    m_gl.gl30->glDisable(GL_POLYGON_OFFSET_LINE);
-  }
+  setGlFeature(m_polygonOffsetLine, GL_POLYGON_OFFSET_LINE);
 }
 
 void GeometryOptions::setPrimitiveRestartEnabled(bool enabled) noexcept {
   m_primitiveRestartEnabled = enabled;
 
-  if (m_primitiveRestartEnabled) {
-    m_gl.gl30->glEnable(GL_PRIMITIVE_RESTART);
-  } else {
-    m_gl.gl30->glDisable(GL_PRIMITIVE_RESTART);
-  }
+  setGlFeature(m_primitiveRestartEnabled, GL_PRIMITIVE_RESTART);
 }
 
 void GeometryOptions::setPrimitiveRestartIndex(unsigned int index) noexcept {
@@ -140,20 +124,12 @@ void GeometryOptions::setProvokingVertex(ProvokeMode provokeMode) noexcept {
 void GeometryOptions::setProgramPointSize(bool enabled) noexcept {
   m_programPointSize = enabled;
 
-  if (m_programPointSize) {
-    m_gl.gl30->glEnable(GL_PROGRAM_POINT_SIZE);
-  } else {
-    m_gl.gl30->glDisable(GL_PROGRAM_POINT_SIZE);
-  }
+  setGlFeature(m_programPointSize, GL_PROGRAM_POINT_SIZE);
 }
 void GeometryOptions::setPolygonSmooth(bool enabled) noexcept {
   m_polygonSmooth = enabled;
 
-  if (m_polygonSmooth) {
-    m_gl.gl30->glEnable(GL_POLYGON_SMOOTH);
-  } else {
-    m_gl.gl30->glDisable(GL_POLYGON_SMOOTH);
-  }
+  setGlFeature(m_polygonSmooth, GL_POLYGON_SMOOTH);
 }
 
 void GeometryOptions::setSpriteCoordOrigin(SpriteCoordOrigin origin) noexcept {

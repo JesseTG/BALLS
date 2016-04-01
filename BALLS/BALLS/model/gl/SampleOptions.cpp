@@ -34,60 +34,36 @@ void SampleOptions::setInvertSampleCoverage(
 void SampleOptions::setSampleAlphaToCoverage(bool coverage) noexcept {
   m_sampleAlphaToCoverage = coverage;
 
-  if (m_sampleAlphaToCoverage) {
-    m_gl.gl30->glEnable(GL_SAMPLE_ALPHA_TO_COVERAGE);
-  } else {
-    m_gl.gl30->glDisable(GL_SAMPLE_ALPHA_TO_COVERAGE);
-  }
+  setGlFeature(m_sampleAlphaToCoverage, GL_SAMPLE_ALPHA_TO_COVERAGE);
 }
 
 void SampleOptions::setSampleAlphaToOne(bool sampleAlphaToOne) noexcept {
   m_sampleAlphaToOne = sampleAlphaToOne;
 
-  if (m_sampleAlphaToOne) {
-    m_gl.gl30->glEnable(GL_SAMPLE_ALPHA_TO_ONE);
-  } else {
-    m_gl.gl30->glDisable(GL_SAMPLE_ALPHA_TO_ONE);
-  }
+  setGlFeature(m_sampleAlphaToOne, GL_SAMPLE_ALPHA_TO_ONE);
 }
 void SampleOptions::setSampleCoverageEnabled(bool sampleCoverage) noexcept {
   m_sampleCoverage = sampleCoverage;
 
-  if (m_sampleCoverage) {
-    m_gl.gl30->glEnable(GL_SAMPLE_COVERAGE);
-  } else {
-    m_gl.gl30->glDisable(GL_SAMPLE_COVERAGE);
-  }
+  setGlFeature(m_sampleCoverage, GL_SAMPLE_COVERAGE);
 }
 
 void SampleOptions::setSampleShadingEnabled(bool enabled) noexcept {
   m_sampleShadingEnabled = enabled;
 
-  if (m_sampleShadingEnabled) {
-    m_gl.gl30->glEnable(GL_SAMPLE_SHADING);
-  } else {
-    m_gl.gl30->glDisable(GL_SAMPLE_SHADING);
-  }
+  setGlFeature(m_sampleShadingEnabled, GL_SAMPLE_SHADING);
 }
 
 void SampleOptions::setSampleMaskEnabled(bool sampleMask) noexcept {
   m_sampleMaskEnabled = sampleMask;
 
-  if (m_sampleMaskEnabled) {
-    m_gl.gl30->glEnable(GL_SAMPLE_MASK);
-  } else {
-    m_gl.gl30->glDisable(GL_SAMPLE_MASK);
-  }
+  setGlFeature(m_sampleMaskEnabled, GL_SAMPLE_MASK);
 }
 
 void SampleOptions::setMultisample(bool multisample) noexcept {
   m_multisample = multisample;
 
-  if (m_multisample) {
-    m_gl.gl30->glEnable(GL_MULTISAMPLE);
-  } else {
-    m_gl.gl30->glDisable(GL_MULTISAMPLE);
-  }
+  setGlFeature(m_multisample, GL_MULTISAMPLE);
 }
 void SampleOptions::setMinSampleShading(float minSampleShading) noexcept {
   m_minSampleShading = minSampleShading;
