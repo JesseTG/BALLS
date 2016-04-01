@@ -54,6 +54,7 @@ private /* setters */:
   void setClearColor(const QColor&) noexcept;
   void setColorMask(const bvec4&) noexcept;
   void setLogicOperation(LogicOperation) noexcept;
+  void setDithering(bool) noexcept;
 
 private /* members */:
   OpenGLPointers m_gl;

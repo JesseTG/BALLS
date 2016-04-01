@@ -53,4 +53,14 @@ void ColorOptions::setLogicOperation(LogicOperation operation) noexcept {
 
   m_gl.gl30->glLogicOp(m_logicOp);
 }
+
+void ColorOptions::setDithering(bool dithering) noexcept {
+  m_dithering = dithering;
+
+  if (m_dithering) {
+    m_gl.gl30->glEnable(GL_DITHER);
+  } else {
+    m_gl.gl30->glDisable(GL_DITHER);
+  }
+}
 }
