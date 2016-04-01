@@ -1,6 +1,7 @@
 #include "precompiled.hpp"
 #include "ui/docks/OpenGLStateWidget.hpp"
 
+#include "Constants.hpp"
 #include "model/gl/BlendState.hpp"
 #include "model/gl/ClipOptions.hpp"
 #include "model/gl/ColorOptions.hpp"
@@ -10,6 +11,7 @@
 #include "model/gl/ImplementationInfo.hpp"
 #include "model/gl/SampleOptions.hpp"
 #include "model/gl/StencilOptions.hpp"
+#include "shader/ShaderUniform.hpp"
 
 namespace balls {
 
@@ -40,6 +42,19 @@ void OpenGLStateWidget::setOpenGLPointers(const OpenGLPointers& gl) noexcept {
   m_implementationInfo = new ImplementationInfo(m_gl, this);
   m_sampleOptions = new SampleOptions(m_gl, this);
   m_stencilOptions = new StencilOptions(m_gl, this);
+
+  ui.openGlProperties->setNameFilter(constants::regex::NAME_FILTER);
+  ui.openGlProperties->registerCustomPropertyCB(shader::createShaderProperty);
+
+  m_blendState->setObjectName(tr("Blending"));
+  m_clipOptions->setObjectName(tr("Clipping"));
+  m_colorOptions->setObjectName(tr("Colors"));
+  m_depthOptions->setObjectName(tr("Depth"));
+  m_geometryOptions->setObjectName(tr("Geometry"));
+  m_hints->setObjectName(tr("Hints"));
+  m_implementationInfo->setObjectName(tr("Implementation"));
+  m_sampleOptions->setObjectName(tr("Sampling"));
+  m_stencilOptions->setObjectName(tr("Stenciling"));
 
   ui.openGlProperties->addObject(m_blendState);
   ui.openGlProperties->addObject(m_clipOptions);
