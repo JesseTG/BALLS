@@ -94,21 +94,21 @@ void BallsWindow::forceShaderUpdate() noexcept {
   QString vertex = ui.vertexEditor->text();
   QString geometry = ui.geometryEditor->text();
   QString fragment = ui.fragmentEditor->text();
-  ui.log->clear();
+  // ui.log->clear();
 
   ui.uniforms->setObject(&m_uniforms);
   ui.canvas->makeCurrent();
 
   if (this->ui.canvas->updateShaders(vertex, geometry, fragment)) {
     ui.canvas->update();
-    this->ui.log->appendPlainText(tr("Success"));
+    // this->ui.log->appendPlainText(tr("Success"));
   }
 
   else {
     const QOpenGLShaderProgram &shader = this->ui.canvas->getShader();
     const QOpenGLDebugLogger &log = ui.canvas->getLogger();
 
-    this->ui.log->appendPlainText(shader.log());
+    // this->ui.log->appendPlainText(shader.log());
     qDebug() << shader.log();
 
     if (Q_LIKELY(log.isLogging())) {
@@ -116,7 +116,7 @@ void BallsWindow::forceShaderUpdate() noexcept {
 
       for (const QOpenGLDebugMessage &message : log.loggedMessages()) {
         qCDebug(gl::Message) << message;
-        this->ui.log->appendPlainText(message.message());
+        // this->ui.log->appendPlainText(message.message());
       }
     }
   }
