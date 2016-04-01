@@ -23,6 +23,7 @@ class OpenGLStateWidget : public QWidget {
 public:
   explicit OpenGLStateWidget(QWidget* = nullptr);
 
+public slots:
   void setOpenGLPointers(const OpenGLPointers&) noexcept;
 
 private /* fields */:
