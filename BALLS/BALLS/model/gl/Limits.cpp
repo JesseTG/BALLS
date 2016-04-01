@@ -3,9 +3,5 @@
 
 namespace balls {
 
-Limits::Limits(QObject *parent) : QObject(parent)
-{
-
+Limits::Limits(OpenGLPointers& gl, QObject* parent) : QObject(parent) {}
 }
-}
-
