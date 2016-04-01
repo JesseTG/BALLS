@@ -7,8 +7,7 @@
 namespace balls {
 
 SampleOptions::SampleOptions(OpenGLPointers& gl, QObject* parent)
-  : QObject(parent),
-    m_gl(gl),
+  : OpenGLState(gl, parent),
     m_sampleCoverage(1.0f),
     m_invertSampleCoverage(false),
     m_sampleAlphaToCoverage(false),

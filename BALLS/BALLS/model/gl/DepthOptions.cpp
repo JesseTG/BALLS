@@ -6,8 +6,7 @@
 namespace balls {
 
 DepthOptions::DepthOptions(OpenGLPointers& gl, QObject* parent)
-  : QObject(parent),
-    m_gl(gl),
+  : OpenGLState(gl, parent),
     m_testEnabled(false),
     m_clampEnabled(false),
     m_clearDepth(1.0f),

@@ -4,11 +4,12 @@
 #include <qopengl.h>
 #include <QObject>
 
+#include "model/OpenGLState.hpp"
 #include "gl/OpenGLPointers.hpp"
 
 namespace balls {
 
-class BlendState : public QObject {
+class BlendState : public OpenGLState {
   Q_OBJECT
 
   Q_ENUMS(BlendEquation)
@@ -74,8 +75,6 @@ private /* update methods */:
   void updateFunction() noexcept;
 
 private /* members */:
-  OpenGLPointers m_gl;
-
   bool m_enabled;
   QColor m_blendColor;
   BlendEquation m_blendRgb;

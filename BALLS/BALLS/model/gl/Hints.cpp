@@ -6,8 +6,7 @@
 namespace balls {
 
 Hints::Hints(OpenGLPointers& gl, QObject* parent)
-  : QObject(parent),
-    m_gl(gl),
+  : OpenGLState(gl, parent),
     m_fragmentDerivative(HintMode::DontCare),
     m_lineSmooth(HintMode::DontCare),
     m_polygonSmooth(HintMode::DontCare),

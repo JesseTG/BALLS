@@ -3,11 +3,13 @@
 
 #include <QObject>
 
+#include "model/OpenGLState.hpp"
+
 namespace balls {
 
 struct OpenGLPointers;
 
-class ImplementationInfo : public QObject {
+class ImplementationInfo : public OpenGLState {
   Q_OBJECT
 
   Q_PROPERTY(QString glslVersion MEMBER m_glslVersion CONSTANT FINAL)

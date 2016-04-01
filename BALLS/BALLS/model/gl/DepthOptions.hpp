@@ -6,10 +6,11 @@
 #include <qopengl.h>
 
 #include "gl/OpenGLPointers.hpp"
+#include "model/OpenGLState.hpp"
 
 namespace balls {
 
-class DepthOptions : public QObject {
+class DepthOptions : public OpenGLState {
   Q_OBJECT
 
   Q_ENUMS(DepthFunction)
@@ -52,8 +53,6 @@ private /* update functions */:
   void updateDepthRange() noexcept;
 
 private /* members */:
-  OpenGLPointers m_gl;
-
   bool m_testEnabled;
   bool m_clampEnabled;
   float m_clearDepth;

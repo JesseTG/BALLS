@@ -9,8 +9,7 @@ namespace balls {
 using std::array;
 
 ClipOptions::ClipOptions(OpenGLPointers& gl, QObject* parent)
-  : QObject(parent),
-    m_gl(gl),
+  : OpenGLState(gl, parent),
     m_scissorEnabled(false),
     m_viewportPosition(0, 0),
     m_scissorPosition(0, 0),

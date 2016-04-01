@@ -3,11 +3,13 @@
 
 #include <QObject>
 
+#include "model/OpenGLState.hpp"
+
 namespace balls {
 
 struct OpenGLPointers;
 
-class Limits : public QObject {
+class Limits : public OpenGLState {
   Q_OBJECT
 
   /*

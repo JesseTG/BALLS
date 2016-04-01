@@ -7,12 +7,13 @@
 #include <glm/vec4.hpp>
 
 #include "gl/OpenGLPointers.hpp"
+#include "model/OpenGLState.hpp"
 
 namespace balls {
 
 using glm::bvec4;
 
-class ColorOptions : public QObject {
+class ColorOptions : public OpenGLState {
   Q_OBJECT
 
   Q_ENUMS(LogicOperation)
@@ -57,8 +58,6 @@ private /* setters */:
   void setDithering(bool) noexcept;
 
 private /* members */:
-  OpenGLPointers m_gl;
-
   bool m_logicOpEnabled;
   bool m_clampColor;
   bool m_dithering;

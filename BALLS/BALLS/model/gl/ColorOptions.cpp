@@ -6,8 +6,7 @@
 namespace balls {
 
 ColorOptions::ColorOptions(OpenGLPointers& gl, QObject* parent)
-  : QObject(parent),
-    m_gl(gl),
+  : OpenGLState(gl, parent),
     m_logicOpEnabled(false),
     m_clampColor(false),
     m_dithering(true),

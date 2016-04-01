@@ -6,6 +6,7 @@
 
 #include <glm/vec2.hpp>
 
+#include "model/OpenGLState.hpp"
 #include "gl/OpenGLPointers.hpp"
 
 namespace balls {
@@ -14,7 +15,7 @@ using glm::ivec2;
 using glm::vec2;
 using glm::uvec2;
 
-class ClipOptions : public QObject {
+class ClipOptions : public OpenGLState {
   Q_OBJECT
 
   Q_ENUMS(ClipControlOrigin)
@@ -58,8 +59,6 @@ private /* setters */:
   void setDepth(ClipControlDepth) noexcept;
 
 private /* members */:
-  OpenGLPointers m_gl;
-
   bool m_scissorEnabled;
   ivec2 m_viewportPosition;
   ivec2 m_scissorPosition;

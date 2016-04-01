@@ -6,10 +6,11 @@
 #include <qopengl.h>
 
 #include "gl/OpenGLPointers.hpp"
+#include "model/OpenGLState.hpp"
 
 namespace balls {
 
-class StencilOptions : public QObject {
+class StencilOptions : public OpenGLState {
   Q_OBJECT
 
   Q_ENUMS(StencilAction)
@@ -87,8 +88,6 @@ private /* setters */:
   void setBackStencilValueMask(unsigned int) noexcept;
 
 private /* members */:
-  OpenGLPointers m_gl;
-
   bool m_stencilEnabled;
   int m_clearStencil;
   unsigned int m_frontStencilMask;

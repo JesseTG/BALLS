@@ -4,10 +4,11 @@
 #include <QObject>
 
 #include "gl/OpenGLPointers.hpp"
+#include "model/OpenGLState.hpp"
 
 namespace balls {
 
-class SampleOptions : public QObject {
+class SampleOptions : public OpenGLState {
   Q_OBJECT
 
   // clang-format off
@@ -37,8 +38,6 @@ private /* setters */:
   void setMinSampleShading(float) noexcept;
 
 private /* fields */:
-  OpenGLPointers m_gl;
-
   float m_sampleCoverage;
   bool m_invertSampleCoverage;
   bool m_sampleAlphaToCoverage;

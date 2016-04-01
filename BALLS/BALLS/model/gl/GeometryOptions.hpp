@@ -5,10 +5,11 @@
 #include <QObject>
 
 #include "gl/OpenGLPointers.hpp"
+#include "model/OpenGLState.hpp"
 
 namespace balls {
 
-class GeometryOptions : public QObject {
+class GeometryOptions : public OpenGLState {
   Q_OBJECT
 
   Q_ENUMS(CullFace)
@@ -91,8 +92,6 @@ private /* setters */:
   void setSpriteCoordOrigin(SpriteCoordOrigin) noexcept;
 
 private /* members */:
-  OpenGLPointers m_gl;
-
   CullFace m_cullFace;
   FrontFace m_frontFace;
   PolygonMode m_polygonMode;

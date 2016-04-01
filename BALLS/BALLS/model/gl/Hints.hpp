@@ -6,10 +6,11 @@
 #include <qopengl.h>
 
 #include "gl/OpenGLPointers.hpp"
+#include "model/OpenGLState.hpp"
 
 namespace balls {
 
-class Hints : public QObject {
+class Hints : public OpenGLState {
   Q_OBJECT
 
   Q_ENUMS(HintMode)
@@ -38,8 +39,6 @@ private /* setters */:
   void setTextureCompression(HintMode) noexcept;
 
 private /* members */:
-  OpenGLPointers m_gl;
-
   HintMode m_fragmentDerivative;
   HintMode m_lineSmooth;
   HintMode m_polygonSmooth;

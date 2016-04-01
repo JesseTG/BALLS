@@ -6,8 +6,7 @@
 namespace balls {
 
 StencilOptions::StencilOptions(OpenGLPointers& gl, QObject* parent)
-  : QObject(parent),
-    m_gl(gl),
+  : OpenGLState(gl, parent),
     m_stencilEnabled(false),
     m_clearStencil(0),
     m_frontStencilMask(0xFFFFFFFF),

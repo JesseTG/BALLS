@@ -7,8 +7,7 @@
 namespace balls {
 
 GeometryOptions::GeometryOptions(OpenGLPointers& gl, QObject* parent)
-  : QObject(parent),
-    m_gl(gl),
+  : OpenGLState(gl, parent),
     m_cullFace(CullFace::None),
     m_frontFace(FrontFace::CounterClockwise),
     m_polygonMode(PolygonMode::Fill),
