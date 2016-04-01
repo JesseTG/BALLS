@@ -6,7 +6,7 @@ namespace balls {
 OpenGLState::OpenGLState(OpenGLPointers& context, QObject* parent)
   : QObject(parent), m_gl(context) {}
 
-void OpenGLState::initContext() {
+void OpenGLState::ensureContext() {
   bool success = m_gl.context->makeCurrent(m_gl.context->surface());
 
   if (!success) {
