@@ -1,6 +1,8 @@
 #include "precompiled.hpp"
 #include "model/OpenGLState.hpp"
 
+#include <QOpenGLFunctions_3_0>
+
 namespace balls {
 
 OpenGLState::OpenGLState(OpenGLPointers& pointers, QObject* parent)
