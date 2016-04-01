@@ -33,54 +33,56 @@ void GeometryOptions::setCullFace(CullFace cullFace) noexcept {
   if (m_cullFace == CullFace::None) {
     // If we're turning off backface culling...
 
-    m_gl.gl30->glDisable(GL_CULL_FACE);
+    m_gl.gl30Current()->glDisable(GL_CULL_FACE);
   } else {
-    m_gl.gl30->glEnable(GL_CULL_FACE);
-    m_gl.gl30->glCullFace(m_cullFace);
+    m_gl.gl30Current()->glEnable(GL_CULL_FACE);
+    m_gl.gl30Current()->glCullFace(m_cullFace);
   }
 }
 
 void GeometryOptions::setFrontFace(FrontFace frontFace) noexcept {
   m_frontFace = frontFace;
 
-  m_gl.gl30->glFrontFace(m_frontFace);
+  m_gl.gl30Current()->glFrontFace(m_frontFace);
 }
 
 void GeometryOptions::setLineWidth(float lineWidth) noexcept {
   m_lineWidth = lineWidth;
 
-  m_gl.gl30->glLineWidth(m_lineWidth);
+  m_gl.gl30Current()->glLineWidth(m_lineWidth);
 }
 
 void GeometryOptions::setPointFadeThresholdSize(float threshold) noexcept {
   m_pointFadeThresholdSize = threshold;
 
-  m_gl.gl30->glPointParameterf(
+  m_gl.gl30Current()->glPointParameterf(
     GL_POINT_FADE_THRESHOLD_SIZE, m_pointFadeThresholdSize);
 }
 
 void GeometryOptions::setPointSize(float pointSize) noexcept {
   m_pointSize = pointSize;
 
-  m_gl.gl30->glPointSize(pointSize);
+  m_gl.gl30Current()->glPointSize(pointSize);
 }
 
 void GeometryOptions::setPolygonMode(PolygonMode polygonMode) noexcept {
   m_polygonMode = polygonMode;
 
-  m_gl.gl30->glPolygonMode(GL_FRONT_AND_BACK, polygonMode);
+  m_gl.gl30Current()->glPolygonMode(GL_FRONT_AND_BACK, polygonMode);
 }
 
 void GeometryOptions::setPolygonOffsetFactor(float factor) noexcept {
   m_polygonOffsetFactor = factor;
 
-  m_gl.gl30->glPolygonOffset(m_polygonOffsetFactor, m_polygonOffsetUnits);
+  m_gl.gl30Current()->glPolygonOffset(
+    m_polygonOffsetFactor, m_polygonOffsetUnits);
 }
 
 void GeometryOptions::setPolygonOffsetUnits(float units) noexcept {
   m_polygonOffsetUnits = units;
 
-  m_gl.gl30->glPolygonOffset(m_polygonOffsetFactor, m_polygonOffsetUnits);
+  m_gl.gl30Current()->glPolygonOffset(
+    m_polygonOffsetFactor, m_polygonOffsetUnits);
 }
 void GeometryOptions::setPolygonOffsetFill(bool fill) noexcept {
   m_polygonOffsetFill = fill;
@@ -109,7 +111,7 @@ void GeometryOptions::setPrimitiveRestartIndex(unsigned int index) noexcept {
 
   if (m_gl.gl32) {
     // If OpenGL 3.2 is available...
-    m_gl.gl32->glPrimitiveRestartIndex(m_primitiveRestartIndex);
+    m_gl.gl32Current()->glPrimitiveRestartIndex(m_primitiveRestartIndex);
   }
 }
 
@@ -118,7 +120,7 @@ void GeometryOptions::setProvokingVertex(ProvokeMode provokeMode) noexcept {
 
   if (m_gl.gl32) {
     // If OpenGL 3.2 is available...
-    m_gl.gl32->glProvokingVertex(m_provokingVertex);
+    m_gl.gl32Current()->glProvokingVertex(m_provokingVertex);
   }
 }
 void GeometryOptions::setProgramPointSize(bool enabled) noexcept {
@@ -135,7 +137,7 @@ void GeometryOptions::setPolygonSmooth(bool enabled) noexcept {
 void GeometryOptions::setSpriteCoordOrigin(SpriteCoordOrigin origin) noexcept {
   m_spriteCoordOrigin = origin;
 
-  m_gl.gl30->glPointParameteri(
+  m_gl.gl30Current()->glPointParameteri(
     GL_POINT_SPRITE_COORD_ORIGIN, m_spriteCoordOrigin);
 }
 }

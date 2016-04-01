@@ -27,7 +27,7 @@ void BlendState::setEnabled(bool enabled) noexcept {
 void BlendState::setBlendColor(const QColor& color) noexcept {
   m_blendColor = color;
 
-  m_gl.gl30->glBlendColor(
+  m_gl.gl30Current()->glBlendColor(
     color.redF(), color.greenF(), color.blueF(), color.alphaF());
 }
 
@@ -68,10 +68,11 @@ void BlendState::setDstAlpha(BlendFunction function) noexcept {
 }
 
 void BlendState::updateEquation() noexcept {
-  m_gl.gl30->glBlendEquationSeparate(m_blendRgb, m_blendAlpha);
+  m_gl.gl30Current()->glBlendEquationSeparate(m_blendRgb, m_blendAlpha);
 }
 
 void BlendState::updateFunction() noexcept {
-  m_gl.gl30->glBlendFuncSeparate(m_srcRgb, m_dstRgb, m_srcAlpha, m_dstAlpha);
+  m_gl.gl30Current()->glBlendFuncSeparate(
+    m_srcRgb, m_dstRgb, m_srcAlpha, m_dstAlpha);
 }
 }

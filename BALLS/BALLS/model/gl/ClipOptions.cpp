@@ -20,14 +20,14 @@ ClipOptions::ClipOptions(OpenGLPointers& gl, QObject* parent)
 
 uvec2 ClipOptions::viewportSize() noexcept {
   array<GLsizei, 4> viewport;
-  m_gl.gl30->glGetIntegerv(GL_VIEWPORT, viewport.data());
+  m_gl.gl30Current()->glGetIntegerv(GL_VIEWPORT, viewport.data());
 
   return {viewport[2], viewport[3]};
 }
 
 uvec2 ClipOptions::scissorSize() noexcept {
   array<GLsizei, 4> scissor;
-  m_gl.gl30->glGetIntegerv(GL_SCISSOR_BOX, scissor.data());
+  m_gl.gl30Current()->glGetIntegerv(GL_SCISSOR_BOX, scissor.data());
 
   return {scissor[2], scissor[3]};
 }
@@ -37,11 +37,11 @@ void ClipOptions::setViewportPosition(const ivec2& position) noexcept {
 
   uvec2 size = viewportSize();
 
-  m_gl.gl30->glViewport(position.x, position.y, size.x, size.y);
+  m_gl.gl30Current()->glViewport(position.x, position.y, size.x, size.y);
 }
 
 void ClipOptions::setViewportSize(const uvec2& size) noexcept {
-  m_gl.gl30->glViewport(
+  m_gl.gl30Current()->glViewport(
     m_viewportPosition.x, m_viewportPosition.y, size.x, size.y);
 }
 
@@ -50,11 +50,11 @@ void ClipOptions::setScissorPosition(const ivec2& position) noexcept {
 
   uvec2 size = scissorSize();
 
-  m_gl.gl30->glScissor(position.x, position.y, size.x, size.y);
+  m_gl.gl30Current()->glScissor(position.x, position.y, size.x, size.y);
 }
 
 void ClipOptions::setScissorSize(const uvec2& size) noexcept {
-  m_gl.gl30->glScissor(
+  m_gl.gl30Current()->glScissor(
     m_scissorPosition.x, m_scissorPosition.y, size.x, size.y);
 }
 
@@ -67,12 +67,12 @@ void ClipOptions::setScissorEnabled(bool enabled) noexcept {
 void ClipOptions::setOrigin(ClipControlOrigin origin) noexcept {
   m_origin = origin;
 
-  // m_gl.gl45->glClipControl(m_origin, m_depth);
+  // m_gl.gl45Current()->glClipControl(m_origin, m_depth);
 }
 
 void ClipOptions::setDepth(ClipControlDepth depth) noexcept {
   m_depth = depth;
   // TODO: Enable when I can upgrade from Qt 5.4
-  // m_gl.gl45->glClipControl(m_origin, m_depth);
+  // m_gl.gl45Current()->glClipControl(m_origin, m_depth);
 }
 }

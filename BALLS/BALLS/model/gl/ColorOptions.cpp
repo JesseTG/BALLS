@@ -27,26 +27,26 @@ void ColorOptions::setLogicOpEnabled(bool enabled) noexcept {
 void ColorOptions::setClampColor(bool clamp) noexcept {
   m_clampColor = clamp;
 
-  m_gl.gl30->glClampColor(GL_CLAMP_READ_COLOR, m_clampColor);
+  m_gl.gl30Current()->glClampColor(GL_CLAMP_READ_COLOR, m_clampColor);
 }
 
 void ColorOptions::setClearColor(const QColor& color) noexcept {
   m_clearColor = color;
 
-  m_gl.gl30->glClearColor(
+  m_gl.gl30Current()->glClearColor(
     color.redF(), color.greenF(), color.blueF(), color.alphaF());
 }
 
 void ColorOptions::setColorMask(const bvec4& mask) noexcept {
   m_colorMask = mask;
 
-  m_gl.gl30->glColorMask(mask.r, mask.g, mask.b, mask.a);
+  m_gl.gl30Current()->glColorMask(mask.r, mask.g, mask.b, mask.a);
 }
 
 void ColorOptions::setLogicOperation(LogicOperation operation) noexcept {
   m_logicOp = operation;
 
-  m_gl.gl30->glLogicOp(m_logicOp);
+  m_gl.gl30Current()->glLogicOp(m_logicOp);
 }
 
 void ColorOptions::setDithering(bool dithering) noexcept {

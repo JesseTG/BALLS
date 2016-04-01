@@ -21,14 +21,14 @@ SampleOptions::SampleOptions(OpenGLPointers& gl, QObject* parent)
 void SampleOptions::setSampleCoverage(float sampleCoverage) noexcept {
   m_sampleCoverage = sampleCoverage;
 
-  m_gl.gl30->glSampleCoverage(m_sampleCoverage, m_invertSampleCoverage);
+  m_gl.gl30Current()->glSampleCoverage(m_sampleCoverage, m_invertSampleCoverage);
 }
 
 void SampleOptions::setInvertSampleCoverage(
   bool invertSampleCoverage) noexcept {
   m_invertSampleCoverage = invertSampleCoverage;
 
-  m_gl.gl30->glSampleCoverage(m_sampleCoverage, m_invertSampleCoverage);
+  m_gl.gl30Current()->glSampleCoverage(m_sampleCoverage, m_invertSampleCoverage);
 }
 
 void SampleOptions::setSampleAlphaToCoverage(bool coverage) noexcept {
@@ -70,7 +70,7 @@ void SampleOptions::setMinSampleShading(float minSampleShading) noexcept {
 
   if (m_gl.gl40) {
     // If OpenGL 4.0 is available...
-    m_gl.gl40->glMinSampleShading(m_minSampleShading);
+    m_gl.gl40Current()->glMinSampleShading(m_minSampleShading);
   }
 }
 }

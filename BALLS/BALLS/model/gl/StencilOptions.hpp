@@ -87,6 +87,10 @@ private /* setters */:
   void setBackStencilRef(int) noexcept;
   void setBackStencilValueMask(unsigned int) noexcept;
 
+  void updateStencilOpFront() noexcept;
+  void updateStencilOpBack() noexcept;
+  void updateStencilFuncFront() noexcept;
+  void updateStencilFuncBack() noexcept;
 private /* members */:
   bool m_stencilEnabled;
   int m_clearStencil;
