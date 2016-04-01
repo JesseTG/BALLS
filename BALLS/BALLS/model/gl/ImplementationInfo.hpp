@@ -5,7 +5,7 @@
 
 namespace balls {
 
-class OpenGLPointers;
+struct OpenGLPointers;
 
 class ImplementationInfo : public QObject {
   Q_OBJECT
