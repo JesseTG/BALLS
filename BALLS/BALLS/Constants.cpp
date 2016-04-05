@@ -165,6 +165,9 @@ const QRegularExpression
 
 const QRegularExpression
   UVEC4(V4.arg(UINT), QRegularExpression::OptimizeOnFirstUsageOption);
+
+const QRegularExpression NAME_FILTER(
+  R"%(^(_q_.+|objectName)$)%", QRegularExpression::OptimizeOnFirstUsageOption);
 }
 
 std::random_device RANDOM_DEVICE;

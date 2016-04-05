@@ -1,6 +1,8 @@
 #ifndef OPENGLPOINTERS_HPP
 #define OPENGLPOINTERS_HPP
 
+#include <QObject>
+
 class QOpenGLContext;
 class QOpenGLFunctions_3_0;
 class QOpenGLFunctions_3_1;
@@ -20,9 +22,13 @@ namespace balls {
  * @todo Support OpenGL 4.4 and 4.5 (when I can upgrade to Qt 5.5 or 5.6)
  */
 struct OpenGLPointers {
+  Q_GADGET
+
+public:
   OpenGLPointers(QOpenGLContext*);
   OpenGLPointers();
 
+  QOpenGLContext* context;
   QOpenGLFunctions_3_0* gl30;
   QOpenGLFunctions_3_1* gl31;
   QOpenGLFunctions_3_2_Core* gl32;
@@ -31,7 +37,20 @@ struct OpenGLPointers {
   QOpenGLFunctions_4_1_Core* gl41;
   QOpenGLFunctions_4_2_Core* gl42;
   QOpenGLFunctions_4_3_Core* gl43;
+
+  QOpenGLFunctions_3_0* gl30Current() noexcept;
+  QOpenGLFunctions_3_1* gl31Current() noexcept;
+  QOpenGLFunctions_3_2_Core* gl32Current() noexcept;
+  QOpenGLFunctions_3_3_Core* gl33Current() noexcept;
+  QOpenGLFunctions_4_0_Core* gl40Current() noexcept;
+  QOpenGLFunctions_4_1_Core* gl41Current() noexcept;
+  QOpenGLFunctions_4_2_Core* gl42Current() noexcept;
+  QOpenGLFunctions_4_3_Core* gl43Current() noexcept;
+private:
+  void ensureContext() noexcept;
 };
 }
+
+Q_DECLARE_METATYPE(balls::OpenGLPointers*)
 
 #endif // OPENGLPOINTERS_HPP

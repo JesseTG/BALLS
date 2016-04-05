@@ -17,7 +17,6 @@
 #include <QtWidgets/QOpenGLWidget>
 
 #include "Constants.hpp"
-#include "config/Settings.hpp"
 #include "model/mesh/Mesh.hpp"
 #include "ui/BallsWindow.hpp"
 #include "util/Logging.hpp"
@@ -94,7 +93,6 @@ void BallsCanvas::initializeGL() {
     &BallsCanvas::uniformsDiscovered,
     _uniforms,
     &Uniforms::receiveUniforms);
-  _initSettings();
   _initGLPointers();
   _initGLMemory();
   _initLogger();
@@ -103,15 +101,8 @@ void BallsCanvas::initializeGL() {
   _initAttributes();
   //_updateUniformList();
 
-  this->finishedInitializing();
+  this->finishedInitializing(this->gl);
   this->startTimer(1000.f / 60, Qt::PreciseTimer);
-}
-
-void BallsCanvas::_initSettings() noexcept {
-  this->_settings[SettingKey::WireFrame] = {false};
-  this->_settings[SettingKey::DepthTestEnabled] = {true, true};
-  this->_settings[SettingKey::FaceCullingEnabled] = {true, true};
-  this->_settings[SettingKey::Dithering] = {true, true};
 }
 
 inline void BallsCanvas::_initGLPointers() {
@@ -352,19 +343,12 @@ void BallsCanvas::paintGL() {
   Q_ASSERT(this->_vbo.isCreated());
   Q_ASSERT(this->_ibo.isCreated());
 
-  _updateGLSetting<GL_DEPTH_TEST>(SettingKey::DepthTestEnabled);
-  _updateGLSetting<GL_CULL_FACE>(SettingKey::FaceCullingEnabled);
-  _updateGLSetting<GL_DITHER>(SettingKey::Dithering);
+  this->context()->makeCurrent(this->context()->surface());
 
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
   _updateUniformValues();
-  glDrawElements(
-    _settings[SettingKey::WireFrame].value.toBool() ? GL_LINE_STRIP
-                                                    : GL_TRIANGLES,
-    m_indexCount,
-    GL_UNSIGNED_SHORT,
-    nullptr);
+  glDrawElements(GL_TRIANGLES, m_indexCount, GL_UNSIGNED_SHORT, nullptr);
 }
 
 void BallsCanvas::setMesh(const Mesh &mesh) noexcept {
@@ -377,30 +361,6 @@ void BallsCanvas::setMesh(const Mesh &mesh) noexcept {
     vertices.data(), vertices.size() * sizeof(Mesh::CoordType));
   this->_ibo.bind();
   this->_ibo.allocate(indices.data(), indices.size() * sizeof(Mesh::IndexType));
-}
-
-void BallsCanvas::setOption(const bool value) noexcept {
-  QObject *send = sender();
-  QVariant name = send->property(constants::properties::OPTION);
-
-  Q_ASSERT(send != nullptr); // Must be called as a slot!
-  Q_ASSERT(name.isValid() && name.type() == QVariant::String);
-
-  this->_settings[name.toString()] = Setting(value, true);
-
-  qCDebug(logs::gl::State) << "Set" << name.toString() << "to" << value;
-}
-
-void BallsCanvas::setOption(const int value) noexcept {
-  QObject *send = sender();
-  QVariant name = send->property(constants::properties::OPTION);
-
-  Q_ASSERT(send != nullptr); // Must be called as a slot!");
-  Q_ASSERT(name.isValid() && name.type() == QVariant::String);
-
-  this->_settings[name.toString()] = Setting(value, true);
-
-  qCDebug(logs::gl::State) << "Set" << name.toString() << "to" << value;
 }
 
 void BallsCanvas::mouseMoveEvent(QMouseEvent *e) {}

@@ -17,8 +17,6 @@
 #include "util/Util.hpp"
 
 namespace balls {
-static const QRegularExpression NAME_FILTER(
-  R"%(^(_q_.+|objectName)$)%", QRegularExpression::OptimizeOnFirstUsageOption);
 
 using namespace constants;
 
@@ -36,16 +34,23 @@ BallsWindow::BallsWindow(QWidget *parent) noexcept
     _error(new QErrorMessage(this)),
     _settings(new QSettings(this)) {
   ui.setupUi(this);
-  ui.uniforms->setNameFilter(NAME_FILTER);
+  ui.uniforms->setNameFilter(constants::regex::NAME_FILTER);
   this->ui.canvas->setUniformModel(&m_uniforms);
   ui.meshManager->setMeshModel(&m_meshes);
+
+  connect(
+    ui.canvas,
+    &BallsCanvas::finishedInitializing,
+    ui.openGlStateManager,
+    &OpenGLStateWidget::setOpenGLPointers);
   // ui.sceneSettings->initCanvas(ui.canvas);
 
   ui.vertexEditor->setLexer(_vertLexer);
   ui.fragmentEditor->setLexer(_fragLexer);
   ui.geometryEditor->setLexer(_geomLexer);
 
-  ProjectConfig config = balls::config::loadFromFile(":/example/default.balls");
+  config::ProjectConfig config =
+    balls::config::loadFromFile(":/example/default.balls");
   ui.vertexEditor->setText(config.vertexShader);
   ui.fragmentEditor->setText(config.fragmentShader);
 
@@ -72,8 +77,8 @@ BallsWindow::~BallsWindow() {
   _settings->sync();
 }
 
-ProjectConfig BallsWindow::getProjectConfig() const noexcept {
-  ProjectConfig project;
+config::ProjectConfig BallsWindow::getProjectConfig() const noexcept {
+  config::ProjectConfig project;
   project.vertexShader = ui.vertexEditor->text();
   project.fragmentShader = ui.fragmentEditor->text();
   project.glMajor = ui.canvas->getOpenGLMajor();
@@ -94,21 +99,21 @@ void BallsWindow::forceShaderUpdate() noexcept {
   QString vertex = ui.vertexEditor->text();
   QString geometry = ui.geometryEditor->text();
   QString fragment = ui.fragmentEditor->text();
-  ui.log->clear();
+  // ui.log->clear();
 
   ui.uniforms->setObject(&m_uniforms);
   ui.canvas->makeCurrent();
 
   if (this->ui.canvas->updateShaders(vertex, geometry, fragment)) {
     ui.canvas->update();
-    this->ui.log->appendPlainText(tr("Success"));
+    // this->ui.log->appendPlainText(tr("Success"));
   }
 
   else {
     const QOpenGLShaderProgram &shader = this->ui.canvas->getShader();
     const QOpenGLDebugLogger &log = ui.canvas->getLogger();
 
-    this->ui.log->appendPlainText(shader.log());
+    // this->ui.log->appendPlainText(shader.log());
     qDebug() << shader.log();
 
     if (Q_LIKELY(log.isLogging())) {
@@ -116,7 +121,7 @@ void BallsWindow::forceShaderUpdate() noexcept {
 
       for (const QOpenGLDebugMessage &message : log.loggedMessages()) {
         qCDebug(gl::Message) << message;
-        this->ui.log->appendPlainText(message.message());
+        // this->ui.log->appendPlainText(message.message());
       }
     }
   }
@@ -147,7 +152,7 @@ void BallsWindow::loadProject() {
 
 void BallsWindow::_loadProject(const QString &path) noexcept {
   try {
-    ProjectConfig project = balls::config::loadFromFile(path);
+    config::ProjectConfig project = balls::config::loadFromFile(path);
 
     if (ui.canvas->getOpenGLMajor() >= project.glMajor) {
       // If we can use this version of OpenGL...

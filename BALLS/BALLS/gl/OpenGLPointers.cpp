@@ -16,8 +16,8 @@ namespace balls {
 
 namespace {
 template <class QOpenGLF>
-QOpenGLF *_getGl(QOpenGLContext *context) noexcept {
-  QOpenGLF *gl = context->versionFunctions<QOpenGLF>();
+QOpenGLF* _getGl(QOpenGLContext* context) noexcept {
+  QOpenGLF* gl = context->versionFunctions<QOpenGLF>();
 
   if (gl) {
     // If we have this version of OpenGL available...
@@ -28,8 +28,9 @@ QOpenGLF *_getGl(QOpenGLContext *context) noexcept {
 }
 }
 
-OpenGLPointers::OpenGLPointers(QOpenGLContext *context)
-  : gl30(_getGl<QOpenGLFunctions_3_0>(context)),
+OpenGLPointers::OpenGLPointers(QOpenGLContext* ctx)
+  : context(ctx),
+    gl30(_getGl<QOpenGLFunctions_3_0>(context)),
     gl31(_getGl<QOpenGLFunctions_3_1>(context)),
     gl32(_getGl<QOpenGLFunctions_3_2_Core>(context)),
     gl33(_getGl<QOpenGLFunctions_3_3_Core>(context)),
@@ -37,6 +38,7 @@ OpenGLPointers::OpenGLPointers(QOpenGLContext *context)
     gl41(_getGl<QOpenGLFunctions_4_1_Core>(context)),
     gl42(_getGl<QOpenGLFunctions_4_2_Core>(context)),
     gl43(_getGl<QOpenGLFunctions_4_3_Core>(context)) {
+
   if (gl30) gl30->initializeOpenGLFunctions();
   if (gl31) gl31->initializeOpenGLFunctions();
   if (gl32) gl32->initializeOpenGLFunctions();
@@ -48,11 +50,66 @@ OpenGLPointers::OpenGLPointers(QOpenGLContext *context)
 }
 
 OpenGLPointers::OpenGLPointers()
-  : gl30(nullptr),
+  : context(nullptr),
+    gl30(nullptr),
     gl31(nullptr),
     gl32(nullptr),
     gl40(nullptr),
     gl41(nullptr),
     gl42(nullptr),
     gl43(nullptr) {}
+
+QOpenGLFunctions_3_0* OpenGLPointers::gl30Current() noexcept {
+  ensureContext();
+
+  return gl30;
+}
+
+QOpenGLFunctions_3_1* OpenGLPointers::gl31Current() noexcept {
+  ensureContext();
+
+  return gl31;
+}
+
+QOpenGLFunctions_3_2_Core* OpenGLPointers::gl32Current() noexcept {
+  ensureContext();
+
+  return gl32;
+}
+
+QOpenGLFunctions_3_3_Core* OpenGLPointers::gl33Current() noexcept {
+  ensureContext();
+
+  return gl33;
+}
+
+QOpenGLFunctions_4_0_Core* OpenGLPointers::gl40Current() noexcept {
+  ensureContext();
+
+  return gl40;
+}
+
+QOpenGLFunctions_4_1_Core* OpenGLPointers::gl41Current() noexcept {
+  ensureContext();
+
+  return gl41;
+}
+
+QOpenGLFunctions_4_2_Core* OpenGLPointers::gl42Current() noexcept {
+  ensureContext();
+
+  return gl42;
+}
+
+QOpenGLFunctions_4_3_Core* OpenGLPointers::gl43Current() noexcept {
+  ensureContext();
+
+  return gl43;
+}
+
+void OpenGLPointers::ensureContext() noexcept {
+  if (context != nullptr) {
+    context->makeCurrent(context->surface());
+  }
+}
 }

@@ -37,12 +37,21 @@ QMAKE_RESOURCE_FLAGS += -threshold 0 -compress 9
 ### <Source Files> #############################################################
 SOURCES += \
   config/ProjectConfig.cpp \
-  config/Settings.cpp \
   Constants.cpp \
   exception/FileException.cpp \
   exception/JsonException.cpp \
   gl/OpenGLPointers.cpp \
   main.cpp \
+  model/gl/BlendState.cpp \
+  model/gl/ClipOptions.cpp \
+  model/gl/ColorOptions.cpp \
+  model/gl/DepthOptions.cpp \
+  model/gl/GeometryOptions.cpp \
+  model/gl/Hints.cpp \
+  model/gl/ImplementationInfo.cpp \
+  model/gl/Limits.cpp \
+  model/gl/SampleOptions.cpp \
+  model/gl/StencilOptions.cpp \
   model/ImageTexture.cpp \
   model/mesh/BaseCylindricalMesh.cpp \
   model/mesh/BaseSphereMesh.cpp \
@@ -66,6 +75,7 @@ SOURCES += \
   model/mesh/TorusMesh.cpp \
   model/mesh/TriangleMesh.cpp \
   model/mesh/TubeMesh.cpp \
+  model/OpenGLState.cpp \
   model/Texture.cpp \
   model/Uniforms.cpp \
   precompiled.cpp \
@@ -74,8 +84,7 @@ SOURCES += \
   ui/BallsCanvas.cpp \
   ui/BallsWindow.cpp \
   ui/docks/MeshManagerWidget.cpp \
-  ui/docks/OpenGLInfo.cpp \
-  ui/docks/SceneSettings.cpp \
+  ui/docks/OpenGLStateWidget.cpp \
   ui/docks/TextureManager.cpp \
   ui/glslsyntax.cpp \
   ui/property/MatrixProperties.cpp \
@@ -91,14 +100,22 @@ SOURCES += \
   util/TypeInfo.cpp \
   util/Util.cpp \
 
-
 HEADERS  += \
   config/ProjectConfig.hpp \
-  config/Settings.hpp \
   Constants.hpp \
   exception/FileException.hpp \
   exception/JsonException.hpp \
   gl/OpenGLPointers.hpp \
+  model/gl/BlendState.hpp \
+  model/gl/ClipOptions.hpp \
+  model/gl/ColorOptions.hpp \
+  model/gl/DepthOptions.hpp \
+  model/gl/GeometryOptions.hpp \
+  model/gl/Hints.hpp \
+  model/gl/ImplementationInfo.hpp \
+  model/gl/Limits.hpp \
+  model/gl/SampleOptions.hpp \
+  model/gl/StencilOptions.hpp \
   model/ImageTexture.hpp \
   model/mesh/BaseCylindricalMesh.hpp \
   model/mesh/BaseSphereMesh.hpp \
@@ -122,6 +139,7 @@ HEADERS  += \
   model/mesh/TorusMesh.hpp \
   model/mesh/TriangleMesh.hpp \
   model/mesh/TubeMesh.hpp \
+  model/OpenGLState.hpp \
   model/Texture.hpp \
   model/Uniforms.hpp \
   precompiled.hpp \
@@ -130,8 +148,7 @@ HEADERS  += \
   ui/BallsCanvas.hpp \
   ui/BallsWindow.hpp \
   ui/docks/MeshManagerWidget.hpp \
-  ui/docks/OpenGLInfo.hpp \
-  ui/docks/SceneSettings.hpp \
+  ui/docks/OpenGLStateWidget.hpp \
   ui/docks/TextureManager.hpp \
   ui/glslsyntax.hpp \
   ui/property/MatrixProperties.hpp \
@@ -147,12 +164,10 @@ HEADERS  += \
   util/TypeInfo.hpp \
   util/Util.hpp \
 
-
 FORMS += \
   BallsWindow.ui \
   ui/docks/MeshManager.ui \
-  ui/docks/OpenGLInfo.ui \
-  ui/docks/SceneSettings.ui \
+  ui/docks/OpenGLStateWidget.ui \
   ui/docks/TextureManager.ui \
 
 RESOURCES += \
