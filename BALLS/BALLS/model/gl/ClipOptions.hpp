@@ -23,7 +23,7 @@ class ClipOptions : public OpenGLState {
 
   // clang-format off
   Q_PROPERTY(ivec2 viewportPosition MEMBER m_viewportPosition WRITE setViewportPosition FINAL)
-  Q_PROPERTY(uvec2 viewportSize READ viewportSize WRITE setViewportSize STORED false FINAL)
+  Q_PROPERTY(uvec2 viewportSize READ viewportSize STORED false FINAL)
   Q_PROPERTY(bool scissorEnabled MEMBER m_scissorEnabled WRITE setScissorEnabled FINAL)
   Q_PROPERTY(ivec2 scissorPosition MEMBER m_scissorPosition WRITE setScissorPosition FINAL)
   Q_PROPERTY(uvec2 scissorSize READ scissorSize WRITE setScissorSize STORED false FINAL)
@@ -45,13 +45,12 @@ public /* enums */:
 public:
   explicit ClipOptions(OpenGLPointers&, QObject* = nullptr);
 
-private /* setters */:
+private /* getters */:
   uvec2 viewportSize() noexcept;
   uvec2 scissorSize() noexcept;
 
 private /* setters */:
   void setViewportPosition(const ivec2&) noexcept;
-  void setViewportSize(const uvec2&) noexcept;
   void setScissorPosition(const ivec2&) noexcept;
   void setScissorSize(const uvec2&) noexcept;
   void setScissorEnabled(bool) noexcept;

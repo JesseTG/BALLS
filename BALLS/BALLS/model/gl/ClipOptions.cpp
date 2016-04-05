@@ -40,11 +40,6 @@ void ClipOptions::setViewportPosition(const ivec2& position) noexcept {
   m_gl.gl30Current()->glViewport(position.x, position.y, size.x, size.y);
 }
 
-void ClipOptions::setViewportSize(const uvec2& size) noexcept {
-  m_gl.gl30Current()->glViewport(
-    m_viewportPosition.x, m_viewportPosition.y, size.x, size.y);
-}
-
 void ClipOptions::setScissorPosition(const ivec2& position) noexcept {
   m_scissorPosition = position;
 
