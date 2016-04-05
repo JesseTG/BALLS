@@ -17,8 +17,6 @@
 #include "util/Util.hpp"
 
 namespace balls {
-static const QRegularExpression NAME_FILTER(
-  R"%(^(_q_.+|objectName)$)%", QRegularExpression::OptimizeOnFirstUsageOption);
 
 using namespace constants;
 
@@ -36,7 +34,7 @@ BallsWindow::BallsWindow(QWidget *parent) noexcept
     _error(new QErrorMessage(this)),
     _settings(new QSettings(this)) {
   ui.setupUi(this);
-  ui.uniforms->setNameFilter(NAME_FILTER);
+  ui.uniforms->setNameFilter(constants::regex::NAME_FILTER);
   this->ui.canvas->setUniformModel(&m_uniforms);
   ui.meshManager->setMeshModel(&m_meshes);
 
@@ -51,7 +49,8 @@ BallsWindow::BallsWindow(QWidget *parent) noexcept
   ui.fragmentEditor->setLexer(_fragLexer);
   ui.geometryEditor->setLexer(_geomLexer);
 
-  ProjectConfig config = balls::config::loadFromFile(":/example/default.balls");
+  config::ProjectConfig config =
+    balls::config::loadFromFile(":/example/default.balls");
   ui.vertexEditor->setText(config.vertexShader);
   ui.fragmentEditor->setText(config.fragmentShader);
 
@@ -78,8 +77,8 @@ BallsWindow::~BallsWindow() {
   _settings->sync();
 }
 
-ProjectConfig BallsWindow::getProjectConfig() const noexcept {
-  ProjectConfig project;
+config::ProjectConfig BallsWindow::getProjectConfig() const noexcept {
+  config::ProjectConfig project;
   project.vertexShader = ui.vertexEditor->text();
   project.fragmentShader = ui.fragmentEditor->text();
   project.glMajor = ui.canvas->getOpenGLMajor();
@@ -153,7 +152,7 @@ void BallsWindow::loadProject() {
 
 void BallsWindow::_loadProject(const QString &path) noexcept {
   try {
-    ProjectConfig project = balls::config::loadFromFile(path);
+    config::ProjectConfig project = balls::config::loadFromFile(path);
 
     if (ui.canvas->getOpenGLMajor() >= project.glMajor) {
       // If we can use this version of OpenGL...

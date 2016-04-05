@@ -37,7 +37,6 @@ QMAKE_RESOURCE_FLAGS += -threshold 0 -compress 9
 ### <Source Files> #############################################################
 SOURCES += \
   config/ProjectConfig.cpp \
-  config/Settings.cpp \
   Constants.cpp \
   exception/FileException.cpp \
   exception/JsonException.cpp \
@@ -86,7 +85,6 @@ SOURCES += \
   ui/BallsWindow.cpp \
   ui/docks/MeshManagerWidget.cpp \
   ui/docks/OpenGLStateWidget.cpp \
-  ui/docks/SceneSettings.cpp \
   ui/docks/TextureManager.cpp \
   ui/glslsyntax.cpp \
   ui/property/MatrixProperties.cpp \
@@ -104,7 +102,6 @@ SOURCES += \
 
 HEADERS  += \
   config/ProjectConfig.hpp \
-  config/Settings.hpp \
   Constants.hpp \
   exception/FileException.hpp \
   exception/JsonException.hpp \
@@ -152,7 +149,6 @@ HEADERS  += \
   ui/BallsWindow.hpp \
   ui/docks/MeshManagerWidget.hpp \
   ui/docks/OpenGLStateWidget.hpp \
-  ui/docks/SceneSettings.hpp \
   ui/docks/TextureManager.hpp \
   ui/glslsyntax.hpp \
   ui/property/MatrixProperties.hpp \
@@ -172,7 +168,6 @@ FORMS += \
   BallsWindow.ui \
   ui/docks/MeshManager.ui \
   ui/docks/OpenGLStateWidget.ui \
-  ui/docks/SceneSettings.ui \
   ui/docks/TextureManager.ui \
 
 RESOURCES += \

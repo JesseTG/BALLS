@@ -26,7 +26,7 @@ public:
 public slots:
   void setOpenGLPointers(const OpenGLPointers&) noexcept;
 
-private /* fields */:
+public /* fields */:
   Ui::OpenGLStateWidget ui;
 
   OpenGLPointers m_gl;

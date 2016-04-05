@@ -12,7 +12,6 @@
 #include <QtGui/QOpenGLVertexArrayObject>
 #include <QtWidgets/QOpenGLWidget>
 
-#include "config/Settings.hpp"
 #include "gl/OpenGLPointers.hpp"
 #include "model/Uniforms.hpp"
 #include "shader/ShaderInputs.hpp"
@@ -38,7 +37,6 @@ class Mesh;
 using std::pair;
 using std::unordered_map;
 using std::uint8_t;
-using namespace balls::config;
 using namespace balls::shader;
 using balls::util::types::UniformCollection;
 using balls::util::types::UniformInfo;
@@ -96,8 +94,6 @@ signals:
   void uniformsDiscovered(const UniformCollection&);
 
 public slots:
-  Q_DECL_DEPRECATED void setOption(const bool) noexcept;
-  Q_DECL_DEPRECATED void setOption(const int) noexcept;
   void resetCamera() noexcept;
   void setMesh(const Mesh&) noexcept;
 
@@ -116,7 +112,6 @@ private /* shader attributes/uniforms */:
   int _uniformsPropertyCount;
 
   unordered_map<AttributeName, int> _attributes;
-  unordered_map<QString, Setting> _settings;
 
 private /* OpenGL structures */:
   QOpenGLDebugLogger _log;
@@ -137,32 +132,11 @@ private /* update methods */:
 
 private /* initializers */:
   void _initAttributeLocations() noexcept;
-  void _initSettings() noexcept;
   void _initGLPointers();
   void _initGLMemory();
   void _initLogger() noexcept;
   void _initShaders() noexcept;
   void _initAttributes() noexcept;
-
-private /* templated utility methods */:
-  template <GLenum E>
-  void _glToggle(const bool enabled) noexcept {
-    if (enabled) {
-      this->glEnable(E);
-    } else {
-      this->glDisable(E);
-    }
-  }
-
-  template <GLenum GL>
-  void _updateGLSetting(const QString& key) noexcept {
-    Setting& setting = _settings[key];
-
-    if (setting.changed) {
-      this->_glToggle<GL>(setting.value.toBool());
-      setting.changed = false;
-    }
-  }
 };
 }
 

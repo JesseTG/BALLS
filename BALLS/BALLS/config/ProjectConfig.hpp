@@ -9,7 +9,6 @@
 #include <QtCore/QVariant>
 #include <qopenglext.h>
 
-#include "config/Settings.hpp"
 #include "util/Util.hpp"
 
 namespace balls {
