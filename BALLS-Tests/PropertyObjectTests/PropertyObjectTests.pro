@@ -3,7 +3,7 @@
 # Project created by QtCreator 2015-10-04T22:55:59
 #
 #-------------------------------------------------
-include(../../common.pri)
+include($$top_srcdir/common.pri)
 
 QT       += core gui widgets testlib
 
@@ -22,8 +22,8 @@ DEFINES += \
   GLM_META_PROG_HELPERS \
 
 INCLUDEPATH += \
-  ../../BALLS \
-  ../../QPropertyEditor
+  $$top_srcdir/BALLS \
+  $$top_srcdir/QPropertyEditor
 
 LIBS += \
   -L$$top_builddir/QPropertyEditor \

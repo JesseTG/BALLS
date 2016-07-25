@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-include(../../common.pri)
+include($$top_srcdir/common.pri)
 
 QT       += core gui widgets testlib
 

@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-include(../../common.pri)
+include($$top_srcdir/common.pri)
 
 QT       += widgets testlib
 
@@ -14,7 +14,8 @@ CONFIG   -= app_bundle
 
 TEMPLATE = app
 
-INCLUDEPATH += ../../BALLS
+INCLUDEPATH += \
+  $$top_srcdir/BALLS
 
 SOURCES += \
   tst_TestConversions.cpp

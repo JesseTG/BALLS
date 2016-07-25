@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-include(../../common.pri)
+include($$top_srcdir/common.pri)
 
 QT       += testlib
 QT       -= gui
@@ -19,7 +19,8 @@ DEFINES += \
   SRCDIR=\\\"$$PWD/\\\" \
   GLM_META_PROG_HELPERS
 
-INCLUDEPATH += ../../BALLS
+INCLUDEPATH += \
+  $$top_srcdir/BALLS
 
 SOURCES += \
   tst_TestJSONConversionsTest.cpp

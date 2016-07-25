@@ -1,4 +1,4 @@
-include(../common.pri)
+include($$top_srcdir/common.pri)
 
 # BALLS Build Configuration File
 

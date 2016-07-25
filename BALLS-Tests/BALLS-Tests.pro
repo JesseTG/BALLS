@@ -1,4 +1,4 @@
-include(../common.pri)
+include($$top_srcdir/common.pri)
 
 TEMPLATE = subdirs
 CONFIG += testcase console c++14
