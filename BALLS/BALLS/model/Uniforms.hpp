@@ -8,7 +8,7 @@
 #include <glm/gtx/string_cast.hpp>
 #include <glm/gtx/transform.hpp>
 
-#include "util/Trackball.hpp"
+#include "util/ArcBall.hpp"
 #include "util/TypeInfo.hpp"
 
 class QEvent;
@@ -18,6 +18,7 @@ class QWheelEvent;
 
 namespace balls {
 
+using CPM_ARC_BALL_NS::ArcBall;
 using balls::util::types::UniformCollection;
 using balls::util::types::UniformInfo;
 using namespace glm;
@@ -56,7 +57,7 @@ private /* uniform property accessors */:
   uint canvasWidth() const noexcept;
   uint canvasHeight() const noexcept;
   uvec2 lastCanvasSize() const noexcept;
-  const mat4& trackball() const noexcept;
+  mat4 trackball() const noexcept;
   const mat4 matrix() const noexcept;
   const mat4 modelView() const noexcept;
 
@@ -94,7 +95,7 @@ private /* uniform source values */:
   mat4 _model;
   mat4 _view;
   mat4 _projection;
-  util::Trackball _trackball;
+  ArcBall _trackball;
   ivec2 _mousePos;
   ivec2 _lastMousePos;
   uvec2 _canvasSize;
@@ -152,8 +153,8 @@ inline uvec2 Uniforms::lastCanvasSize() const noexcept {
   return _lastCanvasSize;
 }
 
-inline const mat4& Uniforms::trackball() const noexcept {
-  return _trackball.getMatrix();
+inline mat4 Uniforms::trackball() const noexcept {
+  return _trackball.getTransformation();
 }
 }
 

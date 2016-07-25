@@ -43,7 +43,6 @@ OBJECTS += \
 	../../BALLS/$${OBJECTS_DIR}/moc_Uniforms.o \
 	../../BALLS/$${OBJECTS_DIR}/Logging.o \
 	../../BALLS/$${OBJECTS_DIR}/TypeInfo.o \
-	../../BALLS/$${OBJECTS_DIR}/Trackball.o \
 	../../BALLS/$${OBJECTS_DIR}/Constants.o \
 	../../BALLS/$${OBJECTS_DIR}/precompiled.o \
 	../../BALLS/$${OBJECTS_DIR}/MetaTypeConverters.o

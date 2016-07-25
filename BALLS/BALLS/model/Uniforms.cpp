@@ -7,7 +7,6 @@
 #include <QtGui/QResizeEvent>
 #include <QtGui/QWheelEvent>
 
-#include "util/Trackball.hpp"
 #include "util/TypeInfo.hpp"
 #include "util/Util.hpp"
 
@@ -28,7 +27,8 @@ Uniforms::Uniforms(QObject* parent) noexcept
     _canvasSize(1, 1),
     _lastCanvasSize(1, 1),
     _farPlane(100),
-    _nearPlane(.01f) {
+    _nearPlane(.01f),
+    _trackball(vec3(0, 0, 0), 0.75) {
   setFov(glm::radians(45.0f));
   _elapsedTime.start();
 }
@@ -254,8 +254,12 @@ void Uniforms::mouseMoveEvent(QMouseEvent* e) noexcept {
     // If the left mouse button is being held down...
     vec2 localPos = {e->localPos().x(), e->localPos().y()};
     vec2 delta = localPos - vec2(_lastMousePos);
-    _model = glm::rotate(_model, glm::radians(delta.x), vec3(0, 1, 0));
-    _model = glm::rotate(_model, glm::radians(delta.y), vec3(1, 0, 0));
+
+    _trackball.drag(localPos);
+
+    _model = _trackball.getTransformation();
+    //_model = glm::rotate(_model, glm::radians(delta.x), vec3(0, 1, 0));
+    //_model = glm::rotate(_model, glm::radians(delta.y), vec3(1, 0, 0));
   }
 }
 
@@ -264,7 +268,7 @@ void Uniforms::mousePressEvent(QMouseEvent* e) noexcept {
   if (e->buttons() & Qt::LeftButton) {
     // If the left mouse button was just clicked...
 
-    _trackball.click(e->x(), _canvasSize.y - e->y());
+    _trackball.beginDrag(vec2(e->x(), _canvasSize.y - e->y()));
   }
 }
 
@@ -288,6 +292,6 @@ void Uniforms::resizeEvent(QResizeEvent* e) noexcept {
   _lastCanvasSize.y = lastSize.height();
 
   _updateProjection();
-  _trackball.setBounds(w, h);
+  //_trackball.setBounds(w, h);
 }
 }

@@ -94,9 +94,11 @@ SOURCES += \
   ui/property/Vector4Property.cpp \
   ui/property/VectorProperty.cpp \
   ui/QsciLexerGLSL.cpp \
+  util/AABB.cpp \
+  util/ArcBall.cpp \
+  util/ArcLookAt.cpp \
   util/Logging.cpp \
   util/MetaTypeConverters.cpp \
-  util/Trackball.cpp \
   util/TypeInfo.cpp \
   util/Util.cpp \
 
@@ -158,9 +160,11 @@ HEADERS  += \
   ui/property/Vector4Property.hpp \
   ui/property/VectorProperty.hpp \
   ui/QsciLexerGLSL.h \
+  util/AABB.hpp \
+  util/ArcBall.hpp \
+  util/ArcLookAt.hpp \
   util/Logging.hpp \
   util/MetaTypeConverters.hpp \
-  util/Trackball.hpp \
   util/TypeInfo.hpp \
   util/Util.hpp \
 

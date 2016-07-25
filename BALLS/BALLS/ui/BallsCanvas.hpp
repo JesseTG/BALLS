@@ -17,7 +17,6 @@
 #include "shader/ShaderInputs.hpp"
 #include "shader/ShaderUniform.hpp"
 #include "util/Logging.hpp"
-#include "util/Trackball.hpp"
 #include "util/TypeInfo.hpp"
 
 class QOpenGLFunctions_3_0;
