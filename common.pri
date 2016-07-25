@@ -18,7 +18,7 @@ MOC_DIR = temp
 UI_DIR = temp
 RCC_DIR = temp
 
-QT += KIOCore KIOFileWidgets KIOWidgets KNTLM
+#QT += KIOCore KIOFileWidgets KIOWidgets KNTLM
 
 INCLUDEPATH *= \
   $$MOC_DIR \
