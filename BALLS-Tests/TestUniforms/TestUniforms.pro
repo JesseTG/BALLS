@@ -18,11 +18,11 @@ DEFINES += SRCDIR=\\\"$$PWD/\\\"
 DEFINES += GLM_META_PROG_HELPERS
 
 INCLUDEPATH += \
-	../../BALLS \
-	../../QPropertyEditor
+  ../../BALLS \
+  ../../QPropertyEditor
 
 SOURCES += \
-	tst_TestUniformsTest.cpp \
+  tst_TestUniformsTest.cpp \
 
 LIBS += \
   -L$$top_builddir/QPropertyEditor \

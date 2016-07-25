@@ -17,12 +17,12 @@ TEMPLATE = app
 INCLUDEPATH += ../../BALLS
 
 SOURCES += \
-	tst_TestConversions.cpp
+  tst_TestConversions.cpp
 
 OBJECTS += \
-	../../BALLS/$${OBJECTS_DIR}/MetaTypeConverters.o \
-	../../BALLS/$${OBJECTS_DIR}/precompiled.o
+  ../../BALLS/$${OBJECTS_DIR}/MetaTypeConverters.o \
+  ../../BALLS/$${OBJECTS_DIR}/precompiled.o
 
 DEFINES += \
-	SRCDIR=\\\"$$PWD/\\\" \
-	GLM_META_PROG_HELPERS
+  SRCDIR=\\\"$$PWD/\\\" \
+  GLM_META_PROG_HELPERS
