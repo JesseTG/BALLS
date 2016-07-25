@@ -1,9 +1,3 @@
-#-------------------------------------------------
-#
-# Project created by QtCreator 2015-09-17T13:48:57
-#
-#-------------------------------------------------
-
 include($$top_srcdir/common.pri)
 
 QT       += core gui widgets testlib

@@ -1,9 +1,3 @@
-#-------------------------------------------------
-#
-# Project created by QtCreator 2015-07-07T18:50:12
-#
-#-------------------------------------------------
-
 include($$top_srcdir/common.pri)
 
 QT       += widgets testlib
@@ -26,4 +20,3 @@ OBJECTS += \
 
 DEFINES += \
   SRCDIR=\\\"$$PWD/\\\" \
-  GLM_META_PROG_HELPERS

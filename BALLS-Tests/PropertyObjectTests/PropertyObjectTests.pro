@@ -1,8 +1,3 @@
-#-------------------------------------------------
-#
-# Project created by QtCreator 2015-10-04T22:55:59
-#
-#-------------------------------------------------
 include($$top_srcdir/common.pri)
 
 QT       += core gui widgets testlib
@@ -13,13 +8,11 @@ CONFIG   -= app_bundle
 
 TEMPLATE = app
 
-
 SOURCES += \
   tst_PropertyObjectTests.cpp \
 
 DEFINES += \
   SRCDIR=\\\"$$PWD/\\\" \
-  GLM_META_PROG_HELPERS \
 
 INCLUDEPATH += \
   $$top_srcdir/BALLS \

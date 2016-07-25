@@ -40,8 +40,6 @@ CONFIG(release, debug|release) {
   QMAKE_LFLAGS_RELEASE += -Ofast
 }
 
-
-
 macx {
   CONFIG += x86 ppc
   QMAKE_MAC_SDK = /Developer/SDKs/MacOSX10.4u.sdk

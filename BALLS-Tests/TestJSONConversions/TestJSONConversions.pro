@@ -1,9 +1,3 @@
-#-------------------------------------------------
-#
-# Project created by QtCreator 2015-07-26T13:16:53
-#
-#-------------------------------------------------
-
 include($$top_srcdir/common.pri)
 
 QT       += testlib
@@ -17,7 +11,6 @@ TEMPLATE = app
 
 DEFINES += \
   SRCDIR=\\\"$$PWD/\\\" \
-  GLM_META_PROG_HELPERS
 
 INCLUDEPATH += \
   $$top_srcdir/BALLS

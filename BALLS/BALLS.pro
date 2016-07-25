@@ -19,17 +19,13 @@ upx:!UPX {
 
 
 ### <General Configuration> ####################################################
-QT += core gui widgets
+QT *= core gui widgets
 
 TARGET = BALLS
 TEMPLATE = app
 
 CONFIG += qt c++14 warn_on precompile_header qscintilla2
 PRECOMPILED_HEADER = precompiled.hpp
-
-DEFINES += \
-  GLM_META_PROG_HELPERS \
-  GENERATOR_USE_GLM \
 
 QMAKE_RESOURCE_FLAGS += -threshold 0 -compress 9
 ### </General Configuration> ###################################################
@@ -218,7 +214,7 @@ CONFIG(debug, debug|release) {
   }
 }
 else:CONFIG(release, debug|release) {
-  DEFINES += NDEBUG QT_NO_DEBUG_OUTPUT QT_NO_DEBUG
+  DEFINES *= NDEBUG QT_NO_DEBUG_OUTPUT QT_NO_DEBUG
 
   gcc|clang {
     QMAKE_CXXFLAGS_RELEASE += -Ofast
