@@ -229,20 +229,21 @@ else:CONFIG(release, debug|release) {
 
 ### <Includes and Dependencies> ################################################
 
-INCLUDEPATH += \
-  $$PWD/../ \
-  $$PWD/../QPropertyEditor \
-
-
-DEPENDPATH += \
+INCLUDEPATH *= \
   $$DESTDIR \
-  $$PWD/../QPropertyEditor \
-  $$PWD/../Qtilities \
+  $$top_srcdir/QPropertyEditor \
 
+# Note that on Ubuntu, QScintilla's headers are put alongside Qt's, meaning that
+# they'll only be found if you use your package manager's version of Qt.  Make
+# a symlink to work around this.
+
+DEPENDPATH *= \
+  $$DESTDIR \
+  $$top_srcdir/QPropertyEditor \
 
 ## Libraries to link
 LIBS *= \
-  -L$$DESTDIR \
+  -L$$top_builddir/QPropertyEditor \
   -lQPropertyEditor \
   -lqt5scintilla2 \
   -lgenerator-glm \

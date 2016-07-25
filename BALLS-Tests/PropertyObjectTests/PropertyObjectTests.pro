@@ -26,7 +26,7 @@ INCLUDEPATH += \
   ../../QPropertyEditor
 
 LIBS += \
-  -L$${DESTDIR} \
+  -L$$top_builddir/QPropertyEditor \
   -lQPropertyEditor
 
 OBJECTS += \

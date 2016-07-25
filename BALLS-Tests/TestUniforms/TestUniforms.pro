@@ -25,8 +25,8 @@ SOURCES += \
 	tst_TestUniformsTest.cpp \
 
 LIBS += \
-	-L$${DESTDIR} \
-	-lQPropertyEditor
+  -L$$top_builddir/QPropertyEditor \
+  -lQPropertyEditor
 
 OBJECTS += \
   ../../BALLS/$${OBJECTS_DIR}/Vector2Property.o \
