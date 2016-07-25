@@ -24,18 +24,6 @@ INCLUDEPATH *= \
   $$MOC_DIR \
   $$UI_DIR \
   $$RCC_DIR \
-  /usr/include \
-  /usr/local/include \
-  /usr/include/x86_64-linux-gnu \
-  /usr/include/x86_64-linux-gnu/qt5 \
-  /usr/include/qt5 \
-  /usr/include/KF5/KIOCore \
-  /usr/include/KF5/KIOFileWidgets \
 
 DESTDIR = $$PWD/../build/$${BUILD_TYPE}-$${QMAKE_CC}/dist
-
-LIBS *= \
-  -L/usr/lib \
-  -L/usr/local/lib \
-  -L/usr/lib/x86_64-linux-gnu \
 

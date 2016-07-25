@@ -232,9 +232,6 @@ else:CONFIG(release, debug|release) {
 INCLUDEPATH += \
   $$PWD/../ \
   $$PWD/../QPropertyEditor \
-  /usr/include \
-  /usr/local/include \
-  /usr/include/x86_64-linux-gnu \
 
 
 DEPENDPATH += \
@@ -246,14 +243,8 @@ DEPENDPATH += \
 ## Libraries to link
 LIBS *= \
   -L$$DESTDIR \
-  -L/usr/lib \
-  -L/usr/local/lib \
-  -L/usr/lib/x86_64-linux-gnu \
   -lQPropertyEditor \
   -lqt5scintilla2 \
-  -lKF5KIOCore \
-  -lKF5KIOWidgets \
-  -lKF5KIOFileWidgets \
   -lgenerator-glm \
 
 ## /Libraries to link
