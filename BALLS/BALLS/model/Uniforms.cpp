@@ -7,6 +7,7 @@
 #include <QtGui/QResizeEvent>
 #include <QtGui/QWheelEvent>
 
+#include "util/ArcBall.hpp"
 #include "util/TypeInfo.hpp"
 #include "util/Util.hpp"
 
@@ -28,7 +29,7 @@ Uniforms::Uniforms(QObject* parent) noexcept
     _lastCanvasSize(1, 1),
     _farPlane(100),
     _nearPlane(.01f),
-    _trackball(vec3(0, 0, 0), 0.75) {
+    _trackball(vec3(0, 0, 0), .8) {
   setFov(glm::radians(45.0f));
   _elapsedTime.start();
 }
@@ -214,6 +215,8 @@ void Uniforms::_updateProjection() noexcept {
     static_cast<float>(_canvasSize.y + 1),
     _nearPlane,
     _farPlane);
+
+  _trackball.setScreenToTCS(glm::inverse(_projection * _view));
 }
 
 bool Uniforms::event(QEvent* e) {
@@ -252,14 +255,13 @@ void Uniforms::mouseMoveEvent(QMouseEvent* e) noexcept {
 
   if (e->buttons() & Qt::LeftButton) {
     // If the left mouse button is being held down...
-    vec2 localPos = {e->localPos().x(), e->localPos().y()};
-    vec2 delta = localPos - vec2(_lastMousePos);
-
-    _trackball.drag(localPos);
+    _trackball.drag(
+      vec2(
+        (2 * float(_mousePos.x) / _canvasSize.x) - 1.0,
+        (2 * float(_canvasSize.y - _mousePos.y) / _canvasSize.y) - 1.0));
+    // Map from -1 to 1
 
     _model = _trackball.getTransformation();
-    //_model = glm::rotate(_model, glm::radians(delta.x), vec3(0, 1, 0));
-    //_model = glm::rotate(_model, glm::radians(delta.y), vec3(1, 0, 0));
   }
 }
 
@@ -268,13 +270,17 @@ void Uniforms::mousePressEvent(QMouseEvent* e) noexcept {
   if (e->buttons() & Qt::LeftButton) {
     // If the left mouse button was just clicked...
 
-    _trackball.beginDrag(vec2(e->x(), _canvasSize.y - e->y()));
+    const QPointF& position = e->localPos();
+    _trackball.beginDrag(
+      vec2(
+        (2 * position.x() / _canvasSize.x) - 1.0,
+        (2 * (_canvasSize.y - position.y()) / _canvasSize.y) - 1.0));
   }
 }
 
 void Uniforms::wheelEvent(QWheelEvent* e) noexcept {
   int delta = e->angleDelta().y();
-  // this->setFov(_fov + ((delta > 0) ? ZOOM_INTERVAL : -ZOOM_INTERVAL));
+
   _view = glm::translate(
     _view, {0.0f, 0.0f, (delta > 0 ? ZOOM_INTERVAL : -ZOOM_INTERVAL)});
 }

@@ -23,8 +23,6 @@ using balls::util::types::UniformCollection;
 using balls::util::types::UniformInfo;
 using namespace glm;
 
-class BallsCanvas;
-
 class Uniforms final : public QObject {
   Q_OBJECT
 
@@ -57,9 +55,9 @@ private /* uniform property accessors */:
   uint canvasWidth() const noexcept;
   uint canvasHeight() const noexcept;
   uvec2 lastCanvasSize() const noexcept;
-  mat4 trackball() const noexcept;
-  const mat4 matrix() const noexcept;
-  const mat4 modelView() const noexcept;
+  const mat4& trackball() const noexcept;
+  mat4 matrix() const noexcept;
+  mat4 modelView() const noexcept;
 
 public /* uniform list queries */:
   const UniformCollection& uniformInfo() const noexcept;
@@ -121,11 +119,11 @@ inline uint Uniforms::elapsedTime() const noexcept {
   return _elapsedTime.elapsed();
 }
 
-inline const mat4 Uniforms::matrix() const noexcept {
+inline mat4 Uniforms::matrix() const noexcept {
   return _projection * _view * _model;
 }
 
-inline const mat4 Uniforms::modelView() const noexcept {
+inline mat4 Uniforms::modelView() const noexcept {
   return _view * _model;
 }
 
@@ -153,7 +151,7 @@ inline uvec2 Uniforms::lastCanvasSize() const noexcept {
   return _lastCanvasSize;
 }
 
-inline mat4 Uniforms::trackball() const noexcept {
+inline const mat4& Uniforms::trackball() const noexcept {
   return _trackball.getTransformation();
 }
 }
