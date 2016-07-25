@@ -12,17 +12,17 @@ SUBDIRS = \
   BALLS-Tests
 
 OTHER_FILES += \
-  ../.clang-format \
-  ../CONTRIBUTING.md \
-  ../.gitignore \
-  ../travis/clone.sh \
-  ../travis/makeit.sh \
-  ../.travis.yml \
-  ../.qmake.conf
+  .clang-format \
+  CONTRIBUTING.md \
+  .gitignore \
+  .qmake.conf \
+  travis/clone.sh \
+  travis/makeit.sh \
+  .travis.yml \
 
 DISTFILES += \
-  $$top_srcdir/LICENSE \
-  $$top_srcdir/README.md \
+  LICENSE \
+  README.md \
 
 BALLS.depends = QPropertyEditor
 
