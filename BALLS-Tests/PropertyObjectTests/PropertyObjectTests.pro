@@ -30,17 +30,17 @@ LIBS += \
   -lQPropertyEditor
 
 OBJECTS += \
-  ../../BALLS/$${OBJECTS_DIR}/Vector2Property.o \
-  ../../BALLS/$${OBJECTS_DIR}/moc_Vector2Property.o \
-  ../../BALLS/$${OBJECTS_DIR}/Vector3Property.o \
-  ../../BALLS/$${OBJECTS_DIR}/moc_Vector3Property.o \
-  ../../BALLS/$${OBJECTS_DIR}/Vector4Property.o \
-  ../../BALLS/$${OBJECTS_DIR}/moc_Vector4Property.o \
-  ../../BALLS/$${OBJECTS_DIR}/VectorProperty.o \
-  ../../BALLS/$${OBJECTS_DIR}/MatrixProperty.o \
-  ../../BALLS/$${OBJECTS_DIR}/MatrixProperties.o \
-  ../../BALLS/$${OBJECTS_DIR}/moc_MatrixProperties.o \
-  ../../BALLS/$${OBJECTS_DIR}/TypeInfo.o \
-  ../../BALLS/$${OBJECTS_DIR}/Constants.o \
-  ../../BALLS/$${OBJECTS_DIR}/precompiled.o \
-  ../../BALLS/$${OBJECTS_DIR}/MetaTypeConverters.o \
+  $$top_builddir/BALLS/$${OBJECTS_DIR}/Vector2Property.o \
+  $$top_builddir/BALLS/$${OBJECTS_DIR}/moc_Vector2Property.o \
+  $$top_builddir/BALLS/$${OBJECTS_DIR}/Vector3Property.o \
+  $$top_builddir/BALLS/$${OBJECTS_DIR}/moc_Vector3Property.o \
+  $$top_builddir/BALLS/$${OBJECTS_DIR}/Vector4Property.o \
+  $$top_builddir/BALLS/$${OBJECTS_DIR}/moc_Vector4Property.o \
+  $$top_builddir/BALLS/$${OBJECTS_DIR}/VectorProperty.o \
+  $$top_builddir/BALLS/$${OBJECTS_DIR}/MatrixProperty.o \
+  $$top_builddir/BALLS/$${OBJECTS_DIR}/MatrixProperties.o \
+  $$top_builddir/BALLS/$${OBJECTS_DIR}/moc_MatrixProperties.o \
+  $$top_builddir/BALLS/$${OBJECTS_DIR}/TypeInfo.o \
+  $$top_builddir/BALLS/$${OBJECTS_DIR}/Constants.o \
+  $$top_builddir/BALLS/$${OBJECTS_DIR}/precompiled.o \
+  $$top_builddir/BALLS/$${OBJECTS_DIR}/MetaTypeConverters.o \

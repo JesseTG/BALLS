@@ -21,8 +21,8 @@ SOURCES += \
   tst_TestConversions.cpp
 
 OBJECTS += \
-  ../../BALLS/$${OBJECTS_DIR}/MetaTypeConverters.o \
-  ../../BALLS/$${OBJECTS_DIR}/precompiled.o
+  $$top_builddir/BALLS/$${OBJECTS_DIR}/MetaTypeConverters.o \
+  $$top_builddir/BALLS/$${OBJECTS_DIR}/precompiled.o
 
 DEFINES += \
   SRCDIR=\\\"$$PWD/\\\" \

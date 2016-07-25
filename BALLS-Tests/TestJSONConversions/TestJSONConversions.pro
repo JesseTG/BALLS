@@ -26,5 +26,5 @@ SOURCES += \
   tst_TestJSONConversionsTest.cpp
 
 OBJECTS += \
-  ../../BALLS/$${OBJECTS_DIR}/MetaTypeConverters.o \
-  ../../BALLS/$${OBJECTS_DIR}/precompiled.o
+  $$top_builddir/BALLS/$${OBJECTS_DIR}/MetaTypeConverters.o \
+  $$top_builddir/BALLS/$${OBJECTS_DIR}/precompiled.o
