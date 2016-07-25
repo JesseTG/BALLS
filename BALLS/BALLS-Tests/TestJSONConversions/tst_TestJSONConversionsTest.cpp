@@ -78,60 +78,60 @@ void addMatData() noexcept {
   // to GLM later
   // TODO: Send PR to GLM that forces these constants to be compiled in
   QTest::newRow("mat2x2") << var(mat2x2(10)) << QJsonValue::Array
-                          << (int)type<tmat2x2>::rows
-                          << (int)type<tmat2x2>::cols;
+                          << (int)type<tmat2x2, float, defaultp>::rows
+                          << (int)type<tmat2x2, float, defaultp>::cols;
   QTest::newRow("mat2x3") << var(mat2x3(2)) << QJsonValue::Array
-                          << (int)type<tmat2x3>::rows
-                          << (int)type<tmat2x3>::cols;
+                          << (int)type<tmat2x3, float, defaultp>::rows
+                          << (int)type<tmat2x3, float, defaultp>::cols;
   QTest::newRow("mat2x4") << var(mat2x4(3)) << QJsonValue::Array
-                          << (int)type<tmat2x4>::rows
-                          << (int)type<tmat2x4>::cols;
+                          << (int)type<tmat2x4, float, defaultp>::rows
+                          << (int)type<tmat2x4, float, defaultp>::cols;
   QTest::newRow("mat3x2") << var(mat3x2(4)) << QJsonValue::Array
-                          << (int)type<tmat3x2>::rows
-                          << (int)type<tmat3x2>::cols;
+                          << (int)type<tmat3x2, float, defaultp>::rows
+                          << (int)type<tmat3x2, float, defaultp>::cols;
   QTest::newRow("mat3x3") << var(mat3x3(5)) << QJsonValue::Array
-                          << (int)type<tmat3x3>::rows
-                          << (int)type<tmat3x3>::cols;
+                          << (int)type<tmat3x3, float, defaultp>::rows
+                          << (int)type<tmat3x3, float, defaultp>::cols;
   QTest::newRow("mat3x4") << var(mat3x4(6)) << QJsonValue::Array
-                          << (int)type<tmat3x4>::rows
-                          << (int)type<tmat3x4>::cols;
+                          << (int)type<tmat3x4, float, defaultp>::rows
+                          << (int)type<tmat3x4, float, defaultp>::cols;
   QTest::newRow("mat4x2") << var(mat4x2(7)) << QJsonValue::Array
-                          << (int)type<tmat4x2>::rows
-                          << (int)type<tmat4x2>::cols;
+                          << (int)type<tmat4x2, float, defaultp>::rows
+                          << (int)type<tmat4x2, float, defaultp>::cols;
   QTest::newRow("mat4x3") << var(mat4x3(8)) << QJsonValue::Array
-                          << (int)type<tmat4x3>::rows
-                          << (int)type<tmat4x3>::cols;
+                          << (int)type<tmat4x3, float, defaultp>::rows
+                          << (int)type<tmat4x3, float, defaultp>::cols;
   QTest::newRow("mat4x4") << var(mat4x4(9)) << QJsonValue::Array
-                          << (int)type<tmat4x4>::rows
-                          << (int)type<tmat4x4>::cols;
+                          << (int)type<tmat4x4, float, defaultp>::rows
+                          << (int)type<tmat4x4, float, defaultp>::cols;
 
   QTest::newRow("dmat2x2") << var(dmat2x2(10)) << QJsonValue::Array
-                           << (int)type<tmat2x2>::rows
-                           << (int)type<tmat2x2>::cols;
+                           << (int)type<tmat2x2, double, defaultp>::rows
+                           << (int)type<tmat2x2, double, defaultp>::cols;
   QTest::newRow("dmat2x3") << var(dmat2x3(2)) << QJsonValue::Array
-                           << (int)type<tmat2x3>::rows
-                           << (int)type<tmat2x3>::cols;
+                           << (int)type<tmat2x3, double, defaultp>::rows
+                           << (int)type<tmat2x3, double, defaultp>::cols;
   QTest::newRow("dmat2x4") << var(dmat2x4(3)) << QJsonValue::Array
-                           << (int)type<tmat2x4>::rows
-                           << (int)type<tmat2x4>::cols;
+                           << (int)type<tmat2x4, double, defaultp>::rows
+                           << (int)type<tmat2x4, double, defaultp>::cols;
   QTest::newRow("dmat3x2") << var(dmat3x2(4)) << QJsonValue::Array
-                           << (int)type<tmat3x2>::rows
-                           << (int)type<tmat3x2>::cols;
+                           << (int)type<tmat3x2, double, defaultp>::rows
+                           << (int)type<tmat3x2, double, defaultp>::cols;
   QTest::newRow("dmat3x3") << var(dmat3x3(5)) << QJsonValue::Array
-                           << (int)type<tmat3x3>::rows
-                           << (int)type<tmat3x3>::cols;
+                           << (int)type<tmat3x3, double, defaultp>::rows
+                           << (int)type<tmat3x3, double, defaultp>::cols;
   QTest::newRow("dmat3x4") << var(dmat3x4(6)) << QJsonValue::Array
-                           << (int)type<tmat3x4>::rows
-                           << (int)type<tmat3x4>::cols;
+                           << (int)type<tmat3x4, double, defaultp>::rows
+                           << (int)type<tmat3x4, double, defaultp>::cols;
   QTest::newRow("dmat4x2") << var(dmat4x2(7)) << QJsonValue::Array
-                           << (int)type<tmat4x2>::rows
-                           << (int)type<tmat4x2>::cols;
+                           << (int)type<tmat4x2, double, defaultp>::rows
+                           << (int)type<tmat4x2, double, defaultp>::cols;
   QTest::newRow("dmat4x3") << var(dmat4x3(8)) << QJsonValue::Array
-                           << (int)type<tmat4x3>::rows
-                           << (int)type<tmat4x3>::cols;
+                           << (int)type<tmat4x3, double, defaultp>::rows
+                           << (int)type<tmat4x3, double, defaultp>::cols;
   QTest::newRow("dmat4x4") << var(dmat4x4(9)) << QJsonValue::Array
-                           << (int)type<tmat4x4>::rows
-                           << (int)type<tmat4x4>::cols;
+                           << (int)type<tmat4x4, double, defaultp>::rows
+                           << (int)type<tmat4x4, double, defaultp>::cols;
 }
 
 void addVectorJsonData() noexcept {

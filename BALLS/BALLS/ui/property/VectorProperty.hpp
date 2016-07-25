@@ -38,7 +38,7 @@ class VectorProperty : public Property {
 
 public:
   using Type = T<Component, P>;
-  static constexpr glm::length_t Size = glm::type<T>::components;
+  static constexpr glm::length_t Size = glm::type<T, Component, P>::components;
 
   VectorProperty(
     const QString& name = "",

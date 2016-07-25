@@ -21,7 +21,7 @@ class MatrixProperty : public Property {
     "ColProp's value type must be Matrix's column type");
 
   using Column = typename Matrix::col_type;
-  static const glm::length_t Size = glm::type<T>::components;
+  static const glm::length_t Size = glm::type<T, typename ColProp::Type::value_type, glm::defaultp>::components;
 
 public:
   using Type = Matrix;
