@@ -28,8 +28,8 @@ BALLS.depends = QPropertyEditor
 
 BALLS-Tests.depends = BALLS
 
-lessThan(QT_MAJOR_VERSION, 5):lessThan(QT_MINOR_VERSION, 2) {
-  error("Qt 5.2 is required, but only $${QT_VERSION} is available")
+lessThan(QT_MAJOR_VERSION, 5):lessThan(QT_MINOR_VERSION, 5) {
+  error("Qt 5.5 is required, but only $${QT_VERSION} is available")
 }
 
 message(CONFIG: $$CONFIG)
