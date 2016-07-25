@@ -20,6 +20,7 @@ OTHER_FILES += \
   ../travis/clone.sh \
   ../travis/makeit.sh \
   ../.travis.yml \
+  ../.qmake.conf
 
 BALLS.depends = QPropertyEditor
 
