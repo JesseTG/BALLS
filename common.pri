@@ -24,6 +24,3 @@ INCLUDEPATH *= \
   $$MOC_DIR \
   $$UI_DIR \
   $$RCC_DIR \
-
-DESTDIR = $$PWD/../build/$${BUILD_TYPE}-$${QMAKE_CC}/dist
-
