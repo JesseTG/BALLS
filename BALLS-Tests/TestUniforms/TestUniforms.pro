@@ -12,8 +12,9 @@ DEFINES += SRCDIR=\\\"$$PWD/\\\"
 DEFINES += GLM_META_PROG_HELPERS
 
 INCLUDEPATH += \
-  $$top_srcdir/QPropertyEditor \
   $$top_srcdir/BALLS \
+  $$top_srcdir/QPropertyEditor \
+# BALLS must come first in this list (because of multiple precompiled.hpp's)
 
 SOURCES += \
   tst_TestUniformsTest.cpp \
