@@ -4,10 +4,10 @@
 #include <cstdint>
 #include <utility>
 
+#include <QMetaType>
 #include <QtCore/QDebug>
 #include <QtCore/QHash>
 #include <QtCore/QJsonValue>
-#include <QtCore/QMetaTypeId>
 #include <QtCore/QString>
 
 #include <QtGui/QGenericMatrix>
