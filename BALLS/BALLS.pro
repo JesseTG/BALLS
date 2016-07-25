@@ -251,13 +251,13 @@ LIBS *= \
 
 ## Dependencies
 win32-g++ {
-  PRE_TARGETDEPS += $$DESTDIR/libQPropertyEditor.a
+  PRE_TARGETDEPS += $$top_builddir/QPropertyEditor/libQPropertyEditor.a
 }
 else:win32:!win32-g++ {
-  PRE_TARGETDEPS += $$DESTDIR/QPropertyEditor.lib
+  PRE_TARGETDEPS += $$top_builddir/QPropertyEditor/QPropertyEditor.lib
 }
 else:unix {
-  PRE_TARGETDEPS += $$DESTDIR/libQPropertyEditor.a
+  PRE_TARGETDEPS += $$top_builddir/QPropertyEditor/libQPropertyEditor.a
 }
 else {
   warning("What the hell are you building this thing on?")
