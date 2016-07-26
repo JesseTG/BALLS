@@ -11,9 +11,9 @@ DepthOptions::DepthOptions(OpenGLPointers& gl, QObject* parent)
     m_clampEnabled(false),
     m_clearDepth(1.0f),
     m_depthFunction(DepthFunction::Less),
+    m_depthMask(true),
     m_depthNear(0.0f),
-    m_depthFar(1.0f),
-    m_depthMask(true) {
+    m_depthFar(1.0f) {
   // Defaults as defined by OpenGL
   Q_ASSUME(m_gl.gl30 != nullptr);
 }

@@ -202,6 +202,7 @@ CONFIG(debug, debug|release) {
       -Wextra \
       -Wpedantic \
       -Wno-gnu-zero-variadic-macro-arguments \
+
   }
 
   clang {

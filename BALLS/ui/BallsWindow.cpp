@@ -25,14 +25,14 @@ constexpr QSettings::Format FORMAT = QSettings::NativeFormat;
 
 BallsWindow::BallsWindow(QWidget *parent) noexcept
   : QMainWindow(parent),
+    _settings(new QSettings(this)),
     _generatorsInitialized(false),
     _vertLexer(new QsciLexerGLSL(this)),
     _fragLexer(new QsciLexerGLSL(this)),
     _geomLexer(new QsciLexerGLSL(this)),
     _save(new QFileDialog(this, tr("Save BALLS project"), ".")),
     _load(new QFileDialog(this, tr("Load BALLS project"), ".")),
-    _error(new QErrorMessage(this)),
-    _settings(new QSettings(this)) {
+    _error(new QErrorMessage(this)) {
   ui.setupUi(this);
   ui.uniforms->setNameFilter(constants::regex::NAME_FILTER);
   this->ui.canvas->setUniformModel(&m_uniforms);
