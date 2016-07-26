@@ -16,7 +16,7 @@ namespace config {
 using std::uint8_t;
 using std::unordered_map;
 
-Q_DECL_DEPRECATED struct ProjectConfig {
+struct Q_DECL_DEPRECATED ProjectConfig {
 
   /// The vertex shader of this project (required)
   QString vertexShader;
