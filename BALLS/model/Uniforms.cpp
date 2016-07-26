@@ -25,11 +25,11 @@ Uniforms::Uniforms(QObject* parent) noexcept
   : QObject(parent),
     _meta(metaObject()),
     _view(glm::translate(vec3(0, 0, -8))),
+    _trackball(vec3(0, 0, 0), .8),
     _canvasSize(1, 1),
     _lastCanvasSize(1, 1),
     _farPlane(100),
-    _nearPlane(.01f),
-    _trackball(vec3(0, 0, 0), .8) {
+    _nearPlane(.01f) {
   setFov(glm::radians(45.0f));
   _elapsedTime.start();
 }
