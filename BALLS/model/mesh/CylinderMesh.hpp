@@ -14,7 +14,7 @@ class CylinderMesh : public BaseCylindricalMesh {
   Q_PROPERTY(bool capped MEMBER m_capped WRITE setCapped FINAL)
 
 public:
-  CylinderMesh(QObject* parent = nullptr);
+  explicit CylinderMesh(QObject* parent = nullptr);
 protected /* methods */:
   void assignMesh() override;
 private /* members */:

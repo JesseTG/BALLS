@@ -20,7 +20,7 @@ class BoxMesh : public MeshMesh {
   Q_PROPERTY(uvec3 segments MEMBER m_segments WRITE setSegments FINAL)
 
 public:
-  BoxMesh(QObject* parent = nullptr);
+  explicit BoxMesh(QObject* parent = nullptr);
 protected /* methods */:
   void assignMesh() override;
 private /* members */:

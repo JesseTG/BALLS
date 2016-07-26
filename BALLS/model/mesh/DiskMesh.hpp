@@ -18,7 +18,7 @@ class DiskMesh : public MeshMesh {
   Q_PROPERTY(double sweep MEMBER m_sweep WRITE setSweep FINAL)
 
 public:
-  DiskMesh(QObject* parent = nullptr);
+  explicit DiskMesh(QObject* parent = nullptr);
 protected /* methods */:
   void assignMesh() override;
 private /* members */:

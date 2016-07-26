@@ -25,7 +25,7 @@ struct OpenGLPointers {
   Q_GADGET
 
 public:
-  OpenGLPointers(QOpenGLContext*);
+  explicit OpenGLPointers(QOpenGLContext*);
   OpenGLPointers();
 
   QOpenGLContext* context;

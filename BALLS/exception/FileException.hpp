@@ -9,8 +9,8 @@ namespace balls {
 
 class Q_DECL_DEPRECATED FileException : public std::exception {
 public:
-  FileException(const QFileDevice&) noexcept;
-  FileException(const QFileDevice*) noexcept;
+  explicit FileException(const QFileDevice&) noexcept;
+  explicit FileException(const QFileDevice*) noexcept;
   const char* what() const noexcept override {
     return qPrintable(_errorMsg);
   }

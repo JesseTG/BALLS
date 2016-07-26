@@ -13,7 +13,7 @@ class CapsuleMesh : public BaseCylindricalMesh {
   Q_PROPERTY(uint rings MEMBER m_rings WRITE setRings FINAL)
 
 public:
-  CapsuleMesh(QObject* parent = nullptr);
+  explicit CapsuleMesh(QObject* parent = nullptr);
 protected /* methods */:
   void assignMesh() override;
 private /* members */:

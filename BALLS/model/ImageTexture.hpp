@@ -11,7 +11,7 @@ class ImageTexture : public AbstractTexture {
   Q_OBJECT
 
 public:
-  ImageTexture(QImage& image);
+  explicit ImageTexture(QImage& image);
 
 private:
   QImage m_image;

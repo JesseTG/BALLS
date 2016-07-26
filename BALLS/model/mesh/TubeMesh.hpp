@@ -15,7 +15,7 @@ class TubeMesh : public BaseCylindricalMesh {
   Q_PROPERTY(bool capped MEMBER m_capped WRITE setCapped FINAL)
 
 public:
-  TubeMesh(QObject* parent = nullptr);
+  explicit TubeMesh(QObject* parent = nullptr);
 
 protected /* methods */:
   void assignMesh() override;

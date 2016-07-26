@@ -21,7 +21,7 @@ class TriangleMesh : public MeshMesh {
   Q_PROPERTY(uint segments MEMBER m_segments WRITE setSegments FINAL)
 
 public:
-  TriangleMesh(QObject* parent = nullptr);
+  explicit TriangleMesh(QObject* parent = nullptr);
 
 protected /* methods */:
   void assignMesh() override;

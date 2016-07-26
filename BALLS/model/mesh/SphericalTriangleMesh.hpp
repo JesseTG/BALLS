@@ -12,7 +12,7 @@ class SphericalTriangleMesh : public BaseSphereMesh {
   Q_OBJECT
 
 public:
-  SphericalTriangleMesh(QObject* parent = nullptr);
+  explicit SphericalTriangleMesh(QObject* parent = nullptr);
 
 protected /* methods */:
   void assignMesh() override;

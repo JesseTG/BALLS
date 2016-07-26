@@ -16,7 +16,7 @@ class TorusKnotMesh : public MeshMesh {
   Q_PROPERTY(uint segments MEMBER m_segments WRITE setSegments FINAL)
 
 public:
-  TorusKnotMesh(QObject* parent = nullptr);
+  explicit TorusKnotMesh(QObject* parent = nullptr);
 
 protected /* methods */:
   void assignMesh() override;

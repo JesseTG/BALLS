@@ -21,7 +21,7 @@ class SpringMesh : public MeshMesh {
   Q_PROPERTY(double majorSweep MEMBER m_majorSweep WRITE setMajorSweep FINAL)
 
 public:
-  SpringMesh(QObject* parent = nullptr);
+  explicit SpringMesh(QObject* parent = nullptr);
 
 protected /* methods */:
   void assignMesh() override;

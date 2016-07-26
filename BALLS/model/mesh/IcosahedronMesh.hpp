@@ -13,7 +13,7 @@ class IcosahedronMesh : public BaseSphereMesh {
   Q_CLASSINFO("segments", "minimum=1;")
 
 public:
-  IcosahedronMesh(QObject* parent = nullptr);
+  explicit IcosahedronMesh(QObject* parent = nullptr);
 protected /* methods */:
   void assignMesh() override;
 };

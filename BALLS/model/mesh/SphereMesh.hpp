@@ -18,7 +18,7 @@ class SphereMesh : public BaseSphereMesh {
   // clang-format on
 
 public:
-  SphereMesh(QObject* parent = nullptr);
+  explicit SphereMesh(QObject* parent = nullptr);
 
 protected /* methods */:
   void assignMesh() override;

@@ -20,7 +20,7 @@ class TorusMesh : public MeshMesh {
   Q_PROPERTY(double majorSweep MEMBER m_majorSweep WRITE setMajorSweep FINAL)
 
 public:
-  TorusMesh(QObject* parent = nullptr);
+  explicit TorusMesh(QObject* parent = nullptr);
 
 protected /* methods */:
   void assignMesh() override;

@@ -20,7 +20,7 @@ class RoundedBoxMesh : public MeshMesh {
   Q_PROPERTY(uvec3 segments MEMBER m_segments WRITE setSegments FINAL)
 
 public:
-  RoundedBoxMesh(QObject* parent = nullptr);
+  explicit RoundedBoxMesh(QObject* parent = nullptr);
 protected /* methods */:
   void assignMesh() override;
 private /* members */:

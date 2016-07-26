@@ -13,7 +13,7 @@ class SphericalConeMesh : public BaseCylindricalMesh {
   Q_PROPERTY(uint rings MEMBER m_rings WRITE setRings FINAL)
 
 public:
-  SphericalConeMesh(QObject* parent = nullptr);
+  explicit SphericalConeMesh(QObject* parent = nullptr);
 
 protected /* methods */:
   void assignMesh() override;

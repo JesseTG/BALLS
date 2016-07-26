@@ -18,7 +18,7 @@ class PlaneMesh : public MeshMesh {
   Q_PROPERTY(uvec2 segments MEMBER m_segments WRITE setSegments FINAL)
 
 public:
-  PlaneMesh(QObject* parent = nullptr);
+  explicit PlaneMesh(QObject* parent = nullptr);
 protected /* methods */:
   void assignMesh() override;
 private /* members */:

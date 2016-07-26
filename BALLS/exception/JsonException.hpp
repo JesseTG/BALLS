@@ -12,7 +12,7 @@ class Q_DECL_DEPRECATED JsonException : public std::exception
   Q_DECLARE_TR_FUNCTIONS(JsonException)
 
 public:
-  JsonException(const QJsonParseError&) noexcept;
+  explicit JsonException(const QJsonParseError&) noexcept;
 
   const char* what() const noexcept override {
     return qPrintable(_error.errorString());
