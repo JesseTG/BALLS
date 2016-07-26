@@ -31,7 +31,7 @@
 class ColorCombo : public QComboBox {
   Q_OBJECT
 public:
-  ColorCombo(QWidget* parent = nullptr) noexcept;
+  explicit ColorCombo(QWidget* parent = nullptr) noexcept;
   virtual ~ColorCombo();
 
   QColor color() const noexcept;

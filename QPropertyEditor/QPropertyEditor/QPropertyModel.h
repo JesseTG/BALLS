@@ -47,7 +47,7 @@ public:
    * Constructor
    * @param parent optional parent object
    */
-  QPropertyModel(QObject *parent = nullptr) noexcept;
+  explicit QPropertyModel(QObject *parent = nullptr) noexcept;
   /// Destructor
   virtual ~QPropertyModel();
 

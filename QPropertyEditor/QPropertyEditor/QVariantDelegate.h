@@ -41,7 +41,7 @@ public:
    * Constructor
    * @param parent optional parent object
    */
-  QVariantDelegate(QObject* parent = nullptr) noexcept;
+  explicit QVariantDelegate(QObject* parent = nullptr) noexcept;
   /// Destructor
   virtual ~QVariantDelegate();
 
