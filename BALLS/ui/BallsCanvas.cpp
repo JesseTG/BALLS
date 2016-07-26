@@ -680,6 +680,8 @@ void BallsCanvas::setUniform(
     }
 
     case GL_SAMPLER_2D: {
+      break;
+      // TODO: Support
     }
 
     default:
