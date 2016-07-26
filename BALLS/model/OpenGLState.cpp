@@ -39,13 +39,11 @@ bool OpenGLState::hasGl43() const noexcept {
 }
 
 bool OpenGLState::hasGl44() const noexcept {
-  return false;
-  // TODO: Upgrade Qt version
+  return m_gl.gl44 != nullptr;
 }
 
 bool OpenGLState::hasGl45() const noexcept {
-  return false;
-  // TODO: Upgrade Qt version
+  return m_gl.gl45 != nullptr;
 }
 
 void OpenGLState::setGlFeature(bool enabled, GLenum feature) {

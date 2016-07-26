@@ -11,6 +11,8 @@
 #include <QOpenGLFunctions_4_1_Core>
 #include <QOpenGLFunctions_4_2_Core>
 #include <QOpenGLFunctions_4_3_Core>
+#include <QOpenGLFunctions_4_4_Core>
+#include <QOpenGLFunctions_4_5_Core>
 
 namespace balls {
 
@@ -37,7 +39,9 @@ OpenGLPointers::OpenGLPointers(QOpenGLContext* ctx)
     gl40(_getGl<QOpenGLFunctions_4_0_Core>(context)),
     gl41(_getGl<QOpenGLFunctions_4_1_Core>(context)),
     gl42(_getGl<QOpenGLFunctions_4_2_Core>(context)),
-    gl43(_getGl<QOpenGLFunctions_4_3_Core>(context)) {
+    gl43(_getGl<QOpenGLFunctions_4_3_Core>(context)),
+    gl44(_getGl<QOpenGLFunctions_4_4_Core>(context)),
+    gl45(_getGl<QOpenGLFunctions_4_5_Core>(context)) {
 
   if (gl30) gl30->initializeOpenGLFunctions();
   if (gl31) gl31->initializeOpenGLFunctions();
@@ -47,6 +51,8 @@ OpenGLPointers::OpenGLPointers(QOpenGLContext* ctx)
   if (gl41) gl41->initializeOpenGLFunctions();
   if (gl42) gl42->initializeOpenGLFunctions();
   if (gl43) gl43->initializeOpenGLFunctions();
+  if (gl44) gl44->initializeOpenGLFunctions();
+  if (gl45) gl45->initializeOpenGLFunctions();
 }
 
 OpenGLPointers::OpenGLPointers()
@@ -57,7 +63,9 @@ OpenGLPointers::OpenGLPointers()
     gl40(nullptr),
     gl41(nullptr),
     gl42(nullptr),
-    gl43(nullptr) {}
+    gl43(nullptr),
+    gl44(nullptr),
+    gl45(nullptr) {}
 
 QOpenGLFunctions_3_0* OpenGLPointers::gl30Current() noexcept {
   ensureContext();
@@ -105,6 +113,18 @@ QOpenGLFunctions_4_3_Core* OpenGLPointers::gl43Current() noexcept {
   ensureContext();
 
   return gl43;
+}
+
+QOpenGLFunctions_4_4_Core* OpenGLPointers::gl44Current() noexcept {
+  ensureContext();
+
+  return gl44;
+}
+
+QOpenGLFunctions_4_5_Core* OpenGLPointers::gl45Current() noexcept {
+  ensureContext();
+
+  return gl45;
 }
 
 void OpenGLPointers::ensureContext() noexcept {

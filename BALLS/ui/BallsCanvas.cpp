@@ -118,6 +118,8 @@ inline void BallsCanvas::_initGLPointers() {
   qCDebug(logs::gl::Feature) << "OpenGL 4.1:" << (gl.gl41 ? "OK" : "No");
   qCDebug(logs::gl::Feature) << "OpenGL 4.2:" << (gl.gl42 ? "OK" : "No");
   qCDebug(logs::gl::Feature) << "OpenGL 4.3:" << (gl.gl43 ? "OK" : "No");
+  qCDebug(logs::gl::Feature) << "OpenGL 4.4:" << (gl.gl44 ? "OK" : "No");
+  qCDebug(logs::gl::Feature) << "OpenGL 4.5:" << (gl.gl45 ? "OK" : "No");
 
   QSurfaceFormat format = context()->format();
   this->_glmajor = format.majorVersion();
