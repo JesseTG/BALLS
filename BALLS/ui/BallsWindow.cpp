@@ -25,8 +25,8 @@ constexpr QSettings::Format FORMAT = QSettings::NativeFormat;
 
 BallsWindow::BallsWindow(QWidget *parent) noexcept
   : QMainWindow(parent),
-    _settings(new QSettings(this)),
     _generatorsInitialized(false),
+    _settings(new QSettings(this)),
     _vertLexer(new QsciLexerGLSL(this)),
     _fragLexer(new QsciLexerGLSL(this)),
     _geomLexer(new QsciLexerGLSL(this)),
