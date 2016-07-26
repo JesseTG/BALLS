@@ -31,7 +31,7 @@ struct UniformTestDatum {
 struct UniformTestData {
   UniformTestData() = default;
 
-  UniformTestData(const initializer_list<UniformTestDatum>& init) {
+  explicit UniformTestData(const initializer_list<UniformTestDatum>& init) {
     for (const UniformTestDatum& i : init) {
       uniforms.push_back(i.uniform);
       values[i.uniform.name] = i.value;
