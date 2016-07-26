@@ -29,7 +29,7 @@ public:
   explicit BallsWindow(QWidget* parent = 0) noexcept;
   ~BallsWindow();
 
-  config::ProjectConfig getProjectConfig() const noexcept;
+  Q_DECL_DEPRECATED config::ProjectConfig getProjectConfig() const noexcept;
 public slots:
   //  void setMesh(const int) noexcept;
   void saveProject() noexcept;
