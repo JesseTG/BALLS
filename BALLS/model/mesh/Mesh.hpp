@@ -31,6 +31,7 @@ public /* enums */:
     Cone,
     Cylinder,
     Disk,
+    Dodecahedron,
     Helix,
     Icosahedron,
     IcoSphere,

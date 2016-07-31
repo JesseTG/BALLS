@@ -19,6 +19,7 @@ MeshManagerWidget::MeshManagerWidget(QWidget *parent) : QWidget(parent) {
       ui.actionCone,
       ui.actionCylinder,
       ui.actionDisk,
+      ui.actionDodecahedron,
       ui.actionIcosahedron,
       ui.actionIcosphere,
       ui.actionPlane,
@@ -38,6 +39,7 @@ MeshManagerWidget::MeshManagerWidget(QWidget *parent) : QWidget(parent) {
   ui.actionCone->setData(QVariant::fromValue(Mesh::Type::Cone));
   ui.actionCylinder->setData(QVariant::fromValue(Mesh::Type::Cylinder));
   ui.actionDisk->setData(QVariant::fromValue(Mesh::Type::Disk));
+  ui.actionDodecahedron->setData(QVariant::fromValue(Mesh::Type::Dodecahedron));
   ui.actionIcosahedron->setData(QVariant::fromValue(Mesh::Type::Icosahedron));
   ui.actionIcosphere->setData(QVariant::fromValue(Mesh::Type::IcoSphere));
   ui.actionPlane->setData(QVariant::fromValue(Mesh::Type::Plane));

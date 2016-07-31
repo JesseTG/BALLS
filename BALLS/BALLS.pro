@@ -56,6 +56,7 @@ SOURCES += \
   model/mesh/ConeMesh.cpp \
   model/mesh/CylinderMesh.cpp \
   model/mesh/DiskMesh.cpp \
+  model/mesh/DodecahedronMesh.cpp \
   model/Meshes.cpp \
   model/mesh/IcosahedronMesh.cpp \
   model/mesh/IcoSphereMesh.cpp \
@@ -122,6 +123,7 @@ HEADERS  += \
   model/mesh/ConeMesh.hpp \
   model/mesh/CylinderMesh.hpp \
   model/mesh/DiskMesh.hpp \
+  model/mesh/DodecahedronMesh.hpp \
   model/Meshes.hpp \
   model/mesh/IcosahedronMesh.hpp \
   model/mesh/IcoSphereMesh.hpp \

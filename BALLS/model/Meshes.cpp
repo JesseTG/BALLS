@@ -6,6 +6,7 @@
 #include "model/mesh/ConeMesh.hpp"
 #include "model/mesh/CylinderMesh.hpp"
 #include "model/mesh/DiskMesh.hpp"
+#include "model/mesh/DodecahedronMesh.hpp"
 #include "model/mesh/IcoSphereMesh.hpp"
 #include "model/mesh/IcosahedronMesh.hpp"
 #include "model/mesh/PlaneMesh.hpp"
@@ -45,6 +46,9 @@ Mesh &Meshes::createMesh(Mesh::Type type) noexcept {
     break;
   case Mesh::Disk:
     m_meshes.push_back(new DiskMesh(this));
+    break;
+  case Mesh::Dodecahedron:
+    m_meshes.push_back(new DodecahedronMesh(this));
     break;
   case Mesh::Icosahedron:
     m_meshes.push_back(new IcosahedronMesh(this));
