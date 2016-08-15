@@ -19,6 +19,7 @@ OTHER_FILES += \
   travis/clone.sh \
   travis/makeit.sh \
   .travis.yml \
+  Vagrantfile \
 
 DISTFILES += \
   LICENSE \
