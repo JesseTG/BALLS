@@ -43,10 +43,8 @@ Vagrant.configure(2) do |config|
     end
 
     win8.vm.provision "shell", inline: <<-SHELL
-      choco install -y win32-openssh
-      choco install -y cmake
-      choco install -y git
-      choco install -y mingw
+      choco install -y win32-openssh -params "/SSHServerFeature /KeyBasedAuthenticationFeature /DeleteServerKeysAfterInstalled"
+      choco install -y cygwin cyg-get cmake git mingw upx
     SHELL
   end
 
