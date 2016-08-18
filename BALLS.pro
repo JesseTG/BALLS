@@ -24,6 +24,7 @@ OTHER_FILES += \
 DISTFILES += \
   LICENSE \
   README.md \
+    qt-installer-console.js
 
 BALLS.depends = QPropertyEditor
 

@@ -10,11 +10,56 @@ Vagrant.configure(2) do |config|
   # For a complete reference, please see the online documentation at
   # https://docs.vagrantup.com.
 
-  # TODO: https://www.vagrantup.com/docs/multi-machine/
+  config.vm.define "ubuntu" do |ubuntu|
+    ubuntu.vm.box = "ubuntu/xenial64"
 
-  # Every Vagrant development environment requires a box. You can search for
-  # boxes at https://atlas.hashicorp.com/search.
-  config.vm.box = "ubuntu/xenial64"
+    # TODO: Put together a list of packages instead of wild-carding qt56, so
+    # everything installs faster
+    ubuntu.vm.provision "shell", inline: <<-SHELL
+      wget -O - http://apt.llvm.org/llvm-snapshot.gpg.key|sudo apt-key add -
+      sudo add-apt-repository -y ppa:beineri/opt-qt561-xenial
+      sudo add-apt-repository -y 'deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial main'
+      sudo apt-get update
+      sudo apt-get dist-upgrade -y
+      sudo apt-get install -y qt56* git cmake clang-3.8 llvm-3.8
+    SHELL
+  end
+
+  config.vm.define "osx" do |osx|
+    osx.vm.box = "jhcook/osx-elcapitan-10.11"
+
+    osx.vm.provider "virtualbox" do |vb|
+      vb.gui = false
+      vb.memory = "2048"
+    end
+  end
+
+  config.vm.define "win8" do |win8|
+    win8.vm.box = "mwrock/Windows2012R2"
+
+    win8.vm.provider "virtualbox" do |vb|
+      vb.gui = false
+      vb.memory = "2048"
+    end
+
+    win8.vm.provision "shell", inline: <<-SHELL
+      choco install -y win32-openssh
+      choco install -y cmake
+      choco install -y git
+      choco install -y mingw
+    SHELL
+  end
+
+  # TODO: consider Microsoft/EdgeOnWindows10 if this one is a problem
+  config.vm.define "win10" do |win10|
+    win10.vm.box = "senglin/win-10-enterprise-vs2015community"
+
+    win10.vm.provider "virtualbox" do |vb|
+      vb.gui = false
+      vb.memory = "2048"
+    end
+  end
+
 
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
@@ -40,13 +85,7 @@ Vagrant.configure(2) do |config|
   # backing providers for Vagrant. These expose provider-specific options.
   # Example for VirtualBox:
   #
-  # config.vm.provider "virtualbox" do |vb|
-  #   # Display the VirtualBox GUI when booting the machine
-  #   vb.gui = true
-  #
-  #   # Customize the amount of memory on the VM:
-  #   vb.memory = "1024"
-  # end
+
   #
   # View the documentation for the provider you are using for more
   # information on available options.
@@ -54,8 +93,4 @@ Vagrant.configure(2) do |config|
   # Enable provisioning with a shell script. Additional provisioners such as
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
-  config.vm.provision "shell", inline: <<-SHELL
-   sudo apt-get update
-   sudo apt-get install -y apache2
-  SHELL
 end
