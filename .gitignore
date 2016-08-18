@@ -43,3 +43,6 @@ Makefile*
 build/*
 temp/*
 */tango-icon-theme-*/*
+
+.vagrant/
+*.log
