@@ -34,6 +34,14 @@ Vagrant.configure(2) do |config|
       vb.gui = false
       vb.memory = "2048"
     end
+
+    osx.vm.provision "shell", inline: <<-SHELL
+      brew install git
+      brew install upx
+      brew install cmake
+      brew install gcc
+      brew install qt5
+    SHELL
   end
 
   config.vm.define "win8" do |win8|
