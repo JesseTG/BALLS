@@ -37,6 +37,7 @@ Vagrant.configure(2) do |config|
     end
 
     osx.vm.provision "shell", inline: <<-SHELL
+      /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
       brew install git
       brew install upx
       brew install cmake
