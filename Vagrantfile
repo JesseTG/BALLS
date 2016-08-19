@@ -36,7 +36,7 @@ Vagrant.configure(2) do |config|
       vb.linked_clone = true if Vagrant::VERSION =~ /^1.8/
     end
 
-    osx.vm.provision "shell", inline: <<-SHELL
+    osx.vm.provision "shell", privileged: false, inline: <<-SHELL
       /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
       brew install git
       brew install upx
