@@ -38,11 +38,7 @@ Vagrant.configure(2) do |config|
 
     osx.vm.provision "shell", privileged: false, inline: <<-SHELL
       /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-      brew install git
-      brew install upx
-      brew install cmake
-      brew install gcc
-      brew install qt5
+      brew install git upx cmake gcc qt5 wget
     SHELL
   end
 
