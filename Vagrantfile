@@ -35,7 +35,7 @@ Vagrant.configure(2) do |config|
   end
 
   config.vm.define "win8" do |win8|
-    win8.vm.box = "mwrock/Windows2012R2"
+    win8.vm.box = "opentable/win-2012r2-standard-amd64-nocm"
     win8.vm.boot_timeout = 600
 
     win8.vm.provider "virtualbox" do |vb|
