@@ -45,6 +45,7 @@ Vagrant.configure(2) do |config|
     end
 
     win8.vm.provision "shell", inline: <<-SHELL
+      @powershell -NoProfile -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"
       choco install -y win32-openssh -params "/SSHServerFeature /KeyBasedAuthenticationFeature /DeleteServerKeysAfterInstalled"
       choco install -y cygwin cyg-get cmake git mingw upx
     SHELL
