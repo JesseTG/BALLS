@@ -46,7 +46,10 @@ Vagrant.configure(2) do |config|
 
     win8.vm.provision "shell", inline: <<-SHELL
       iwr https://chocolatey.org/install.ps1 -UseBasicParsing | iex
-      choco install -y cygwin cyg-get cmake git mingw upx
+      choco install -y cygwin cyg-get cmake git mingw upx visualstudio2015community vcredist2015 wget curl dotnet4.6.1 nano
+      choco upgrade all -y
+      wget http://download.qt.io/official_releases/online_installers/qt-unified-windows-x86-online.exe
+      qt-unified-windows-x86-online.exe -v --script qt-installer-console.js
     SHELL
   end
 
@@ -58,6 +61,12 @@ Vagrant.configure(2) do |config|
       vb.gui = false
       vb.memory = "2048"
     end
+    win10.vm.provision "shell", inline: <<-SHELL
+      choco install -y cygwin cyg-get cmake git mingw upx visualstudio2015community vcredist2015 wget curl dotnet4.6.1 nano
+      choco upgrade all -y
+      wget http://download.qt.io/official_releases/online_installers/qt-unified-windows-x86-online.exe
+      qt-unified-windows-x86-online.exe -v --script qt-installer-console.js
+    SHELL
   end
 
 
