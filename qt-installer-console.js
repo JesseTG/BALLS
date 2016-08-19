@@ -28,6 +28,7 @@ Controller.prototype.TargetDirectoryPageCallback = function()
 
 Controller.prototype.ComponentSelectionPageCallback = function() {
     var widget = gui.currentPageWidget();
+    widget.selectAll();
 
     gui.clickButton(buttons.NextButton);
 }
