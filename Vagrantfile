@@ -33,6 +33,7 @@ Vagrant.configure(2) do |config|
     osx.vm.provider "virtualbox" do |vb|
       vb.gui = false
       vb.memory = "2048"
+      vb.linked_clone = true if Vagrant::VERSION =~ /^1.8/
     end
 
     osx.vm.provision "shell", inline: <<-SHELL
