@@ -46,7 +46,6 @@ Vagrant.configure(2) do |config|
 
     win8.vm.provision "shell", inline: <<-SHELL
       iwr https://chocolatey.org/install.ps1 -UseBasicParsing | iex
-      choco install -y win32-openssh -params "/SSHServerFeature /KeyBasedAuthenticationFeature /DeleteServerKeysAfterInstalled"
       choco install -y cygwin cyg-get cmake git mingw upx
     SHELL
   end
