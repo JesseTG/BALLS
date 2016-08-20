@@ -28,7 +28,7 @@ Vagrant.configure(2) do |config|
   # TODO: Try jhcook/osx-elcapitan-10.11
   # TODO: Try ferranvila/osx-elcapitan
   config.vm.define "osx" do |osx|
-    osx.vm.box = "carbon/osx-elcapitan-10.11"
+    osx.vm.box = "jhcook/osx-elcapitan-10.11"
 
     osx.vm.provider "virtualbox" do |vb|
       vb.gui = false
