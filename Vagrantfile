@@ -19,8 +19,6 @@ Vagrant.configure(2) do |config|
       vb.linked_clone = true if Vagrant::VERSION =~ /^1.8/
     end
 
-    # TODO: Put together a list of packages instead of wild-carding qt56, so
-    # everything installs faster
     ubuntu.vm.provision "shell", inline: <<-SHELL
       apt-get install -y software-properties-common python-software-properties
       wget -O llvm.key http://apt.llvm.org/llvm-snapshot.gpg.key
