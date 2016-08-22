@@ -20,9 +20,9 @@ Vagrant.configure(2) do |config|
     end
 
     ubuntu.vm.provision "shell", inline: <<-SHELL
-      apt-get install -y software-properties-common python-software-properties
-      wget -O llvm.key http://apt.llvm.org/llvm-snapshot.gpg.key
-      apt-key add llvm.key
+      apt-get install -qy software-properties-common python-software-properties
+      wget -O llvm.key http://apt.llvm.org/llvm-snapshot.gpg.key 2>&1
+      apt-key add llvm.key 2>&1
       apt-mark hold grub*
       apt-add-repository -y ppa:beineri/opt-qt561-xenial
       apt-add-repository -y ppa:beineri/opt-qt57-xenial
