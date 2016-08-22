@@ -23,6 +23,7 @@ Vagrant.configure(2) do |config|
     # everything installs faster
     ubuntu.vm.provision "shell", inline: <<-SHELL
       wget -O - http://apt.llvm.org/llvm-snapshot.gpg.key|sudo apt-key add -
+      apt-get install software-properties-common
       add-apt-repository -y ppa:beineri/opt-qt561-xenial
       add-apt-repository -y ppa:beineri/opt-qt57-xenial
       add-apt-repository -y 'deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial main'
