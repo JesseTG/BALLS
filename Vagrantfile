@@ -27,9 +27,9 @@ Vagrant.configure(2) do |config|
       apt-key add llvm.key 2>&1
       rm llvm.key
       apt-mark hold grub*
-      apt-add-repository -y ppa:beineri/opt-qt561-xenial
-      apt-add-repository -y ppa:beineri/opt-qt57-xenial
-      apt-add-repository -y 'deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial main'
+      add-apt-repository -y ppa:beineri/opt-qt561-xenial
+      add-apt-repository -y ppa:beineri/opt-qt57-xenial
+      add-apt-repository -y 'deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial main'
       apt-get update -q
       apt-get dist-upgrade -qy
       apt-get install -qy libboost-all-dev qt5{6,7}{3d,base,canvas3d,graphicaleffects,imageformats,multimedia,quickcontrols,quickcontrols2,tools} qt57{charts,datavis}-no-lgpl qt57scxml git cmake clang-3.8 llvm-3.8
