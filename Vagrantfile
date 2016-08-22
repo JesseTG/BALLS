@@ -47,6 +47,7 @@ Vagrant.configure(2) do |config|
         qt57{{charts,datavis}-no-lgpl,scxml} \
         qt5{6,7}{3d,base,canvas3d,graphicaleffects,imageformats,multimedia,quickcontrols{,2},tools} \
         upx-ucl \
+        xvfb \
 
       git clone https://github.com/g-truc/glm
       cd ./glm
