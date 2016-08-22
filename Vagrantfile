@@ -40,8 +40,8 @@ Vagrant.configure(2) do |config|
         g++ \
         git \
         libboost-all-dev \
-        libqt5scintilla2-{12v5,dev,l10n} \
         libc++{1,-dev,-helpers,abi-dev,abi1} \
+        libqt5scintilla2-{12v5,dev,l10n} \
         llvm-3.8 \
         mesa-common-dev \
         qt57{{charts,datavis}-no-lgpl,scxml} \
