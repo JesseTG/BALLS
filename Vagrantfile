@@ -22,16 +22,16 @@ Vagrant.configure(2) do |config|
     # TODO: Put together a list of packages instead of wild-carding qt56, so
     # everything installs faster
     ubuntu.vm.provision "shell", inline: <<-SHELL
-      apt-get install -y software-properties-common
+      apt-get install -y software-properties-common python-software-properties
       wget -O llvm.key http://apt.llvm.org/llvm-snapshot.gpg.key
       apt-key add llvm.key
       apt-mark hold grub*
-      add-apt-repository -y ppa:beineri/opt-qt561-xenial
-      add-apt-repository -y ppa:beineri/opt-qt57-xenial
-      add-apt-repository -y 'deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial main'
+      apt-add-repository -y ppa:beineri/opt-qt561-xenial
+      apt-add-repository -y ppa:beineri/opt-qt57-xenial
+      apt-add-repository -y 'deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial main'
       apt-get update -q
       apt-get dist-upgrade -qy
-      apt-get install -qy qt5{6,7}{3d,base,canvas3d,graphicaleffects,imageformats,multimedia,quickcontrols,qbs,quickcontrols2,} qt57{charts,datavis}-no-lgpl qt57scxml git cmake clang-3.8 llvm-3.8
+      apt-get install -qy qt5{6,7}{3d,base,canvas3d,graphicaleffects,imageformats,multimedia,quickcontrols,qbs,quickcontrols2,tools} qt57{charts,datavis}-no-lgpl qt57scxml git cmake clang-3.8 llvm-3.8
     SHELL
   end
 
