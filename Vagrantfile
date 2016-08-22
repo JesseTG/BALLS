@@ -69,6 +69,8 @@ Vagrant.configure(2) do |config|
   # TODO: consider Microsoft/EdgeOnWindows10 if this one is a problem
   config.vm.define "win10" do |win10|
     win10.vm.box = "JesseTG/win10-balls"
+    win10.vm.boot_timeout = 600
+    win10.vm.graceful_halt_timeout = 600
 
     win10.vm.provider "virtualbox" do |vb|
       vb.gui = false
