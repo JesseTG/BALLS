@@ -12,6 +12,8 @@ Vagrant.configure(2) do |config|
 
   config.vm.define "ubuntu" do |ubuntu|
     ubuntu.vm.box = "bento/ubuntu-16.04"
+    ubuntu.vm.hostname = "ubuntu"
+    ubuntu.vm.network "forwarded_port", guest: 22, host: 2201, auto_correct: true
     ubuntu.vm.provider "virtualbox" do |vb|
       vb.gui = false
       vb.memory = "2048"
@@ -38,6 +40,8 @@ Vagrant.configure(2) do |config|
   # TODO: Try ferranvila/osx-elcapitan
   config.vm.define "osx" do |osx|
     osx.vm.box = "jhcook/osx-elcapitan-10.11"
+    osx.vm.hostname = "osx"
+    osx.vm.network "forwarded_port", guest: 22, host: 2202, auto_correct: true
 
     osx.vm.provider "virtualbox" do |vb|
       vb.gui = false
@@ -54,6 +58,8 @@ Vagrant.configure(2) do |config|
 
   config.vm.define "win8" do |win8|
     win8.vm.box = "JesseTG/win8-balls"
+    win8.vm.hostname = "win8"
+    win8.vm.network "forwarded_port", guest: 22, host: 2203, auto_correct: true
     win8.vm.boot_timeout = 600
     win8.vm.graceful_halt_timeout = 600
 
@@ -72,6 +78,8 @@ Vagrant.configure(2) do |config|
   # TODO: consider Microsoft/EdgeOnWindows10 if this one is a problem
   config.vm.define "win10" do |win10|
     win10.vm.box = "JesseTG/win10-balls"
+    win10.vm.hostname = "win10"
+    win10.vm.network "forwarded_port", guest: 22, host: 2204, auto_correct: true
     win10.vm.boot_timeout = 600
     win10.vm.graceful_halt_timeout = 600
 
