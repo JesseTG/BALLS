@@ -17,7 +17,6 @@ Vagrant.configure(2) do |config|
     ubuntu.vm.provider "virtualbox" do |vb|
       vb.gui = false
       vb.memory = "2048"
-      vb.name = "ubuntu-balls"
       vb.linked_clone = true if Vagrant::VERSION =~ /^1.8/
     end
 
@@ -47,7 +46,6 @@ Vagrant.configure(2) do |config|
     osx.vm.provider "virtualbox" do |vb|
       vb.gui = false
       vb.memory = "2048"
-      vb.name = "osx-balls"
       vb.linked_clone = true if Vagrant::VERSION =~ /^1.8/
     end
 
@@ -67,7 +65,6 @@ Vagrant.configure(2) do |config|
     win8.vm.provider "virtualbox" do |vb|
       vb.gui = false
       vb.memory = "2048"
-      vb.name = "win8-balls"
       vb.linked_clone = true if Vagrant::VERSION =~ /^1.8/
     end
 
@@ -87,7 +84,6 @@ Vagrant.configure(2) do |config|
     win10.vm.provider "virtualbox" do |vb|
       vb.gui = false
       vb.memory = "2048"
-      vb.name = "win10-balls"
       vb.linked_clone = true if Vagrant::VERSION =~ /^1.8/
     end
 
