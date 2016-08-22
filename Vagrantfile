@@ -24,6 +24,7 @@ Vagrant.configure(2) do |config|
     ubuntu.vm.provision "shell", inline: <<-SHELL
       wget -O - http://apt.llvm.org/llvm-snapshot.gpg.key|sudo apt-key add -
       sudo add-apt-repository -y ppa:beineri/opt-qt561-xenial
+      sudo add-apt-repository -y ppa:beineri/opt-qt57-xenial
       sudo add-apt-repository -y 'deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial main'
       sudo apt-get update
       sudo apt-get dist-upgrade -y
