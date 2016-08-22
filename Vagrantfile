@@ -22,7 +22,8 @@ Vagrant.configure(2) do |config|
     end
 
     ubuntu.vm.provision "shell", inline: <<-SHELL
-      apt-get install -qy software-properties-common python-software-properties
+      apt-get update -q
+      apt-get install -qy software-properties-common
       wget -nv -O llvm.key http://apt.llvm.org/llvm-snapshot.gpg.key 2>&1
       apt-key add llvm.key 2>&1
       rm llvm.key
