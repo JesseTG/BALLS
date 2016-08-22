@@ -25,6 +25,7 @@ Vagrant.configure(2) do |config|
       apt-get install -y software-properties-common
       wget -O llvm.key http://apt.llvm.org/llvm-snapshot.gpg.key
       apt-key add llvm.key
+      apt-mark hold grub*
       add-apt-repository -y ppa:beineri/opt-qt561-xenial
       add-apt-repository -y ppa:beineri/opt-qt57-xenial
       add-apt-repository -y 'deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial main'
