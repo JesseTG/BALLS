@@ -27,9 +27,9 @@ Vagrant.configure(2) do |config|
       add-apt-repository -y ppa:beineri/opt-qt561-xenial
       add-apt-repository -y ppa:beineri/opt-qt57-xenial
       add-apt-repository -y 'deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial main'
-      apt-get update
-      apt-get dist-upgrade -y
-      apt-get install -y qt5{6,7}{3d,base,canvas3d,graphicaleffects,imageformats,multimedia,quickcontrols,qbs,quickcontrols2,} qt57{charts,datavis}-no-lgpl qt57scxml git cmake clang-3.8 llvm-3.8
+      apt-get update -q
+      apt-get dist-upgrade -qy
+      apt-get install -qy qt5{6,7}{3d,base,canvas3d,graphicaleffects,imageformats,multimedia,quickcontrols,qbs,quickcontrols2,} qt57{charts,datavis}-no-lgpl qt57scxml git cmake clang-3.8 llvm-3.8
     SHELL
   end
 
