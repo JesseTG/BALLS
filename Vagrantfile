@@ -21,7 +21,7 @@ Vagrant.configure(2) do |config|
       sudo add-apt-repository -y 'deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial main'
       sudo apt-get update
       sudo apt-get dist-upgrade -y
-      sudo apt-get install -y qt56* git cmake clang-3.8 llvm-3.8
+      sudo apt-get install -y qt5{6,7}{3d,base,canvas3d,graphicaleffects,imageformats,multimedia,quickcontrols,qbs,quickcontrols2,} qt57{charts,datavis}-no-lgpl qt57scxml git cmake clang-3.8 llvm-3.8
     SHELL
   end
 
