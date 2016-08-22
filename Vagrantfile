@@ -11,7 +11,13 @@ Vagrant.configure(2) do |config|
   # https://docs.vagrantup.com.
 
   config.vm.define "ubuntu" do |ubuntu|
-    ubuntu.vm.box = "ubuntu/xenial64"
+    ubuntu.vm.box = "bento/ubuntu-16.04"
+    ubuntu.vm.provider "virtualbox" do |vb|
+      vb.gui = false
+      vb.memory = "2048"
+      vb.name = "ubuntu-balls"
+      vb.linked_clone = true if Vagrant::VERSION =~ /^1.8/
+    end
 
     # TODO: Put together a list of packages instead of wild-carding qt56, so
     # everything installs faster
@@ -33,6 +39,7 @@ Vagrant.configure(2) do |config|
     osx.vm.provider "virtualbox" do |vb|
       vb.gui = false
       vb.memory = "2048"
+      vb.name = "osx-balls"
       vb.linked_clone = true if Vagrant::VERSION =~ /^1.8/
     end
 
@@ -43,12 +50,14 @@ Vagrant.configure(2) do |config|
   end
 
   config.vm.define "win8" do |win8|
-    win8.vm.box = "opentable/win-2012r2-standard-amd64-nocm"
+    win8.vm.box = "JesseTG/win8-balls"
     win8.vm.boot_timeout = 600
+    win8.vm.graceful_halt_timeout = 600
 
     win8.vm.provider "virtualbox" do |vb|
       vb.gui = false
       vb.memory = "2048"
+      vb.name = "win8-balls"
       vb.linked_clone = true if Vagrant::VERSION =~ /^1.8/
     end
 
@@ -59,17 +68,17 @@ Vagrant.configure(2) do |config|
 
   # TODO: consider Microsoft/EdgeOnWindows10 if this one is a problem
   config.vm.define "win10" do |win10|
-    win10.vm.box = "senglin/win-10-enterprise-vs2015community"
+    win10.vm.box = "JesseTG/win10-balls"
 
     win10.vm.provider "virtualbox" do |vb|
       vb.gui = false
       vb.memory = "2048"
+      vb.name = "win10-balls"
+      vb.linked_clone = true if Vagrant::VERSION =~ /^1.8/
     end
+
     win10.vm.provision "shell", inline: <<-SHELL
-      choco install -y cygwin cyg-get cmake git mingw upx visualstudio2015community vcredist2015 wget curl dotnet4.6.1 nano
       choco upgrade all -y
-      wget http://download.qt.io/official_releases/online_installers/qt-unified-windows-x86-online.exe
-      qt-unified-windows-x86-online.exe -v --script qt-installer-console.js
     SHELL
   end
 
