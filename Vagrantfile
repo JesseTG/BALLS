@@ -22,8 +22,9 @@ Vagrant.configure(2) do |config|
     # TODO: Put together a list of packages instead of wild-carding qt56, so
     # everything installs faster
     ubuntu.vm.provision "shell", inline: <<-SHELL
-      wget -O - http://apt.llvm.org/llvm-snapshot.gpg.key|sudo apt-key add -
-      apt-get install software-properties-common
+      apt-get install -y software-properties-common
+      wget -O llvm.key http://apt.llvm.org/llvm-snapshot.gpg.key
+      apt-key add llvm.key
       add-apt-repository -y ppa:beineri/opt-qt561-xenial
       add-apt-repository -y ppa:beineri/opt-qt57-xenial
       add-apt-repository -y 'deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial main'
