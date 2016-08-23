@@ -81,6 +81,11 @@ Vagrant.configure(2) do |config|
       vb.customize ["modifyvm", :id, "--cpus", "1"] # OSX guests can't have more than one CPU right now
     end
 
+    osx.vm.synced_folder ".", "/vagrant",
+        id: "core",
+        :nfs => true,
+        :mount_options => ['nolock,vers=3,udp,noatime']
+
     osx.vm.provision "shell", privileged: false, inline: <<-SHELL
       /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
       brew install git upx cmake gcc qt5 wget
