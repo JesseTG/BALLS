@@ -88,8 +88,8 @@ Vagrant.configure(2) do |config|
 
     osx.vm.provision "shell", privileged: false, inline: <<-SHELL
       /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-      brew install git upx cmake gcc qt5 wget
-
+      brew install boost git upx cmake gcc qt5 wget
+      brew linkapps qt5
       git clone https://github.com/g-truc/glm
       cd ./glm
       cmake .
