@@ -81,11 +81,13 @@ Vagrant.configure(2) do |config|
       vb.customize ["modifyvm", :id, "--accelerate3d", "off"] # See https://github.com/AndrewDryga/vagrant-box-osx#common-issues
     end
 
-    osx.vm.synced_folder ".", "/vagrant", type: "nfs"
+    osx.vm.synced_folder ".", "/vagrant", type: "rsync",
+      rsync__exclude: ".vagrant/",
+      rsync__args: ["--rsync-path='sudo rsync'"]
 
     osx.vm.provision "shell", privileged: false, inline: <<-SHELL
       /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-      brew install boost binutils git upx cmake gcc qt5 wget
+      brew install boost binutils git upx cmake gcc qt5 wget rsync
       brew linkapps qt5
       git clone https://github.com/g-truc/glm
       cd ./glm
