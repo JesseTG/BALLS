@@ -77,8 +77,8 @@ Vagrant.configure(2) do |config|
       vb.gui = false
       vb.memory = "2048"
       vb.linked_clone = true if Vagrant::VERSION =~ /^1.8/
+      vb.cpus = 1 # OSX guests can't have more than one CPU right now
       vb.customize ["modifyvm", :id, "--accelerate3d", "off"] # See https://github.com/AndrewDryga/vagrant-box-osx#common-issues
-      vb.customize ["modifyvm", :id, "--cpus", "1"] # OSX guests can't have more than one CPU right now
     end
 
     osx.vm.synced_folder ".", "/vagrant", type: "nfs"
