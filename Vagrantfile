@@ -88,6 +88,20 @@ Vagrant.configure(2) do |config|
 
     osx.vm.provision "shell", privileged: false, inline: <<-SHELL
       brew install git upx cmake gcc qt5 wget
+
+      git clone https://github.com/g-truc/glm
+      cd ./glm
+      cmake .
+      make install
+      git clean -xdf
+      cd ..
+
+      git clone https://github.com/ilmola/generator
+      cd ./generator
+      cmake -DGENERATOR_USE_GLM=True -DGENERATOR_SUFFIX_GLM=True -DCMAKE_BUILD_TYPE=Release
+      make install
+      git clean -xdf
+      cd ..
     SHELL
   end
 
