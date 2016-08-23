@@ -41,6 +41,7 @@ Vagrant.configure(2) do |config|
         git \
         libboost-all-dev \
         libc++{1,-dev,-helpers,abi-dev,abi1} \
+        libgl{,u}1-mesa-dev \
         libqt5scintilla2-{12v5,dev,l10n} \
         llvm-3.8 \
         mesa-common-dev \
