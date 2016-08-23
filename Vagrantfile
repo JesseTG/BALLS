@@ -87,7 +87,6 @@ Vagrant.configure(2) do |config|
         :mount_options => ['nolock,vers=3,udp,noatime']
 
     osx.vm.provision "shell", privileged: false, inline: <<-SHELL
-      /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
       brew install git upx cmake gcc qt5 wget
     SHELL
   end
