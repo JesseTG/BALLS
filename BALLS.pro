@@ -34,6 +34,16 @@ lessThan(QT_MAJOR_VERSION, 5):lessThan(QT_MINOR_VERSION, 5) {
   error("Qt 5.5 is required, but only $${QT_VERSION} is available")
 }
 
+macx {
+  INCLUDEPATH *= \
+    /usr/include \
+    /usr/local/include \
+
+  DEPENDPATH *= \
+    /usr/lib \
+    /usr/local/lib \
+}
+
 message(CONFIG: $$CONFIG)
 message(Qt version: $$QT_VERSION)
 message(Compiler: $$QMAKE_CC/$$QMAKE_CXX)

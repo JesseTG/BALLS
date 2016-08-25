@@ -3,6 +3,7 @@
 
 // Standard libraries
 #include <vector>
+#include <cmath>
 
 // Qt Core
 #include <QtCore/QAbstractItemModel>
