@@ -69,7 +69,7 @@ Vagrant.configure(2) do |config|
   # TODO: Try jhcook/osx-elcapitan-10.11
   # TODO: Try ferranvila/osx-elcapitan
   config.vm.define "osx" do |osx|
-    osx.vm.box = "jhcook/osx-elcapitan-10.11"
+    osx.vm.box = "AndrewDryga/vagrant-box-osx"
     osx.vm.hostname = "osx"
     osx.vm.network "forwarded_port", guest: 22, host: 2202, auto_correct: true
 
@@ -86,7 +86,6 @@ Vagrant.configure(2) do |config|
       rsync__args: ["--rsync-path='sudo rsync'"]
 
     osx.vm.provision "shell", privileged: false, inline: <<-SHELL
-      /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
       brew install boost binutils git upx cmake gcc qt5 wget rsync
       brew linkapps qt5
       git clone https://github.com/g-truc/glm
@@ -107,6 +106,7 @@ Vagrant.configure(2) do |config|
 
   config.vm.define "win8" do |win8|
     win8.vm.box = "JesseTG/win8-balls"
+    win8.vm.communicator = "winrm"
     win8.vm.hostname = "win8"
     win8.vm.network "forwarded_port", guest: 22, host: 2203, auto_correct: true
     win8.vm.boot_timeout = 600
@@ -120,12 +120,27 @@ Vagrant.configure(2) do |config|
 
     win8.vm.provision "shell", inline: <<-SHELL
       choco upgrade all -y
+
+      git clone https://github.com/g-truc/glm
+      cd ./glm
+      cmake .
+      make install
+      git clean -xdf
+      cd ..
+
+      git clone https://github.com/ilmola/generator
+      cd ./generator
+      cmake -DGENERATOR_USE_GLM=True -DGENERATOR_SUFFIX_GLM=True -DCMAKE_BUILD_TYPE=Release
+      make install
+      git clean -xdf
+      cd ..
     SHELL
   end
 
   # TODO: consider Microsoft/EdgeOnWindows10 if this one is a problem
   config.vm.define "win10" do |win10|
     win10.vm.box = "JesseTG/win10-balls"
+    win10.vm.communicator = "winrm"
     win10.vm.hostname = "win10"
     win10.vm.network "forwarded_port", guest: 22, host: 2204, auto_correct: true
     win10.vm.boot_timeout = 600
