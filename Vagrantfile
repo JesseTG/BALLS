@@ -107,7 +107,6 @@ Vagrant.configure(2) do |config|
   config.vm.define "win8" do |win8|
     win8.vm.box = "JesseTG/win8-balls"
     win8.vm.communicator = "winrm"
-    win8.vm.hostname = "win8"
     win8.vm.network "forwarded_port", guest: 22, host: 2203, auto_correct: true
     win8.vm.boot_timeout = 600
     win8.vm.graceful_halt_timeout = 600
@@ -141,7 +140,6 @@ Vagrant.configure(2) do |config|
   config.vm.define "win10" do |win10|
     win10.vm.box = "JesseTG/win10-balls"
     win10.vm.communicator = "winrm"
-    win10.vm.hostname = "win10"
     win10.vm.network "forwarded_port", guest: 22, host: 2204, auto_correct: true
     win10.vm.boot_timeout = 600
     win10.vm.graceful_halt_timeout = 600
