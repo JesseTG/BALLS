@@ -50,14 +50,14 @@ Vagrant.configure(2) do |config|
         upx-ucl \
         xvfb \
 
-      git clone -q https://github.com/g-truc/glm
+      git clone -q --depth=1 https://github.com/g-truc/glm
       cd ./glm
       cmake .
       make install
       git clean -xdf
       cd ..
 
-      git clone -q https://github.com/ilmola/generator
+      git clone -q --depth=1 https://github.com/ilmola/generator
       cd ./generator
       cmake -DGENERATOR_USE_GLM=True -DGENERATOR_SUFFIX_GLM=True -DCMAKE_BUILD_TYPE=Release
       make install
@@ -88,14 +88,14 @@ Vagrant.configure(2) do |config|
     osx.vm.provision "shell", privileged: false, inline: <<-SHELL
       brew install boost binutils git upx cmake gcc qt5 wget rsync qscintilla2
       brew linkapps qt5
-      git clone -q https://github.com/g-truc/glm
+      git clone -q --depth=1 https://github.com/g-truc/glm
       cd ./glm
       cmake .
       make install
       git clean -xdf
       cd ..
 
-      git clone -q https://github.com/ilmola/generator
+      git clone -q --depth=1 https://github.com/ilmola/generator
       cd ./generator
       cmake -DGENERATOR_USE_GLM=True -DGENERATOR_SUFFIX_GLM=True -DCMAKE_BUILD_TYPE=Release
       make install
@@ -120,14 +120,14 @@ Vagrant.configure(2) do |config|
     win8.vm.provision "shell", inline: <<-SHELL
       choco upgrade all -y
 
-      git clone -q https://github.com/g-truc/glm
+      git clone -q --depth=1 https://github.com/g-truc/glm
       cd ./glm
       cmake .
       make install
       git clean -xdf
       cd ..
 
-      git clone -q https://github.com/ilmola/generator
+      git clone -q --depth=1 https://github.com/ilmola/generator
       cd ./generator
       cmake -DGENERATOR_USE_GLM=True -DGENERATOR_SUFFIX_GLM=True -DCMAKE_BUILD_TYPE=Release
       make install
