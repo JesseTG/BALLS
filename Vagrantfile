@@ -86,7 +86,7 @@ Vagrant.configure(2) do |config|
       rsync__args: ["--rsync-path='sudo rsync'"]
 
     osx.vm.provision "shell", privileged: false, inline: <<-SHELL
-      brew install boost binutils git upx cmake gcc qt5 wget rsync
+      brew install boost binutils git upx cmake gcc qt5 wget rsync qscintilla2
       brew linkapps qt5
       git clone -q https://github.com/g-truc/glm
       cd ./glm
