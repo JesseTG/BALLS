@@ -1,6 +1,10 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+def gui_enabled?
+  !ENV.fetch('VAGRANT_GUI', '').empty?
+end
+
 Vagrant.configure(2) do |config|
   # The most common configuration options are documented and commented below.
   # For a complete reference, please see the online documentation at
@@ -70,7 +74,7 @@ Vagrant.configure(2) do |config|
     osx.vm.network "forwarded_port", guest: 22, host: 2202, auto_correct: true
 
     osx.vm.provider "virtualbox" do |vb|
-      vb.gui = false
+      vb.gui = gui_enabled?
       vb.memory = "2048"
       vb.linked_clone = true if Vagrant::VERSION =~ /^1.8/
       vb.cpus = 1 # OSX guests can't have more than one CPU right now
@@ -109,7 +113,7 @@ Vagrant.configure(2) do |config|
     win8.vm.graceful_halt_timeout = 600
 
     win8.vm.provider "virtualbox" do |vb|
-      vb.gui = false
+      vb.gui = gui_enabled?
       vb.memory = "2048"
       vb.linked_clone = true if Vagrant::VERSION =~ /^1.8/
     end
@@ -143,7 +147,7 @@ Vagrant.configure(2) do |config|
     win10.vm.graceful_halt_timeout = 600
 
     win10.vm.provider "virtualbox" do |vb|
-      vb.gui = false
+      vb.gui = gui_enabled?
       vb.memory = "2048"
       vb.linked_clone = true if Vagrant::VERSION =~ /^1.8/
     end
