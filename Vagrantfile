@@ -118,21 +118,15 @@ Vagrant.configure(2) do |config|
     end
 
     win8.vm.provision "shell", inline: <<-SHELL
+      cd C:\Users\vagrant
       choco upgrade all -y
 
       git clone -q --depth=1 https://github.com/g-truc/glm
-      cd ./glm
-      cmake .
-      make install
-      git clean -xdf
-      cd ..
-
       git clone -q --depth=1 https://github.com/ilmola/generator
-      cd ./generator
-      cmake -DGENERATOR_USE_GLM=True -DGENERATOR_SUFFIX_GLM=True -DCMAKE_BUILD_TYPE=Release
-      make install
-      git clean -xdf
-      cd ..
+
+      C:\ProgramData\chocolatey\bin\wget https://sourceforge.net/projects/pyqt/files/QScintilla2/QScintilla-2.9.3/QScintilla_gpl-2.9.3.zip
+      unzip QScintilla_gpl-2.9.3.zip
+      rm QScintilla_gpl-2.9.3.zip
     SHELL
   end
 
