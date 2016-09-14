@@ -10,6 +10,9 @@ set(CMAKE_CXX_STANDARD 11)
 set(BALLS_MIN_QT_REQUIRED 5.5)
 
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
+
+include(PrecompiledHeader)
+
 #TODO: Add ppa:nschloe/boost-nightly and ppa:nschloe/cmake-nightly to Vagrantfile
 
 add_subdirectory(BALLS)
