@@ -2,7 +2,8 @@ cmake_minimum_required(VERSION 3.6 FATAL_ERROR)
 
 project(BALLS)
 
-SET(BALLS_SOURCE
+SET(BALLS_SOURCES
+  precompiled.cpp
   config/ProjectConfig.cpp
   Constants.cpp
   exception/FileException.cpp
@@ -46,7 +47,6 @@ SET(BALLS_SOURCE
   model/OpenGLState.cpp
   model/Texture.cpp
   model/Uniforms.cpp
-  precompiled.cpp
   shader/ShaderInputs.cpp
   shader/ShaderUniform.cpp
   ui/BallsCanvas.cpp
@@ -153,5 +153,7 @@ find_package(Qt5Gui ${BALLS_MIN_QT_REQUIRED} REQUIRED)
 find_package(QScintilla REQUIRED)
 
 add_executable(${PROJECT_NAME} WIN32 MACOSX_BUNDLE ${BALLS_HEADERS} ${BALLS_SOURCE}) # TODO
-
 target_link_libraries(${PROJECT_NAME} Qt5::Core Qt5::Gui Qt5::Widgets)
+set_target_properties(${PROJECT_NAME} PROPERTIES COTIRE_CXX_PREFIX_HEADER_INIT "precompiled.hpp")
+
+add_precompiled_header(${PROJECT_NAME} precompiled.hpp SOURCE_CXX precompiled.cpp)
