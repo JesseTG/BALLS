@@ -150,6 +150,7 @@ include_directories(
 find_package(Qt5Core ${BALLS_MIN_QT_REQUIRED} REQUIRED)
 find_package(Qt5Widgets ${BALLS_MIN_QT_REQUIRED} REQUIRED)
 find_package(Qt5Gui ${BALLS_MIN_QT_REQUIRED} REQUIRED)
+find_package(QScintilla REQUIRED)
 
 add_executable(${PROJECT_NAME} WIN32 MACOSX_BUNDLE ${BALLS_HEADERS} ${BALLS_SOURCE}) # TODO
 
