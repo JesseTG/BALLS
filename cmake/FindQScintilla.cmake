@@ -11,6 +11,7 @@
 #
 # Redistribution and use is allowed according to the terms of the FreeBSD license.
 
+include(FindPackageHandleStandardArgs)
 include(LibFindMacros)
 
 find_package(Qt5Core)
@@ -70,7 +71,12 @@ find_library(QSCINTILLA_LIBRARY
 
 set(QSCINTILLA_PROCESS_LIBRARIES QSCINTILLA_LIBRARY QSCINTILLA_LIBRARIES)
 set(QSCINTILLA_PROCESS_INCLUDE_DIRS QSCINTILLA_INCLUDE_DIR QSCINTILLA_INCLUDE_DIRS)
-libfind_process(QScintilla)
+
+find_package_handle_standard_args(QScintilla
+  FOUND_VAR QSCINTILLA_FOUND
+  REQUIRED_VARS QSCINTILLA_LIBRARY QSCINTILLA_INCLUDE_DIR
+  VERSION_VAR QSCINTILLA_VERSION
+)
 
 unset(BREW_EXECUTABLE CACHE)
 # The usage of brew on OSX should be considered an implementation detail
