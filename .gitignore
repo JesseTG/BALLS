@@ -46,6 +46,9 @@ Makefile
 cmake_install.cmake
 install_manifest.txt
 CTestTestfile.cmake
+compile_flags.rsp
+*_automoc.cpp
+*_pch/
 
 # BALLS-Specific
 build/*
