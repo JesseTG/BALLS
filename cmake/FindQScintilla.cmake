@@ -28,6 +28,8 @@ if (APPLE)
     execute_process(
       COMMAND "${BREW_EXECUTABLE}" "ls" "qscintilla2"
       RESULT_VARIABLE QSCINTILLA_INSTALLED_BREW
+      OUTPUT_QUIET
+      ERROR_QUIET
     )
 
     if (QSCINTILLA_INSTALLED_BREW EQUAL 0)
@@ -35,14 +37,16 @@ if (APPLE)
       execute_process(
         COMMAND "${BREW_EXECUTABLE}" "--prefix" "qscintilla2"
         RESULT_VARIABLE BREW_PREFIX_RESULT
-        OUTPUT_VARIABLE BREW_OUTPUT
+        OUTPUT_VARIABLE BREW_PREFIX_OUTPUT
+        OUTPUT_QUIET
+        ERROR_QUIET
       )
 
       if (BREW_PREFIX_RESULT EQUAL 0)
         # brew --prefix will list where qscintilla2 would be installed, whether
         # or not it actually is.  I'd rather play it safe and not assume the
         # command succeeded, though.
-        set(QSCINTILLA_BREW_ROOT "${BREW_OUTPUT}")
+        set(QSCINTILLA_BREW_ROOT "${BREW_PREFIX_OUTPUT}")
       endif()
 
     else()
