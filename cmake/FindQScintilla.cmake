@@ -47,6 +47,8 @@ if (APPLE)
         # or not it actually is.  I'd rather play it safe and not assume the
         # command succeeded, though.
         set(QSCINTILLA_BREW_ROOT "${BREW_PREFIX_OUTPUT}")
+        set(QSCINTILLA_BREW_INCLUDE_DIR "${QSCINTILLA_BREW_ROOT}/include")
+        set(QSCINTILLA_BREW_LIBRARY "${QSCINTILLA_BREW_ROOT}/lib")
         message(STATUS "qscintilla2's brew root is ${QSCINTILLA_BREW_ROOT}")
       endif()
 
@@ -60,13 +62,13 @@ endif()
 
 find_path(QSCINTILLA_INCLUDE_DIR
   NAMES Qsci qsciglobal.h
-  PATHS "${Qt5Core_INCLUDE_DIRS}" "${PC_QSCINTILLA_INCLUDE_DIRS}" "${QSCINTILLA_BREW_ROOT}/include" /usr/include/x86_64-linux-gnu/qt5
+  PATHS "${Qt5Core_INCLUDE_DIRS}" "${PC_QSCINTILLA_INCLUDE_DIRS}" "${QSCINTILLA_BREW_INCLUDE_DIR}" /usr/include/x86_64-linux-gnu/qt5
   PATH_SUFFIXES Qsci
 )
 
 find_library(QSCINTILLA_LIBRARY
   NAMES qt5scintilla2 libqt5scintilla2 "${PC_QSCINTILLA_LIBRARIES}"
-  PATHS "${Qt5Core_LIBRARIES}" "${PC_QSCINTILLA_LIBRARY_DIRS}" "${QSCINTILLA_BREW_ROOT}/lib"
+  PATHS "${Qt5Core_LIBRARIES}" "${PC_QSCINTILLA_LIBRARY_DIRS}" "${QSCINTILLA_BREW_LIBRARY}"
 )
 
 set(QSCINTILLA_PROCESS_LIBRARIES QSCINTILLA_LIBRARY QSCINTILLA_LIBRARIES)
