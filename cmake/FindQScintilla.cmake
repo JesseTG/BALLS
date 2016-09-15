@@ -39,7 +39,6 @@ if (APPLE)
         COMMAND "${BREW_EXECUTABLE}" "--prefix" "qscintilla2"
         RESULT_VARIABLE BREW_PREFIX_RESULT
         OUTPUT_VARIABLE BREW_PREFIX_OUTPUT
-        OUTPUT_QUIET
         ERROR_QUIET
       )
 
