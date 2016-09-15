@@ -48,6 +48,7 @@ if (APPLE)
         # or not it actually is.  I'd rather play it safe and not assume the
         # command succeeded, though.
         set(QSCINTILLA_BREW_ROOT "${BREW_PREFIX_OUTPUT}")
+        message(STATUS "qscintilla2's brew root is ${QSCINTILLA_BREW_ROOT}")
       endif()
 
     else()
