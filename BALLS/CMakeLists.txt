@@ -60,7 +60,6 @@ set(BALLS_SOURCES
   ui/property/Vector4Property.cpp
   ui/property/VectorProperty.cpp
   ui/QsciLexerGLSL.cpp
-  ui/UniformWidget.cpp
   util/AABB.cpp
   util/ArcBall.cpp
   util/ArcLookAt.cpp
@@ -129,7 +128,6 @@ set(BALLS_HEADERS
   ui/property/Vector4Property.hpp
   ui/property/VectorProperty.hpp
   ui/QsciLexerGLSL.h
-  ui/UniformWidget.hpp
   util/AABB.hpp
   util/ArcBall.hpp
   util/ArcLookAt.hpp
