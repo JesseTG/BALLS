@@ -21,6 +21,8 @@ include(PrecompiledHeader)
 add_subdirectory(BALLS)
 add_subdirectory(QPropertyEditor)
 add_subdirectory(BALLS-Tests)
+add_subdirectory(BALLS-Main)
 
 add_dependencies(BALLS QPropertyEditor)
 add_dependencies(BALLS-Tests BALLS)
+add_dependencies(BALLS-Main BALLS)
