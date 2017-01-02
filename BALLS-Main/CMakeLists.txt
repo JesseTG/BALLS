@@ -2,6 +2,8 @@ project(BALLS-Main)
 
 include_directories(
   ${CMAKE_CURRENT_LIST_DIR}/../BALLS
+  ${CMAKE_CURRENT_LIST_DIR}/../QPropertyEditor
+  ${CMAKE_CURRENT_BINARY_DIR}/../BALLS
   .
 )
 
