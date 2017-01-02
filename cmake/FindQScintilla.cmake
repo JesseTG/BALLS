@@ -58,6 +58,9 @@ if (APPLE)
 
       set(QSCINTILLA_BREW_INCLUDE_DIR "${QSCINTILLA_BREW_ROOT}/include")
       set(QSCINTILLA_BREW_LIBRARY "${QSCINTILLA_BREW_ROOT}/lib")
+
+      message(STATUS "QSCINTILLA_BREW_INCLUDE_DIR: ${QSCINTILLA_BREW_INCLUDE_DIR}")
+      message(STATUS "QSCINTILLA_BREW_LIBRARY: ${QSCINTILLA_BREW_LIBRARY}")
     else()
       message(WARNING "Couldn't find the qscintilla2 formula.")
     endif()
