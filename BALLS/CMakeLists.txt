@@ -152,6 +152,7 @@ include_directories(
 add_definitions(
   -DGLM_META_PROG_HELPERS
   -DGENERATOR_USE_GLM
+  -DGLM_ENABLE_EXPERIMENTAL
 )
 
 find_package(Qt5Core ${BALLS_MIN_QT_REQUIRED} REQUIRED)
