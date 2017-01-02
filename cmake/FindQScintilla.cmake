@@ -46,6 +46,9 @@ if (APPLE)
         # brew --prefix will list where qscintilla2 would be installed, whether
         # or not it actually is.  I'd rather play it safe and not assume the
         # command succeeded, though.
+        string(STRIP "${BREW_PREFIX_OUTPUT}" BREW_PREFIX_OUTPUT)
+        # brew --prefix outputs a newline, so we must strip it
+
         set(QSCINTILLA_BREW_ROOT "${BREW_PREFIX_OUTPUT}")
         set(QSCINTILLA_BREW_INCLUDE_DIR "${QSCINTILLA_BREW_ROOT}/include")
         set(QSCINTILLA_BREW_LIBRARY "${QSCINTILLA_BREW_ROOT}/lib")
