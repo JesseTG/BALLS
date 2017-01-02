@@ -55,6 +55,11 @@ build/*
 temp/*
 */tango-icon-theme-*/*
 BALLS/BALLS
+BALLS-Main/BALLS-Main
+BALLS-Tests/PropertyObjectTests/PropertyObjectTests
+BALLS-Tests/TestConversions/TestConversions
+BALLS-Tests/TestJSONConversions/TestJSONConversions
+BALLS-Tests/TestUniforms/TestUniforms
 
 .vagrant/
 *.log
