@@ -1,5 +1,11 @@
 project(BALLS)
 
+set(CMAKE_AUTOMOC_MOC_OPTIONS
+  -b precompiled.hpp
+)
+# The moc-generated files need the precompiled header (because of all the typedefs
+# and metatype declarations)
+
 set(BALLS_SOURCES
   precompiled.cpp
   config/ProjectConfig.cpp
