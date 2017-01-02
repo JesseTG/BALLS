@@ -73,11 +73,13 @@ find_path(QSCINTILLA_INCLUDE_DIR
   NAMES Qsci qsciglobal.h
   PATHS "${Qt5Core_INCLUDE_DIRS}" "${PC_QSCINTILLA_INCLUDE_DIRS}" "${QSCINTILLA_BREW_INCLUDE_DIR}" /usr/include/x86_64-linux-gnu/qt5
   PATH_SUFFIXES Qsci
+  DOC "Directory that contains 'Qsci', which in turn contains QScintilla's headers."
 )
 
 find_library(QSCINTILLA_LIBRARY
   NAMES qt5scintilla2 libqt5scintilla2 "${PC_QSCINTILLA_LIBRARIES}"
   PATHS "${Qt5Core_LIBRARIES}" "${PC_QSCINTILLA_LIBRARY_DIRS}" "${QSCINTILLA_BREW_LIBRARY}"
+  DOC "Path to the QScintilla library."
 )
 
 set(QSCINTILLA_LIBRARIES "${QSCINTILLA_LIBRARY}")
