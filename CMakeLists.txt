@@ -12,7 +12,7 @@ set(CMAKE_CXX_STANDARD 14)
 
 set(BALLS_MIN_QT_REQUIRED 5.5)
 
-set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
+set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
 
 include(PrecompiledHeader)
 
