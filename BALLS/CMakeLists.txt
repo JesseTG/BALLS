@@ -1,6 +1,6 @@
 project(BALLS)
 
-SET(BALLS_SOURCES
+set(BALLS_SOURCES
   precompiled.cpp
   config/ProjectConfig.cpp
   Constants.cpp
@@ -70,7 +70,7 @@ SET(BALLS_SOURCES
   util/Util.cpp
 )
 
-SET(BALLS_HEADERS
+set(BALLS_HEADERS
   config/ProjectConfig.hpp
   Constants.hpp
   exception/FileException.hpp
