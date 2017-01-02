@@ -77,7 +77,7 @@ find_path(QSCINTILLA_INCLUDE_DIR
 )
 
 find_library(QSCINTILLA_LIBRARY
-  NAMES qt5scintilla2 libqt5scintilla2 "${PC_QSCINTILLA_LIBRARIES}"
+  NAMES qt5scintilla2 qscintilla2 q5scintilla2 qscintilla qt5scintilla qtscintilla "${PC_QSCINTILLA_LIBRARIES}"
   PATHS "${Qt5Core_LIBRARIES}" "${PC_QSCINTILLA_LIBRARY_DIRS}" "${QSCINTILLA_BREW_LIBRARY}"
   DOC "Path to the QScintilla library."
 )
