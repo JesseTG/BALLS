@@ -50,11 +50,14 @@ if (APPLE)
         # brew --prefix outputs a newline, so we must strip it
 
         set(QSCINTILLA_BREW_ROOT "${BREW_PREFIX_OUTPUT}")
-        set(QSCINTILLA_BREW_INCLUDE_DIR "${QSCINTILLA_BREW_ROOT}/include")
-        set(QSCINTILLA_BREW_LIBRARY "${QSCINTILLA_BREW_ROOT}/lib")
         message(STATUS "qscintilla2's brew root is ${QSCINTILLA_BREW_ROOT}")
+      else()
+        set(QSCINTILLA_BREW_ROOT "/usr/local/opt/qscintilla2")
+        message(WARNING "brew --prefix failed, I'm guessing it's ${QSCINTILLA_BREW_ROOT}")
       endif()
 
+      set(QSCINTILLA_BREW_INCLUDE_DIR "${QSCINTILLA_BREW_ROOT}/include")
+      set(QSCINTILLA_BREW_LIBRARY "${QSCINTILLA_BREW_ROOT}/lib")
     else()
       message(WARNING "Couldn't find the qscintilla2 formula.")
     endif()
