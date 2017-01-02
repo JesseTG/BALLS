@@ -167,7 +167,7 @@ find_package(QScintilla REQUIRED)
 
 add_executable(${PROJECT_NAME} WIN32 MACOSX_BUNDLE ${BALLS_SOURCES} ${BALLS_HEADERS} ${BALLS_RESOURCES})
 
-target_link_libraries(${PROJECT_NAME} Qt5::Core Qt5::Gui Qt5::Widgets)
+target_link_libraries(${PROJECT_NAME} Qt5::Core Qt5::Gui Qt5::Widgets QPropertyEditor generator-glm "${QSCINTILLA_LIBRARY}")
 set_target_properties(${PROJECT_NAME} PROPERTIES COTIRE_CXX_PREFIX_HEADER_INIT "precompiled.hpp")
 
 add_precompiled_header(${PROJECT_NAME} precompiled.hpp SOURCE_CXX precompiled.cpp)
