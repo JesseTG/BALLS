@@ -161,7 +161,7 @@ find_package(Qt5Gui ${BALLS_MIN_QT_REQUIRED} REQUIRED)
 find_package(Boost)
 find_package(QScintilla REQUIRED)
 
-add_executable(${PROJECT_NAME} WIN32 MACOSX_BUNDLE ${BALLS_SOURCE} ${BALLS_HEADERS} ${BALLS_RESOURCES})
+add_executable(${PROJECT_NAME} WIN32 MACOSX_BUNDLE ${BALLS_SOURCES} ${BALLS_HEADERS} ${BALLS_RESOURCES})
 
 target_link_libraries(${PROJECT_NAME} Qt5::Core Qt5::Gui Qt5::Widgets)
 set_target_properties(${PROJECT_NAME} PROPERTIES COTIRE_CXX_PREFIX_HEADER_INIT "precompiled.hpp")
