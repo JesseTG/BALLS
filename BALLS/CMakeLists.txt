@@ -144,6 +144,12 @@ set(BALLS_HEADERS
 
 set(BALLS_RESOURCES
   resources.qrc
+  example/default.balls
+  example/phong.balls
+  glsl/default.frag
+  glsl/default.vert
+  glsl/phong.frag
+  glsl/phong.vert
 )
 
 include_directories(
