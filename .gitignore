@@ -54,6 +54,7 @@ compile_flags.rsp
 build/*
 temp/*
 */tango-icon-theme-*/*
+BALLS/BALLS
 
 .vagrant/
 *.log
