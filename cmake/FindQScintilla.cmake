@@ -83,4 +83,4 @@ find_package_handle_standard_args(QScintilla
 unset(BREW_EXECUTABLE CACHE)
 # The usage of brew on OSX should be considered an implementation detail
 
-mark_as_advanced(QSCINTILLA_INCLUDE_DIR QSCINTILLA_LIBRARY)
+mark_as_advanced(QSCINTILLA_INCLUDE_DIRS QSCINTILLA_LIBRARIES)
