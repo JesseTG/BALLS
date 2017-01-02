@@ -4,6 +4,7 @@
 #include "ui_BallsWindow.h"
 
 #include <QtGlobal>
+#include <random>
 
 #include "config/ProjectConfig.hpp"
 #include "model/Meshes.hpp"

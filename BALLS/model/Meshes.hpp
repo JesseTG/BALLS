@@ -5,6 +5,7 @@
 #include <vector>
 
 #include <QObject>
+#include <QMetaEnum>
 
 #include <generator/AnyMesh.hpp>
 
