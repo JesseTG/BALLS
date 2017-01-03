@@ -68,7 +68,7 @@ BallsCanvas::BallsCanvas(QWidget *parent)
     m_indexCount(0) {
   QSurfaceFormat format(FLAGS);
   format.setSamples(SAMPLES);
-  format.setDepthBufferSize(DEPTH_BUFFER_BITS);
+  format.setDepthBufferSize(24);
   format.setVersion(3, 3);
   format.setProfile(OpenGLContextProfile::CoreProfile);
   this->setFormat(format);
