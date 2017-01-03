@@ -372,9 +372,14 @@ void BallsCanvas::paintGL() {
   Q_ASSERT(this->_vbo.isCreated());
   Q_ASSERT(this->_ibo.isCreated());
 
-  this->context()->makeCurrent(this->context()->surface());
+  if (!context()->makeCurrent(context()->surface())) {
+    qDebug() << "Failed to make context" << context() << "current";
+  }
 
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+  if (GLenum error = glGetError()) {
+    qDebug() << "Error" << error << "when clearing the frame";
+  }
 
   _updateUniformValues();
   glDrawElements(GL_TRIANGLES, m_indexCount, GL_UNSIGNED_SHORT, nullptr);
