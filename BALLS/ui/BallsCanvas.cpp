@@ -443,6 +443,9 @@ void BallsCanvas::setUniform(
   // case passthrough; double -> float passthroughs are intentional!
   if (index != -1) {
     this->makeCurrent();
+    if (GLenum error = glGetError()) {
+      qDebug() << "Error" << error << "when trying to make context current";
+    }
 
     switch (info.type) {
     case GL_INT: {
@@ -743,6 +746,10 @@ void BallsCanvas::setUniform(
     default:
       qCWarning(logs::uniform::Type) << "Unsupported GLSL type"
                                      << util::resolveGLType(info.type);
+    }
+
+    if (GLenum error = glGetError()) {
+      qDebug() << "Error" << error << "when trying to set uniform" << info.name;
     }
   } else {
     qCWarning(logs::uniform::Name) << "Attempted to set non-existing uniform"
