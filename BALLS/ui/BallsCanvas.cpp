@@ -405,6 +405,12 @@ void BallsCanvas::paintGL() {
     qDebug() << "Failed to make context" << context() << "current";
   }
 
+  _vao.bind();
+  if (GLenum error = glGetError()) {
+    qDebug() << "Error" << error << "binding VAO";
+  }
+
+
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
   if (GLenum error = glGetError()) {
     qDebug() << "Error" << error << "when clearing the frame";
