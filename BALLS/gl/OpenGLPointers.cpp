@@ -119,7 +119,9 @@ QOpenGLFunctions_4_5_Core* OpenGLPointers::gl45Current() noexcept {
 
 void OpenGLPointers::ensureContext() noexcept {
   if (context != nullptr) {
-    context->makeCurrent(context->surface());
+    if (!context->makeCurrent(context->surface())) {
+      qDebug() << "Cannot make context current";
+    }
   }
 }
 }
