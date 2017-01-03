@@ -78,6 +78,8 @@ BallsCanvas::BallsCanvas(QWidget *parent)
 
   this->setFormat(format);
 
+  qDebug() << "Format:" << this->format();
+
   qDebug() << "Constructed a BallsCanvas";
 }
 
