@@ -22,7 +22,9 @@ QOpenGLF* _getGl(QOpenGLContext* context) noexcept {
 
   if (gl) {
     // If we have this version of OpenGL available...
-    gl->initializeOpenGLFunctions();
+    if (!gl->initializeOpenGLFunctions()) {
+      qDebug() << "Cannot initialize" << typeid(QOpenGLF).name() << gl;
+    }
   }
 
   return gl;
