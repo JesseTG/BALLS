@@ -76,12 +76,12 @@ BallsCanvas::BallsCanvas(QWidget *parent)
   format.setRedBufferSize(8);
   format.setBlueBufferSize(8);
   format.setGreenBufferSize(8);
-  format.setDepthBufferSize(32);
-  format.setSamples(16);
+  format.setDepthBufferSize(16);
+  format.setSamples(0);
   format.setStencilBufferSize(8);
   format.setProfile(PROFILE);
   format.setStereo(false);
-  format.setSwapBehavior(SWAP_TYPE);
+  format.setSwapBehavior(SwapBehavior::DoubleBuffer);
   format.setRenderableType(RENDER_TYPE);
 #endif
 
