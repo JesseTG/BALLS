@@ -40,16 +40,6 @@ OpenGLPointers::OpenGLPointers(QOpenGLContext* ctx)
     gl43(_getGl<QOpenGLFunctions_4_3_Core>(context)),
     gl44(_getGl<QOpenGLFunctions_4_4_Core>(context)),
     gl45(_getGl<QOpenGLFunctions_4_5_Core>(context)) {
-
-  if (gl31) gl31->initializeOpenGLFunctions();
-  if (gl32) gl32->initializeOpenGLFunctions();
-  if (gl33) gl33->initializeOpenGLFunctions();
-  if (gl40) gl40->initializeOpenGLFunctions();
-  if (gl41) gl41->initializeOpenGLFunctions();
-  if (gl42) gl42->initializeOpenGLFunctions();
-  if (gl43) gl43->initializeOpenGLFunctions();
-  if (gl44) gl44->initializeOpenGLFunctions();
-  if (gl45) gl45->initializeOpenGLFunctions();
 }
 
 OpenGLPointers::OpenGLPointers()
