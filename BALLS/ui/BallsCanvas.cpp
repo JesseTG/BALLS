@@ -69,6 +69,7 @@ BallsCanvas::BallsCanvas(QWidget *parent)
   QSurfaceFormat format(FLAGS);
   format.setSamples(SAMPLES);
   format.setDepthBufferSize(DEPTH_BUFFER_BITS);
+  format.setVersion(3, 3);
   this->setFormat(format);
 
   qDebug() << "Constructed a BallsCanvas";
