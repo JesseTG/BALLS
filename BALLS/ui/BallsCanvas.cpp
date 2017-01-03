@@ -385,11 +385,25 @@ void BallsCanvas::setMesh(const Mesh &mesh) noexcept {
   const vector<Mesh::CoordType> &vertices = mesh.getVertices();
 
   m_indexCount = indices.size();
-  this->_vbo.bind();
+  if (!_vbo.bind()) {
+    qDebug() << "Could not bind VBO" << _vbo.bufferId();
+  }
+
   this->_vbo.allocate(
     vertices.data(), vertices.size() * sizeof(Mesh::CoordType));
-  this->_ibo.bind();
+  if (int error = glGetError() != GL_NO_ERROR) {
+    qDebug() << "Cannot allocate" << vertices.size() * sizeof(Mesh::CoordType)
+             << "bytes for VBO, error" << error;
+  }
+
+  if (!_ibo.bind()) {
+    qDebug() << "Could not bind IBO" << _ibo.bufferId();
+  }
   this->_ibo.allocate(indices.data(), indices.size() * sizeof(Mesh::IndexType));
+  if (int error = glGetError() != GL_NO_ERROR) {
+    qDebug() << "Cannot allocate" << indices.size() * sizeof(Mesh::IndexType)
+             << "bytes for IBO, error" << error;
+  }
 }
 
 void BallsCanvas::mouseMoveEvent(QMouseEvent *e) {}
