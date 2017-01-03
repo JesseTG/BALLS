@@ -221,7 +221,7 @@ void BallsCanvas::_initGLMemory() {
   }
 
   _vbo.setUsagePattern(USAGE_PATTERN);
-  if (GLenum error = glGetError() != GL_NO_ERROR) {
+  if (GLenum error = glGetError()) {
     qDebug() << "Error" << error << "setting VBO usage pattern";
   }
   qCDebug(logs::gl::Feature) << "VBO" << _vbo.bufferId() << "created and bound";
@@ -232,7 +232,7 @@ void BallsCanvas::_initGLMemory() {
   }
 
   _ibo.setUsagePattern(USAGE_PATTERN);
-  if (GLenum error = glGetError() != GL_NO_ERROR) {
+  if (GLenum error = glGetError()) {
     qDebug() << "Error" << error << "setting IBO usage pattern";
   }
   qCDebug(logs::gl::Feature) << "IBO" << _ibo.bufferId() << "created and bound";
@@ -391,7 +391,7 @@ void BallsCanvas::setMesh(const Mesh &mesh) noexcept {
 
   this->_vbo.allocate(
     vertices.data(), vertices.size() * sizeof(Mesh::CoordType));
-  if (GLenum error = glGetError() != GL_NO_ERROR) {
+  if (GLenum error = glGetError()) {
     qDebug() << "Cannot allocate" << vertices.size() * sizeof(Mesh::CoordType)
              << "bytes for VBO, error" << error;
   }
@@ -400,7 +400,7 @@ void BallsCanvas::setMesh(const Mesh &mesh) noexcept {
     qDebug() << "Could not bind IBO" << _ibo.bufferId();
   }
   this->_ibo.allocate(indices.data(), indices.size() * sizeof(Mesh::IndexType));
-  if (GLenum error = glGetError() != GL_NO_ERROR) {
+  if (GLenum error = glGetError()) {
     qDebug() << "Cannot allocate" << indices.size() * sizeof(Mesh::IndexType)
              << "bytes for IBO, error" << error;
   }
