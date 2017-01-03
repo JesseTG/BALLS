@@ -23,6 +23,11 @@ int main(int argc, char* argv[]) {
   balls.setOrganizationName(constants::meta::AUTHOR);
   balls.setOrganizationDomain(constants::meta::AUTHOR_DOMAIN);
   balls.setApplicationVersion("0.0");
+
+#ifdef DEBUG
+  qDebug() << "Running a debug build of" << constants::meta::APP;
+#endif
+
   qCDebug(app::Version) << balls.applicationVersion();
   qCDebug(system::session::Key) << balls.sessionKey();
   qCDebug(system::session::ID) << balls.sessionId();

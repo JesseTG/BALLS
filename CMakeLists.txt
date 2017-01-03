@@ -16,6 +16,14 @@ set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
 
 include(PrecompiledHeader)
 
+if(CMAKE_BUILD_TYPE STREQUAL Debug)
+  add_definitions(
+    -DDEBUG
+  )
+
+  message("Building in Debug mode")
+endif()
+
 #TODO: Add ppa:nschloe/boost-nightly and ppa:nschloe/cmake-nightly to Vagrantfile
 
 add_subdirectory(BALLS)
