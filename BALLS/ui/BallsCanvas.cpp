@@ -458,8 +458,15 @@ void BallsCanvas::timerEvent(QTimerEvent *e) {
 
 void BallsCanvas::setUniform(
   const UniformInfo &info, const QVariant &var) noexcept {
-  if (!_shader.isLinked()) return;
-  if (_shader.programId() == 0) return;
+  if (!_shader.isLinked()) {
+    qDebug() << "Shader is not linked";
+    return;
+  }
+
+  if (_shader.programId() == 0) {
+    qDebug() << "No shader loaded";
+    return;
+  }
   // If the shader wasn't compiled properly, the object's ID will be 0 (no
   // shader)
 
