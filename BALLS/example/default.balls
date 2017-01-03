@@ -7,8 +7,8 @@
         "version": 0
     },
     "shaders": {
-        "frag": "#version 130\n\nuniform mat4 matrix;\n\nin vec3 fragPosition;\nin vec3 fragNormal;\n\nout vec4 fragment;\n\nvoid main(void)\n{\n    fragment = vec4(fragNormal * 0.5 + 0.5, 1.0);\n}\n",
-        "vert": "#version 130\n\nuniform mat4 matrix;\n\nin vec3 position;\nin vec3 normal;\n\nout vec3 fragPosition;\nout vec3 fragNormal;\n\nvoid main(void)\n{\n    gl_Position = matrix * vec4(position, 1);\n    fragPosition = gl_Position.xyz;\n    fragNormal = normal;\n}\n"
+        "frag": "#version 140\n\nuniform mat4 matrix;\n\nin vec3 fragPosition;\nin vec3 fragNormal;\n\nout vec4 fragment;\n\nvoid main(void)\n{\n    fragment = vec4(fragNormal * 0.5 + 0.5, 1.0);\n}\n",
+        "vert": "#version 140\n\nuniform mat4 matrix;\n\nin vec3 position;\nin vec3 normal;\n\nout vec3 fragPosition;\nout vec3 fragNormal;\n\nvoid main(void)\n{\n    gl_Position = matrix * vec4(position, 1);\n    fragPosition = gl_Position.xyz;\n    fragNormal = normal;\n}\n"
     },
     "uniforms": {
     }
