@@ -284,10 +284,6 @@ void BallsCanvas::_initAttributeLocations() noexcept {
   _attributes[NORMAL] = _shader.attributeLocation(NORMAL);
   _attributes[TEXCOORDS] = _shader.attributeLocation(TEXCOORDS);
 
-  Q_ASSERT(_attributes[POSITION] != -1);
-  Q_ASSERT(_attributes[NORMAL] != -1);
-  Q_ASSERT(_attributes[TEXCOORDS] != -1);
-
   gl.gl31->glBindFragDataLocation(_shader.programId(), 0, qPrintable(out::FRAGMENT));
   if (GLenum error = glGetError()) {
     qDebug() << "glBindFragDataLocation failed with" << error;
