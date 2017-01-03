@@ -3,9 +3,9 @@
 
 #include <QObject>
 
-#include <qopengl.h>
 #include <glm/fwd.hpp>
 
+#include "gl/OpenGLConstants.hpp"
 #include "gl/OpenGLPointers.hpp"
 #include "model/OpenGLState.hpp"
 

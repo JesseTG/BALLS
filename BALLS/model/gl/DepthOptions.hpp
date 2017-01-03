@@ -3,8 +3,7 @@
 
 #include <QObject>
 
-#include <qopengl.h>
-
+#include "gl/OpenGLConstants.hpp"
 #include "gl/OpenGLPointers.hpp"
 #include "model/OpenGLState.hpp"
 

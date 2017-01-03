@@ -1,11 +1,11 @@
 #ifndef BLENDFUNCTIONSTATE_HPP
 #define BLENDFUNCTIONSTATE_HPP
 
-#include <qopengl.h>
 #include <QObject>
 
-#include "model/OpenGLState.hpp"
+#include "gl/OpenGLConstants.hpp"
 #include "gl/OpenGLPointers.hpp"
+#include "model/OpenGLState.hpp"
 
 namespace balls {
 

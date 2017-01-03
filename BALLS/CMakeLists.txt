@@ -80,6 +80,7 @@ set(BALLS_HEADERS
   exception/FileException.hpp
   exception/JsonException.hpp
   gl/OpenGLPointers.hpp
+  gl/OpenGLConstants.hpp
   model/gl/BlendState.hpp
   model/gl/ClipOptions.hpp
   model/gl/ColorOptions.hpp

@@ -1,9 +1,9 @@
 #ifndef GEOMETRYOPTIONS_HPP
 #define GEOMETRYOPTIONS_HPP
 
-#include <qopengl.h>
 #include <QObject>
 
+#include "gl/OpenGLConstants.hpp"
 #include "gl/OpenGLPointers.hpp"
 #include "model/OpenGLState.hpp"
 
