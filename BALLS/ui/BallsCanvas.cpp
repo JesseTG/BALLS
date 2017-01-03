@@ -70,6 +70,7 @@ BallsCanvas::BallsCanvas(QWidget *parent)
   format.setSamples(SAMPLES);
   format.setDepthBufferSize(DEPTH_BUFFER_BITS);
   format.setVersion(3, 3);
+  format.setProfile(OpenGLContextProfile::CoreProfile);
   this->setFormat(format);
 
   qDebug() << "Constructed a BallsCanvas";
