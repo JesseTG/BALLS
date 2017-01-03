@@ -75,6 +75,7 @@ BallsCanvas::BallsCanvas(QWidget *parent)
 }
 
 BallsCanvas::~BallsCanvas() {
+  qDebug() << "Cleaning up the BallsCanvas";
   _ibo.release();
   _vbo.release();
   _vao.release();
@@ -88,6 +89,7 @@ BallsCanvas::~BallsCanvas() {
 }
 
 void BallsCanvas::initializeGL() {
+  qDebug() << "Initializing the BallsCanvas";
   this->initializeOpenGLFunctions();
 
   connect(
@@ -377,6 +379,8 @@ void BallsCanvas::timerEvent(QTimerEvent *e) {
 
 void BallsCanvas::setUniform(
   const UniformInfo &info, const QVariant &var) noexcept {
+  qDebug() << "In BallsCanvas::setUniform";
+
   if (!_shader.isLinked()) return;
   if (_shader.programId() == 0) return;
   // If the shader wasn't compiled properly, the object's ID will be 0 (no
@@ -391,6 +395,8 @@ void BallsCanvas::setUniform(
   // case passthrough; double -> float passthroughs are intentional!
   if (index != -1) {
     this->makeCurrent();
+
+    qDebug() << "Setting" << info.name;
 
     switch (info.type) {
     case GL_INT: {
@@ -712,9 +718,13 @@ bool BallsCanvas::updateShaders(
   Q_UNUSED(geometry);
   using namespace balls::shader;
 
+  qDebug() << "In BallsCanvas::updateShaders";
+
   this->makeCurrent();
   this->_shader.release(); // This is causing a crash on macOS
   this->_shader.removeAllShaders();
+
+  qDebug() << "Old shaders cleaned up";
 
   bool vert = _shader.addShaderFromSourceCode(QOpenGLShader::Vertex, vertex);
   bool frag =

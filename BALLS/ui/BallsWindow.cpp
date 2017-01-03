@@ -33,6 +33,7 @@ BallsWindow::BallsWindow(QWidget *parent) noexcept
     _save(new QFileDialog(this, tr("Save BALLS project"), ".")),
     _load(new QFileDialog(this, tr("Load BALLS project"), ".")),
     _error(new QErrorMessage(this)) {
+  qDebug() << "Constructing a BallsWindow";
   ui.setupUi(this);
   ui.uniforms->setNameFilter(constants::regex::NAME_FILTER);
   this->ui.canvas->setUniformModel(&m_uniforms);
@@ -74,10 +75,13 @@ BallsWindow::BallsWindow(QWidget *parent) noexcept
 }
 
 BallsWindow::~BallsWindow() {
+  qDebug() << "Destructing a BallsWindow";
   _settings->sync();
 }
 
 config::ProjectConfig BallsWindow::getProjectConfig() const noexcept {
+  qDebug() << "Getting project config";
+
   config::ProjectConfig project;
   project.vertexShader = ui.vertexEditor->text();
   project.fragmentShader = ui.fragmentEditor->text();
@@ -96,6 +100,7 @@ config::ProjectConfig BallsWindow::getProjectConfig() const noexcept {
 }
 
 void BallsWindow::forceShaderUpdate() noexcept {
+  qDebug() << "Forcing a shader update";
   QString vertex = ui.vertexEditor->text();
   QString geometry = ui.geometryEditor->text();
   QString fragment = ui.fragmentEditor->text();
