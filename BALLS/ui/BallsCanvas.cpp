@@ -378,6 +378,9 @@ void BallsCanvas::paintGL() {
 
   _updateUniformValues();
   glDrawElements(GL_TRIANGLES, m_indexCount, GL_UNSIGNED_SHORT, nullptr);
+  if (GLenum error = glGetError()) {
+    qDebug() << "Error" << error << "when rendering the mesh";
+  }
 }
 
 void BallsCanvas::setMesh(const Mesh &mesh) noexcept {
