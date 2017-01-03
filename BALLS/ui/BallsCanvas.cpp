@@ -810,8 +810,19 @@ bool BallsCanvas::updateShaders(
   qDebug() << "In BallsCanvas::updateShaders";
 
   this->makeCurrent();
-  this->_shader.release(); // This is causing a crash on macOS
+  if (GLenum error = glGetError()) {
+    qDebug() << "Could not make context current";
+  }
+
+  this->_shader.release();
+  if (GLenum error = glGetError()) {
+    qDebug() << "_shader.release() failed";
+  }
+
   this->_shader.removeAllShaders();
+  if (GLenum error = glGetError()) {
+    qDebug() << "_shader.removeAllShaders() failed";
+  }
 
   qDebug() << "Old shaders cleaned up";
 
