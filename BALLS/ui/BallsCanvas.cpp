@@ -72,7 +72,6 @@ BallsCanvas::BallsCanvas(QWidget *parent)
 
 #ifdef Q_OS_MAC
   format = QSurfaceFormat::defaultFormat();
-  format.setOptions(FLAGS);
   format.setVersion(4, 1);
   format.setAlphaBufferSize(8);
   format.setRedBufferSize(8);
@@ -81,6 +80,10 @@ BallsCanvas::BallsCanvas(QWidget *parent)
   format.setDepthBufferSize(32);
   format.setSamples(16);
   format.setStencilBufferSize(8);
+  format.setProfile(PROFILE);
+  format.setStereo(false);
+  format.setSwapBehavior(SWAP_TYPE);
+  format.setRenderableType(RENDER_TYPE);
 #endif
 
   this->setFormat(format);
