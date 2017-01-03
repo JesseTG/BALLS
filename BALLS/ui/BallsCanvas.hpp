@@ -19,7 +19,6 @@
 #include "util/Logging.hpp"
 #include "util/TypeInfo.hpp"
 
-class QOpenGLFunctions_3_0;
 class QOpenGLFunctions_3_1;
 class QOpenGLFunctions_3_2_Core;
 class QOpenGLFunctions_3_3_Core;

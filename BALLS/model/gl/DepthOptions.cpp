@@ -1,7 +1,7 @@
 #include "precompiled.hpp"
 #include "model/gl/DepthOptions.hpp"
 
-#include <QOpenGLFunctions_3_0>
+#include <QOpenGLFunctions_3_1>
 
 namespace balls {
 
@@ -15,7 +15,7 @@ DepthOptions::DepthOptions(OpenGLPointers& gl, QObject* parent)
     m_depthNear(0.0f),
     m_depthFar(1.0f) {
   // Defaults as defined by OpenGL
-  Q_ASSUME(m_gl.gl30 != nullptr);
+  Q_ASSUME(m_gl.gl31 != nullptr);
 }
 
 void DepthOptions::setTestEnabled(bool enabled) noexcept {
@@ -33,19 +33,19 @@ void DepthOptions::setClampEnabled(bool enabled) noexcept {
 void DepthOptions::setClearDepth(float clear) noexcept {
   m_clearDepth = clear;
 
-  m_gl.gl30Current()->glClearDepth(m_clearDepth);
+  m_gl.gl31Current()->glClearDepth(m_clearDepth);
 }
 
 void DepthOptions::setDepthFunction(DepthFunction function) noexcept {
   m_depthFunction = function;
 
-  m_gl.gl30Current()->glDepthFunc(m_depthFunction);
+  m_gl.gl31Current()->glDepthFunc(m_depthFunction);
 }
 
 void DepthOptions::setDepthMask(bool mask) noexcept {
   m_depthMask = mask;
 
-  m_gl.gl30Current()->glDepthMask(m_depthMask);
+  m_gl.gl31Current()->glDepthMask(m_depthMask);
 }
 
 void DepthOptions::setDepthNear(float near) noexcept {
@@ -62,6 +62,6 @@ void DepthOptions::setDepthFar(float far) noexcept {
 
 void DepthOptions::updateDepthRange() noexcept {
 
-  m_gl.gl30Current()->glDepthRange(m_depthNear, m_depthFar);
+  m_gl.gl31Current()->glDepthRange(m_depthNear, m_depthFar);
 }
 }

@@ -1,7 +1,7 @@
 #include "precompiled.hpp"
 #include "model/gl/SampleOptions.hpp"
 
-#include <QOpenGLFunctions_3_0>
+#include <QOpenGLFunctions_3_1>
 #include <QOpenGLFunctions_4_0_Core>
 
 namespace balls {
@@ -21,14 +21,14 @@ SampleOptions::SampleOptions(OpenGLPointers& gl, QObject* parent)
 void SampleOptions::setSampleCoverage(float sampleCoverage) noexcept {
   m_sampleCoverage = sampleCoverage;
 
-  m_gl.gl30Current()->glSampleCoverage(m_sampleCoverage, m_invertSampleCoverage);
+  m_gl.gl31Current()->glSampleCoverage(m_sampleCoverage, m_invertSampleCoverage);
 }
 
 void SampleOptions::setInvertSampleCoverage(
   bool invertSampleCoverage) noexcept {
   m_invertSampleCoverage = invertSampleCoverage;
 
-  m_gl.gl30Current()->glSampleCoverage(m_sampleCoverage, m_invertSampleCoverage);
+  m_gl.gl31Current()->glSampleCoverage(m_sampleCoverage, m_invertSampleCoverage);
 }
 
 void SampleOptions::setSampleAlphaToCoverage(bool coverage) noexcept {

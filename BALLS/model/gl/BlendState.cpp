@@ -1,7 +1,7 @@
 #include "precompiled.hpp"
 #include "model/gl/BlendState.hpp"
 
-#include <QOpenGLFunctions_3_0>
+#include <QOpenGLFunctions_3_1>
 
 namespace balls {
 
@@ -14,7 +14,7 @@ BlendState::BlendState(OpenGLPointers& gl, QObject* parent)
     m_dstRgb(BlendFunction::Zero),
     m_srcAlpha(BlendFunction::One),
     m_dstAlpha(BlendFunction::Zero) {
-  Q_ASSUME(m_gl.gl30 != nullptr);
+  Q_ASSUME(m_gl.gl31 != nullptr);
 }
 //  ^ Defaults specified in OpenGL
 
@@ -27,7 +27,7 @@ void BlendState::setEnabled(bool enabled) noexcept {
 void BlendState::setBlendColor(const QColor& color) noexcept {
   m_blendColor = color;
 
-  m_gl.gl30Current()->glBlendColor(
+  m_gl.gl31Current()->glBlendColor(
     color.redF(), color.greenF(), color.blueF(), color.alphaF());
 }
 
@@ -68,11 +68,11 @@ void BlendState::setDstAlpha(BlendFunction function) noexcept {
 }
 
 void BlendState::updateEquation() noexcept {
-  m_gl.gl30Current()->glBlendEquationSeparate(m_blendRgb, m_blendAlpha);
+  m_gl.gl31Current()->glBlendEquationSeparate(m_blendRgb, m_blendAlpha);
 }
 
 void BlendState::updateFunction() noexcept {
-  m_gl.gl30Current()->glBlendFuncSeparate(
+  m_gl.gl31Current()->glBlendFuncSeparate(
     m_srcRgb, m_dstRgb, m_srcAlpha, m_dstAlpha);
 }
 }

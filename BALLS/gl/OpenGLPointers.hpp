@@ -4,7 +4,6 @@
 #include <QObject>
 
 class QOpenGLContext;
-class QOpenGLFunctions_3_0;
 class QOpenGLFunctions_3_1;
 class QOpenGLFunctions_3_2_Core;
 class QOpenGLFunctions_3_3_Core;
@@ -30,7 +29,6 @@ public:
   OpenGLPointers();
 
   QOpenGLContext* context;
-  QOpenGLFunctions_3_0* gl30;
   QOpenGLFunctions_3_1* gl31;
   QOpenGLFunctions_3_2_Core* gl32;
   QOpenGLFunctions_3_3_Core* gl33;
@@ -41,7 +39,6 @@ public:
   QOpenGLFunctions_4_4_Core* gl44;
   QOpenGLFunctions_4_5_Core* gl45;
 
-  QOpenGLFunctions_3_0* gl30Current() noexcept;
   QOpenGLFunctions_3_1* gl31Current() noexcept;
   QOpenGLFunctions_3_2_Core* gl32Current() noexcept;
   QOpenGLFunctions_3_3_Core* gl33Current() noexcept;

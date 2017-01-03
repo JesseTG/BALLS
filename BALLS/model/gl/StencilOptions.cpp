@@ -1,7 +1,7 @@
 #include "precompiled.hpp"
 #include "model/gl/StencilOptions.hpp"
 
-#include <QOpenGLFunctions_3_0>
+#include <QOpenGLFunctions_3_1>
 
 namespace balls {
 
@@ -33,19 +33,19 @@ void StencilOptions::setStencilEnabled(bool enabled) noexcept {
 void StencilOptions::setClearStencil(int clearStencil) noexcept {
   m_clearStencil = clearStencil;
 
-  m_gl.gl30Current()->glClearStencil(m_clearStencil);
+  m_gl.gl31Current()->glClearStencil(m_clearStencil);
 }
 
 void StencilOptions::setFrontStencilMask(unsigned int frontMask) noexcept {
   m_frontStencilMask = frontMask;
 
-  m_gl.gl30Current()->glStencilMaskSeparate(GL_FRONT, m_frontStencilMask);
+  m_gl.gl31Current()->glStencilMaskSeparate(GL_FRONT, m_frontStencilMask);
 }
 
 void StencilOptions::setBackStencilMask(unsigned int backMask) noexcept {
   m_backStencilMask = backMask;
 
-  m_gl.gl30Current()->glStencilMaskSeparate(GL_BACK, m_backStencilMask);
+  m_gl.gl31Current()->glStencilMaskSeparate(GL_BACK, m_backStencilMask);
 }
 
 void StencilOptions::setFrontStencilFail(StencilAction act) noexcept {
@@ -121,7 +121,7 @@ void StencilOptions::setBackStencilValueMask(unsigned int mask) noexcept {
 }
 
 void StencilOptions::updateStencilOpFront() noexcept {
-  m_gl.gl30Current()->glStencilOpSeparate(
+  m_gl.gl31Current()->glStencilOpSeparate(
     GL_FRONT,
     m_frontStencilFail,
     m_frontStencilPassDepthFail,
@@ -129,7 +129,7 @@ void StencilOptions::updateStencilOpFront() noexcept {
 }
 
 void StencilOptions::updateStencilOpBack() noexcept {
-  m_gl.gl30Current()->glStencilOpSeparate(
+  m_gl.gl31Current()->glStencilOpSeparate(
     GL_BACK,
     m_backStencilFail,
     m_backStencilPassDepthFail,
@@ -137,7 +137,7 @@ void StencilOptions::updateStencilOpBack() noexcept {
 }
 
 void StencilOptions::updateStencilFuncFront() noexcept {
-  m_gl.gl30Current()->glStencilFuncSeparate(
+  m_gl.gl31Current()->glStencilFuncSeparate(
     GL_FRONT,
     m_frontStencilFunction,
     m_frontStencilRef,
@@ -145,7 +145,7 @@ void StencilOptions::updateStencilFuncFront() noexcept {
 }
 
 void StencilOptions::updateStencilFuncBack() noexcept {
-  m_gl.gl30Current()->glStencilFuncSeparate(
+  m_gl.gl31Current()->glStencilFuncSeparate(
     GL_BACK, m_backStencilFunction, m_backStencilRef, m_backStencilValueMask);
 }
 }

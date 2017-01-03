@@ -1,7 +1,7 @@
 #include "precompiled.hpp"
 #include "model/gl/ColorOptions.hpp"
 
-#include <QOpenGLFunctions_3_0>
+#include <QOpenGLFunctions_3_1>
 
 namespace balls {
 
@@ -15,7 +15,7 @@ ColorOptions::ColorOptions(OpenGLPointers& gl, QObject* parent)
     m_logicOp(LogicOperation::Copy) {
   // ^ As defined in the OpenGL specs (GL_DITHER is true by default, all other
   // glGet()s are false by default)
-  Q_ASSUME(m_gl.gl30 != nullptr);
+  Q_ASSUME(m_gl.gl31 != nullptr);
 }
 
 void ColorOptions::setLogicOpEnabled(bool enabled) noexcept {
@@ -27,26 +27,26 @@ void ColorOptions::setLogicOpEnabled(bool enabled) noexcept {
 void ColorOptions::setClampColor(bool clamp) noexcept {
   m_clampColor = clamp;
 
-  m_gl.gl30Current()->glClampColor(GL_CLAMP_READ_COLOR, m_clampColor);
+  m_gl.gl31Current()->glClampColor(GL_CLAMP_READ_COLOR, m_clampColor);
 }
 
 void ColorOptions::setClearColor(const QColor& color) noexcept {
   m_clearColor = color;
 
-  m_gl.gl30Current()->glClearColor(
+  m_gl.gl31Current()->glClearColor(
     color.redF(), color.greenF(), color.blueF(), color.alphaF());
 }
 
 void ColorOptions::setColorMask(const bvec4& mask) noexcept {
   m_colorMask = mask;
 
-  m_gl.gl30Current()->glColorMask(mask.r, mask.g, mask.b, mask.a);
+  m_gl.gl31Current()->glColorMask(mask.r, mask.g, mask.b, mask.a);
 }
 
 void ColorOptions::setLogicOperation(LogicOperation operation) noexcept {
   m_logicOp = operation;
 
-  m_gl.gl30Current()->glLogicOp(m_logicOp);
+  m_gl.gl31Current()->glLogicOp(m_logicOp);
 }
 
 void ColorOptions::setDithering(bool dithering) noexcept {

@@ -5,7 +5,6 @@
 
 #include <QtGui/QCursor>
 #include <QtGui/QOpenGLContext>
-#include <QtGui/QOpenGLFunctions_3_0>
 #include <QtGui/QOpenGLFunctions_3_1>
 #include <QtGui/QOpenGLFunctions_3_2_Core>
 #include <QtGui/QOpenGLFunctions_3_3_Core>
@@ -133,7 +132,6 @@ inline void BallsCanvas::_initGLPointers() {
   Q_ASSERT(this->context() == QOpenGLContext::currentContext());
 
   gl = OpenGLPointers(context());
-  qCDebug(logs::gl::Feature) << "OpenGL 3.0:" << (gl.gl30 ? "OK" : "No");
   qCDebug(logs::gl::Feature) << "OpenGL 3.1:" << (gl.gl31 ? "OK" : "No");
   qCDebug(logs::gl::Feature) << "OpenGL 3.2:" << (gl.gl32 ? "OK" : "No");
   qCDebug(logs::gl::Feature) << "OpenGL 3.3:" << (gl.gl33 ? "OK" : "No");
@@ -189,10 +187,10 @@ inline void BallsCanvas::_initGLPointers() {
     throw std::runtime_error("Need framebuffers");
   }
 
-  if (!gl.gl30) {
+  if (!gl.gl31) {
     QString e = QString(
                   tr(
-                    "OpenGL 3.0 or higher is required to use BALLS, but only "
+                    "OpenGL 3.1 or higher is required to use BALLS, but only "
                     "%1.%2 is available"))
                   .arg(_glmajor)
                   .arg(_glminor);
@@ -267,7 +265,7 @@ void BallsCanvas::_initAttributeLocations() noexcept {
   using namespace attribute;
   Q_ASSERT(this->isValid());
   Q_ASSERT(this->context() == QOpenGLContext::currentContext());
-  Q_ASSERT(this->gl.gl30 != nullptr);
+  Q_ASSERT(this->gl.gl31 != nullptr);
 #ifdef DEBUG
   int currentShader = 0;
   glGetIntegerv(GL_CURRENT_PROGRAM, &currentShader);
@@ -276,7 +274,7 @@ void BallsCanvas::_initAttributeLocations() noexcept {
   _attributes[POSITION] = _shader.attributeLocation(POSITION);
   _attributes[NORMAL] = _shader.attributeLocation(NORMAL);
   _attributes[TEXCOORDS] = _shader.attributeLocation(TEXCOORDS);
-  gl.gl30->glBindFragDataLocation(
+  gl.gl31->glBindFragDataLocation(
     _shader.programId(), 0, qPrintable(out::FRAGMENT));
 }
 
@@ -416,7 +414,7 @@ void BallsCanvas::setUniform(
     switch (info.type) {
     case GL_INT: {
       Q_ASSERT(var.canConvert<int>());
-      gl.gl30->glUniform1i(index, var.value<int>());
+      gl.gl31->glUniform1i(index, var.value<int>());
       break;
     }
 
@@ -432,19 +430,19 @@ void BallsCanvas::setUniform(
     // Otherwise, just treat it like a float
     case GL_FLOAT: {
       Q_ASSERT(var.canConvert<float>());
-      gl.gl30->glUniform1f(index, var.value<float>());
+      gl.gl31->glUniform1f(index, var.value<float>());
       break;
     }
 
     case GL_UNSIGNED_INT: {
       Q_ASSERT(var.canConvert<unsigned int>());
-      gl.gl30->glUniform1ui(index, var.value<unsigned int>());
+      gl.gl31->glUniform1ui(index, var.value<unsigned int>());
       break;
     }
 
     case GL_BOOL: {
       Q_ASSERT(var.canConvert<bool>());
-      gl.gl30->glUniform1i(index, var.value<bool>());
+      gl.gl31->glUniform1i(index, var.value<bool>());
       break;
     }
 
@@ -460,28 +458,28 @@ void BallsCanvas::setUniform(
     case GL_FLOAT_VEC2: {
       Q_ASSERT(var.canConvert<glm::vec2>());
       glm::vec2 vec2 = var.value<glm::vec2>();
-      gl.gl30->glUniform2f(index, vec2.x, vec2.y);
+      gl.gl31->glUniform2f(index, vec2.x, vec2.y);
       break;
     }
 
     case GL_INT_VEC2: {
       Q_ASSERT(var.canConvert<glm::ivec2>());
       glm::ivec2 ivec2 = var.value<glm::ivec2>();
-      gl.gl30->glUniform2i(index, ivec2.x, ivec2.y);
+      gl.gl31->glUniform2i(index, ivec2.x, ivec2.y);
       break;
     }
 
     case GL_UNSIGNED_INT_VEC2: {
       Q_ASSERT(var.canConvert<glm::uvec2>());
       glm::uvec2 uvec2 = var.value<glm::uvec2>();
-      gl.gl30->glUniform2ui(index, uvec2.x, uvec2.y);
+      gl.gl31->glUniform2ui(index, uvec2.x, uvec2.y);
       break;
     }
 
     case GL_BOOL_VEC2: {
       Q_ASSERT(var.canConvert<glm::bvec2>());
       glm::bvec2 bvec2 = var.value<glm::bvec2>();
-      gl.gl30->glUniform2i(index, bvec2.x, bvec2.y);
+      gl.gl31->glUniform2i(index, bvec2.x, bvec2.y);
       break;
     }
 
@@ -498,28 +496,28 @@ void BallsCanvas::setUniform(
     case GL_FLOAT_VEC3: {
       Q_ASSERT(var.canConvert<glm::vec3>());
       glm::vec3 vec3 = var.value<glm::vec3>();
-      gl.gl30->glUniform3f(index, vec3.x, vec3.y, vec3.z);
+      gl.gl31->glUniform3f(index, vec3.x, vec3.y, vec3.z);
       break;
     }
 
     case GL_INT_VEC3: {
       Q_ASSERT(var.canConvert<glm::ivec3>());
       glm::ivec3 ivec3 = var.value<glm::ivec3>();
-      gl.gl30->glUniform3i(index, ivec3.x, ivec3.y, ivec3.z);
+      gl.gl31->glUniform3i(index, ivec3.x, ivec3.y, ivec3.z);
       break;
     }
 
     case GL_UNSIGNED_INT_VEC3: {
       Q_ASSERT(var.canConvert<glm::uvec3>());
       glm::uvec3 uvec3 = var.value<glm::uvec3>();
-      gl.gl30->glUniform3ui(index, uvec3.x, uvec3.y, uvec3.z);
+      gl.gl31->glUniform3ui(index, uvec3.x, uvec3.y, uvec3.z);
       break;
     }
 
     case GL_BOOL_VEC3: {
       Q_ASSERT(var.canConvert<glm::bvec3>());
       glm::bvec3 bvec3 = var.value<glm::bvec3>();
-      gl.gl30->glUniform3i(index, bvec3.x, bvec3.y, bvec3.z);
+      gl.gl31->glUniform3i(index, bvec3.x, bvec3.y, bvec3.z);
       break;
     }
 
@@ -535,28 +533,28 @@ void BallsCanvas::setUniform(
     case GL_FLOAT_VEC4: {
       Q_ASSERT(var.canConvert<glm::vec4>());
       glm::vec4 vec4 = var.value<glm::vec4>();
-      gl.gl30->glUniform4f(index, vec4.x, vec4.y, vec4.z, vec4.w);
+      gl.gl31->glUniform4f(index, vec4.x, vec4.y, vec4.z, vec4.w);
       break;
     }
 
     case GL_INT_VEC4: {
       Q_ASSERT(var.canConvert<glm::ivec4>());
       glm::ivec4 ivec4 = var.value<glm::ivec4>();
-      gl.gl30->glUniform4i(index, ivec4.x, ivec4.y, ivec4.z, ivec4.w);
+      gl.gl31->glUniform4i(index, ivec4.x, ivec4.y, ivec4.z, ivec4.w);
       break;
     }
 
     case GL_UNSIGNED_INT_VEC4: {
       Q_ASSERT(var.canConvert<glm::uvec4>());
       glm::uvec4 uvec4 = var.value<glm::uvec4>();
-      gl.gl30->glUniform4ui(index, uvec4.x, uvec4.y, uvec4.z, uvec4.w);
+      gl.gl31->glUniform4ui(index, uvec4.x, uvec4.y, uvec4.z, uvec4.w);
       break;
     }
 
     case GL_BOOL_VEC4: {
       Q_ASSERT(var.canConvert<glm::bvec4>());
       glm::bvec4 bvec4 = var.value<glm::bvec4>();
-      gl.gl30->glUniform4i(index, bvec4.x, bvec4.y, bvec4.z, bvec4.w);
+      gl.gl31->glUniform4i(index, bvec4.x, bvec4.y, bvec4.z, bvec4.w);
       break;
     }
 
@@ -572,7 +570,7 @@ void BallsCanvas::setUniform(
     case GL_FLOAT_MAT2: {
       Q_ASSERT(var.canConvert<glm::mat2>());
       glm::mat2 mat2 = var.value<glm::mat2>();
-      gl.gl30->glUniformMatrix2fv(index, 1, false, glm::value_ptr(mat2));
+      gl.gl31->glUniformMatrix2fv(index, 1, false, glm::value_ptr(mat2));
       break;
     }
 
@@ -588,7 +586,7 @@ void BallsCanvas::setUniform(
     case GL_FLOAT_MAT2x3: {
       Q_ASSERT(var.canConvert<glm::mat2x3>());
       glm::mat2x3 mat2x3 = var.value<glm::mat2x3>();
-      gl.gl30->glUniformMatrix2x3fv(index, 1, false, glm::value_ptr(mat2x3));
+      gl.gl31->glUniformMatrix2x3fv(index, 1, false, glm::value_ptr(mat2x3));
       break;
     }
 
@@ -604,7 +602,7 @@ void BallsCanvas::setUniform(
     case GL_FLOAT_MAT2x4: {
       Q_ASSERT(var.canConvert<glm::mat2x4>());
       glm::mat2x4 mat2x4 = var.value<glm::mat2x4>();
-      gl.gl30->glUniformMatrix2x4fv(index, 1, false, glm::value_ptr(mat2x4));
+      gl.gl31->glUniformMatrix2x4fv(index, 1, false, glm::value_ptr(mat2x4));
       break;
     }
 
@@ -620,7 +618,7 @@ void BallsCanvas::setUniform(
     case GL_FLOAT_MAT3x2: {
       Q_ASSERT(var.canConvert<glm::mat3x2>());
       glm::mat3x2 mat3x2 = var.value<glm::mat3x2>();
-      gl.gl30->glUniformMatrix3x2fv(index, 1, false, glm::value_ptr(mat3x2));
+      gl.gl31->glUniformMatrix3x2fv(index, 1, false, glm::value_ptr(mat3x2));
       break;
     }
 
@@ -636,7 +634,7 @@ void BallsCanvas::setUniform(
     case GL_FLOAT_MAT3: {
       Q_ASSERT(var.canConvert<glm::mat3>());
       glm::mat3 mat3 = var.value<glm::mat3>();
-      gl.gl30->glUniformMatrix3fv(index, 1, false, glm::value_ptr(mat3));
+      gl.gl31->glUniformMatrix3fv(index, 1, false, glm::value_ptr(mat3));
       break;
     }
 
@@ -652,7 +650,7 @@ void BallsCanvas::setUniform(
     case GL_FLOAT_MAT3x4: {
       Q_ASSERT(var.canConvert<glm::mat3x4>());
       glm::mat3x4 mat3x4 = var.value<glm::mat3x4>();
-      gl.gl30->glUniformMatrix3x4fv(index, 1, false, glm::value_ptr(mat3x4));
+      gl.gl31->glUniformMatrix3x4fv(index, 1, false, glm::value_ptr(mat3x4));
       break;
     }
 
@@ -668,7 +666,7 @@ void BallsCanvas::setUniform(
     case GL_FLOAT_MAT4x2: {
       Q_ASSERT(var.canConvert<glm::mat4x2>());
       glm::mat4x2 mat4x2 = var.value<glm::mat4x2>();
-      gl.gl30->glUniformMatrix4x2fv(index, 1, false, glm::value_ptr(mat4x2));
+      gl.gl31->glUniformMatrix4x2fv(index, 1, false, glm::value_ptr(mat4x2));
       break;
     }
 
@@ -684,7 +682,7 @@ void BallsCanvas::setUniform(
     case GL_FLOAT_MAT4x3: {
       Q_ASSERT(var.canConvert<glm::mat4x3>());
       glm::mat4x3 mat4x3 = var.value<glm::mat4x3>();
-      gl.gl30->glUniformMatrix4x3fv(index, 1, false, glm::value_ptr(mat4x3));
+      gl.gl31->glUniformMatrix4x3fv(index, 1, false, glm::value_ptr(mat4x3));
       break;
     }
 
@@ -700,7 +698,7 @@ void BallsCanvas::setUniform(
     case GL_FLOAT_MAT4: {
       Q_ASSERT(var.canConvert<glm::mat4>());
       glm::mat4 mat4 = var.value<glm::mat4>();
-      gl.gl30->glUniformMatrix4fv(index, 1, false, glm::value_ptr(mat4));
+      gl.gl31->glUniformMatrix4fv(index, 1, false, glm::value_ptr(mat4));
       break;
     }
 

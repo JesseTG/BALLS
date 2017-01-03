@@ -1,13 +1,13 @@
 #include "precompiled.hpp"
 #include "model/OpenGLState.hpp"
 
-#include <QOpenGLFunctions_3_0>
+#include <QOpenGLFunctions_3_1>
 
 namespace balls {
 
 OpenGLState::OpenGLState(OpenGLPointers& pointers, QObject* parent)
   : QObject(parent), m_gl(pointers) {
-  Q_ASSUME(m_gl.gl30 != nullptr);
+  Q_ASSUME(m_gl.gl31 != nullptr);
 }
 
 bool OpenGLState::hasGl31() const noexcept {
@@ -48,9 +48,9 @@ bool OpenGLState::hasGl45() const noexcept {
 
 void OpenGLState::setGlFeature(bool enabled, GLenum feature) {
   if (enabled) {
-    m_gl.gl30Current()->glEnable(feature);
+    m_gl.gl31Current()->glEnable(feature);
   } else {
-    m_gl.gl30Current()->glDisable(feature);
+    m_gl.gl31Current()->glDisable(feature);
   }
 }
 }
