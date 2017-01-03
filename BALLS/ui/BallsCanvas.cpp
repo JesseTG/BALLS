@@ -432,6 +432,11 @@ void BallsCanvas::setMesh(const Mesh &mesh) noexcept {
     qDebug() << "Could not make the context" << context() << "current";
   }
 
+  _vao.bind();
+  if (GLenum error = glGetError()) {
+    qDebug() << "Error" << error << "binding VAO";
+  }
+
   m_indexCount = indices.size();
   if (!_vbo.bind()) {
     qDebug() << "Could not bind VBO" << _vbo.bufferId();
