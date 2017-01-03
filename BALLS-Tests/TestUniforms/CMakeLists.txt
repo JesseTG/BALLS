@@ -15,6 +15,6 @@ add_definitions(
   -DGLM_ENABLE_EXPERIMENTAL
 )
 
-add_executable(${PROJECT_NAME} WIN32 MACOSX_BUNDLE tst_TestUniformsTest.cpp)
+add_executable(${PROJECT_NAME} WIN32 tst_TestUniformsTest.cpp)
 
 target_link_libraries(${PROJECT_NAME} Qt5::Core Qt5::Widgets Qt5::Gui Qt5::Test QPropertyEditor BALLS)
