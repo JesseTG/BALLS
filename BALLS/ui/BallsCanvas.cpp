@@ -711,7 +711,7 @@ bool BallsCanvas::updateShaders(
   using namespace balls::shader;
 
   this->makeCurrent();
-  this->_shader.release();
+  this->_shader.release(); // This is causing a crash on macOS
   this->_shader.removeAllShaders();
 
   bool vert = _shader.addShaderFromSourceCode(QOpenGLShader::Vertex, vertex);
