@@ -214,6 +214,9 @@ void BallsCanvas::_initGLMemory() {
   }
 
   _vao.bind();
+  if (GLenum error = glGetError()) {
+    qDebug() << "Error" << error << "binding VAO";
+  }
 
   if (Q_UNLIKELY(!(_vbo.create() && _vbo.bind()))) {
     throw std::runtime_error("");
