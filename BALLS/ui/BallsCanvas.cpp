@@ -73,6 +73,7 @@ BallsCanvas::BallsCanvas(QWidget *parent)
 #ifdef Q_OS_MAC
   format = QSurfaceFormat::defaultFormat();
   format.setVersion(4, 1);
+  qDebug() << "Asking for OpenGL 4.1";
 #endif
 
   this->setFormat(format);
