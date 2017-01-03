@@ -824,7 +824,11 @@ bool BallsCanvas::updateShaders(
     qDebug() << "_shader.removeAllShaders() failed";
   }
 
-  qDebug() << "Old shaders cleaned up";
+  _vao.bind();
+  if (GLenum error = glGetError()) {
+    qDebug() << "Error" << error << "binding VAO";
+  }
+
 
   bool vert = _shader.addShaderFromSourceCode(QOpenGLShader::Vertex, vertex);
   bool frag =
