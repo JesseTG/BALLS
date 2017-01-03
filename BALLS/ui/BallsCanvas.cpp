@@ -379,8 +379,6 @@ void BallsCanvas::timerEvent(QTimerEvent *e) {
 
 void BallsCanvas::setUniform(
   const UniformInfo &info, const QVariant &var) noexcept {
-  qDebug() << "In BallsCanvas::setUniform";
-
   if (!_shader.isLinked()) return;
   if (_shader.programId() == 0) return;
   // If the shader wasn't compiled properly, the object's ID will be 0 (no
@@ -395,8 +393,6 @@ void BallsCanvas::setUniform(
   // case passthrough; double -> float passthroughs are intentional!
   if (index != -1) {
     this->makeCurrent();
-
-    qDebug() << "Setting" << info.name;
 
     switch (info.type) {
     case GL_INT: {
