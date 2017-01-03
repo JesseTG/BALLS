@@ -384,6 +384,11 @@ void BallsCanvas::setMesh(const Mesh &mesh) noexcept {
   const vector<Mesh::IndexType> &indices = mesh.getIndices();
   const vector<Mesh::CoordType> &vertices = mesh.getVertices();
 
+
+  if (!context()->makeCurrent(context()->surface())) {
+    qDebug() << "Could not make the context" << context() << "current";
+  }
+
   m_indexCount = indices.size();
   if (!_vbo.bind()) {
     qDebug() << "Could not bind VBO" << _vbo.bufferId();
