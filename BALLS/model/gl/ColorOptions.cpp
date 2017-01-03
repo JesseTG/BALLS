@@ -35,6 +35,9 @@ void ColorOptions::setClearColor(const QColor& color) noexcept {
 
   m_gl.gl31Current()->glClearColor(
     color.redF(), color.greenF(), color.blueF(), color.alphaF());
+  if (GLenum error = m_gl.gl31Current()->glGetError()) {
+    qDebug() << "glClearColor(" << color << ") returned error" << error;
+  }
 }
 
 void ColorOptions::setColorMask(const bvec4& mask) noexcept {
