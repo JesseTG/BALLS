@@ -221,6 +221,9 @@ void BallsCanvas::_initGLMemory() {
   }
 
   _vbo.setUsagePattern(USAGE_PATTERN);
+  if (int error = glGetError() != GL_NO_ERROR) {
+    qDebug() << "Error" << error << "setting VBO usage pattern";
+  }
   qCDebug(logs::gl::Feature) << "VBO" << _vbo.bufferId() << "created and bound";
 
   if (Q_UNLIKELY(!(_ibo.create() && _ibo.bind()))) {
@@ -229,6 +232,9 @@ void BallsCanvas::_initGLMemory() {
   }
 
   _ibo.setUsagePattern(USAGE_PATTERN);
+  if (int error = glGetError() != GL_NO_ERROR) {
+    qDebug() << "Error" << error << "setting IBO usage pattern";
+  }
   qCDebug(logs::gl::Feature) << "IBO" << _ibo.bufferId() << "created and bound";
 }
 
