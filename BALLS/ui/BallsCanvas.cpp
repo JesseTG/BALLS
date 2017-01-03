@@ -352,6 +352,10 @@ void BallsCanvas::_initAttributes() noexcept {
   int texCoords = _attributes[attribute::TEXCOORDS];
   glVertexAttribPointer(
     position, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void *)0);
+  if (GLenum error = glGetError()) {
+    qDebug() << "glVertexAttribPointer(position) failed with" << error;
+  }
+
   glVertexAttribPointer(
     normal,
     3,
@@ -359,6 +363,10 @@ void BallsCanvas::_initAttributes() noexcept {
     GL_FALSE,
     8 * sizeof(float),
     (void *)(3 * sizeof(float)));
+  if (GLenum error = glGetError()) {
+    qDebug() << "glVertexAttribPointer(normal) failed with" << error;
+  }
+
   glVertexAttribPointer(
     texCoords,
     2,
@@ -366,9 +374,24 @@ void BallsCanvas::_initAttributes() noexcept {
     GL_FALSE,
     8 * sizeof(float),
     (void *)(6 * sizeof(float)));
+  if (GLenum error = glGetError()) {
+    qDebug() << "glVertexAttribPointer(texCoords) failed with" << error;
+  }
+
   _shader.enableAttributeArray(position);
+  if (GLenum error = glGetError()) {
+    qDebug() << "_shader.enableAttributeArray(position) failed with" << error;
+  }
+
   _shader.enableAttributeArray(normal);
+  if (GLenum error = glGetError()) {
+    qDebug() << "_shader.enableAttributeArray(normal) failed with" << error;
+  }
+
   _shader.enableAttributeArray(texCoords);
+  if (GLenum error = glGetError()) {
+    qDebug() << "_shader.enableAttributeArray(texCoords) failed with" << error;
+  }
 }
 
 void BallsCanvas::resizeGL(const int width, const int height) {}
