@@ -113,7 +113,9 @@ private /* shader attributes/uniforms */:
 
 private /* OpenGL structures */:
   QOpenGLDebugLogger _log;
-  QOpenGLBuffer _vbo;
+  QOpenGLBuffer _positionBuffer;
+  QOpenGLBuffer _normalBuffer;
+  QOpenGLBuffer _texCoordBuffer;
   QOpenGLBuffer _ibo;
   QOpenGLVertexArrayObject _vao;
   QOpenGLShaderProgram _shader;
@@ -129,7 +131,6 @@ private /* update methods */:
   void _updateUniformValues() noexcept;
 
 private /* initializers */:
-  void _initAttributeLocations() noexcept;
   void _initGLPointers();
   void _initGLMemory();
   void _initLogger() noexcept;

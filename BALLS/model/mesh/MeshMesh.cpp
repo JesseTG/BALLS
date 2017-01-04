@@ -14,7 +14,9 @@ MeshMesh::MeshMesh(QObject *parent, Type type)
 void MeshMesh::updateMesh() {
   this->assignMesh();
 
-  m_vertices.clear();
+  m_positions.clear();
+  m_normals.clear();
+  m_texCoords.clear();
   m_indices.clear();
 
   for (const generator::Triangle &t : m_mesh.triangles()) {
@@ -24,14 +26,14 @@ void MeshMesh::updateMesh() {
   }
 
   for (const generator::MeshVertex &v : m_mesh.vertices()) {
-    m_vertices.push_back(v.position.x);
-    m_vertices.push_back(v.position.y);
-    m_vertices.push_back(v.position.z);
-    m_vertices.push_back(v.normal.x);
-    m_vertices.push_back(v.normal.y);
-    m_vertices.push_back(v.normal.z);
-    m_vertices.push_back(v.texCoord.x);
-    m_vertices.push_back(v.texCoord.y);
+    m_positions.push_back(v.position.x);
+    m_positions.push_back(v.position.y);
+    m_positions.push_back(v.position.z);
+    m_normals.push_back(v.normal.x);
+    m_normals.push_back(v.normal.y);
+    m_normals.push_back(v.normal.z);
+    m_texCoords.push_back(v.texCoord.x);
+    m_texCoords.push_back(v.texCoord.y);
   }
 }
 }

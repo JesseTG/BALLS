@@ -62,7 +62,9 @@ BallsCanvas::BallsCanvas(QWidget *parent)
     _uniformsPropertyOffset(0),
     _uniformsPropertyCount(0),
     _log(nullptr),
-    _vbo(QOpenGLBuffer::VertexBuffer),
+    _positionBuffer(QOpenGLBuffer::VertexBuffer),
+    _normalBuffer(QOpenGLBuffer::VertexBuffer),
+    _texCoordBuffer(QOpenGLBuffer::VertexBuffer),
     _ibo(QOpenGLBuffer::IndexBuffer),
     m_indexCount(0) {
   QSurfaceFormat format(FLAGS);
@@ -95,10 +97,14 @@ BallsCanvas::BallsCanvas(QWidget *parent)
 BallsCanvas::~BallsCanvas() {
   qDebug() << "Cleaning up the BallsCanvas";
   _ibo.release();
-  _vbo.release();
+  _positionBuffer.release();
+  _normalBuffer.release();
+  _texCoordBuffer.release();
   _vao.release();
   _ibo.destroy();
-  _vbo.destroy();
+  _positionBuffer.destroy();
+  _normalBuffer.destroy();
+  _texCoordBuffer.destroy();
   _vao.destroy();
   _shader.disableAttributeArray(_attributes[attribute::POSITION]);
   _shader.disableAttributeArray(_attributes[attribute::NORMAL]);
@@ -119,7 +125,6 @@ void BallsCanvas::initializeGL() {
   _initGLMemory();
   _initLogger();
   _initShaders();
-  _initAttributeLocations();
   _initAttributes();
   //_updateUniformList();
 
@@ -203,6 +208,20 @@ inline void BallsCanvas::_initGLPointers() {
   }
 }
 
+static void _initBuffer(QOpenGLFunctions* gl, QOpenGLBuffer& buffer, const QString& name) {
+  if (!buffer.create()) {
+    QString e = QString("Could not create %1 buffer").arg(name);
+    throw std::runtime_error(qPrintable(e));
+  }
+  buffer.setUsagePattern(USAGE_PATTERN);
+
+  if (GLenum error = gl->glGetError()) {
+    qDebug() << "Error" << error << "setting usage pattern for" << name << "buffer";
+  }
+
+  qDebug() << name << "buffer" << buffer.bufferId() << "created";
+}
+
 void BallsCanvas::_initGLMemory() {
   using std::runtime_error;
   Q_ASSERT(this->isValid());
@@ -215,27 +234,14 @@ void BallsCanvas::_initGLMemory() {
 
   QOpenGLVertexArrayObject::Binder binder(&_vao);
 
-  if (Q_UNLIKELY(!(_vbo.create() && _vbo.bind()))) {
-    throw std::runtime_error("");
-    // TODO: Exception text
-  }
+  _initBuffer(this, _positionBuffer, "position");
+  _initBuffer(this, _normalBuffer, "normal");
+  _initBuffer(this, _texCoordBuffer, "texCoord");
+  _initBuffer(this, _ibo, "index");
 
-  _vbo.setUsagePattern(USAGE_PATTERN);
-  if (GLenum error = glGetError()) {
-    qDebug() << "Error" << error << "setting VBO usage pattern";
+  if (!_ibo.bind()) {
+    qDebug() << "Couldn't bind index buffer";
   }
-  qCDebug(logs::gl::Feature) << "VBO" << _vbo.bufferId() << "created and bound";
-
-  if (Q_UNLIKELY(!(_ibo.create() && _ibo.bind()))) {
-    throw std::runtime_error("");
-    // TODO: Exception text
-  }
-
-  _ibo.setUsagePattern(USAGE_PATTERN);
-  if (GLenum error = glGetError()) {
-    qDebug() << "Error" << error << "setting IBO usage pattern";
-  }
-  qCDebug(logs::gl::Feature) << "IBO" << _ibo.bufferId() << "created and bound";
 }
 
 void BallsCanvas::_initLogger() noexcept {
@@ -265,26 +271,6 @@ void BallsCanvas::_initShaders() noexcept {
   Q_ASSUME(_shader.link() && _shader.bind());
   // If we've gotten this far, then the code that checked for the availability
   // of shaders has already given us the green light
-}
-
-void BallsCanvas::_initAttributeLocations() noexcept {
-  using namespace attribute;
-  Q_ASSERT(this->isValid());
-  Q_ASSERT(this->context() == QOpenGLContext::currentContext());
-  Q_ASSERT(this->gl.gl31 != nullptr);
-#ifdef DEBUG
-  int currentShader = 0;
-  glGetIntegerv(GL_CURRENT_PROGRAM, &currentShader);
-  Q_ASSERT(static_cast<GLuint>(currentShader) == _shader.programId());
-#endif
-  _attributes[POSITION] = _shader.attributeLocation(POSITION);
-  _attributes[NORMAL] = _shader.attributeLocation(NORMAL);
-  _attributes[TEXCOORDS] = _shader.attributeLocation(TEXCOORDS);
-
-  gl.gl31->glBindFragDataLocation(_shader.programId(), 0, qPrintable(out::FRAGMENT));
-  if (GLenum error = glGetError()) {
-    qDebug() << "glBindFragDataLocation failed with" << error;
-  }
 }
 
 // Called on recompile
@@ -334,9 +320,36 @@ void BallsCanvas::_updateUniformValues() noexcept {
   }
 }
 
+static void _initAttribute(QOpenGLFunctions* gl, QOpenGLShaderProgram& shader, QOpenGLBuffer& buffer, int index, int size, const QString& name) {
+  if (!buffer.bind()) {
+    qDebug() << "Failed to bind" << name << "buffer";
+  }
+
+  shader.enableAttributeArray(index);
+  gl->glVertexAttribPointer(index, size, GL_FLOAT, GL_FALSE, 0, (void *)0);
+  if (GLenum error = gl->glGetError()) {
+    qDebug() << "glVertexAttribPointer(" << name << ") failed with" << error;
+  }
+
+  if (GLenum error = gl->glGetError()) {
+    qDebug() << "_shader.enableAttributeArray(" << name << ") failed with" << error;
+  }
+}
+
 void BallsCanvas::_initAttributes() noexcept {
+  using namespace attribute;
   Q_ASSERT(this->isValid());
   Q_ASSERT(this->context() == QOpenGLContext::currentContext());
+  Q_ASSERT(this->gl.gl31 != nullptr);
+
+  _attributes[POSITION] = _shader.attributeLocation(POSITION);
+  _attributes[NORMAL] = _shader.attributeLocation(NORMAL);
+  _attributes[TEXCOORDS] = _shader.attributeLocation(TEXCOORDS);
+
+  gl.gl31->glBindFragDataLocation(_shader.programId(), 0, qPrintable(out::FRAGMENT));
+  if (GLenum error = glGetError()) {
+    qDebug() << "glBindFragDataLocation failed with" << error;
+  }
 
 #ifdef DEBUG
   int currentShader = 0;
@@ -349,55 +362,19 @@ void BallsCanvas::_initAttributes() noexcept {
   int position = _attributes[attribute::POSITION];
   int normal = _attributes[attribute::NORMAL];
   int texCoords = _attributes[attribute::TEXCOORDS];
-  glVertexAttribPointer(
-    position, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void *)0);
-  if (GLenum error = glGetError()) {
-    qDebug() << "glVertexAttribPointer(position) failed with" << error;
-  }
 
-  glVertexAttribPointer(
-    normal,
-    3,
-    GL_FLOAT,
-    GL_FALSE,
-    8 * sizeof(float),
-    (void *)(3 * sizeof(float)));
-  if (GLenum error = glGetError()) {
-    qDebug() << "glVertexAttribPointer(normal) failed with" << error;
-  }
-
-  glVertexAttribPointer(
-    texCoords,
-    2,
-    GL_FLOAT,
-    GL_FALSE,
-    8 * sizeof(float),
-    (void *)(6 * sizeof(float)));
-  if (GLenum error = glGetError()) {
-    qDebug() << "glVertexAttribPointer(texCoords) failed with" << error;
-  }
-
-  _shader.enableAttributeArray(position);
-  if (GLenum error = glGetError()) {
-    qDebug() << "_shader.enableAttributeArray(position) failed with" << error;
-  }
-
-  _shader.enableAttributeArray(normal);
-  if (GLenum error = glGetError()) {
-    qDebug() << "_shader.enableAttributeArray(normal) failed with" << error;
-  }
-
-  _shader.enableAttributeArray(texCoords);
-  if (GLenum error = glGetError()) {
-    qDebug() << "_shader.enableAttributeArray(texCoords) failed with" << error;
-  }
+  _initAttribute(this, _shader, _positionBuffer, position, 3, "position");
+  _initAttribute(this, _shader, _normalBuffer, normal, 3, "normal");
+  _initAttribute(this, _shader, _texCoordBuffer, texCoords, 2, "texCoords");
 }
 
 void BallsCanvas::resizeGL(const int width, const int height) {}
 
 void BallsCanvas::paintGL() {
   Q_ASSERT(this->_vao.isCreated());
-  Q_ASSERT(this->_vbo.isCreated());
+  Q_ASSERT(this->_positionBuffer.isCreated());
+  Q_ASSERT(this->_normalBuffer.isCreated());
+  Q_ASSERT(this->_texCoordBuffer.isCreated());
   Q_ASSERT(this->_ibo.isCreated());
 
   if (!context()->makeCurrent(context()->surface())) {
@@ -420,37 +397,45 @@ void BallsCanvas::paintGL() {
   this->context()->swapBuffers(this->context()->surface());
 }
 
+template<class T>
+static void fillBuffer(QOpenGLFunctions* gl, QOpenGLBuffer& buffer, const QString& name, const vector<T>& data) {
+  if (!buffer.bind()) {
+    qDebug() << "Could not bind" << name << "buffer" << buffer.bufferId();
+  }
+
+  buffer.allocate(data.data(), data.size() * sizeof(T));
+  if (GLenum error = gl->glGetError()) {
+    qDebug() << "Cannot allocate" << (data.size() * sizeof(T)) << "bytes for" << name << "buffer, error" << error;
+  }
+}
+
+
 void BallsCanvas::setMesh(const Mesh &mesh) noexcept {
-  QOpenGLVertexArrayObject::Binder binder(&_vao);
 
-  const vector<Mesh::IndexType> &indices = mesh.getIndices();
-  const vector<Mesh::CoordType> &vertices = mesh.getVertices();
+  const vector<Mesh::IndexType> &indices = mesh.indices();
+  const auto& positions = mesh.positions();
+  const auto& normals = mesh.normals();
+  const auto& texCoords = mesh.texCoords();
 
 
-  if (!context()->makeCurrent(context()->surface())) {
+  QOpenGLContext* ctx = context();
+  if (!ctx->makeCurrent(ctx->surface())) {
     qDebug() << "Could not make the context" << context() << "current";
   }
 
+  QOpenGLVertexArrayObject::Binder binder(&_vao);
+
   m_indexCount = indices.size();
-  if (!_vbo.bind()) {
-    qDebug() << "Could not bind VBO" << _vbo.bufferId();
-  }
+  fillBuffer(this, _positionBuffer, "position", positions);
+  _shader.setAttributeBuffer(_attributes[attribute::POSITION], GL_FLOAT, 0, 3, 0);
 
-  this->_vbo.allocate(
-    vertices.data(), vertices.size() * sizeof(Mesh::CoordType));
-  if (GLenum error = glGetError()) {
-    qDebug() << "Cannot allocate" << vertices.size() * sizeof(Mesh::CoordType)
-             << "bytes for VBO, error" << error;
-  }
+  fillBuffer(this, _normalBuffer, "normal", normals);
+  _shader.setAttributeBuffer(_attributes[attribute::NORMAL], GL_FLOAT, 0, 3, 0);
 
-  if (!_ibo.bind()) {
-    qDebug() << "Could not bind IBO" << _ibo.bufferId();
-  }
-  this->_ibo.allocate(indices.data(), indices.size() * sizeof(Mesh::IndexType));
-  if (GLenum error = glGetError()) {
-    qDebug() << "Cannot allocate" << indices.size() * sizeof(Mesh::IndexType)
-             << "bytes for IBO, error" << error;
-  }
+  fillBuffer(this, _texCoordBuffer, "texCoord", texCoords);
+  _shader.setAttributeArray(_attributes[attribute::TEXCOORDS], GL_FLOAT, 0, 2, 0);
+
+  fillBuffer(this, _ibo, "index", mesh.indices());
 }
 
 void BallsCanvas::mouseMoveEvent(QMouseEvent *e) {}

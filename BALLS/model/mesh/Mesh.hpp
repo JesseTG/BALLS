@@ -65,8 +65,10 @@ public /* enums */:
   using IndexType = GLushort;
 
 public /* methods */:
-  const std::vector<GLfloat> &getVertices() const noexcept;
-  const std::vector<GLushort> &getIndices() const noexcept;
+  const std::vector<GLfloat> &positions() const noexcept;
+  const std::vector<GLfloat> &normals() const noexcept;
+  const std::vector<GLfloat> &texCoords() const noexcept;
+  const std::vector<GLushort> &indices() const noexcept;
   Type type() const noexcept {
     return m_type;
   }
@@ -78,7 +80,9 @@ protected /* methods */:
 
 protected /* fields */:
   std::vector<GLushort> m_indices;
-  std::vector<GLfloat> m_vertices;
+  std::vector<GLfloat> m_positions;
+  std::vector<GLfloat> m_normals;
+  std::vector<GLfloat> m_texCoords;
 
 private /* fields */:
   Type m_type;
