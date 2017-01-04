@@ -28,27 +28,7 @@ using std::runtime_error;
 using std::vector;
 using namespace balls::config;
 using namespace balls::shader;
-using FormatOption = QSurfaceFormat::FormatOption;
-using FormatOptions = QSurfaceFormat::FormatOptions;
-using OpenGLContextProfile = QSurfaceFormat::OpenGLContextProfile;
-using RenderableType = QSurfaceFormat::RenderableType;
-using SwapBehavior = QSurfaceFormat::SwapBehavior;
 using UsagePattern = QOpenGLBuffer::UsagePattern;
-
-constexpr FormatOption FORMAT_OPTION =
-#ifdef DEBUG
-  FormatOption::DebugContext;
-#else
-  FormatOption::StereoBuffers;
-#endif
-constexpr OpenGLContextProfile PROFILE = OpenGLContextProfile::CoreProfile;
-constexpr RenderableType RENDER_TYPE = RenderableType::OpenGL;
-constexpr SwapBehavior SWAP_TYPE = SwapBehavior::DefaultSwapBehavior;
-constexpr int SAMPLES = 4;
-constexpr int DEPTH_BUFFER_BITS = 8;
-
-constexpr FormatOptions
-  FLAGS(FORMAT_OPTION | RENDER_TYPE | PROFILE | SWAP_TYPE);
 
 constexpr UsagePattern USAGE_PATTERN = UsagePattern::StaticDraw;
 
@@ -67,32 +47,7 @@ BallsCanvas::BallsCanvas(QWidget *parent)
     _texCoordBuffer(QOpenGLBuffer::VertexBuffer),
     _ibo(QOpenGLBuffer::IndexBuffer),
     m_indexCount(0) {
-  QSurfaceFormat format(FLAGS);
-  format.setVersion(4, 1);
-  format.setSamples(SAMPLES);
-  format.setDepthBufferSize(DEPTH_BUFFER_BITS);
-
-#ifdef Q_OS_MAC
-  format = QSurfaceFormat::defaultFormat();
-  format.setVersion(4, 1);
-  format.setAlphaBufferSize(8);
-  format.setRedBufferSize(8);
-  format.setBlueBufferSize(8);
-  format.setGreenBufferSize(8);
-  format.setDepthBufferSize(16);
-  format.setSamples(0);
-  format.setStencilBufferSize(8);
-  format.setProfile(PROFILE);
-  format.setStereo(false);
-  format.setSwapBehavior(SwapBehavior::DoubleBuffer);
-  format.setRenderableType(RENDER_TYPE);
-#endif
-
-  this->setFormat(format);
-
   qDebug() << "Format:" << this->format();
-
-  qDebug() << "Constructed a BallsCanvas";
 }
 
 BallsCanvas::~BallsCanvas() {
