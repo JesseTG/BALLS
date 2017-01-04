@@ -411,7 +411,6 @@ static void fillBuffer(QOpenGLFunctions* gl, QOpenGLBuffer& buffer, const QStrin
 
 
 void BallsCanvas::setMesh(const Mesh &mesh) noexcept {
-
   const vector<Mesh::IndexType> &indices = mesh.indices();
   const auto& positions = mesh.positions();
   const auto& normals = mesh.normals();
