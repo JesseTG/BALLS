@@ -26,6 +26,14 @@ endif()
 
 #TODO: Add ppa:nschloe/boost-nightly and ppa:nschloe/cmake-nightly to Vagrantfile
 
+add_custom_target(BALLS-Parent
+  SOURCES
+    Vagrantfile
+    README.md
+    CONTRIBUTING.md
+    .gitignore
+    .clang-format
+)
 add_subdirectory(BALLS)
 add_subdirectory(QPropertyEditor)
 add_subdirectory(BALLS-Tests)
