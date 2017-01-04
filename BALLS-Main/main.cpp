@@ -40,7 +40,7 @@ int main(int argc, char* argv[]) {
   format.setRenderableType(RENDER_TYPE);
   format.setSwapBehavior(SWAP_TYPE);
   format.setProfile(PROFILE);
-  format.setVersion(4, 1);
+  format.setVersion(4, 5);
   format.setSamples(SAMPLES);
   format.setDepthBufferSize(DEPTH_BUFFER_BITS);
 #elif defined(Q_OS_MAC)
