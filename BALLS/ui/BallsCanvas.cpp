@@ -213,10 +213,7 @@ void BallsCanvas::_initGLMemory() {
     throw runtime_error(qPrintable(e));
   }
 
-  _vao.bind();
-  if (GLenum error = glGetError()) {
-    qDebug() << "Error" << error << "binding VAO";
-  }
+  QOpenGLVertexArrayObject::Binder binder(&_vao);
 
   if (Q_UNLIKELY(!(_vbo.create() && _vbo.bind()))) {
     throw std::runtime_error("");
@@ -347,6 +344,8 @@ void BallsCanvas::_initAttributes() noexcept {
   Q_ASSERT(static_cast<GLuint>(currentShader) == _shader.programId());
 #endif
 
+  QOpenGLVertexArrayObject::Binder binder(&_vao);
+
   int position = _attributes[attribute::POSITION];
   int normal = _attributes[attribute::NORMAL];
   int texCoords = _attributes[attribute::TEXCOORDS];
@@ -405,11 +404,7 @@ void BallsCanvas::paintGL() {
     qDebug() << "Failed to make context" << context() << "current";
   }
 
-  _vao.bind();
-  if (GLenum error = glGetError()) {
-    qDebug() << "Error" << error << "binding VAO";
-  }
-
+  QOpenGLVertexArrayObject::Binder binder(&_vao);
 
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
   if (GLenum error = glGetError()) {
@@ -421,20 +416,19 @@ void BallsCanvas::paintGL() {
   if (GLenum error = glGetError()) {
     qDebug() << "Error" << error << "when rendering the mesh";
   }
+
+  this->context()->swapBuffers(this->context()->surface());
 }
 
 void BallsCanvas::setMesh(const Mesh &mesh) noexcept {
+  QOpenGLVertexArrayObject::Binder binder(&_vao);
+
   const vector<Mesh::IndexType> &indices = mesh.getIndices();
   const vector<Mesh::CoordType> &vertices = mesh.getVertices();
 
 
   if (!context()->makeCurrent(context()->surface())) {
     qDebug() << "Could not make the context" << context() << "current";
-  }
-
-  _vao.bind();
-  if (GLenum error = glGetError()) {
-    qDebug() << "Error" << error << "binding VAO";
   }
 
   m_indexCount = indices.size();
@@ -833,11 +827,6 @@ bool BallsCanvas::updateShaders(
   this->_shader.removeAllShaders();
   if (GLenum error = glGetError()) {
     qDebug() << "_shader.removeAllShaders() failed";
-  }
-
-  _vao.bind();
-  if (GLenum error = glGetError()) {
-    qDebug() << "Error" << error << "binding VAO";
   }
 
 
