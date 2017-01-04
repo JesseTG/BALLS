@@ -34,6 +34,7 @@ constexpr FormatOptions
 int main(int argc, char* argv[]) {
   using namespace balls::logs;
 
+  // TODO: Make this configurable on the command-line
   QSurfaceFormat format;
 #ifdef Q_OS_LINUX
   format.setOption(FORMAT_OPTION);
@@ -84,5 +85,7 @@ int main(int argc, char* argv[]) {
 
   balls::BallsWindow w;
   w.show();
+
+  // TODO: Wrap this in a try-catch block and handle exceptions
   return balls.exec();
 }
