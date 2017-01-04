@@ -333,6 +333,7 @@ void BallsCanvas::paintGL() {
   Q_ASSERT(this->_texCoordBuffer.isCreated());
   Q_ASSERT(this->_ibo.isCreated());
 
+  // TODO: Isn't the context always current at this point?
   if (!context()->makeCurrent(context()->surface())) {
     qDebug() << "Failed to make context" << context() << "current";
   }
