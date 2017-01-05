@@ -51,9 +51,9 @@ else()
     PATHS
     /usr/include
     /usr/local/include
-    /opt/local/include
-    /opt/include
     /opt
+    /opt/include
+    /opt/local/include
     $ENV{HOME}/include
     ${GLM_ROOT_DIR}/include
     DOC "The directory where glm/glm.hpp resides")
