@@ -169,6 +169,7 @@ find_package(Qt5Core ${BALLS_MIN_QT_REQUIRED} REQUIRED)
 find_package(Qt5Widgets ${BALLS_MIN_QT_REQUIRED} REQUIRED)
 find_package(Qt5Gui ${BALLS_MIN_QT_REQUIRED} REQUIRED)
 find_package(Boost)
+find_package(GLM REQUIRED)
 find_package(QScintilla REQUIRED)
 
 add_library(${PROJECT_NAME} STATIC ${BALLS_SOURCES} ${BALLS_HEADERS} ${BALLS_RESOURCES})
