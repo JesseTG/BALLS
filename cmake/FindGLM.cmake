@@ -1,6 +1,4 @@
-# Based on https://git.io/vMGyG
-#
-# Find GLM
+## Find GLM
 #
 # Try to find GLM : OpenGL Mathematics.
 # This module defines
@@ -13,6 +11,7 @@
 # References:
 # - https://github.com/Groovounet/glm/blob/master/util/FindGLM.cmake
 # - https://bitbucket.org/alfonse/gltut/src/28636298c1c0/glm-0.9.0.7/FindGLM.cmake
+# - https://git.io/vMGyG
 #
 
 # Additional modules
