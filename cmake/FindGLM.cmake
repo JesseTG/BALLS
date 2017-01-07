@@ -61,7 +61,11 @@ else()
 endif()
 
 # Handle REQUIRD argument, define *_FOUND variable
-find_package_handle_standard_args(GLM DEFAULT_MSG GLM_INCLUDE_DIR)
+find_package_handle_standard_args(GLM
+  FOUND_VAR GLM_FOUND
+  REQUIRED_VARS GLM_INCLUDE_DIR
+  VERSION_VAR GLM_VERSION
+)
 
 # Define GLM_INCLUDE_DIRS
 if (GLM_FOUND)

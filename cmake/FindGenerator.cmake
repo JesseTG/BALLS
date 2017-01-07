@@ -63,7 +63,11 @@ else()
 endif()
 
 # Handle REQUIRD argument, define *_FOUND variable
-find_package_handle_standard_args(GENERATOR DEFAULT_MSG GENERATOR_INCLUDE_DIR)
+find_package_handle_standard_args(generator
+  FOUND_VAR GENERATOR_FOUND
+  REQUIRED_VARS GENERATOR_LIBRARY GENERATOR_INCLUDE_DIR
+  VERSION_VAR GENERATOR_VERSION
+)
 
 # Define GENERATOR_INCLUDE_DIR
 if (GENERATOR_FOUND)
