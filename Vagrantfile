@@ -99,6 +99,7 @@ Vagrant.configure(2) do |config|
 
     win8.vm.provision "shell", inline: <<-SHELL
       cd C:/Users/vagrant
+      nuget update -self
       choco upgrade all -y
 
       git clone -q --depth=1 https://github.com/g-truc/glm
