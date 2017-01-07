@@ -195,42 +195,42 @@ namespace glm {
 // Can't instantiate the bool specializations for some reason; I suppose doing
 // so
 // tries to instantiate all methods, including any decrement/increment operators
-extern template struct tvec2<double>;
-extern template struct tvec2<float>;
-extern template struct tvec2<int>;
-extern template struct tvec2<glm::uint>;
+extern template struct vec<2, double>;
+extern template struct vec<2, float>;
+extern template struct vec<2, int>;
+extern template struct vec<2, glm::uint>;
 
-extern template struct tvec3<double>;
-extern template struct tvec3<float>;
-extern template struct tvec3<int>;
-extern template struct tvec3<glm::uint>;
+extern template struct vec<3, double>;
+extern template struct vec<3, float>;
+extern template struct vec<3, int>;
+extern template struct vec<3, glm::uint>;
 
-extern template struct tvec4<double>;
-extern template struct tvec4<float>;
-extern template struct tvec4<int>;
-extern template struct tvec4<glm::uint>;
+extern template struct vec<4, double>;
+extern template struct vec<4, float>;
+extern template struct vec<4, int>;
+extern template struct vec<4, glm::uint>;
 
 extern template struct tquat<float>;
 extern template struct tquat<double>;
 
-extern template struct tmat2x2<float>;
-extern template struct tmat2x2<double>;
-extern template struct tmat2x3<float>;
-extern template struct tmat2x3<double>;
-extern template struct tmat2x4<float>;
-extern template struct tmat2x4<double>;
-extern template struct tmat3x2<float>;
-extern template struct tmat3x2<double>;
-extern template struct tmat3x3<float>;
-extern template struct tmat3x3<double>;
-extern template struct tmat3x4<float>;
-extern template struct tmat3x4<double>;
-extern template struct tmat4x2<float>;
-extern template struct tmat4x2<double>;
-extern template struct tmat4x3<float>;
-extern template struct tmat4x3<double>;
-extern template struct tmat4x4<float>;
-extern template struct tmat4x4<double>;
+extern template struct mat<2, 2, float>;
+extern template struct mat<2, 2, double>;
+extern template struct mat<2, 3, float>;
+extern template struct mat<2, 3, double>;
+extern template struct mat<2, 4, float>;
+extern template struct mat<2, 4, double>;
+extern template struct mat<3, 2, float>;
+extern template struct mat<3, 2, double>;
+extern template struct mat<3, 3, float>;
+extern template struct mat<3, 3, double>;
+extern template struct mat<3, 4, float>;
+extern template struct mat<3, 4, double>;
+extern template struct mat<4, 2, float>;
+extern template struct mat<4, 2, double>;
+extern template struct mat<4, 3, float>;
+extern template struct mat<4, 3, double>;
+extern template struct mat<4, 4, float>;
+extern template struct mat<4, 4, double>;
 }
 
 // STL template instantiations

@@ -22,40 +22,40 @@ template class vector<glm::vec3>;
 
 // glm template instantiations
 namespace glm {
-template struct tvec2<float>;
-template struct tvec2<double>;
-template struct tvec2<int>;
-template struct tvec2<glm::uint>;
+template struct vec<2, double>;
+template struct vec<2, float>;
+template struct vec<2, int>;
+template struct vec<2, glm::uint>;
 
-template struct tvec3<float>;
-template struct tvec3<double>;
-template struct tvec3<int>;
-template struct tvec3<glm::uint>;
+template struct vec<3, double>;
+template struct vec<3, float>;
+template struct vec<3, int>;
+template struct vec<3, glm::uint>;
 
-template struct tvec4<float>;
-template struct tvec4<double>;
-template struct tvec4<int>;
-template struct tvec4<glm::uint>;
+template struct vec<4, double>;
+template struct vec<4, float>;
+template struct vec<4, int>;
+template struct vec<4, glm::uint>;
 
 template struct tquat<float>;
 template struct tquat<double>;
 
-template struct tmat2x2<float>;
-template struct tmat2x2<double>;
-template struct tmat2x3<float>;
-template struct tmat2x3<double>;
-template struct tmat2x4<float>;
-template struct tmat2x4<double>;
-template struct tmat3x2<float>;
-template struct tmat3x2<double>;
-template struct tmat3x3<float>;
-template struct tmat3x3<double>;
-template struct tmat3x4<float>;
-template struct tmat3x4<double>;
-template struct tmat4x2<float>;
-template struct tmat4x2<double>;
-template struct tmat4x3<float>;
-template struct tmat4x3<double>;
-template struct tmat4x4<float>;
-template struct tmat4x4<double>;
+template struct mat<2, 2, float>;
+template struct mat<2, 2, double>;
+template struct mat<2, 3, float>;
+template struct mat<2, 3, double>;
+template struct mat<2, 4, float>;
+template struct mat<2, 4, double>;
+template struct mat<3, 2, float>;
+template struct mat<3, 2, double>;
+template struct mat<3, 3, float>;
+template struct mat<3, 3, double>;
+template struct mat<3, 4, float>;
+template struct mat<3, 4, double>;
+template struct mat<4, 2, float>;
+template struct mat<4, 2, double>;
+template struct mat<4, 3, float>;
+template struct mat<4, 3, double>;
+template struct mat<4, 4, float>;
+template struct mat<4, 4, double>;
 }
