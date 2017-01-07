@@ -43,6 +43,31 @@ if (WIN32)
       generator/generator
       generator/include
     DOC "The directory where generator/generator.hpp resides")
+
+  # I use generator-glm in BALLS, if you find this file on GitHub later you may wish to adjust it
+  find_library(GENERATOR_LIBRARY
+    NAMES generator-glm "${PC_GENERATOR_LIBRARIES}"
+    HINTS
+      ${PC_GENERATOR_LIBRARY_DIRS}
+      ${GENERATOR_ROOT_DIR}
+      $ENV{USERPROFILE}
+      $ENV{PROGRAMFILES}
+      $ENV{PROGRAMDATA}
+      $ENV{PROGRAMFILES\(X86\)}
+      $ENV{COMMONPROGRAMW6432}
+      $ENV{COMMONPROGRAMFILES\(X86\)}
+      $ENV{COMMONPROGRAMFILES}
+      $ENV{PROGRAMW6432}
+    PATH_SUFFIXES
+      lib
+      lib/generator
+      generator
+      generator/generator
+      bin
+      bin/generator
+    PATHS
+    DOC "Path to the generator library."
+  )
 else()
   # Find include files
   find_path(
@@ -60,6 +85,22 @@ else()
       /usr/local/include
       /usr/include
     DOC "The directory where generator/generator.hpp resides")
+
+  find_library(GENERATOR_LIBRARY
+    NAMES generator-glm "${PC_GENERATOR_LIBRARIES}"
+    HINTS
+      ${PC_GENERATOR_LIBRARY_DIRS}
+      ${GENERATOR_ROOT_DIR}
+      $ENV{HOME}/lib
+    PATH_SUFFIXES
+      x86_64-linux-gnu
+    PATHS
+      /opt
+      /opt/lib
+      /usr/local/lib
+      /usr/lib
+    DOC "Path to the generator library."
+  )
 endif()
 
 # Handle REQUIRD argument, define *_FOUND variable
@@ -72,7 +113,8 @@ find_package_handle_standard_args(generator
 # Define GENERATOR_INCLUDE_DIR
 if (GENERATOR_FOUND)
   set(GENERATOR_INCLUDE_DIRS ${GENERATOR_INCLUDE_DIR})
+  set(GENERATOR_LIBRARIES ${GENERATOR_LIBRARY})
 endif()
 
 # Hide some variables
-mark_as_advanced(GENERATOR_INCLUDE_DIRS)
+mark_as_advanced(GENERATOR_INCLUDE_DIRS GENERATOR_LIBRARIES)
