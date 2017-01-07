@@ -23,24 +23,20 @@ if (WIN32)
     GLM_INCLUDE_DIR
     NAMES glm/glm.hpp
     HINTS
-      ${GLM_ROOT_DIR}/include
       ${GLM_ROOT_DIR}
-      $ENV{USERPROFILE}/include
       $ENV{USERPROFILE}
-      $ENV{PROGRAMFILES}/include
       $ENV{PROGRAMFILES}
-      $ENV{PROGRAMDATA}/include
       $ENV{PROGRAMDATA}
-      $ENV{PROGRAMFILES\(X86\)}/include
       $ENV{PROGRAMFILES\(X86\)}
-      $ENV{COMMONPROGRAMW6432}/include
       $ENV{COMMONPROGRAMW6432}
-      $ENV{COMMONPROGRAMFILES\(X86\)}/include
       $ENV{COMMONPROGRAMFILES\(X86\)}
-      $ENV{COMMONPROGRAMFILES}/include
       $ENV{COMMONPROGRAMFILES}
-      $ENV{PROGRAMW6432}/include
       $ENV{PROGRAMW6432}
+    PATH_SUFFIXES
+      include
+      glm
+      glm/glm
+      glm/include
     DOC "The directory where glm/glm.hpp resides")
 else()
   # Find include files
