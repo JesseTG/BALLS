@@ -22,25 +22,25 @@ if (WIN32)
   find_path(
     GLM_INCLUDE_DIR
     NAMES glm/glm.hpp
-    PATHS
-      $ENV{PROGRAMFILES}/include
-      $ENV{PROGRAMFILES}
-      $ENV{PROGRAMFILES\(X86\)}/include
-      $ENV{PROGRAMFILES\(X86\)}
-      $ENV{PROGRAMW6432}/include
-      $ENV{PROGRAMW6432}
-      $ENV{COMMONPROGRAMFILES}/include
-      $ENV{COMMONPROGRAMFILES}
-      $ENV{COMMONPROGRAMFILES\(X86\)}/include
-      $ENV{COMMONPROGRAMFILES\(X86\)}
-      $ENV{COMMONPROGRAMW6432}/include
-      $ENV{COMMONPROGRAMW6432}
-      $ENV{PROGRAMDATA}/include
-      $ENV{PROGRAMDATA}
-      $ENV{USERPROFILE}/include
-      $ENV{USERPROFILE}
+    HINTS
       ${GLM_ROOT_DIR}/include
       ${GLM_ROOT_DIR}
+      $ENV{USERPROFILE}/include
+      $ENV{USERPROFILE}
+      $ENV{PROGRAMFILES}/include
+      $ENV{PROGRAMFILES}
+      $ENV{PROGRAMDATA}/include
+      $ENV{PROGRAMDATA}
+      $ENV{PROGRAMFILES\(X86\)}/include
+      $ENV{PROGRAMFILES\(X86\)}
+      $ENV{COMMONPROGRAMW6432}/include
+      $ENV{COMMONPROGRAMW6432}
+      $ENV{COMMONPROGRAMFILES\(X86\)}/include
+      $ENV{COMMONPROGRAMFILES\(X86\)}
+      $ENV{COMMONPROGRAMFILES}/include
+      $ENV{COMMONPROGRAMFILES}
+      $ENV{PROGRAMW6432}/include
+      $ENV{PROGRAMW6432}
     DOC "The directory where glm/glm.hpp resides")
 else()
   # Find include files
@@ -48,13 +48,13 @@ else()
     GLM_INCLUDE_DIR
     NAMES glm/glm.hpp
     PATHS
-    /usr/include
-    /usr/local/include
+    ${GLM_ROOT_DIR}/include
+    $ENV{HOME}/include
     /opt
     /opt/include
     /opt/local/include
-    $ENV{HOME}/include
-    ${GLM_ROOT_DIR}/include
+    /usr/local/include
+    /usr/include
     DOC "The directory where glm/glm.hpp resides")
 endif()
 
