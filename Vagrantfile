@@ -10,6 +10,7 @@ Vagrant.configure(2) do |config|
   # For a complete reference, please see the online documentation at
   # https://docs.vagrantup.com.
 
+  #TODO: Add ppa:nschloe/boost-nightly and ppa:nschloe/cmake-nightly
   config.vm.define "ubuntu" do |ubuntu|
     ubuntu.vm.box = "bento/ubuntu-16.04"
     ubuntu.vm.hostname = "ubuntu"
