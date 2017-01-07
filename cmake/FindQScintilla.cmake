@@ -56,11 +56,11 @@ if (APPLE)
         message(WARNING "brew --prefix failed, I'm guessing it's ${QSCINTILLA_BREW_ROOT}")
       endif()
 
-      set(QSCINTILLA_BREW_INCLUDE_DIR "${QSCINTILLA_BREW_ROOT}/include")
-      set(QSCINTILLA_BREW_LIBRARY "${QSCINTILLA_BREW_ROOT}/lib")
+      set(QSCINTILLA_PLATFORM_INCLUDE_DIR "${QSCINTILLA_BREW_ROOT}/include")
+      set(QSCINTILLA_PLATFORM_LIBRARY "${QSCINTILLA_BREW_ROOT}/lib")
 
-      message(STATUS "QSCINTILLA_BREW_INCLUDE_DIR: ${QSCINTILLA_BREW_INCLUDE_DIR}")
-      message(STATUS "QSCINTILLA_BREW_LIBRARY: ${QSCINTILLA_BREW_LIBRARY}")
+      message(STATUS "QSCINTILLA_PLATFORM_INCLUDE_DIR: ${QSCINTILLA_PLATFORM_INCLUDE_DIR}")
+      message(STATUS "QSCINTILLA_PLATFORM_LIBRARY: ${QSCINTILLA_PLATFORM_LIBRARY}")
     else()
       message(WARNING "Couldn't find the qscintilla2 formula.")
     endif()
@@ -71,14 +71,28 @@ endif()
 
 find_path(QSCINTILLA_INCLUDE_DIR
   NAMES Qsci qsciglobal.h
-  PATHS "${Qt5Core_INCLUDE_DIRS}" "${PC_QSCINTILLA_INCLUDE_DIRS}" "${QSCINTILLA_BREW_INCLUDE_DIR}" /usr/include/x86_64-linux-gnu/qt5
-  PATH_SUFFIXES Qsci
+  HINTS
+    ${Qt5Core_INCLUDE_DIRS}
+    ${PC_QSCINTILLA_INCLUDE_DIRS}
+    ${QSCINTILLA_PLATFORM_INCLUDE_DIR}
+    $ENV{USERPROFILE}
+    $ENV{PROGRAMFILES}
+    $ENV{PROGRAMDATA}
+    $ENV{PROGRAMFILES\(X86\)}
+    $ENV{COMMONPROGRAMW6432}
+    $ENV{COMMONPROGRAMFILES\(X86\)}
+    $ENV{COMMONPROGRAMFILES}
+    $ENV{PROGRAMW6432}
+  PATHS
+    /usr/include/x86_64-linux-gnu/qt5
+  PATH_SUFFIXES
+    Qsci
   DOC "Directory that contains 'Qsci', which in turn contains QScintilla's headers."
 )
 
 find_library(QSCINTILLA_LIBRARY
   NAMES qt5scintilla2 qscintilla2 q5scintilla2 qscintilla qt5scintilla qtscintilla "${PC_QSCINTILLA_LIBRARIES}"
-  PATHS "${Qt5Core_LIBRARIES}" "${PC_QSCINTILLA_LIBRARY_DIRS}" "${QSCINTILLA_BREW_LIBRARY}"
+  PATHS "${Qt5Core_LIBRARIES}" "${PC_QSCINTILLA_LIBRARY_DIRS}" "${QSCINTILLA_PLATFORM_LIBRARY}"
   DOC "Path to the QScintilla library."
 )
 
