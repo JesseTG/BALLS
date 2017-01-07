@@ -69,4 +69,4 @@ if (GLM_FOUND)
 endif()
 
 # Hide some variables
-mark_as_advanced(GLM_INCLUDE_DIR)
+mark_as_advanced(GLM_INCLUDE_DIRS)
