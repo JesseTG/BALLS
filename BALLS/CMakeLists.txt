@@ -159,19 +159,6 @@ include_directories(
   .
 )
 
-add_definitions(
-  -DGLM_META_PROG_HELPERS
-  -DGENERATOR_USE_GLM
-  -DGLM_ENABLE_EXPERIMENTAL
-)
-
-find_package(Qt5Core ${BALLS_MIN_QT_REQUIRED} REQUIRED)
-find_package(Qt5Widgets ${BALLS_MIN_QT_REQUIRED} REQUIRED)
-find_package(Qt5Gui ${BALLS_MIN_QT_REQUIRED} REQUIRED)
-find_package(Boost REQUIRED)
-find_package(GLM REQUIRED)
-find_package(QScintilla REQUIRED)
-
 add_library(${PROJECT_NAME} STATIC ${BALLS_SOURCES} ${BALLS_HEADERS} ${BALLS_RESOURCES})
 
 target_link_libraries(${PROJECT_NAME} Qt5::Core Qt5::Gui Qt5::Widgets QPropertyEditor generator-glm "${QSCINTILLA_LIBRARY}")
