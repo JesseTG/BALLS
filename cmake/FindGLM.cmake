@@ -16,6 +16,9 @@
 
 # Additional modules
 include(FindPackageHandleStandardArgs)
+include(LibFindMacros)
+
+libfind_pkg_check_modules(PC_GLM glm)
 
 if (WIN32)
   # Find include files
@@ -23,6 +26,7 @@ if (WIN32)
     GLM_INCLUDE_DIR
     NAMES glm/glm.hpp
     HINTS
+      ${PC_GLM_INCLUDE_DIRS}
       ${GLM_ROOT_DIR}
       $ENV{USERPROFILE}
       $ENV{PROGRAMFILES}
@@ -43,14 +47,16 @@ else()
   find_path(
     GLM_INCLUDE_DIR
     NAMES glm/glm.hpp
+    HINTS
+      ${PC_GLM_INCLUDE_DIRS}
+      ${GLM_ROOT_DIR}/include
+      $ENV{HOME}/include
     PATHS
-    ${GLM_ROOT_DIR}/include
-    $ENV{HOME}/include
-    /opt
-    /opt/include
-    /opt/local/include
-    /usr/local/include
-    /usr/include
+      /opt
+      /opt/include
+      /opt/local/include
+      /usr/local/include
+      /usr/include
     DOC "The directory where glm/glm.hpp resides")
 endif()
 
