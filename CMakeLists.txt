@@ -37,6 +37,7 @@ find_package(Qt5Gui ${BALLS_MIN_QT_REQUIRED} REQUIRED)
 find_package(GLM REQUIRED)
 find_package(Generator REQUIRED)
 find_package(QScintilla REQUIRED)
+find_package(Boost ${BALLS_MIN_BOOST_REQUIRED} REQUIRED)
 
 add_custom_target(BALLS-Parent
   SOURCES
