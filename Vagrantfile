@@ -107,7 +107,7 @@ Vagrant.configure(2) do |config|
       git clone -q --depth=1 https://github.com/ilmola/generator
 
       C:/ProgramData/chocolatey/bin/wget -q https://sourceforge.net/projects/pyqt/files/QScintilla2/QScintilla-2.9.4/QScintilla_gpl-2.9.4.zip
-      unzip -q QScintilla_gpl-2.9.4.zip
+      unzip -qo QScintilla_gpl-2.9.4.zip
       rm QScintilla_gpl-2.9.4.zip
     SHELL
   end
