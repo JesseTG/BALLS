@@ -1,0 +1,47 @@
+environment:
+  global:
+    MINGW: C:\Qt\Tools\mingw492_32
+  matrix:
+    - QTDIR: C:\Qt\5.5\mingw492_32
+    - QTDIR: C:\Qt\5.5\msvc2013_64
+
+configuration:
+  - Debug
+  - Release
+
+deploy:
+  - provider: GitHub
+    artifact: build\release-clang\dist\BALLS.exe
+    draft: true
+    prerelease: true
+    description: "Test"
+    auth_token:
+      secure: F+9fpTlJaNRDtYoGDl82JokzaG9Tkjt/Um/Kxh2+K6ickKcOxfxgOJ1bdepolZcD
+
+install:
+  - mkdir deps
+  - cd ./deps
+  - git clone -q https://github.com/g-truc/glm.git
+  - cd ./glm
+  - cmake . -Wno-dev
+  - cmake --build . --config Release --target install 2> nul
+  - cd ..
+  - git clone -q https://github.com/g-truc/gli.git
+  - cd ./gli
+  - cmake . -Wno-dev
+  - cd ..
+  - git clone -q https://github.com/JPNaude/Qtilities.git
+  - cd ..
+  - set PATH=%PATH%;%QTDIR%\bin;%MINGW%\bin;C:\Qt\Tools\QtCreator\bin
+
+build_script:
+  - cd C:\projects\balls
+  - qmake .
+  - dir
+
+test_script:
+  - ./dist/tst_TestConversions.exe
+
+artifacts:
+  - name: Release
+    path: 'dist/BALLS.exe'
